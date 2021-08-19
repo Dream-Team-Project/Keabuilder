@@ -38313,7 +38313,7 @@ var render = function() {
         ? _c("div", [_vm._v("I am small")])
         : _vm.$mq === "lg"
         ? _c("div", [_vm._v("I am large")])
-        : _c("div", [_vm._v("I am large 2")])
+        : _c("div", [_vm._v("I am medium")])
     ],
     1
   )
@@ -38376,14 +38376,14 @@ var render = function() {
       _c("ul", { staticClass: "navbar-nav" }, [
         _c(
           "li",
-          { staticClass: "nav-item pr-2 active" },
+          { staticClass: "nav-item pr-3 active" },
           [_c("router-link", { attrs: { to: "/" } }, [_vm._v("Dashboard")])],
           1
         ),
         _vm._v(" "),
         _c(
           "li",
-          { staticClass: "nav-item pr-2" },
+          { staticClass: "nav-item pr-3" },
           [
             _c("router-link", { attrs: { to: { name: "spapageone" } } }, [
               _vm._v("Spa Page One")
@@ -38394,7 +38394,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
-          { staticClass: "nav-item pr-2" },
+          { staticClass: "nav-item pr-3" },
           [
             _c("router-link", { attrs: { to: { name: "spapagetwo" } } }, [
               _vm._v("Spa Page Two")
