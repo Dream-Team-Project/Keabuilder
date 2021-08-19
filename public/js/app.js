@@ -38313,7 +38313,7 @@ var render = function() {
         ? _c("div", [_vm._v("I am small")])
         : _vm.$mq === "lg"
         ? _c("div", [_vm._v("I am large")])
-        : _c("div", [_vm._v("I am medium With no")])
+        : _c("div", [_vm._v("I am medium With not")])
     ],
     1
   )
