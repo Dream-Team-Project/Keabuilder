@@ -51,14 +51,16 @@ Vue.component('sidebar-component', require('./components/SidebarComponent.vue').
  */
 
  import dashboard from './components/DashboardComponent.vue';
+ import builder from './components/BuilderComponent.vue';
  import spapageone from './components/SpaPageOneComponent.vue';
  import spapagetwo from './components/SpaPageTwoComponent.vue';
 
 
  const routes = [
-    {path : '/*', name: 'dashboard', component: dashboard},
+    {path : '/builder', name: 'builder', component: builder},
     {path : '/spapageone', name: 'spapageone', component: spapageone},
     {path : '/spapagetwo', name: 'spapagetwo', component: spapagetwo},
+    {path : '/*', name: 'dashboard', component: dashboard},
  ]
 
 const router = new VueRouter({
