@@ -8,6 +8,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VuePageTransition from 'vue-page-transition';
 import VueMq from 'vue-mq';
+import VueCookies from 'vue-cookies';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 require('./bootstrap');
 
@@ -16,6 +20,7 @@ window.Vue = require('vue');
 Vue.use(VueRouter);
 Vue.use(VuePageTransition);
 Vue.use(VueMq);
+Vue.use(VueCookies);
 
 
 Vue.use(VueMq, {
@@ -26,6 +31,8 @@ Vue.use(VueMq, {
     },
     defaultBreakpoint: 'sm' // customize this for SSR
   })
+
+library.add(faUserSecret)
 
 
 /**
@@ -39,6 +46,7 @@ Vue.use(VueMq, {
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('index-component', require('./components/IndexComponent.vue').default);
 Vue.component('navbar-component', require('./components/NavbarComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
