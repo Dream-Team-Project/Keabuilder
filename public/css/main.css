@@ -1,0 +1,12 @@
+
+
+/* router progressBar */
+
+#nprogress .bar {
+    background: #7998ce!important;
+    height: 10px;
+    }
+    #nprogress .peg {
+box-shadow: 0 0 10px #FFBB00, 0 0 5px #FFBB00;
+}
+/* router progressBar */

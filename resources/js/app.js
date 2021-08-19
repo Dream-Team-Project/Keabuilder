@@ -4,9 +4,29 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import VuePageTransition from 'vue-page-transition';
+import VueMq from 'vue-mq';
+
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+Vue.use(VueRouter);
+Vue.use(VuePageTransition);
+Vue.use(VueMq);
+
+
+Vue.use(VueMq, {
+    breakpoints: { // default breakpoints - customize this
+      sm: 500,
+      md: 1250,
+      lg: Infinity,
+    },
+    defaultBreakpoint: 'sm' // customize this for SSR
+  })
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +39,10 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('index-component', require('./components/IndexComponent.vue').default);
+Vue.component('navbar-component', require('./components/NavbarComponent.vue').default);
+Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +50,37 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+ import dashboard from './components/DashboardComponent.vue';
+ import spapageone from './components/SpaPageOneComponent.vue';
+ import spapagetwo from './components/SpaPageTwoComponent.vue';
+
+
+ const routes = [
+    {path : '/*', name: 'dashboard', component: dashboard},
+    {path : '/spapageone', name: 'spapageone', component: spapageone},
+    {path : '/spapagetwo', name: 'spapagetwo', component: spapagetwo},
+ ]
+
+const router = new VueRouter({
+    mode: 'history',
+    routes,
+});
+
 const app = new Vue({
     el: '#app',
+    router
 });
+
+router.beforeResolve((to, from, next) => {
+    // If this isn't an initial page load.
+    if (to.name) {
+      // Start the route progress bar.
+      NProgress.start()
+    }
+    next()
+  })
+  
+  router.afterEach((to, from) => {
+    // Complete the animation of the route progress bar.
+    NProgress.done()
+  })
