@@ -9,9 +9,11 @@ import VueRouter from 'vue-router';
 import VuePageTransition from 'vue-page-transition';
 import VueMq from 'vue-mq';
 import VueCookies from 'vue-cookies';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Vuesax from 'vuesax';
+import 'vuesax/dist/vuesax.css';
 
 require('./bootstrap');
 
@@ -22,6 +24,9 @@ Vue.use(VuePageTransition);
 Vue.use(VueMq);
 Vue.use(VueCookies);
 
+Vue.use(Vuesax, {
+  // options here
+})
 
 Vue.use(VueMq, {
     breakpoints: { // default breakpoints - customize this

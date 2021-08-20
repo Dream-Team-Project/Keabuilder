@@ -10,3 +10,15 @@
 box-shadow: 0 0 10px #FFBB00, 0 0 5px #FFBB00;
 }
 /* router progressBar */
+
+/* button focus none */
+button:focus {
+    outline: none!important;
+}
+/* button focus none */
+
+/* Main dashboard padding adjustment */
+#mainindex {
+    padding: 20px 20px 20px 70px;
+}
+/* Main dashboard padding adjustment */

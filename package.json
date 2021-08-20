@@ -30,6 +30,7 @@
         "vue-cookies": "^1.7.4",
         "vue-mq": "^1.0.1",
         "vue-page-transition": "^0.2.2",
-        "vue-router": "^3.5.2"
+        "vue-router": "^3.5.2",
+        "vuesax": "^4.0.1-alpha.25"
     }
 }
