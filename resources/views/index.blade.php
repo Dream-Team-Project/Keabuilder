@@ -54,7 +54,7 @@
         <div id="app">
             <navbar-component></navbar-component>
             <sidebar-component></sidebar-component>
-            <index-component></index-component>
+            <index-component id="mainindex"></index-component>
         </div>
         <script src="{{asset('js/app.js')}}"></script>
     </body>
