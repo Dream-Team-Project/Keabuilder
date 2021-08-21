@@ -28,6 +28,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.15.4",
         "@fortawesome/vue-fontawesome": "^2.0.2",
         "vue-cookies": "^1.7.4",
+        "vue-drag-n-drop": "^1.2.2",
         "vue-mq": "^1.0.1",
         "vue-page-transition": "^0.2.2",
         "vue-router": "^3.5.2"

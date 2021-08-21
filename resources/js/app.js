@@ -9,6 +9,7 @@ import VueRouter from 'vue-router';
 import VuePageTransition from 'vue-page-transition';
 import VueMq from 'vue-mq';
 import VueCookies from 'vue-cookies';
+import DragDrop from 'vue-drag-n-drop';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -21,7 +22,7 @@ Vue.use(VueRouter);
 Vue.use(VuePageTransition);
 Vue.use(VueMq);
 Vue.use(VueCookies);
-
+Vue.use(DragDrop);
 
 Vue.use(VueMq, {
     breakpoints: { // default breakpoints - customize this
@@ -33,6 +34,13 @@ Vue.use(VueMq, {
   })
 
 library.add(faUserSecret)
+
+plugins: [
+  {
+    src: './plugins/vue-drag-n-drop.js',
+    ssr: false
+  }
+],
 
 
 /**
