@@ -9,24 +9,12 @@ import VueRouter from 'vue-router';
 import VuePageTransition from 'vue-page-transition';
 import VueMq from 'vue-mq';
 import VueCookies from 'vue-cookies';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import DragDrop from 'vue-drag-n-drop';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-=======
-=======
->>>>>>> 016fd7772fec9282a404b64863e148ac839f1329
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import Vuesax from 'vuesax';
 import 'vuesax/dist/vuesax.css';
-<<<<<<< HEAD
->>>>>>> 016fd7772fec9282a404b64863e148ac839f1329
-=======
->>>>>>> 016fd7772fec9282a404b64863e148ac839f1329
 
 require('./bootstrap');
 
@@ -36,17 +24,12 @@ Vue.use(VueRouter);
 Vue.use(VuePageTransition);
 Vue.use(VueMq);
 Vue.use(VueCookies);
-<<<<<<< HEAD
 Vue.use(DragDrop);
-=======
 
 Vue.use(Vuesax, {
   // options here
 })
-<<<<<<< HEAD
->>>>>>> 016fd7772fec9282a404b64863e148ac839f1329
-=======
->>>>>>> 016fd7772fec9282a404b64863e148ac839f1329
+
 
 Vue.use(VueMq, {
     breakpoints: { // default breakpoints - customize this
