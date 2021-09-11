@@ -13,8 +13,6 @@ import DragDrop from 'vue-drag-n-drop';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import Vuesax from 'vuesax';
-import 'vuesax/dist/vuesax.css';
 
 require('./bootstrap');
 
@@ -25,10 +23,6 @@ Vue.use(VuePageTransition);
 Vue.use(VueMq);
 Vue.use(VueCookies);
 Vue.use(DragDrop);
-
-Vue.use(Vuesax, {
-  // options here
-})
 
 
 Vue.use(VueMq, {
@@ -62,8 +56,8 @@ plugins: [
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-Vue.component('index-component', require('./components/IndexComponent.vue').default);
-Vue.component('navbar-component', require('./components/NavbarComponent.vue').default);
+Vue.component('login-component', require('./components/LoginComponent.vue').default);
+Vue.component('indexlogin-component', require('./components/IndexloginComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
 
 
@@ -73,28 +67,40 @@ Vue.component('sidebar-component', require('./components/SidebarComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+ import login from './components/LoginComponent.vue';
  import dashboard from './components/DashboardComponent.vue';
- import builder from './components/BuilderComponent.vue';
- import spapageone from './components/SpaPageOneComponent.vue';
- import spapagetwo from './components/SpaPageTwoComponent.vue';
+ import funnel from './components/FunnelComponent.vue';
+ import membership from './components/MembershipComponent.vue';
+ import analytics from './components/AnalyticsComponent.vue';
+ import edituser from './components/EdituserComponent.vue';
+ import pages from './components/PagesComponent.vue';
+ import strategies from './components/StrategiesComponent.vue';
 
 
- const routes = [
-    {path : '/builder', name: 'builder', component: builder},
-    {path : '/spapageone', name: 'spapageone', component: spapageone},
-    {path : '/spapagetwo', name: 'spapagetwo', component: spapagetwo},
-    {path : '/*', name: 'dashboard', component: dashboard},
- ]
+const routes = [
+  {path : '/login', name: 'login', component: login},
+  {path : '/register', name: 'register', component: login},  
+  {path : '/funnel', name: 'funnel', component: funnel},
+  {path : '/pages', name: 'pages', component: pages},
+  {path : '/strategies', name: 'strategies', component: strategies},
+  {path : '/membership', name: 'membership', component: membership},
+  {path : '/analytics', name: 'analytics', component: analytics},
+  {path : '/edit-user', name: 'edituser', component: edituser},
+  {path : '/home', name: 'home', component: dashboard},
+  {path : '/*', name: 'dashboard', component: dashboard},
+]
 
 const router = new VueRouter({
-    mode: 'history',
-    routes,
+  mode: 'history',
+  routes,
 });
 
+
 const app = new Vue({
-    el: '#app',
-    router
+  el: '#app',
+  router,
 });
+
 
 router.beforeResolve((to, from, next) => {
     // If this isn't an initial page load.

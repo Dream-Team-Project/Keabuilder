@@ -24,6 +24,8 @@
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
         <!-- fontfamily -->
 
+        
+
         <!-- fontawsome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
@@ -52,9 +54,7 @@
     </head>
     <body>
         <div id="app">
-            <navbar-component></navbar-component>
-            <sidebar-component></sidebar-component>
-            <index-component id="mainindex"></index-component>
+            <indexlogin-component id="mainindex"></indexlogin-component>
         </div>
         <script src="{{asset('js/app.js')}}"></script>
     </body>
