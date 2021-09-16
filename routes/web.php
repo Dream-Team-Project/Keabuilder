@@ -28,4 +28,7 @@ Route::prefix('auth')->group(function(){
     Route::post('login','AppController@login');
     Route::post('register','AppController@register');
     Route::post('logout','AppController@logout');
+    Route::post('send-token','AppController@sendToken');
+    Route::post('validate-token','AppController@validateToken');
+    Route::post('reset-password','AppController@resetPassword');
 });

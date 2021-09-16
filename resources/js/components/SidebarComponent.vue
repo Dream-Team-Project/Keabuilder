@@ -6,55 +6,72 @@
             <img v-bind:src="'images/logo/bw.svg'" alt="">
         </div>
         <div class="bw-sidebar">
-            <button class="bw-sidebar__item hasIcon" v-on:click="setActive('dashboard')" :class="{ active:isActive('dashboard') }">
-                <div class="bw-sidebar__item__icon">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                </div>
-                <div class="bw-sidebar__item__text">
-                     <router-link :to="{name: 'dashboard'}">Dashboard</router-link>
-                </div>
-            </button>
+            <router-link :to="{name: 'dashboard'}">
+                <button class="bw-sidebar__item hasIcon" v-on:click="setActive('dashboard')" :class="{ active:isActive('dashboard') }">
+                    <div class="bw-sidebar__item__icon">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                    </div>
+                    <div class="bw-sidebar__item__text">
+                        Dashboard
+                    </div>
+                </button>
+            </router-link>
 
-            <button class="bw-sidebar__item hasIcon" v-on:click="setActive('funnel')" :class="{ active:isActive('funnel') }">
-                <div class="bw-sidebar__item__icon">
-                    <i class="fa fa-filter" aria-hidden="true"></i>
-                </div>
-                <div class="vs-sidebar__item__text">
-                    <router-link :to="{name: 'funnel'}">Funnels</router-link>
-                </div>
-            </button>
-             <button class="bw-sidebar__item hasIcon" v-on:click="setActive('Pages')" :class="{ active:isActive('Pages') }">
-                <div class="bw-sidebar__item__icon">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="vs-sidebar__item__text">
-                    <router-link :to="{name: 'pages'}">Pages</router-link>                  
-                </div>
-            </button>
-             <button class="bw-sidebar__item hasIcon" v-on:click="setActive('strategies')" :class="{ active:isActive('strategies') }">
-                <div class="bw-sidebar__item__icon">
-                    <i class="fas fa-chess-knight"></i>
-                </div>
-                <div class="vs-sidebar__item__text">
-                    <router-link :to="{name: 'strategies'}">Strategies</router-link>                                     
-                </div>
-            </button>
-            <button class="bw-sidebar__item hasIcon"  v-on:click="setActive('membership')" :class="{ active:isActive('membership') }">
-                <div class="bw-sidebar__item__icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="bw-sidebar__item__text">
-                    <router-link :to="{name: 'membership'}">Membership</router-link>
-                </div>
-            </button>
-            <button class="bw-sidebar__item hasIcon"  v-on:click="setActive('analytics')" :class="{ active:isActive('analytics') }">
-                <div class="bw-sidebar__item__icon">
-                    <i class="fas fa-chart-pie"></i>
-                </div>
-                <div class="bw-sidebar__item__text">
-                    <router-link :to="{name: 'analytics'}">Analytics</router-link>
-                </div>
-            </button>
+            <router-link :to="{name: 'funnel'}">
+                <button class="bw-sidebar__item hasIcon" v-on:click="setActive('funnel')" :class="{ active:isActive('funnel') }">
+                    <div class="bw-sidebar__item__icon">
+                        <i class="fa fa-filter" aria-hidden="true"></i>
+                    </div>
+                    <div class="vs-sidebar__item__text">
+                        Funnels
+                    </div>
+                </button>
+            </router-link>
+
+            <router-link :to="{name: 'pages'}">    
+                <button class="bw-sidebar__item hasIcon" v-on:click="setActive('Pages')" :class="{ active:isActive('Pages') }">
+                    <div class="bw-sidebar__item__icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="vs-sidebar__item__text">
+                        Pages                  
+                    </div>
+                </button>
+            </router-link>
+
+            <router-link :to="{name: 'strategies'}">    
+                <button class="bw-sidebar__item hasIcon" v-on:click="setActive('strategies')" :class="{ active:isActive('strategies') }">
+                    <div class="bw-sidebar__item__icon">
+                        <i class="fas fa-chess-knight"></i>
+                    </div>
+                    <div class="vs-sidebar__item__text">
+                        Strategies                                     
+                    </div>
+                </button>
+            </router-link>
+
+            <router-link :to="{name: 'membership'}">
+                <button class="bw-sidebar__item hasIcon"  v-on:click="setActive('membership')" :class="{ active:isActive('membership') }">
+                    <div class="bw-sidebar__item__icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="bw-sidebar__item__text">
+                        Membership
+                    </div>
+                </button>
+            </router-link>
+
+            <router-link :to="{name: 'analytics'}">
+                <button class="bw-sidebar__item hasIcon"  v-on:click="setActive('analytics')" :class="{ active:isActive('analytics') }">
+                    <div class="bw-sidebar__item__icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="bw-sidebar__item__text">
+                        Analytics
+                    </div>
+                </button>
+            </router-link>
+            
             <button class="bw-sidebar__item hasIcon" v-on:click="setActive('contacts')" :class="{ active:isActive('contacts') }">
                 <div class="bw-sidebar__item__icon">
                     <i class="far fa-id-badge"></i>
@@ -209,7 +226,7 @@
                     </div>
                 </div>
                 <div class="bw-avatar-content bw-change-color-badge" >
-                    <div class="bw-avatar">
+                    <div class="bw-avatar" @click="shownotification">
                         <i class="far fa-bell"></i>
                         <span class="pulse-ring"></span>
                     </div>
@@ -222,7 +239,7 @@
         <!-- footer end -->
     </div>
 
-    <div class="dropdown-menu1 p-0 m-0 dropdown-menu-anim-up dropdown-menu-lg show" x-placement="top-end" >
+    <div class="dropdown-menu1 p-0 m-0 dropdown-menu-anim-up dropdown-menu-lg show" v-if="notification" >
         <form>
             <!--begin::Header-->
             <div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(images/bk/bg-2.jpg)">
@@ -939,6 +956,7 @@
       offcanvasoverlay:false,
       bwname:'',
       bwemail:'',
+      notification:false,
     }
   },created(){
         this.init();
@@ -962,6 +980,13 @@
         // console.log(response);
         this.bwname = response.data.user.name;
         this.bwemail = response.data.user.email;
+        var geturl = window.location.pathname;
+        if(geturl!='/'){
+            var geturl2 = geturl.substring(1);
+            this.setActive(geturl2);        
+        }else{
+            this.setActive('dashboard');        
+        }        
     })
     },      
     openClose() { 
@@ -994,7 +1019,9 @@
     },
     hideoverlay(){
         this.offcanvasoverlay=false;
-    }
+    },shownotification() { 
+      this.notification = !this.notification;
+    },
 
   }
 }
