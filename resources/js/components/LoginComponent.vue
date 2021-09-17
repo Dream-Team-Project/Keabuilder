@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div id="mainlogincontainer" class="insidecont"> 
         <div class="bw-login container-fluid">
             <div class="row">
-                <div class="pt-5 bw-colside">
+                <div class="pt-3 bw-colside">
                     <div class="login-form">
 
-                        <img v-bind:src="'images/logo/bw.svg'">
+                        <img v-bind:src="'images/logo/kblogo.svg'">
                         <h5>{{signheading}}</h5>
                         <p>{{signpara}}</p>
 
@@ -97,7 +97,7 @@
 
                     <div class="bw-anthoersignin">
                             <div class="google-login__container">
-                                <a class="eds-btn" href="">
+                                <a class="eds-btn" href="/auth/redirect/google">
                                         <i class="eds-vector-image "
                                             data-spec="icon" data-testid="icon" aria-hidden="true"><svg width="24"
                                                 height="24" fill="none">
@@ -121,12 +121,12 @@
                                                             d="M0 0h20v20.5H0z"></path>
                                                     </clipPath>
                                                 </defs>
-                                            </svg></i> Sign in with Google
+                                            </svg></i> {{anothersigngoogle}}
                                 </a></div>
                     </div>
                     <div class="bw-anthoersignin">
                         <div class="facebook-button-container">
-                            <a class="eds-btn" href="">
+                            <a class="eds-btn"  href="/auth/redirect/facebook">
                                 <i class="eds-vector-image "
                                     data-spec="icon" data-testid="icon" aria-hidden="true"><svg
                                         width="24" height="24" fill="none">
@@ -137,7 +137,7 @@
                                             d="M15.892 14.89l.443-2.89h-2.774v-1.877c0-.79.388-1.561 1.63-1.561h1.261V6.1s-1.144-.195-2.238-.195c-2.284 0-3.777 1.384-3.777 3.89V12h-2.54v2.89h2.54v6.989a10.073 10.073 0 003.125 0V14.89h2.33z"
                                             fill="#fff"></path>
                                     </svg></i>
-                                    Sign in with Facebook
+                                   {{anothersignfacebook}}
                             </a></div>
                     </div>
                     <div class="bw-anthoersignin">
@@ -361,6 +361,8 @@
                 heroImageIndex:2,
                 min: 1,
                 max: 3,
+                anothersigngoogle:"Sign in with Google",
+                anothersignfacebook:"Sign in with Facebook",
             }
         },
         computed: {
@@ -485,6 +487,8 @@
                 this.forforget = false;
                 this.signheading = 'Sign In To Admin';
                 this.signpara = 'Enter your details to login to your account:';
+                this.anothersigngoogle = "Sign in with Google";
+                this.anothersignfacebook = "Sign in with Facebook";
             },
             anchorsignup() {
                 this.loginbox = false;
@@ -492,6 +496,8 @@
                 this.forforget = false;
                 this.signheading = 'Sign Up To Admin';
                 this.signpara = 'Enter your details to Register to your account:';
+                 this.anothersigngoogle = "Sign up with Google";
+                this.anothersignfacebook = "Sign up with Facebook";
             },
             anchorforget() {
                 this.loginbox = false;
@@ -539,7 +545,7 @@
                         token: this.token
                     }
                     axios.post('auth/validate-token', data).then(response => {
-                        console.log('email sent.');
+                        // console.log('email sent.');
 
                         if (response.data.id) {
                             this.signheading = 'Change Password!';
@@ -587,7 +593,7 @@
                         this.errors.push("Passwords has been successfully changed.");
                         this.forchangepassword = false;
                         this.anchorsignin();
-                        console.log('success');
+                        // console.log('success');
 
                     }).catch(error => {
                         this.errors.push(error.response.data.error);

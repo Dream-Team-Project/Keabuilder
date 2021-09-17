@@ -32,3 +32,6 @@ Route::prefix('auth')->group(function(){
     Route::post('validate-token','AppController@validateToken');
     Route::post('reset-password','AppController@resetPassword');
 });
+
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');

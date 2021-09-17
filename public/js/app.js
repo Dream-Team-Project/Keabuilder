@@ -13055,7 +13055,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       emailforget: '',
       token: '',
       newpassword: ''
-    }, _defineProperty(_ref, "passwordagain", ''), _defineProperty(_ref, "user", null), _defineProperty(_ref, "forforget", ''), _defineProperty(_ref, "forvalidate", ''), _defineProperty(_ref, "forchangepassword", ''), _defineProperty(_ref, "isActive", ''), _defineProperty(_ref, "heroImageIndex", 2), _defineProperty(_ref, "min", 1), _defineProperty(_ref, "max", 3), _ref;
+    }, _defineProperty(_ref, "passwordagain", ''), _defineProperty(_ref, "user", null), _defineProperty(_ref, "forforget", ''), _defineProperty(_ref, "forvalidate", ''), _defineProperty(_ref, "forchangepassword", ''), _defineProperty(_ref, "isActive", ''), _defineProperty(_ref, "heroImageIndex", 2), _defineProperty(_ref, "min", 1), _defineProperty(_ref, "max", 3), _defineProperty(_ref, "anothersigngoogle", "Sign in with Google"), _defineProperty(_ref, "anothersignfacebook", "Sign in with Facebook"), _ref;
   },
   computed: {
     cssVars: function cssVars() {
@@ -13188,6 +13188,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.forforget = false;
       this.signheading = 'Sign In To Admin';
       this.signpara = 'Enter your details to login to your account:';
+      this.anothersigngoogle = "Sign in with Google";
+      this.anothersignfacebook = "Sign in with Facebook";
     },
     anchorsignup: function anchorsignup() {
       this.loginbox = false;
@@ -13195,6 +13197,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.forforget = false;
       this.signheading = 'Sign Up To Admin';
       this.signpara = 'Enter your details to Register to your account:';
+      this.anothersigngoogle = "Sign up with Google";
+      this.anothersignfacebook = "Sign up with Facebook";
     },
     anchorforget: function anchorforget() {
       this.loginbox = false;
@@ -13247,8 +13251,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           token: this.token
         };
         axios.post('auth/validate-token', data).then(function (response) {
-          console.log('email sent.');
-
+          // console.log('email sent.');
           if (response.data.id) {
             _this5.signheading = 'Change Password!';
             _this5.signpara = 'Enter your password:';
@@ -13297,9 +13300,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this6.forchangepassword = false;
 
-          _this6.anchorsignin();
+          _this6.anchorsignin(); // console.log('success');
 
-          console.log('success');
         })["catch"](function (error) {
           _this6.errors.push(error.response.data.error);
         });
@@ -51568,1627 +51570,959 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "dasboardcontainer" } }, [
-    _c("div", { staticClass: "container-fluid" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-xl-4" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-custom bg-gray-100 gutter-b card-stretch"
-            },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "card-body p-0 position-relative overflow-hidden"
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "card-rounded-bottom bg-primary",
-                      staticStyle: { height: "200px", "min-height": "200px" },
-                      attrs: { id: "kt_mixed_widget_2_chart" }
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "apexcharts-canvas apexcharts3g1ljutpg apexcharts-theme-light",
-                          staticStyle: { width: "414px", height: "200px" },
-                          attrs: { id: "apexcharts3g1ljutpg" }
-                        },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "apexcharts-svg",
-                              staticStyle: { background: "transparent" },
-                              attrs: {
-                                id: "SvgjsSvg1694",
-                                width: "414",
-                                height: "200",
-                                xmlns: "http://www.w3.org/2000/svg",
-                                version: "1.1",
-                                "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                                "xmlns:svgjs": "http://svgjs.com/svgjs",
-                                "xmlns:data": "ApexChartsNS",
-                                transform: "translate(0, 0)"
-                              }
-                            },
-                            [
-                              _c(
-                                "g",
-                                {
-                                  staticClass:
-                                    "apexcharts-inner apexcharts-graphical",
-                                  attrs: {
-                                    id: "SvgjsG1696",
-                                    transform: "translate(0, 0)"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "defs",
-                                    { attrs: { id: "SvgjsDefs1695" } },
-                                    [
-                                      _c(
-                                        "clipPath",
-                                        {
-                                          attrs: { id: "gridRectMask3g1ljutpg" }
-                                        },
-                                        [
-                                          _c("rect", {
-                                            attrs: {
-                                              id: "SvgjsRect1699",
-                                              width: "421",
-                                              height: "203",
-                                              x: "-3.5",
-                                              y: "-1.5",
-                                              rx: "0",
-                                              ry: "0",
-                                              opacity: "1",
-                                              "stroke-width": "0",
-                                              stroke: "none",
-                                              "stroke-dasharray": "0",
-                                              fill: "#fff"
-                                            }
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "clipPath",
-                                        {
-                                          attrs: {
-                                            id: "gridRectMarkerMask3g1ljutpg"
-                                          }
-                                        },
-                                        [
-                                          _c("rect", {
-                                            attrs: {
-                                              id: "SvgjsRect1700",
-                                              width: "418",
-                                              height: "204",
-                                              x: "-2",
-                                              y: "-2",
-                                              rx: "0",
-                                              ry: "0",
-                                              opacity: "1",
-                                              "stroke-width": "0",
-                                              stroke: "none",
-                                              "stroke-dasharray": "0",
-                                              fill: "#fff"
-                                            }
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "filter",
-                                        {
-                                          attrs: {
-                                            id: "SvgjsFilter1706",
-                                            filterUnits: "userSpaceOnUse",
-                                            width: "200%",
-                                            height: "200%",
-                                            x: "-50%",
-                                            y: "-50%"
-                                          }
-                                        },
-                                        [
-                                          _c("feFlood", {
-                                            attrs: {
-                                              id: "SvgjsFeFlood1707",
-                                              "flood-color": "#287ed7",
-                                              "flood-opacity": "0.5",
-                                              result: "SvgjsFeFlood1707Out",
-                                              in: "SourceGraphic"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("feComposite", {
-                                            attrs: {
-                                              id: "SvgjsFeComposite1708",
-                                              in: "SvgjsFeFlood1707Out",
-                                              in2: "SourceAlpha",
-                                              operator: "in",
-                                              result: "SvgjsFeComposite1708Out"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("feOffset", {
-                                            attrs: {
-                                              id: "SvgjsFeOffset1709",
-                                              dx: "0",
-                                              dy: "5",
-                                              result: "SvgjsFeOffset1709Out",
-                                              in: "SvgjsFeComposite1708Out"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("feGaussianBlur", {
-                                            attrs: {
-                                              id: "SvgjsFeGaussianBlur1710",
-                                              stdDeviation: "3 ",
-                                              result:
-                                                "SvgjsFeGaussianBlur1710Out",
-                                              in: "SvgjsFeOffset1709Out"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "feMerge",
-                                            {
-                                              attrs: {
-                                                id: "SvgjsFeMerge1711",
-                                                result: "SvgjsFeMerge1711Out",
-                                                in: "SourceGraphic"
-                                              }
-                                            },
-                                            [
-                                              _c("feMergeNode", {
-                                                attrs: {
-                                                  id: "SvgjsFeMergeNode1712",
-                                                  in:
-                                                    "SvgjsFeGaussianBlur1710Out"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("feMergeNode", {
-                                                attrs: {
-                                                  id: "SvgjsFeMergeNode1713",
-                                                  in: "[object Arguments]"
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c("feBlend", {
-                                            attrs: {
-                                              id: "SvgjsFeBlend1714",
-                                              in: "SourceGraphic",
-                                              in2: "SvgjsFeMerge1711Out",
-                                              mode: "normal",
-                                              result: "SvgjsFeBlend1714Out"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "filter",
-                                        {
-                                          attrs: {
-                                            id: "SvgjsFilter1716",
-                                            filterUnits: "userSpaceOnUse",
-                                            width: "200%",
-                                            height: "200%",
-                                            x: "-50%",
-                                            y: "-50%"
-                                          }
-                                        },
-                                        [
-                                          _c("feFlood", {
-                                            attrs: {
-                                              id: "SvgjsFeFlood1717",
-                                              "flood-color": "#287ed7",
-                                              "flood-opacity": "0.5",
-                                              result: "SvgjsFeFlood1717Out",
-                                              in: "SourceGraphic"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("feComposite", {
-                                            attrs: {
-                                              id: "SvgjsFeComposite1718",
-                                              in: "SvgjsFeFlood1717Out",
-                                              in2: "SourceAlpha",
-                                              operator: "in",
-                                              result: "SvgjsFeComposite1718Out"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("feOffset", {
-                                            attrs: {
-                                              id: "SvgjsFeOffset1719",
-                                              dx: "0",
-                                              dy: "5",
-                                              result: "SvgjsFeOffset1719Out",
-                                              in: "SvgjsFeComposite1718Out"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("feGaussianBlur", {
-                                            attrs: {
-                                              id: "SvgjsFeGaussianBlur1720",
-                                              stdDeviation: "3 ",
-                                              result:
-                                                "SvgjsFeGaussianBlur1720Out",
-                                              in: "SvgjsFeOffset1719Out"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "feMerge",
-                                            {
-                                              attrs: {
-                                                id: "SvgjsFeMerge1721",
-                                                result: "SvgjsFeMerge1721Out",
-                                                in: "SourceGraphic"
-                                              }
-                                            },
-                                            [
-                                              _c("feMergeNode", {
-                                                attrs: {
-                                                  id: "SvgjsFeMergeNode1722",
-                                                  in:
-                                                    "SvgjsFeGaussianBlur1720Out"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("feMergeNode", {
-                                                attrs: {
-                                                  id: "SvgjsFeMergeNode1723",
-                                                  in: "[object Arguments]"
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c("feBlend", {
-                                            attrs: {
-                                              id: "SvgjsFeBlend1724",
-                                              in: "SourceGraphic",
-                                              in2: "SvgjsFeMerge1721Out",
-                                              mode: "normal",
-                                              result: "SvgjsFeBlend1724Out"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "g",
-                                    {
-                                      staticClass: "apexcharts-xaxis",
-                                      attrs: {
-                                        id: "SvgjsG1725",
-                                        transform: "translate(0, 0)"
-                                      }
-                                    },
-                                    [
-                                      _c("g", {
-                                        staticClass: "apexcharts-xaxis-texts-g",
-                                        attrs: {
-                                          id: "SvgjsG1726",
-                                          transform: "translate(0, -4)"
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "g",
-                                    {
-                                      staticClass: "apexcharts-grid",
-                                      attrs: { id: "SvgjsG1735" }
-                                    },
-                                    [
-                                      _c(
-                                        "g",
-                                        {
-                                          staticClass:
-                                            "apexcharts-gridlines-horizontal",
-                                          staticStyle: { display: "none" },
-                                          attrs: { id: "SvgjsG1736" }
-                                        },
-                                        [
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1738",
-                                              x1: "0",
-                                              y1: "0",
-                                              x2: "414",
-                                              y2: "0",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1739",
-                                              x1: "0",
-                                              y1: "20",
-                                              x2: "414",
-                                              y2: "20",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1740",
-                                              x1: "0",
-                                              y1: "40",
-                                              x2: "414",
-                                              y2: "40",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1741",
-                                              x1: "0",
-                                              y1: "60",
-                                              x2: "414",
-                                              y2: "60",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1742",
-                                              x1: "0",
-                                              y1: "80",
-                                              x2: "414",
-                                              y2: "80",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1743",
-                                              x1: "0",
-                                              y1: "100",
-                                              x2: "414",
-                                              y2: "100",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1744",
-                                              x1: "0",
-                                              y1: "120",
-                                              x2: "414",
-                                              y2: "120",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1745",
-                                              x1: "0",
-                                              y1: "140",
-                                              x2: "414",
-                                              y2: "140",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1746",
-                                              x1: "0",
-                                              y1: "160",
-                                              x2: "414",
-                                              y2: "160",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1747",
-                                              x1: "0",
-                                              y1: "180",
-                                              x2: "414",
-                                              y2: "180",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("line", {
-                                            staticClass: "apexcharts-gridline",
-                                            attrs: {
-                                              id: "SvgjsLine1748",
-                                              x1: "0",
-                                              y1: "200",
-                                              x2: "414",
-                                              y2: "200",
-                                              stroke: "#e0e0e0",
-                                              "stroke-dasharray": "0"
-                                            }
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("g", {
-                                        staticClass:
-                                          "apexcharts-gridlines-vertical",
-                                        staticStyle: { display: "none" },
-                                        attrs: { id: "SvgjsG1737" }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("line", {
-                                        attrs: {
-                                          id: "SvgjsLine1750",
-                                          x1: "0",
-                                          y1: "200",
-                                          x2: "414",
-                                          y2: "200",
-                                          stroke: "transparent",
-                                          "stroke-dasharray": "0"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("line", {
-                                        attrs: {
-                                          id: "SvgjsLine1749",
-                                          x1: "0",
-                                          y1: "1",
-                                          x2: "0",
-                                          y2: "200",
-                                          stroke: "transparent",
-                                          "stroke-dasharray": "0"
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "g",
-                                    {
-                                      staticClass:
-                                        "apexcharts-area-series apexcharts-plot-series",
-                                      attrs: { id: "SvgjsG1701" }
-                                    },
-                                    [
-                                      _c(
-                                        "g",
-                                        {
-                                          staticClass: "apexcharts-series",
-                                          attrs: {
-                                            id: "SvgjsG1702",
-                                            seriesName: "NetxProfit",
-                                            "data:longestSeries": "true",
-                                            rel: "1",
-                                            "data:realIndex": "0"
-                                          }
-                                        },
-                                        [
-                                          _c("path", {
-                                            staticClass: "apexcharts-area",
-                                            attrs: {
-                                              id: "SvgjsPath1705",
-                                              d:
-                                                "M 0 200L 0 125C 24.15 125 44.85 87.5 69 87.5C 93.15 87.5 113.85 120 138 120C 162.15 120 182.85 25 207 25C 231.15 25 251.85 100 276 100C 300.15 100 320.85 100 345 100C 369.15 100 389.85 100 414 100C 414 100 414 100 414 200M 414 100z",
-                                              fill: "transparent",
-                                              "fill-opacity": "1",
-                                              "stroke-opacity": "1",
-                                              "stroke-linecap": "butt",
-                                              "stroke-width": "0",
-                                              "stroke-dasharray": "0",
-                                              index: "0",
-                                              "clip-path":
-                                                "url(#gridRectMask3g1ljutpg)",
-                                              filter: "url(#SvgjsFilter1706)",
-                                              pathTo:
-                                                "M 0 200L 0 125C 24.15 125 44.85 87.5 69 87.5C 93.15 87.5 113.85 120 138 120C 162.15 120 182.85 25 207 25C 231.15 25 251.85 100 276 100C 300.15 100 320.85 100 345 100C 369.15 100 389.85 100 414 100C 414 100 414 100 414 200M 414 100z",
-                                              pathFrom:
-                                                "M -1 200L -1 200L 69 200L 138 200L 207 200L 276 200L 345 200L 414 200"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("path", {
-                                            staticClass: "apexcharts-area",
-                                            attrs: {
-                                              id: "SvgjsPath1715",
-                                              d:
-                                                "M 0 125C 24.15 125 44.85 87.5 69 87.5C 93.15 87.5 113.85 120 138 120C 162.15 120 182.85 25 207 25C 231.15 25 251.85 100 276 100C 300.15 100 320.85 100 345 100C 369.15 100 389.85 100 414 100",
-                                              fill: "none",
-                                              "fill-opacity": "1",
-                                              stroke: "#287ed7",
-                                              "stroke-opacity": "1",
-                                              "stroke-linecap": "butt",
-                                              "stroke-width": "3",
-                                              "stroke-dasharray": "0",
-                                              index: "0",
-                                              "clip-path":
-                                                "url(#gridRectMask3g1ljutpg)",
-                                              filter: "url(#SvgjsFilter1716)",
-                                              pathTo:
-                                                "M 0 125C 24.15 125 44.85 87.5 69 87.5C 93.15 87.5 113.85 120 138 120C 162.15 120 182.85 25 207 25C 231.15 25 251.85 100 276 100C 300.15 100 320.85 100 345 100C 369.15 100 389.85 100 414 100",
-                                              pathFrom:
-                                                "M -1 200L -1 200L 69 200L 138 200L 207 200L 276 200L 345 200L 414 200"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "g",
-                                            {
-                                              staticClass:
-                                                "apexcharts-series-markers-wrap",
-                                              attrs: {
-                                                id: "SvgjsG1703",
-                                                "data:realIndex": "0"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  staticClass:
-                                                    "apexcharts-series-markers"
-                                                },
-                                                [
-                                                  _c("circle", {
-                                                    staticClass:
-                                                      "apexcharts-marker wn5htib2u no-pointer-events",
-                                                    attrs: {
-                                                      id: "SvgjsCircle1756",
-                                                      r: "0",
-                                                      cx: "345",
-                                                      cy: "100",
-                                                      stroke: "#287ed7",
-                                                      fill: "#eee5ff",
-                                                      "fill-opacity": "1",
-                                                      "stroke-width": "3",
-                                                      "stroke-opacity": "0.9",
-                                                      "default-marker-size": "0"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("g", {
-                                        staticClass: "apexcharts-datalabels",
-                                        attrs: {
-                                          id: "SvgjsG1704",
-                                          "data:realIndex": "0"
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("line", {
-                                    staticClass: "apexcharts-ycrosshairs",
-                                    attrs: {
-                                      id: "SvgjsLine1751",
-                                      x1: "0",
-                                      y1: "0",
-                                      x2: "414",
-                                      y2: "0",
-                                      stroke: "#b6b6b6",
-                                      "stroke-dasharray": "0",
-                                      "stroke-width": "1"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("line", {
-                                    staticClass:
-                                      "apexcharts-ycrosshairs-hidden",
-                                    attrs: {
-                                      id: "SvgjsLine1752",
-                                      x1: "0",
-                                      y1: "0",
-                                      x2: "414",
-                                      y2: "0",
-                                      "stroke-dasharray": "0",
-                                      "stroke-width": "0"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("g", {
-                                    staticClass: "apexcharts-yaxis-annotations",
-                                    attrs: { id: "SvgjsG1753" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("g", {
-                                    staticClass: "apexcharts-xaxis-annotations",
-                                    attrs: { id: "SvgjsG1754" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("g", {
-                                    staticClass: "apexcharts-point-annotations",
-                                    attrs: { id: "SvgjsG1755" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("g", {
-                                staticClass: "apexcharts-yaxis",
-                                attrs: {
-                                  id: "SvgjsG1734",
-                                  rel: "0",
-                                  transform: "translate(-18, 0)"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("g", {
-                                staticClass: "apexcharts-annotations",
-                                attrs: { id: "SvgjsG1697" }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", {
-                            staticClass: "apexcharts-legend",
-                            staticStyle: { "max-height": "100px" }
-                          }),
-                          _vm._v(" "),
-                          _vm._m(1)
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-spacer mt-n25" }, [
-                    _c("div", { staticClass: "row m-0" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "col bg-white px-6 py-8 rounded-xl mr-7 mb-7"
-                        },
-                        [
-                          _c(
-                            "span",
-                            {
-                              staticClass:
-                                "svg-icon svg-icon-3x svg-icon-info d-block my-2"
-                            },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    "xmlns:xlink":
-                                      "http://www.w3.org/1999/xlink",
-                                    width: "24px",
-                                    height: "24px",
-                                    viewBox: "0 0 24 24",
-                                    version: "1.1"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "g",
-                                    {
-                                      attrs: {
-                                        stroke: "none",
-                                        "stroke-width": "1",
-                                        fill: "none",
-                                        "fill-rule": "evenodd"
-                                      }
-                                    },
-                                    [
-                                      _c("rect", {
-                                        attrs: {
-                                          x: "0",
-                                          y: "0",
-                                          width: "24",
-                                          height: "24"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("rect", {
-                                        attrs: {
-                                          fill: "#000000",
-                                          opacity: "0.3",
-                                          x: "13",
-                                          y: "4",
-                                          width: "3",
-                                          height: "16",
-                                          rx: "1.5"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("rect", {
-                                        attrs: {
-                                          fill: "#000000",
-                                          x: "8",
-                                          y: "9",
-                                          width: "3",
-                                          height: "11",
-                                          rx: "1.5"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("rect", {
-                                        attrs: {
-                                          fill: "#000000",
-                                          x: "18",
-                                          y: "11",
-                                          width: "3",
-                                          height: "9",
-                                          rx: "1.5"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("rect", {
-                                        attrs: {
-                                          fill: "#000000",
-                                          x: "3",
-                                          y: "13",
-                                          width: "3",
-                                          height: "7",
-                                          rx: "1.5"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "text-info font-weight-bold font-size-h6",
-                              attrs: { href: "#" }
-                            },
-                            [_vm._v("Weekly Sales")]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "col bg-white px-6 py-8 rounded-xl mb-7"
-                        },
-                        [
-                          _c(
-                            "span",
-                            {
-                              staticClass:
-                                "svg-icon svg-icon-3x svg-icon-warning d-block my-2"
-                            },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    "xmlns:xlink":
-                                      "http://www.w3.org/1999/xlink",
-                                    width: "24px",
-                                    height: "24px",
-                                    viewBox: "0 0 24 24",
-                                    version: "1.1"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "g",
-                                    {
-                                      attrs: {
-                                        stroke: "none",
-                                        "stroke-width": "1",
-                                        fill: "none",
-                                        "fill-rule": "evenodd"
-                                      }
-                                    },
-                                    [
-                                      _c("polygon", {
-                                        attrs: { points: "0 0 24 0 24 24 0 24" }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("path", {
-                                        attrs: {
-                                          d:
-                                            "M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z",
-                                          fill: "#000000",
-                                          "fill-rule": "nonzero",
-                                          opacity: "0.3"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("path", {
-                                        attrs: {
-                                          d:
-                                            "M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z",
-                                          fill: "#000000",
-                                          "fill-rule": "nonzero"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "text-warning font-weight-bold font-size-h6 mt-2",
-                              attrs: { href: "#" }
-                            },
-                            [
-                              _vm._v(
-                                "New\n                                        Users"
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row m-0" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "col bg-white px-6 py-8 rounded-xl mr-7"
-                        },
-                        [
-                          _c(
-                            "span",
-                            {
-                              staticClass:
-                                "svg-icon svg-icon-3x svg-icon-danger d-block my-2"
-                            },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    "xmlns:xlink":
-                                      "http://www.w3.org/1999/xlink",
-                                    width: "24px",
-                                    height: "24px",
-                                    viewBox: "0 0 24 24",
-                                    version: "1.1"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "g",
-                                    {
-                                      attrs: {
-                                        stroke: "none",
-                                        "stroke-width": "1",
-                                        fill: "none",
-                                        "fill-rule": "evenodd"
-                                      }
-                                    },
-                                    [
-                                      _c("polygon", {
-                                        attrs: { points: "0 0 24 0 24 24 0 24" }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("path", {
-                                        attrs: {
-                                          d:
-                                            "M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z",
-                                          fill: "#000000",
-                                          "fill-rule": "nonzero"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("path", {
-                                        attrs: {
-                                          d:
-                                            "M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z",
-                                          fill: "#000000",
-                                          opacity: "0.3"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "text-danger font-weight-bold font-size-h6 mt-2",
-                              attrs: { href: "#" }
-                            },
-                            [
-                              _vm._v(
-                                "Item\n                                        Orders"
-                              )
-                            ]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col bg-white px-6 py-8 rounded-xl" },
-                        [
-                          _c(
-                            "span",
-                            {
-                              staticClass:
-                                "svg-icon svg-icon-3x svg-icon-success d-block my-2"
-                            },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    "xmlns:xlink":
-                                      "http://www.w3.org/1999/xlink",
-                                    width: "24px",
-                                    height: "24px",
-                                    viewBox: "0 0 24 24",
-                                    version: "1.1"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "g",
-                                    {
-                                      attrs: {
-                                        stroke: "none",
-                                        "stroke-width": "1",
-                                        fill: "none",
-                                        "fill-rule": "evenodd"
-                                      }
-                                    },
-                                    [
-                                      _c("rect", {
-                                        attrs: {
-                                          x: "0",
-                                          y: "0",
-                                          width: "24",
-                                          height: "24"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("path", {
-                                        attrs: {
-                                          d:
-                                            "M12.7037037,14 L15.6666667,10 L13.4444444,10 L13.4444444,6 L9,12 L11.2222222,12 L11.2222222,14 L6,14 C5.44771525,14 5,13.5522847 5,13 L5,3 C5,2.44771525 5.44771525,2 6,2 L18,2 C18.5522847,2 19,2.44771525 19,3 L19,13 C19,13.5522847 18.5522847,14 18,14 L12.7037037,14 Z",
-                                          fill: "#000000",
-                                          opacity: "0.3"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("path", {
-                                        attrs: {
-                                          d:
-                                            "M9.80428954,10.9142091 L9,12 L11.2222222,12 L11.2222222,16 L15.6666667,10 L15.4615385,10 L20.2072547,6.57253826 C20.4311176,6.4108595 20.7436609,6.46126971 20.9053396,6.68513259 C20.9668779,6.77033951 21,6.87277228 21,6.97787787 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,6.97787787 C3,6.70173549 3.22385763,6.47787787 3.5,6.47787787 C3.60510559,6.47787787 3.70753836,6.51099993 3.79274528,6.57253826 L9.80428954,10.9142091 Z",
-                                          fill: "#000000"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "text-success font-weight-bold font-size-h6 mt-2",
-                              attrs: { href: "#" }
-                            },
-                            [
-                              _vm._v(
-                                "Bug\n                                        Reports"
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  ])
-                ]
-              )
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-4" }, [
-          _c("div", { staticClass: "card card-custom gutter-b card-stretch" }, [
-            _vm._m(2),
-            _vm._v(" "),
+  return _c(
+    "div",
+    { staticClass: "insidecont", attrs: { id: "dasboardcontainer" } },
+    [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-xl-4" }, [
             _c(
               "div",
               {
-                staticClass: "card-body",
-                staticStyle: { position: "relative" }
+                staticClass:
+                  "card card-custom bg-gray-100 gutter-b card-stretch"
               },
               [
+                _vm._m(0),
+                _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticStyle: { height: "250px", "min-height": "176.26px" },
-                    attrs: { id: "kt_mixed_widget_18_chart" }
+                    staticClass:
+                      "card-body p-0 position-relative overflow-hidden"
                   },
                   [
                     _c(
                       "div",
                       {
-                        staticClass:
-                          "apexcharts-canvas apexchartsuge8w2va apexcharts-theme-light",
-                        staticStyle: { width: "354px", height: "176.26px" },
-                        attrs: { id: "apexchartsuge8w2va" }
+                        staticClass: "card-rounded-bottom bg-primary",
+                        staticStyle: { height: "200px", "min-height": "200px" },
+                        attrs: { id: "kt_mixed_widget_2_chart" }
                       },
                       [
                         _c(
-                          "svg",
+                          "div",
                           {
-                            staticClass: "apexcharts-svg",
-                            staticStyle: { background: "transparent" },
-                            attrs: {
-                              id: "SvgjsSvg2569",
-                              width: "354",
-                              height: "176.259765625",
-                              xmlns: "http://www.w3.org/2000/svg",
-                              version: "1.1",
-                              "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                              "xmlns:svgjs": "http://svgjs.com/svgjs",
-                              "xmlns:data": "ApexChartsNS",
-                              transform: "translate(0, 0)"
-                            }
+                            staticClass:
+                              "apexcharts-canvas apexcharts3g1ljutpg apexcharts-theme-light",
+                            staticStyle: { width: "414px", height: "200px" },
+                            attrs: { id: "apexcharts3g1ljutpg" }
                           },
                           [
                             _c(
-                              "g",
+                              "svg",
                               {
-                                staticClass:
-                                  "apexcharts-inner apexcharts-graphical",
+                                staticClass: "apexcharts-svg",
+                                staticStyle: { background: "transparent" },
                                 attrs: {
-                                  id: "SvgjsG2571",
-                                  transform: "translate(65, 0)"
+                                  id: "SvgjsSvg1694",
+                                  width: "414",
+                                  height: "200",
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  version: "1.1",
+                                  "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                                  "xmlns:svgjs": "http://svgjs.com/svgjs",
+                                  "xmlns:data": "ApexChartsNS",
+                                  transform: "translate(0, 0)"
                                 }
                               },
                               [
-                                _c("defs", { attrs: { id: "SvgjsDefs2570" } }, [
-                                  _c(
-                                    "clipPath",
-                                    { attrs: { id: "gridRectMaskuge8w2va" } },
-                                    [
-                                      _c("rect", {
-                                        attrs: {
-                                          id: "SvgjsRect2573",
-                                          width: "232",
-                                          height: "250",
-                                          x: "-3",
-                                          y: "-1",
-                                          rx: "0",
-                                          ry: "0",
-                                          opacity: "1",
-                                          "stroke-width": "0",
-                                          stroke: "none",
-                                          "stroke-dasharray": "0",
-                                          fill: "#fff"
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "clipPath",
-                                    {
-                                      attrs: {
-                                        id: "gridRectMarkerMaskuge8w2va"
-                                      }
-                                    },
-                                    [
-                                      _c("rect", {
-                                        attrs: {
-                                          id: "SvgjsRect2574",
-                                          width: "230",
-                                          height: "252",
-                                          x: "-2",
-                                          y: "-2",
-                                          rx: "0",
-                                          ry: "0",
-                                          opacity: "1",
-                                          "stroke-width": "0",
-                                          stroke: "none",
-                                          "stroke-dasharray": "0",
-                                          fill: "#fff"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
                                 _c(
                                   "g",
                                   {
-                                    staticClass: "apexcharts-radialbar",
-                                    attrs: { id: "SvgjsG2575" }
+                                    staticClass:
+                                      "apexcharts-inner apexcharts-graphical",
+                                    attrs: {
+                                      id: "SvgjsG1696",
+                                      transform: "translate(0, 0)"
+                                    }
                                   },
                                   [
-                                    _c("g", { attrs: { id: "SvgjsG2576" } }, [
-                                      _c(
-                                        "g",
-                                        {
-                                          staticClass: "apexcharts-tracks",
-                                          attrs: { id: "SvgjsG2577" }
-                                        },
-                                        [
-                                          _c(
-                                            "g",
-                                            {
-                                              staticClass:
-                                                "apexcharts-radialbar-track apexcharts-track",
+                                    _c(
+                                      "defs",
+                                      { attrs: { id: "SvgjsDefs1695" } },
+                                      [
+                                        _c(
+                                          "clipPath",
+                                          {
+                                            attrs: {
+                                              id: "gridRectMask3g1ljutpg"
+                                            }
+                                          },
+                                          [
+                                            _c("rect", {
                                               attrs: {
-                                                id: "SvgjsG2578",
-                                                rel: "1"
+                                                id: "SvgjsRect1699",
+                                                width: "421",
+                                                height: "203",
+                                                x: "-3.5",
+                                                y: "-1.5",
+                                                rx: "0",
+                                                ry: "0",
+                                                opacity: "1",
+                                                "stroke-width": "0",
+                                                stroke: "none",
+                                                "stroke-dasharray": "0",
+                                                fill: "#fff"
                                               }
-                                            },
-                                            [
-                                              _c("path", {
-                                                staticClass:
-                                                  "apexcharts-radialbar-area",
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "clipPath",
+                                          {
+                                            attrs: {
+                                              id: "gridRectMarkerMask3g1ljutpg"
+                                            }
+                                          },
+                                          [
+                                            _c("rect", {
+                                              attrs: {
+                                                id: "SvgjsRect1700",
+                                                width: "418",
+                                                height: "204",
+                                                x: "-2",
+                                                y: "-2",
+                                                rx: "0",
+                                                ry: "0",
+                                                opacity: "1",
+                                                "stroke-width": "0",
+                                                stroke: "none",
+                                                "stroke-dasharray": "0",
+                                                fill: "#fff"
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "filter",
+                                          {
+                                            attrs: {
+                                              id: "SvgjsFilter1706",
+                                              filterUnits: "userSpaceOnUse",
+                                              width: "200%",
+                                              height: "200%",
+                                              x: "-50%",
+                                              y: "-50%"
+                                            }
+                                          },
+                                          [
+                                            _c("feFlood", {
+                                              attrs: {
+                                                id: "SvgjsFeFlood1707",
+                                                "flood-color": "#287ed7",
+                                                "flood-opacity": "0.5",
+                                                result: "SvgjsFeFlood1707Out",
+                                                in: "SourceGraphic"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("feComposite", {
+                                              attrs: {
+                                                id: "SvgjsFeComposite1708",
+                                                in: "SvgjsFeFlood1707Out",
+                                                in2: "SourceAlpha",
+                                                operator: "in",
+                                                result:
+                                                  "SvgjsFeComposite1708Out"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("feOffset", {
+                                              attrs: {
+                                                id: "SvgjsFeOffset1709",
+                                                dx: "0",
+                                                dy: "5",
+                                                result: "SvgjsFeOffset1709Out",
+                                                in: "SvgjsFeComposite1708Out"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("feGaussianBlur", {
+                                              attrs: {
+                                                id: "SvgjsFeGaussianBlur1710",
+                                                stdDeviation: "3 ",
+                                                result:
+                                                  "SvgjsFeGaussianBlur1710Out",
+                                                in: "SvgjsFeOffset1709Out"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "feMerge",
+                                              {
                                                 attrs: {
-                                                  id:
-                                                    "apexcharts-radialbarTrack-0",
-                                                  d:
-                                                    "M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 196.28902439024392 113",
-                                                  fill: "none",
-                                                  "fill-opacity": "1",
-                                                  stroke:
-                                                    "rgba(225,233,255,0.85)",
-                                                  "stroke-opacity": "1",
-                                                  "stroke-linecap": "round",
-                                                  "stroke-width":
-                                                    "10.636585365853659",
-                                                  "stroke-dasharray": "0",
-                                                  "data:pathOrig":
-                                                    "M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 196.28902439024392 113"
+                                                  id: "SvgjsFeMerge1711",
+                                                  result: "SvgjsFeMerge1711Out",
+                                                  in: "SourceGraphic"
                                                 }
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("g", { attrs: { id: "SvgjsG2580" } }, [
+                                              },
+                                              [
+                                                _c("feMergeNode", {
+                                                  attrs: {
+                                                    id: "SvgjsFeMergeNode1712",
+                                                    in:
+                                                      "SvgjsFeGaussianBlur1710Out"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c("feMergeNode", {
+                                                  attrs: {
+                                                    id: "SvgjsFeMergeNode1713",
+                                                    in: "[object Arguments]"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c("feBlend", {
+                                              attrs: {
+                                                id: "SvgjsFeBlend1714",
+                                                in: "SourceGraphic",
+                                                in2: "SvgjsFeMerge1711Out",
+                                                mode: "normal",
+                                                result: "SvgjsFeBlend1714Out"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "filter",
+                                          {
+                                            attrs: {
+                                              id: "SvgjsFilter1716",
+                                              filterUnits: "userSpaceOnUse",
+                                              width: "200%",
+                                              height: "200%",
+                                              x: "-50%",
+                                              y: "-50%"
+                                            }
+                                          },
+                                          [
+                                            _c("feFlood", {
+                                              attrs: {
+                                                id: "SvgjsFeFlood1717",
+                                                "flood-color": "#287ed7",
+                                                "flood-opacity": "0.5",
+                                                result: "SvgjsFeFlood1717Out",
+                                                in: "SourceGraphic"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("feComposite", {
+                                              attrs: {
+                                                id: "SvgjsFeComposite1718",
+                                                in: "SvgjsFeFlood1717Out",
+                                                in2: "SourceAlpha",
+                                                operator: "in",
+                                                result:
+                                                  "SvgjsFeComposite1718Out"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("feOffset", {
+                                              attrs: {
+                                                id: "SvgjsFeOffset1719",
+                                                dx: "0",
+                                                dy: "5",
+                                                result: "SvgjsFeOffset1719Out",
+                                                in: "SvgjsFeComposite1718Out"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("feGaussianBlur", {
+                                              attrs: {
+                                                id: "SvgjsFeGaussianBlur1720",
+                                                stdDeviation: "3 ",
+                                                result:
+                                                  "SvgjsFeGaussianBlur1720Out",
+                                                in: "SvgjsFeOffset1719Out"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "feMerge",
+                                              {
+                                                attrs: {
+                                                  id: "SvgjsFeMerge1721",
+                                                  result: "SvgjsFeMerge1721Out",
+                                                  in: "SourceGraphic"
+                                                }
+                                              },
+                                              [
+                                                _c("feMergeNode", {
+                                                  attrs: {
+                                                    id: "SvgjsFeMergeNode1722",
+                                                    in:
+                                                      "SvgjsFeGaussianBlur1720Out"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c("feMergeNode", {
+                                                  attrs: {
+                                                    id: "SvgjsFeMergeNode1723",
+                                                    in: "[object Arguments]"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c("feBlend", {
+                                              attrs: {
+                                                id: "SvgjsFeBlend1724",
+                                                in: "SourceGraphic",
+                                                in2: "SvgjsFeMerge1721Out",
+                                                mode: "normal",
+                                                result: "SvgjsFeBlend1724Out"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "g",
+                                      {
+                                        staticClass: "apexcharts-xaxis",
+                                        attrs: {
+                                          id: "SvgjsG1725",
+                                          transform: "translate(0, 0)"
+                                        }
+                                      },
+                                      [
+                                        _c("g", {
+                                          staticClass:
+                                            "apexcharts-xaxis-texts-g",
+                                          attrs: {
+                                            id: "SvgjsG1726",
+                                            transform: "translate(0, -4)"
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "g",
+                                      {
+                                        staticClass: "apexcharts-grid",
+                                        attrs: { id: "SvgjsG1735" }
+                                      },
+                                      [
                                         _c(
                                           "g",
                                           {
                                             staticClass:
-                                              "apexcharts-series apexcharts-radial-series",
+                                              "apexcharts-gridlines-horizontal",
+                                            staticStyle: { display: "none" },
+                                            attrs: { id: "SvgjsG1736" }
+                                          },
+                                          [
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1738",
+                                                x1: "0",
+                                                y1: "0",
+                                                x2: "414",
+                                                y2: "0",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1739",
+                                                x1: "0",
+                                                y1: "20",
+                                                x2: "414",
+                                                y2: "20",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1740",
+                                                x1: "0",
+                                                y1: "40",
+                                                x2: "414",
+                                                y2: "40",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1741",
+                                                x1: "0",
+                                                y1: "60",
+                                                x2: "414",
+                                                y2: "60",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1742",
+                                                x1: "0",
+                                                y1: "80",
+                                                x2: "414",
+                                                y2: "80",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1743",
+                                                x1: "0",
+                                                y1: "100",
+                                                x2: "414",
+                                                y2: "100",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1744",
+                                                x1: "0",
+                                                y1: "120",
+                                                x2: "414",
+                                                y2: "120",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1745",
+                                                x1: "0",
+                                                y1: "140",
+                                                x2: "414",
+                                                y2: "140",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1746",
+                                                x1: "0",
+                                                y1: "160",
+                                                x2: "414",
+                                                y2: "160",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1747",
+                                                x1: "0",
+                                                y1: "180",
+                                                x2: "414",
+                                                y2: "180",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("line", {
+                                              staticClass:
+                                                "apexcharts-gridline",
+                                              attrs: {
+                                                id: "SvgjsLine1748",
+                                                x1: "0",
+                                                y1: "200",
+                                                x2: "414",
+                                                y2: "200",
+                                                stroke: "#e0e0e0",
+                                                "stroke-dasharray": "0"
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("g", {
+                                          staticClass:
+                                            "apexcharts-gridlines-vertical",
+                                          staticStyle: { display: "none" },
+                                          attrs: { id: "SvgjsG1737" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("line", {
+                                          attrs: {
+                                            id: "SvgjsLine1750",
+                                            x1: "0",
+                                            y1: "200",
+                                            x2: "414",
+                                            y2: "200",
+                                            stroke: "transparent",
+                                            "stroke-dasharray": "0"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("line", {
+                                          attrs: {
+                                            id: "SvgjsLine1749",
+                                            x1: "0",
+                                            y1: "1",
+                                            x2: "0",
+                                            y2: "200",
+                                            stroke: "transparent",
+                                            "stroke-dasharray": "0"
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "g",
+                                      {
+                                        staticClass:
+                                          "apexcharts-area-series apexcharts-plot-series",
+                                        attrs: { id: "SvgjsG1701" }
+                                      },
+                                      [
+                                        _c(
+                                          "g",
+                                          {
+                                            staticClass: "apexcharts-series",
                                             attrs: {
-                                              id: "SvgjsG2585",
-                                              seriesName: "Progress",
+                                              id: "SvgjsG1702",
+                                              seriesName: "NetxProfit",
+                                              "data:longestSeries": "true",
                                               rel: "1",
                                               "data:realIndex": "0"
                                             }
                                           },
                                           [
                                             _c("path", {
-                                              staticClass:
-                                                "apexcharts-radialbar-area apexcharts-radialbar-slice-0",
+                                              staticClass: "apexcharts-area",
                                               attrs: {
-                                                id: "SvgjsPath2586",
+                                                id: "SvgjsPath1705",
                                                 d:
-                                                  "M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 169.80297804535178 52.08626370794575",
-                                                fill: "none",
-                                                "fill-opacity": "0.85",
-                                                stroke:
-                                                  "rgba(105,147,255,0.85)",
+                                                  "M 0 200L 0 125C 24.15 125 44.85 87.5 69 87.5C 93.15 87.5 113.85 120 138 120C 162.15 120 182.85 25 207 25C 231.15 25 251.85 100 276 100C 300.15 100 320.85 100 345 100C 369.15 100 389.85 100 414 100C 414 100 414 100 414 200M 414 100z",
+                                                fill: "transparent",
+                                                "fill-opacity": "1",
                                                 "stroke-opacity": "1",
-                                                "stroke-linecap": "round",
-                                                "stroke-width":
-                                                  "10.636585365853659",
+                                                "stroke-linecap": "butt",
+                                                "stroke-width": "0",
                                                 "stroke-dasharray": "0",
-                                                "data:angle": "133",
-                                                "data:value": "74",
                                                 index: "0",
-                                                j: "0",
-                                                "data:pathOrig":
-                                                  "M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 169.80297804535178 52.08626370794575"
+                                                "clip-path":
+                                                  "url(#gridRectMask3g1ljutpg)",
+                                                filter: "url(#SvgjsFilter1706)",
+                                                pathTo:
+                                                  "M 0 200L 0 125C 24.15 125 44.85 87.5 69 87.5C 93.15 87.5 113.85 120 138 120C 162.15 120 182.85 25 207 25C 231.15 25 251.85 100 276 100C 300.15 100 320.85 100 345 100C 369.15 100 389.85 100 414 100C 414 100 414 100 414 200M 414 100z",
+                                                pathFrom:
+                                                  "M -1 200L -1 200L 69 200L 138 200L 207 200L 276 200L 345 200L 414 200"
                                               }
-                                            })
+                                            }),
+                                            _vm._v(" "),
+                                            _c("path", {
+                                              staticClass: "apexcharts-area",
+                                              attrs: {
+                                                id: "SvgjsPath1715",
+                                                d:
+                                                  "M 0 125C 24.15 125 44.85 87.5 69 87.5C 93.15 87.5 113.85 120 138 120C 162.15 120 182.85 25 207 25C 231.15 25 251.85 100 276 100C 300.15 100 320.85 100 345 100C 369.15 100 389.85 100 414 100",
+                                                fill: "none",
+                                                "fill-opacity": "1",
+                                                stroke: "#287ed7",
+                                                "stroke-opacity": "1",
+                                                "stroke-linecap": "butt",
+                                                "stroke-width": "3",
+                                                "stroke-dasharray": "0",
+                                                index: "0",
+                                                "clip-path":
+                                                  "url(#gridRectMask3g1ljutpg)",
+                                                filter: "url(#SvgjsFilter1716)",
+                                                pathTo:
+                                                  "M 0 125C 24.15 125 44.85 87.5 69 87.5C 93.15 87.5 113.85 120 138 120C 162.15 120 182.85 25 207 25C 231.15 25 251.85 100 276 100C 300.15 100 320.85 100 345 100C 369.15 100 389.85 100 414 100",
+                                                pathFrom:
+                                                  "M -1 200L -1 200L 69 200L 138 200L 207 200L 276 200L 345 200L 414 200"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "g",
+                                              {
+                                                staticClass:
+                                                  "apexcharts-series-markers-wrap",
+                                                attrs: {
+                                                  id: "SvgjsG1703",
+                                                  "data:realIndex": "0"
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "g",
+                                                  {
+                                                    staticClass:
+                                                      "apexcharts-series-markers"
+                                                  },
+                                                  [
+                                                    _c("circle", {
+                                                      staticClass:
+                                                        "apexcharts-marker wn5htib2u no-pointer-events",
+                                                      attrs: {
+                                                        id: "SvgjsCircle1756",
+                                                        r: "0",
+                                                        cx: "345",
+                                                        cy: "100",
+                                                        stroke: "#287ed7",
+                                                        fill: "#eee5ff",
+                                                        "fill-opacity": "1",
+                                                        "stroke-width": "3",
+                                                        "stroke-opacity": "0.9",
+                                                        "default-marker-size":
+                                                          "0"
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            )
                                           ]
                                         ),
                                         _vm._v(" "),
-                                        _c("circle", {
-                                          staticClass:
-                                            "apexcharts-radialbar-hollow",
+                                        _c("g", {
+                                          staticClass: "apexcharts-datalabels",
                                           attrs: {
-                                            id: "SvgjsCircle2581",
-                                            r: "77.97073170731709",
-                                            cx: "113",
-                                            cy: "113",
-                                            fill: "transparent"
+                                            id: "SvgjsG1704",
+                                            "data:realIndex": "0"
                                           }
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "g",
-                                          {
-                                            staticClass:
-                                              "apexcharts-datalabels-group",
-                                            staticStyle: { opacity: "1" },
-                                            attrs: {
-                                              id: "SvgjsG2582",
-                                              transform:
-                                                "translate(0, 0) scale(1)"
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "text",
-                                              {
-                                                staticClass:
-                                                  "apexcharts-text apexcharts-datalabel-label",
-                                                staticStyle: {
-                                                  "font-family":
-                                                    "Helvetica, Arial, sans-serif"
-                                                },
-                                                attrs: {
-                                                  id: "SvgjsText2583",
-                                                  "font-family":
-                                                    "Helvetica, Arial, sans-serif",
-                                                  x: "113",
-                                                  y: "108",
-                                                  "text-anchor": "middle",
-                                                  "dominant-baseline": "auto",
-                                                  "font-size": "13px",
-                                                  "font-weight": "700",
-                                                  fill: "#b5b5c3"
-                                                }
-                                              },
-                                              [_vm._v("Progress")]
-                                            ),
-                                            _c(
-                                              "text",
-                                              {
-                                                staticClass:
-                                                  "apexcharts-text apexcharts-datalabel-value",
-                                                staticStyle: {
-                                                  "font-family":
-                                                    "Helvetica, Arial, sans-serif"
-                                                },
-                                                attrs: {
-                                                  id: "SvgjsText2584",
-                                                  "font-family":
-                                                    "Helvetica, Arial, sans-serif",
-                                                  x: "113",
-                                                  y: "89",
-                                                  "text-anchor": "middle",
-                                                  "dominant-baseline": "auto",
-                                                  "font-size": "30px",
-                                                  "font-weight": "700",
-                                                  fill: "#464e5f"
-                                                }
-                                              },
-                                              [_vm._v("74%")]
-                                            )
-                                          ]
-                                        )
-                                      ])
-                                    ])
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("line", {
+                                      staticClass: "apexcharts-ycrosshairs",
+                                      attrs: {
+                                        id: "SvgjsLine1751",
+                                        x1: "0",
+                                        y1: "0",
+                                        x2: "414",
+                                        y2: "0",
+                                        stroke: "#b6b6b6",
+                                        "stroke-dasharray": "0",
+                                        "stroke-width": "1"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("line", {
+                                      staticClass:
+                                        "apexcharts-ycrosshairs-hidden",
+                                      attrs: {
+                                        id: "SvgjsLine1752",
+                                        x1: "0",
+                                        y1: "0",
+                                        x2: "414",
+                                        y2: "0",
+                                        "stroke-dasharray": "0",
+                                        "stroke-width": "0"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("g", {
+                                      staticClass:
+                                        "apexcharts-yaxis-annotations",
+                                      attrs: { id: "SvgjsG1753" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("g", {
+                                      staticClass:
+                                        "apexcharts-xaxis-annotations",
+                                      attrs: { id: "SvgjsG1754" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("g", {
+                                      staticClass:
+                                        "apexcharts-point-annotations",
+                                      attrs: { id: "SvgjsG1755" }
+                                    })
                                   ]
                                 ),
                                 _vm._v(" "),
-                                _c("line", {
-                                  staticClass: "apexcharts-ycrosshairs",
+                                _c("g", {
+                                  staticClass: "apexcharts-yaxis",
                                   attrs: {
-                                    id: "SvgjsLine2587",
-                                    x1: "0",
-                                    y1: "0",
-                                    x2: "226",
-                                    y2: "0",
-                                    stroke: "#b6b6b6",
-                                    "stroke-dasharray": "0",
-                                    "stroke-width": "1"
+                                    id: "SvgjsG1734",
+                                    rel: "0",
+                                    transform: "translate(-18, 0)"
                                   }
                                 }),
                                 _vm._v(" "),
-                                _c("line", {
-                                  staticClass: "apexcharts-ycrosshairs-hidden",
-                                  attrs: {
-                                    id: "SvgjsLine2588",
-                                    x1: "0",
-                                    y1: "0",
-                                    x2: "226",
-                                    y2: "0",
-                                    "stroke-dasharray": "0",
-                                    "stroke-width": "0"
-                                  }
+                                _c("g", {
+                                  staticClass: "apexcharts-annotations",
+                                  attrs: { id: "SvgjsG1697" }
                                 })
                               ]
                             ),
                             _vm._v(" "),
-                            _c("g", {
-                              staticClass: "apexcharts-annotations",
-                              attrs: { id: "SvgjsG2572" }
-                            })
+                            _c("div", {
+                              staticClass: "apexcharts-legend",
+                              staticStyle: { "max-height": "100px" }
+                            }),
+                            _vm._v(" "),
+                            _vm._m(1)
                           ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "apexcharts-legend" })
+                        )
                       ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "mt-n12 position-relative zindex-0" },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "d-flex align-items-center mb-8" },
-                      [
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-spacer mt-n25" }, [
+                      _c("div", { staticClass: "row m-0" }, [
                         _c(
                           "div",
                           {
                             staticClass:
-                              "symbol symbol-circle symbol-40 symbol-light mr-3 flex-shrink-0"
+                              "col bg-white px-6 py-8 rounded-xl mr-7 mb-7"
                           },
                           [
-                            _c("div", { staticClass: "symbol-label" }, [
-                              _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "svg-icon svg-icon-lg svg-icon-gray-500"
-                                },
-                                [
-                                  _c(
-                                    "svg",
-                                    {
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        "xmlns:xlink":
-                                          "http://www.w3.org/1999/xlink",
-                                        width: "24px",
-                                        height: "24px",
-                                        viewBox: "0 0 24 24",
-                                        version: "1.1"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "g",
-                                        {
-                                          attrs: {
-                                            stroke: "none",
-                                            "stroke-width": "1",
-                                            fill: "none",
-                                            "fill-rule": "evenodd"
-                                          }
-                                        },
-                                        [
-                                          _c("rect", {
-                                            attrs: {
-                                              x: "0",
-                                              y: "0",
-                                              width: "24",
-                                              height: "24"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("rect", {
-                                            attrs: {
-                                              fill: "#000000",
-                                              opacity: "0.3",
-                                              x: "13",
-                                              y: "4",
-                                              width: "3",
-                                              height: "16",
-                                              rx: "1.5"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("rect", {
-                                            attrs: {
-                                              fill: "#000000",
-                                              x: "8",
-                                              y: "9",
-                                              width: "3",
-                                              height: "11",
-                                              rx: "1.5"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("rect", {
-                                            attrs: {
-                                              fill: "#000000",
-                                              x: "18",
-                                              y: "11",
-                                              width: "3",
-                                              height: "9",
-                                              rx: "1.5"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("rect", {
-                                            attrs: {
-                                              fill: "#000000",
-                                              x: "3",
-                                              y: "13",
-                                              width: "3",
-                                              height: "7",
-                                              rx: "1.5"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(3)
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "d-flex align-items-center mb-8" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "symbol symbol-circle symbol-40 symbol-light mr-3 flex-shrink-0"
-                          },
-                          [
-                            _c("div", { staticClass: "symbol-label" }, [
-                              _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "svg-icon svg-icon-lg svg-icon-gray-500"
-                                },
-                                [
-                                  _c(
-                                    "svg",
-                                    {
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        "xmlns:xlink":
-                                          "http://www.w3.org/1999/xlink",
-                                        width: "24px",
-                                        height: "24px",
-                                        viewBox: "0 0 24 24",
-                                        version: "1.1"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "g",
-                                        {
-                                          attrs: {
-                                            stroke: "none",
-                                            "stroke-width": "1",
-                                            fill: "none",
-                                            "fill-rule": "evenodd"
-                                          }
-                                        },
-                                        [
-                                          _c("rect", {
-                                            attrs: {
-                                              x: "0",
-                                              y: "0",
-                                              width: "24",
-                                              height: "24"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("path", {
-                                            attrs: {
-                                              d:
-                                                "M4.00246329,12.2004927 L13,14 L13,4.06189375 C16.9463116,4.55399184 20,7.92038235 20,12 C20,16.418278 16.418278,20 12,20 C7.64874861,20 4.10886412,16.5261253 4.00246329,12.2004927 Z",
-                                              fill: "#000000",
-                                              opacity: "0.3"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("path", {
-                                            attrs: {
-                                              d:
-                                                "M3.0603968,10.0120794 C3.54712466,6.05992157 6.91622084,3 11,3 L11,11.6 L3.0603968,10.0120794 Z",
-                                              fill: "#000000"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(4)
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "d-flex align-items-center" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "symbol symbol-circle symbol-40 symbol-light mr-3 flex-shrink-0"
-                        },
-                        [
-                          _c("div", { staticClass: "symbol-label" }, [
                             _c(
                               "span",
                               {
                                 staticClass:
-                                  "svg-icon svg-icon-lg svg-icon-gray-500"
+                                  "svg-icon svg-icon-3x svg-icon-info d-block my-2"
+                              },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      "xmlns:xlink":
+                                        "http://www.w3.org/1999/xlink",
+                                      width: "24px",
+                                      height: "24px",
+                                      viewBox: "0 0 24 24",
+                                      version: "1.1"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "g",
+                                      {
+                                        attrs: {
+                                          stroke: "none",
+                                          "stroke-width": "1",
+                                          fill: "none",
+                                          "fill-rule": "evenodd"
+                                        }
+                                      },
+                                      [
+                                        _c("rect", {
+                                          attrs: {
+                                            x: "0",
+                                            y: "0",
+                                            width: "24",
+                                            height: "24"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("rect", {
+                                          attrs: {
+                                            fill: "#000000",
+                                            opacity: "0.3",
+                                            x: "13",
+                                            y: "4",
+                                            width: "3",
+                                            height: "16",
+                                            rx: "1.5"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("rect", {
+                                          attrs: {
+                                            fill: "#000000",
+                                            x: "8",
+                                            y: "9",
+                                            width: "3",
+                                            height: "11",
+                                            rx: "1.5"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("rect", {
+                                          attrs: {
+                                            fill: "#000000",
+                                            x: "18",
+                                            y: "11",
+                                            width: "3",
+                                            height: "9",
+                                            rx: "1.5"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("rect", {
+                                          attrs: {
+                                            fill: "#000000",
+                                            x: "3",
+                                            y: "13",
+                                            width: "3",
+                                            height: "7",
+                                            rx: "1.5"
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "text-info font-weight-bold font-size-h6",
+                                attrs: { href: "#" }
+                              },
+                              [_vm._v("Weekly Sales")]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col bg-white px-6 py-8 rounded-xl mb-7"
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "svg-icon svg-icon-3x svg-icon-warning d-block my-2"
+                              },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      "xmlns:xlink":
+                                        "http://www.w3.org/1999/xlink",
+                                      width: "24px",
+                                      height: "24px",
+                                      viewBox: "0 0 24 24",
+                                      version: "1.1"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "g",
+                                      {
+                                        attrs: {
+                                          stroke: "none",
+                                          "stroke-width": "1",
+                                          fill: "none",
+                                          "fill-rule": "evenodd"
+                                        }
+                                      },
+                                      [
+                                        _c("polygon", {
+                                          attrs: {
+                                            points: "0 0 24 0 24 24 0 24"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("path", {
+                                          attrs: {
+                                            d:
+                                              "M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z",
+                                            fill: "#000000",
+                                            "fill-rule": "nonzero",
+                                            opacity: "0.3"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("path", {
+                                          attrs: {
+                                            d:
+                                              "M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z",
+                                            fill: "#000000",
+                                            "fill-rule": "nonzero"
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "text-warning font-weight-bold font-size-h6 mt-2",
+                                attrs: { href: "#" }
+                              },
+                              [
+                                _vm._v(
+                                  "New\n                                        Users"
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row m-0" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col bg-white px-6 py-8 rounded-xl mr-7"
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "svg-icon svg-icon-3x svg-icon-danger d-block my-2"
                               },
                               [
                                 _c(
@@ -53244,2424 +52578,3283 @@ var render = function() {
                                   ]
                                 )
                               ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "text-danger font-weight-bold font-size-h6 mt-2",
+                                attrs: { href: "#" }
+                              },
+                              [
+                                _vm._v(
+                                  "Item\n                                        Orders"
+                                )
+                              ]
                             )
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm._m(5)
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col bg-white px-6 py-8 rounded-xl" },
+                          [
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "svg-icon svg-icon-3x svg-icon-success d-block my-2"
+                              },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      "xmlns:xlink":
+                                        "http://www.w3.org/1999/xlink",
+                                      width: "24px",
+                                      height: "24px",
+                                      viewBox: "0 0 24 24",
+                                      version: "1.1"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "g",
+                                      {
+                                        attrs: {
+                                          stroke: "none",
+                                          "stroke-width": "1",
+                                          fill: "none",
+                                          "fill-rule": "evenodd"
+                                        }
+                                      },
+                                      [
+                                        _c("rect", {
+                                          attrs: {
+                                            x: "0",
+                                            y: "0",
+                                            width: "24",
+                                            height: "24"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("path", {
+                                          attrs: {
+                                            d:
+                                              "M12.7037037,14 L15.6666667,10 L13.4444444,10 L13.4444444,6 L9,12 L11.2222222,12 L11.2222222,14 L6,14 C5.44771525,14 5,13.5522847 5,13 L5,3 C5,2.44771525 5.44771525,2 6,2 L18,2 C18.5522847,2 19,2.44771525 19,3 L19,13 C19,13.5522847 18.5522847,14 18,14 L12.7037037,14 Z",
+                                            fill: "#000000",
+                                            opacity: "0.3"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("path", {
+                                          attrs: {
+                                            d:
+                                              "M9.80428954,10.9142091 L9,12 L11.2222222,12 L11.2222222,16 L15.6666667,10 L15.4615385,10 L20.2072547,6.57253826 C20.4311176,6.4108595 20.7436609,6.46126971 20.9053396,6.68513259 C20.9668779,6.77033951 21,6.87277228 21,6.97787787 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,6.97787787 C3,6.70173549 3.22385763,6.47787787 3.5,6.47787787 C3.60510559,6.47787787 3.70753836,6.51099993 3.79274528,6.57253826 L9.80428954,10.9142091 Z",
+                                            fill: "#000000"
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "text-success font-weight-bold font-size-h6 mt-2",
+                                attrs: { href: "#" }
+                              },
+                              [
+                                _vm._v(
+                                  "Bug\n                                        Reports"
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
                     ])
                   ]
                 )
               ]
             )
-          ])
-        ]),
-        _vm._v(" "),
-        _vm._m(6)
-      ]),
-      _vm._v(" "),
-      _vm._m(7),
-      _vm._v(" "),
-      _vm._m(8),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-lg-4" }, [
-          _c("div", { staticClass: "card card-custom card-stretch gutter-b" }, [
-            _vm._m(9),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body d-flex flex-column" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "flex-grow-1",
-                  staticStyle: { position: "relative" }
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticStyle: { height: "200px", "min-height": "178.7px" },
-                      attrs: { id: "kt_mixed_widget_16_chart" }
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "apexcharts-canvas apexchartskrj4suhrl apexcharts-theme-light",
-                          staticStyle: { width: "355px", height: "178.7px" },
-                          attrs: { id: "apexchartskrj4suhrl" }
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4" }, [
+            _c(
+              "div",
+              { staticClass: "card card-custom gutter-b card-stretch" },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "card-body",
+                    staticStyle: { position: "relative" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticStyle: {
+                          height: "250px",
+                          "min-height": "176.26px"
                         },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "apexcharts-svg",
-                              staticStyle: { background: "transparent" },
-                              attrs: {
-                                id: "SvgjsSvg1414",
-                                width: "355",
-                                height: "178.7",
-                                xmlns: "http://www.w3.org/2000/svg",
-                                version: "1.1",
-                                "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                                "xmlns:svgjs": "http://svgjs.com/svgjs",
-                                "xmlns:data": "ApexChartsNS",
-                                transform: "translate(0, 0)"
-                              }
-                            },
-                            [
-                              _c(
-                                "g",
-                                {
-                                  staticClass:
-                                    "apexcharts-inner apexcharts-graphical",
-                                  attrs: {
-                                    id: "SvgjsG1416",
-                                    transform: "translate(90.5, 0)"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "defs",
-                                    { attrs: { id: "SvgjsDefs1415" } },
-                                    [
-                                      _c(
-                                        "clipPath",
-                                        {
-                                          attrs: { id: "gridRectMaskkrj4suhrl" }
-                                        },
-                                        [
-                                          _c("rect", {
-                                            attrs: {
-                                              id: "SvgjsRect1418",
-                                              width: "182",
-                                              height: "200",
-                                              x: "-3",
-                                              y: "-1",
-                                              rx: "0",
-                                              ry: "0",
-                                              opacity: "1",
-                                              "stroke-width": "0",
-                                              stroke: "none",
-                                              "stroke-dasharray": "0",
-                                              fill: "#fff"
-                                            }
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "clipPath",
-                                        {
-                                          attrs: {
-                                            id: "gridRectMarkerMaskkrj4suhrl"
-                                          }
-                                        },
-                                        [
-                                          _c("rect", {
-                                            attrs: {
-                                              id: "SvgjsRect1419",
-                                              width: "180",
-                                              height: "202",
-                                              x: "-2",
-                                              y: "-2",
-                                              rx: "0",
-                                              ry: "0",
-                                              opacity: "1",
-                                              "stroke-width": "0",
-                                              stroke: "none",
-                                              "stroke-dasharray": "0",
-                                              fill: "#fff"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "g",
-                                    {
-                                      staticClass: "apexcharts-radialbar",
-                                      attrs: { id: "SvgjsG1420" }
-                                    },
-                                    [
-                                      _c("g", { attrs: { id: "SvgjsG1421" } }, [
+                        attrs: { id: "kt_mixed_widget_18_chart" }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "apexcharts-canvas apexchartsuge8w2va apexcharts-theme-light",
+                            staticStyle: { width: "354px", height: "176.26px" },
+                            attrs: { id: "apexchartsuge8w2va" }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "apexcharts-svg",
+                                staticStyle: { background: "transparent" },
+                                attrs: {
+                                  id: "SvgjsSvg2569",
+                                  width: "354",
+                                  height: "176.259765625",
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  version: "1.1",
+                                  "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                                  "xmlns:svgjs": "http://svgjs.com/svgjs",
+                                  "xmlns:data": "ApexChartsNS",
+                                  transform: "translate(0, 0)"
+                                }
+                              },
+                              [
+                                _c(
+                                  "g",
+                                  {
+                                    staticClass:
+                                      "apexcharts-inner apexcharts-graphical",
+                                    attrs: {
+                                      id: "SvgjsG2571",
+                                      transform: "translate(65, 0)"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "defs",
+                                      { attrs: { id: "SvgjsDefs2570" } },
+                                      [
                                         _c(
-                                          "g",
+                                          "clipPath",
                                           {
-                                            staticClass: "apexcharts-tracks",
-                                            attrs: { id: "SvgjsG1422" }
+                                            attrs: {
+                                              id: "gridRectMaskuge8w2va"
+                                            }
                                           },
                                           [
-                                            _c(
-                                              "g",
-                                              {
-                                                staticClass:
-                                                  "apexcharts-radialbar-track apexcharts-track",
-                                                attrs: {
-                                                  id: "SvgjsG1423",
-                                                  rel: "1"
-                                                }
-                                              },
-                                              [
-                                                _c("path", {
-                                                  staticClass:
-                                                    "apexcharts-radialbar-area",
-                                                  attrs: {
-                                                    id:
-                                                      "apexcharts-radialbarTrack-0",
-                                                    d:
-                                                      "M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 87.9885533645814 22.415610755004934",
-                                                    fill: "none",
-                                                    "fill-opacity": "1",
-                                                    stroke:
-                                                      "rgba(243,246,249,0.85)",
-                                                    "stroke-opacity": "1",
-                                                    "stroke-linecap": "round",
-                                                    "stroke-width":
-                                                      "6.179512195121951",
-                                                    "stroke-dasharray": "0",
-                                                    "data:pathOrig":
-                                                      "M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 87.9885533645814 22.415610755004934"
-                                                  }
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "g",
-                                              {
-                                                staticClass:
-                                                  "apexcharts-radialbar-track apexcharts-track",
-                                                attrs: {
-                                                  id: "SvgjsG1425",
-                                                  rel: "2"
-                                                }
-                                              },
-                                              [
-                                                _c("path", {
-                                                  staticClass:
-                                                    "apexcharts-radialbar-area",
-                                                  attrs: {
-                                                    id:
-                                                      "apexcharts-radialbarTrack-1",
-                                                    d:
-                                                      "M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 1 1 87.99050455753722 33.59512277985318",
-                                                    fill: "none",
-                                                    "fill-opacity": "1",
-                                                    stroke:
-                                                      "rgba(243,246,249,0.85)",
-                                                    "stroke-opacity": "1",
-                                                    "stroke-linecap": "round",
-                                                    "stroke-width":
-                                                      "6.179512195121951",
-                                                    "stroke-dasharray": "0",
-                                                    "data:pathOrig":
-                                                      "M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 1 1 87.99050455753722 33.59512277985318"
-                                                  }
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "g",
-                                              {
-                                                staticClass:
-                                                  "apexcharts-radialbar-track apexcharts-track",
-                                                attrs: {
-                                                  id: "SvgjsG1427",
-                                                  rel: "3"
-                                                }
-                                              },
-                                              [
-                                                _c("path", {
-                                                  staticClass:
-                                                    "apexcharts-radialbar-area",
-                                                  attrs: {
-                                                    id:
-                                                      "apexcharts-radialbarTrack-2",
-                                                    d:
-                                                      "M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 87.99245575049304 44.77463480470142",
-                                                    fill: "none",
-                                                    "fill-opacity": "1",
-                                                    stroke:
-                                                      "rgba(243,246,249,0.85)",
-                                                    "stroke-opacity": "1",
-                                                    "stroke-linecap": "round",
-                                                    "stroke-width":
-                                                      "6.179512195121951",
-                                                    "stroke-dasharray": "0",
-                                                    "data:pathOrig":
-                                                      "M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 87.99245575049304 44.77463480470142"
-                                                  }
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "g",
-                                              {
-                                                staticClass:
-                                                  "apexcharts-radialbar-track apexcharts-track",
-                                                attrs: {
-                                                  id: "SvgjsG1429",
-                                                  rel: "4"
-                                                }
-                                              },
-                                              [
-                                                _c("path", {
-                                                  staticClass:
-                                                    "apexcharts-radialbar-area",
-                                                  attrs: {
-                                                    id:
-                                                      "apexcharts-radialbarTrack-3",
-                                                    d:
-                                                      "M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 87.99440694344885 55.954146829549664",
-                                                    fill: "none",
-                                                    "fill-opacity": "1",
-                                                    stroke:
-                                                      "rgba(243,246,249,0.85)",
-                                                    "stroke-opacity": "1",
-                                                    "stroke-linecap": "round",
-                                                    "stroke-width":
-                                                      "6.179512195121951",
-                                                    "stroke-dasharray": "0",
-                                                    "data:pathOrig":
-                                                      "M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 87.99440694344885 55.954146829549664"
-                                                  }
-                                                })
-                                              ]
-                                            )
+                                            _c("rect", {
+                                              attrs: {
+                                                id: "SvgjsRect2573",
+                                                width: "232",
+                                                height: "250",
+                                                x: "-3",
+                                                y: "-1",
+                                                rx: "0",
+                                                ry: "0",
+                                                opacity: "1",
+                                                "stroke-width": "0",
+                                                stroke: "none",
+                                                "stroke-dasharray": "0",
+                                                fill: "#fff"
+                                              }
+                                            })
                                           ]
                                         ),
                                         _vm._v(" "),
                                         _c(
+                                          "clipPath",
+                                          {
+                                            attrs: {
+                                              id: "gridRectMarkerMaskuge8w2va"
+                                            }
+                                          },
+                                          [
+                                            _c("rect", {
+                                              attrs: {
+                                                id: "SvgjsRect2574",
+                                                width: "230",
+                                                height: "252",
+                                                x: "-2",
+                                                y: "-2",
+                                                rx: "0",
+                                                ry: "0",
+                                                opacity: "1",
+                                                "stroke-width": "0",
+                                                stroke: "none",
+                                                "stroke-dasharray": "0",
+                                                fill: "#fff"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "g",
+                                      {
+                                        staticClass: "apexcharts-radialbar",
+                                        attrs: { id: "SvgjsG2575" }
+                                      },
+                                      [
+                                        _c(
                                           "g",
-                                          { attrs: { id: "SvgjsG1431" } },
+                                          { attrs: { id: "SvgjsG2576" } },
                                           [
                                             _c(
                                               "g",
                                               {
                                                 staticClass:
-                                                  "apexcharts-series apexcharts-radial-series",
-                                                attrs: {
-                                                  id: "SvgjsG1435",
-                                                  seriesName: "Progress",
-                                                  rel: "1",
-                                                  "data:realIndex": "0"
-                                                }
-                                              },
-                                              [
-                                                _c("path", {
-                                                  staticClass:
-                                                    "apexcharts-radialbar-area apexcharts-radialbar-slice-0",
-                                                  attrs: {
-                                                    id: "SvgjsPath1436",
-                                                    d:
-                                                      "M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 49.450462634039795 141.05888627303557",
-                                                    fill: "none",
-                                                    "fill-opacity": "0.85",
-                                                    stroke:
-                                                      "rgba(137,80,252,0.85)",
-                                                    "stroke-opacity": "1",
-                                                    "stroke-linecap": "round",
-                                                    "stroke-width":
-                                                      "6.179512195121951",
-                                                    "stroke-dasharray": "0",
-                                                    "data:angle": "216",
-                                                    "data:value": "60",
-                                                    index: "0",
-                                                    j: "0",
-                                                    "data:pathOrig":
-                                                      "M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 49.450462634039795 141.05888627303557"
-                                                  }
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "g",
-                                              {
-                                                staticClass:
-                                                  "apexcharts-series apexcharts-radial-series",
-                                                attrs: {
-                                                  id: "SvgjsG1437",
-                                                  seriesName: "seriesx2",
-                                                  rel: "2",
-                                                  "data:realIndex": "1"
-                                                }
-                                              },
-                                              [
-                                                _c("path", {
-                                                  staticClass:
-                                                    "apexcharts-radialbar-area apexcharts-radialbar-slice-1",
-                                                  attrs: {
-                                                    id: "SvgjsPath1438",
-                                                    d:
-                                                      "M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 0 1 88 142.4048780487805",
-                                                    fill: "none",
-                                                    "fill-opacity": "0.85",
-                                                    stroke:
-                                                      "rgba(246,78,96,0.85)",
-                                                    "stroke-opacity": "1",
-                                                    "stroke-linecap": "round",
-                                                    "stroke-width":
-                                                      "6.179512195121951",
-                                                    "stroke-dasharray": "0",
-                                                    "data:angle": "180",
-                                                    "data:value": "50",
-                                                    index: "0",
-                                                    j: "1",
-                                                    "data:pathOrig":
-                                                      "M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 0 1 88 142.4048780487805"
-                                                  }
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "g",
-                                              {
-                                                staticClass:
-                                                  "apexcharts-series apexcharts-radial-series",
-                                                attrs: {
-                                                  id: "SvgjsG1439",
-                                                  seriesName: "seriesx3",
-                                                  rel: "3",
-                                                  "data:realIndex": "2"
-                                                }
-                                              },
-                                              [
-                                                _c("path", {
-                                                  staticClass:
-                                                    "apexcharts-radialbar-area apexcharts-radialbar-slice-2",
-                                                  attrs: {
-                                                    id: "SvgjsPath1440",
-                                                    d:
-                                                      "M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 44.774634146341455 88",
-                                                    fill: "none",
-                                                    "fill-opacity": "0.85",
-                                                    stroke:
-                                                      "rgba(27,197,189,0.85)",
-                                                    "stroke-opacity": "1",
-                                                    "stroke-linecap": "round",
-                                                    "stroke-width":
-                                                      "6.179512195121951",
-                                                    "stroke-dasharray": "0",
-                                                    "data:angle": "270",
-                                                    "data:value": "75",
-                                                    index: "0",
-                                                    j: "2",
-                                                    "data:pathOrig":
-                                                      "M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 44.774634146341455 88"
-                                                  }
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "g",
-                                              {
-                                                staticClass:
-                                                  "apexcharts-series apexcharts-radial-series",
-                                                attrs: {
-                                                  id: "SvgjsG1441",
-                                                  seriesName: "seriesx4",
-                                                  rel: "4",
-                                                  "data:realIndex": "3"
-                                                }
-                                              },
-                                              [
-                                                _c("path", {
-                                                  staticClass:
-                                                    "apexcharts-radialbar-area apexcharts-radialbar-slice-3",
-                                                  attrs: {
-                                                    id: "SvgjsPath1442",
-                                                    d:
-                                                      "M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 57.52258205780789 78.0972866202596",
-                                                    fill: "none",
-                                                    "fill-opacity": "0.85",
-                                                    stroke:
-                                                      "rgba(105,147,255,0.85)",
-                                                    "stroke-opacity": "1",
-                                                    "stroke-linecap": "round",
-                                                    "stroke-width":
-                                                      "6.179512195121951",
-                                                    "stroke-dasharray": "0",
-                                                    "data:angle": "288",
-                                                    "data:value": "80",
-                                                    index: "0",
-                                                    j: "3",
-                                                    "data:pathOrig":
-                                                      "M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 57.52258205780789 78.0972866202596"
-                                                  }
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c("circle", {
-                                              staticClass:
-                                                "apexcharts-radialbar-hollow",
-                                              attrs: {
-                                                id: "SvgjsCircle1432",
-                                                r: "28.95609756097561",
-                                                cx: "88",
-                                                cy: "88",
-                                                fill: "transparent"
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "g",
-                                              {
-                                                staticClass:
-                                                  "apexcharts-datalabels-group",
-                                                staticStyle: { opacity: "1" },
-                                                attrs: {
-                                                  id: "SvgjsG1433",
-                                                  transform:
-                                                    "translate(0, 0) scale(1)"
-                                                }
+                                                  "apexcharts-tracks",
+                                                attrs: { id: "SvgjsG2577" }
                                               },
                                               [
                                                 _c(
-                                                  "text",
+                                                  "g",
                                                   {
                                                     staticClass:
-                                                      "apexcharts-text apexcharts-datalabel-value",
-                                                    staticStyle: {
-                                                      "font-family":
-                                                        "Helvetica, Arial, sans-serif"
-                                                    },
+                                                      "apexcharts-radialbar-track apexcharts-track",
                                                     attrs: {
-                                                      id: "SvgjsText1434",
-                                                      "font-family":
-                                                        "Helvetica, Arial, sans-serif",
-                                                      x: "88",
-                                                      y: "98",
-                                                      "text-anchor": "middle",
-                                                      "dominant-baseline":
-                                                        "auto",
-                                                      "font-size": "18px",
-                                                      "font-weight": "700",
-                                                      fill: "#464e5f"
+                                                      id: "SvgjsG2578",
+                                                      rel: "1"
                                                     }
                                                   },
-                                                  [_vm._v("60%")]
+                                                  [
+                                                    _c("path", {
+                                                      staticClass:
+                                                        "apexcharts-radialbar-area",
+                                                      attrs: {
+                                                        id:
+                                                          "apexcharts-radialbarTrack-0",
+                                                        d:
+                                                          "M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 196.28902439024392 113",
+                                                        fill: "none",
+                                                        "fill-opacity": "1",
+                                                        stroke:
+                                                          "rgba(225,233,255,0.85)",
+                                                        "stroke-opacity": "1",
+                                                        "stroke-linecap":
+                                                          "round",
+                                                        "stroke-width":
+                                                          "10.636585365853659",
+                                                        "stroke-dasharray": "0",
+                                                        "data:pathOrig":
+                                                          "M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 196.28902439024392 113"
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "g",
+                                              { attrs: { id: "SvgjsG2580" } },
+                                              [
+                                                _c(
+                                                  "g",
+                                                  {
+                                                    staticClass:
+                                                      "apexcharts-series apexcharts-radial-series",
+                                                    attrs: {
+                                                      id: "SvgjsG2585",
+                                                      seriesName: "Progress",
+                                                      rel: "1",
+                                                      "data:realIndex": "0"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("path", {
+                                                      staticClass:
+                                                        "apexcharts-radialbar-area apexcharts-radialbar-slice-0",
+                                                      attrs: {
+                                                        id: "SvgjsPath2586",
+                                                        d:
+                                                          "M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 169.80297804535178 52.08626370794575",
+                                                        fill: "none",
+                                                        "fill-opacity": "0.85",
+                                                        stroke:
+                                                          "rgba(105,147,255,0.85)",
+                                                        "stroke-opacity": "1",
+                                                        "stroke-linecap":
+                                                          "round",
+                                                        "stroke-width":
+                                                          "10.636585365853659",
+                                                        "stroke-dasharray": "0",
+                                                        "data:angle": "133",
+                                                        "data:value": "74",
+                                                        index: "0",
+                                                        j: "0",
+                                                        "data:pathOrig":
+                                                          "M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 169.80297804535178 52.08626370794575"
+                                                      }
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c("circle", {
+                                                  staticClass:
+                                                    "apexcharts-radialbar-hollow",
+                                                  attrs: {
+                                                    id: "SvgjsCircle2581",
+                                                    r: "77.97073170731709",
+                                                    cx: "113",
+                                                    cy: "113",
+                                                    fill: "transparent"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "g",
+                                                  {
+                                                    staticClass:
+                                                      "apexcharts-datalabels-group",
+                                                    staticStyle: {
+                                                      opacity: "1"
+                                                    },
+                                                    attrs: {
+                                                      id: "SvgjsG2582",
+                                                      transform:
+                                                        "translate(0, 0) scale(1)"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "text",
+                                                      {
+                                                        staticClass:
+                                                          "apexcharts-text apexcharts-datalabel-label",
+                                                        staticStyle: {
+                                                          "font-family":
+                                                            "Helvetica, Arial, sans-serif"
+                                                        },
+                                                        attrs: {
+                                                          id: "SvgjsText2583",
+                                                          "font-family":
+                                                            "Helvetica, Arial, sans-serif",
+                                                          x: "113",
+                                                          y: "108",
+                                                          "text-anchor":
+                                                            "middle",
+                                                          "dominant-baseline":
+                                                            "auto",
+                                                          "font-size": "13px",
+                                                          "font-weight": "700",
+                                                          fill: "#b5b5c3"
+                                                        }
+                                                      },
+                                                      [_vm._v("Progress")]
+                                                    ),
+                                                    _c(
+                                                      "text",
+                                                      {
+                                                        staticClass:
+                                                          "apexcharts-text apexcharts-datalabel-value",
+                                                        staticStyle: {
+                                                          "font-family":
+                                                            "Helvetica, Arial, sans-serif"
+                                                        },
+                                                        attrs: {
+                                                          id: "SvgjsText2584",
+                                                          "font-family":
+                                                            "Helvetica, Arial, sans-serif",
+                                                          x: "113",
+                                                          y: "89",
+                                                          "text-anchor":
+                                                            "middle",
+                                                          "dominant-baseline":
+                                                            "auto",
+                                                          "font-size": "30px",
+                                                          "font-weight": "700",
+                                                          fill: "#464e5f"
+                                                        }
+                                                      },
+                                                      [_vm._v("74%")]
+                                                    )
+                                                  ]
                                                 )
                                               ]
                                             )
                                           ]
                                         )
-                                      ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("line", {
+                                      staticClass: "apexcharts-ycrosshairs",
+                                      attrs: {
+                                        id: "SvgjsLine2587",
+                                        x1: "0",
+                                        y1: "0",
+                                        x2: "226",
+                                        y2: "0",
+                                        stroke: "#b6b6b6",
+                                        "stroke-dasharray": "0",
+                                        "stroke-width": "1"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("line", {
+                                      staticClass:
+                                        "apexcharts-ycrosshairs-hidden",
+                                      attrs: {
+                                        id: "SvgjsLine2588",
+                                        x1: "0",
+                                        y1: "0",
+                                        x2: "226",
+                                        y2: "0",
+                                        "stroke-dasharray": "0",
+                                        "stroke-width": "0"
+                                      }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("g", {
+                                  staticClass: "apexcharts-annotations",
+                                  attrs: { id: "SvgjsG2572" }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "apexcharts-legend" })
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "mt-n12 position-relative zindex-0" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex align-items-center mb-8" },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "symbol symbol-circle symbol-40 symbol-light mr-3 flex-shrink-0"
+                              },
+                              [
+                                _c("div", { staticClass: "symbol-label" }, [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "svg-icon svg-icon-lg svg-icon-gray-500"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            "xmlns:xlink":
+                                              "http://www.w3.org/1999/xlink",
+                                            width: "24px",
+                                            height: "24px",
+                                            viewBox: "0 0 24 24",
+                                            version: "1.1"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "g",
+                                            {
+                                              attrs: {
+                                                stroke: "none",
+                                                "stroke-width": "1",
+                                                fill: "none",
+                                                "fill-rule": "evenodd"
+                                              }
+                                            },
+                                            [
+                                              _c("rect", {
+                                                attrs: {
+                                                  x: "0",
+                                                  y: "0",
+                                                  width: "24",
+                                                  height: "24"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("rect", {
+                                                attrs: {
+                                                  fill: "#000000",
+                                                  opacity: "0.3",
+                                                  x: "13",
+                                                  y: "4",
+                                                  width: "3",
+                                                  height: "16",
+                                                  rx: "1.5"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("rect", {
+                                                attrs: {
+                                                  fill: "#000000",
+                                                  x: "8",
+                                                  y: "9",
+                                                  width: "3",
+                                                  height: "11",
+                                                  rx: "1.5"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("rect", {
+                                                attrs: {
+                                                  fill: "#000000",
+                                                  x: "18",
+                                                  y: "11",
+                                                  width: "3",
+                                                  height: "9",
+                                                  rx: "1.5"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("rect", {
+                                                attrs: {
+                                                  fill: "#000000",
+                                                  x: "3",
+                                                  y: "13",
+                                                  width: "3",
+                                                  height: "7",
+                                                  rx: "1.5"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(3)
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "d-flex align-items-center mb-8" },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "symbol symbol-circle symbol-40 symbol-light mr-3 flex-shrink-0"
+                              },
+                              [
+                                _c("div", { staticClass: "symbol-label" }, [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "svg-icon svg-icon-lg svg-icon-gray-500"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            "xmlns:xlink":
+                                              "http://www.w3.org/1999/xlink",
+                                            width: "24px",
+                                            height: "24px",
+                                            viewBox: "0 0 24 24",
+                                            version: "1.1"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "g",
+                                            {
+                                              attrs: {
+                                                stroke: "none",
+                                                "stroke-width": "1",
+                                                fill: "none",
+                                                "fill-rule": "evenodd"
+                                              }
+                                            },
+                                            [
+                                              _c("rect", {
+                                                attrs: {
+                                                  x: "0",
+                                                  y: "0",
+                                                  width: "24",
+                                                  height: "24"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  d:
+                                                    "M4.00246329,12.2004927 L13,14 L13,4.06189375 C16.9463116,4.55399184 20,7.92038235 20,12 C20,16.418278 16.418278,20 12,20 C7.64874861,20 4.10886412,16.5261253 4.00246329,12.2004927 Z",
+                                                  fill: "#000000",
+                                                  opacity: "0.3"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  d:
+                                                    "M3.0603968,10.0120794 C3.54712466,6.05992157 6.91622084,3 11,3 L11,11.6 L3.0603968,10.0120794 Z",
+                                                  fill: "#000000"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(4)
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "d-flex align-items-center" },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "symbol symbol-circle symbol-40 symbol-light mr-3 flex-shrink-0"
+                              },
+                              [
+                                _c("div", { staticClass: "symbol-label" }, [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "svg-icon svg-icon-lg svg-icon-gray-500"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            "xmlns:xlink":
+                                              "http://www.w3.org/1999/xlink",
+                                            width: "24px",
+                                            height: "24px",
+                                            viewBox: "0 0 24 24",
+                                            version: "1.1"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "g",
+                                            {
+                                              attrs: {
+                                                stroke: "none",
+                                                "stroke-width": "1",
+                                                fill: "none",
+                                                "fill-rule": "evenodd"
+                                              }
+                                            },
+                                            [
+                                              _c("polygon", {
+                                                attrs: {
+                                                  points: "0 0 24 0 24 24 0 24"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  d:
+                                                    "M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z",
+                                                  fill: "#000000",
+                                                  "fill-rule": "nonzero"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  d:
+                                                    "M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z",
+                                                  fill: "#000000",
+                                                  opacity: "0.3"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(5)
+                          ]
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(6)
+        ]),
+        _vm._v(" "),
+        _vm._m(7),
+        _vm._v(" "),
+        _vm._m(8),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-4" }, [
+            _c(
+              "div",
+              { staticClass: "card card-custom card-stretch gutter-b" },
+              [
+                _vm._m(9),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "flex-grow-1",
+                      staticStyle: { position: "relative" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticStyle: {
+                            height: "200px",
+                            "min-height": "178.7px"
+                          },
+                          attrs: { id: "kt_mixed_widget_16_chart" }
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "apexcharts-canvas apexchartskrj4suhrl apexcharts-theme-light",
+                              staticStyle: {
+                                width: "355px",
+                                height: "178.7px"
+                              },
+                              attrs: { id: "apexchartskrj4suhrl" }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "apexcharts-svg",
+                                  staticStyle: { background: "transparent" },
+                                  attrs: {
+                                    id: "SvgjsSvg1414",
+                                    width: "355",
+                                    height: "178.7",
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    version: "1.1",
+                                    "xmlns:xlink":
+                                      "http://www.w3.org/1999/xlink",
+                                    "xmlns:svgjs": "http://svgjs.com/svgjs",
+                                    "xmlns:data": "ApexChartsNS",
+                                    transform: "translate(0, 0)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    {
+                                      staticClass:
+                                        "apexcharts-inner apexcharts-graphical",
+                                      attrs: {
+                                        id: "SvgjsG1416",
+                                        transform: "translate(90.5, 0)"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "defs",
+                                        { attrs: { id: "SvgjsDefs1415" } },
+                                        [
+                                          _c(
+                                            "clipPath",
+                                            {
+                                              attrs: {
+                                                id: "gridRectMaskkrj4suhrl"
+                                              }
+                                            },
+                                            [
+                                              _c("rect", {
+                                                attrs: {
+                                                  id: "SvgjsRect1418",
+                                                  width: "182",
+                                                  height: "200",
+                                                  x: "-3",
+                                                  y: "-1",
+                                                  rx: "0",
+                                                  ry: "0",
+                                                  opacity: "1",
+                                                  "stroke-width": "0",
+                                                  stroke: "none",
+                                                  "stroke-dasharray": "0",
+                                                  fill: "#fff"
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "clipPath",
+                                            {
+                                              attrs: {
+                                                id:
+                                                  "gridRectMarkerMaskkrj4suhrl"
+                                              }
+                                            },
+                                            [
+                                              _c("rect", {
+                                                attrs: {
+                                                  id: "SvgjsRect1419",
+                                                  width: "180",
+                                                  height: "202",
+                                                  x: "-2",
+                                                  y: "-2",
+                                                  rx: "0",
+                                                  ry: "0",
+                                                  opacity: "1",
+                                                  "stroke-width": "0",
+                                                  stroke: "none",
+                                                  "stroke-dasharray": "0",
+                                                  fill: "#fff"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "g",
+                                        {
+                                          staticClass: "apexcharts-radialbar",
+                                          attrs: { id: "SvgjsG1420" }
+                                        },
+                                        [
+                                          _c(
+                                            "g",
+                                            { attrs: { id: "SvgjsG1421" } },
+                                            [
+                                              _c(
+                                                "g",
+                                                {
+                                                  staticClass:
+                                                    "apexcharts-tracks",
+                                                  attrs: { id: "SvgjsG1422" }
+                                                },
+                                                [
+                                                  _c(
+                                                    "g",
+                                                    {
+                                                      staticClass:
+                                                        "apexcharts-radialbar-track apexcharts-track",
+                                                      attrs: {
+                                                        id: "SvgjsG1423",
+                                                        rel: "1"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        staticClass:
+                                                          "apexcharts-radialbar-area",
+                                                        attrs: {
+                                                          id:
+                                                            "apexcharts-radialbarTrack-0",
+                                                          d:
+                                                            "M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 87.9885533645814 22.415610755004934",
+                                                          fill: "none",
+                                                          "fill-opacity": "1",
+                                                          stroke:
+                                                            "rgba(243,246,249,0.85)",
+                                                          "stroke-opacity": "1",
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-width":
+                                                            "6.179512195121951",
+                                                          "stroke-dasharray":
+                                                            "0",
+                                                          "data:pathOrig":
+                                                            "M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 87.9885533645814 22.415610755004934"
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "g",
+                                                    {
+                                                      staticClass:
+                                                        "apexcharts-radialbar-track apexcharts-track",
+                                                      attrs: {
+                                                        id: "SvgjsG1425",
+                                                        rel: "2"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        staticClass:
+                                                          "apexcharts-radialbar-area",
+                                                        attrs: {
+                                                          id:
+                                                            "apexcharts-radialbarTrack-1",
+                                                          d:
+                                                            "M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 1 1 87.99050455753722 33.59512277985318",
+                                                          fill: "none",
+                                                          "fill-opacity": "1",
+                                                          stroke:
+                                                            "rgba(243,246,249,0.85)",
+                                                          "stroke-opacity": "1",
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-width":
+                                                            "6.179512195121951",
+                                                          "stroke-dasharray":
+                                                            "0",
+                                                          "data:pathOrig":
+                                                            "M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 1 1 87.99050455753722 33.59512277985318"
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "g",
+                                                    {
+                                                      staticClass:
+                                                        "apexcharts-radialbar-track apexcharts-track",
+                                                      attrs: {
+                                                        id: "SvgjsG1427",
+                                                        rel: "3"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        staticClass:
+                                                          "apexcharts-radialbar-area",
+                                                        attrs: {
+                                                          id:
+                                                            "apexcharts-radialbarTrack-2",
+                                                          d:
+                                                            "M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 87.99245575049304 44.77463480470142",
+                                                          fill: "none",
+                                                          "fill-opacity": "1",
+                                                          stroke:
+                                                            "rgba(243,246,249,0.85)",
+                                                          "stroke-opacity": "1",
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-width":
+                                                            "6.179512195121951",
+                                                          "stroke-dasharray":
+                                                            "0",
+                                                          "data:pathOrig":
+                                                            "M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 87.99245575049304 44.77463480470142"
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "g",
+                                                    {
+                                                      staticClass:
+                                                        "apexcharts-radialbar-track apexcharts-track",
+                                                      attrs: {
+                                                        id: "SvgjsG1429",
+                                                        rel: "4"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        staticClass:
+                                                          "apexcharts-radialbar-area",
+                                                        attrs: {
+                                                          id:
+                                                            "apexcharts-radialbarTrack-3",
+                                                          d:
+                                                            "M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 87.99440694344885 55.954146829549664",
+                                                          fill: "none",
+                                                          "fill-opacity": "1",
+                                                          stroke:
+                                                            "rgba(243,246,249,0.85)",
+                                                          "stroke-opacity": "1",
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-width":
+                                                            "6.179512195121951",
+                                                          "stroke-dasharray":
+                                                            "0",
+                                                          "data:pathOrig":
+                                                            "M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 87.99440694344885 55.954146829549664"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "g",
+                                                { attrs: { id: "SvgjsG1431" } },
+                                                [
+                                                  _c(
+                                                    "g",
+                                                    {
+                                                      staticClass:
+                                                        "apexcharts-series apexcharts-radial-series",
+                                                      attrs: {
+                                                        id: "SvgjsG1435",
+                                                        seriesName: "Progress",
+                                                        rel: "1",
+                                                        "data:realIndex": "0"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        staticClass:
+                                                          "apexcharts-radialbar-area apexcharts-radialbar-slice-0",
+                                                        attrs: {
+                                                          id: "SvgjsPath1436",
+                                                          d:
+                                                            "M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 49.450462634039795 141.05888627303557",
+                                                          fill: "none",
+                                                          "fill-opacity":
+                                                            "0.85",
+                                                          stroke:
+                                                            "rgba(137,80,252,0.85)",
+                                                          "stroke-opacity": "1",
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-width":
+                                                            "6.179512195121951",
+                                                          "stroke-dasharray":
+                                                            "0",
+                                                          "data:angle": "216",
+                                                          "data:value": "60",
+                                                          index: "0",
+                                                          j: "0",
+                                                          "data:pathOrig":
+                                                            "M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 49.450462634039795 141.05888627303557"
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "g",
+                                                    {
+                                                      staticClass:
+                                                        "apexcharts-series apexcharts-radial-series",
+                                                      attrs: {
+                                                        id: "SvgjsG1437",
+                                                        seriesName: "seriesx2",
+                                                        rel: "2",
+                                                        "data:realIndex": "1"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        staticClass:
+                                                          "apexcharts-radialbar-area apexcharts-radialbar-slice-1",
+                                                        attrs: {
+                                                          id: "SvgjsPath1438",
+                                                          d:
+                                                            "M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 0 1 88 142.4048780487805",
+                                                          fill: "none",
+                                                          "fill-opacity":
+                                                            "0.85",
+                                                          stroke:
+                                                            "rgba(246,78,96,0.85)",
+                                                          "stroke-opacity": "1",
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-width":
+                                                            "6.179512195121951",
+                                                          "stroke-dasharray":
+                                                            "0",
+                                                          "data:angle": "180",
+                                                          "data:value": "50",
+                                                          index: "0",
+                                                          j: "1",
+                                                          "data:pathOrig":
+                                                            "M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 0 1 88 142.4048780487805"
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "g",
+                                                    {
+                                                      staticClass:
+                                                        "apexcharts-series apexcharts-radial-series",
+                                                      attrs: {
+                                                        id: "SvgjsG1439",
+                                                        seriesName: "seriesx3",
+                                                        rel: "3",
+                                                        "data:realIndex": "2"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        staticClass:
+                                                          "apexcharts-radialbar-area apexcharts-radialbar-slice-2",
+                                                        attrs: {
+                                                          id: "SvgjsPath1440",
+                                                          d:
+                                                            "M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 44.774634146341455 88",
+                                                          fill: "none",
+                                                          "fill-opacity":
+                                                            "0.85",
+                                                          stroke:
+                                                            "rgba(27,197,189,0.85)",
+                                                          "stroke-opacity": "1",
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-width":
+                                                            "6.179512195121951",
+                                                          "stroke-dasharray":
+                                                            "0",
+                                                          "data:angle": "270",
+                                                          "data:value": "75",
+                                                          index: "0",
+                                                          j: "2",
+                                                          "data:pathOrig":
+                                                            "M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 44.774634146341455 88"
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "g",
+                                                    {
+                                                      staticClass:
+                                                        "apexcharts-series apexcharts-radial-series",
+                                                      attrs: {
+                                                        id: "SvgjsG1441",
+                                                        seriesName: "seriesx4",
+                                                        rel: "4",
+                                                        "data:realIndex": "3"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        staticClass:
+                                                          "apexcharts-radialbar-area apexcharts-radialbar-slice-3",
+                                                        attrs: {
+                                                          id: "SvgjsPath1442",
+                                                          d:
+                                                            "M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 57.52258205780789 78.0972866202596",
+                                                          fill: "none",
+                                                          "fill-opacity":
+                                                            "0.85",
+                                                          stroke:
+                                                            "rgba(105,147,255,0.85)",
+                                                          "stroke-opacity": "1",
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-width":
+                                                            "6.179512195121951",
+                                                          "stroke-dasharray":
+                                                            "0",
+                                                          "data:angle": "288",
+                                                          "data:value": "80",
+                                                          index: "0",
+                                                          j: "3",
+                                                          "data:pathOrig":
+                                                            "M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 57.52258205780789 78.0972866202596"
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("circle", {
+                                                    staticClass:
+                                                      "apexcharts-radialbar-hollow",
+                                                    attrs: {
+                                                      id: "SvgjsCircle1432",
+                                                      r: "28.95609756097561",
+                                                      cx: "88",
+                                                      cy: "88",
+                                                      fill: "transparent"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "g",
+                                                    {
+                                                      staticClass:
+                                                        "apexcharts-datalabels-group",
+                                                      staticStyle: {
+                                                        opacity: "1"
+                                                      },
+                                                      attrs: {
+                                                        id: "SvgjsG1433",
+                                                        transform:
+                                                          "translate(0, 0) scale(1)"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "text",
+                                                        {
+                                                          staticClass:
+                                                            "apexcharts-text apexcharts-datalabel-value",
+                                                          staticStyle: {
+                                                            "font-family":
+                                                              "Helvetica, Arial, sans-serif"
+                                                          },
+                                                          attrs: {
+                                                            id: "SvgjsText1434",
+                                                            "font-family":
+                                                              "Helvetica, Arial, sans-serif",
+                                                            x: "88",
+                                                            y: "98",
+                                                            "text-anchor":
+                                                              "middle",
+                                                            "dominant-baseline":
+                                                              "auto",
+                                                            "font-size": "18px",
+                                                            "font-weight":
+                                                              "700",
+                                                            fill: "#464e5f"
+                                                          }
+                                                        },
+                                                        [_vm._v("60%")]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("line", {
+                                        staticClass: "apexcharts-ycrosshairs",
+                                        attrs: {
+                                          id: "SvgjsLine1443",
+                                          x1: "0",
+                                          y1: "0",
+                                          x2: "176",
+                                          y2: "0",
+                                          stroke: "#b6b6b6",
+                                          "stroke-dasharray": "0",
+                                          "stroke-width": "1"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("line", {
+                                        staticClass:
+                                          "apexcharts-ycrosshairs-hidden",
+                                        attrs: {
+                                          id: "SvgjsLine1444",
+                                          x1: "0",
+                                          y1: "0",
+                                          x2: "176",
+                                          y2: "0",
+                                          "stroke-dasharray": "0",
+                                          "stroke-width": "0"
+                                        }
+                                      })
                                     ]
                                   ),
                                   _vm._v(" "),
-                                  _c("line", {
-                                    staticClass: "apexcharts-ycrosshairs",
-                                    attrs: {
-                                      id: "SvgjsLine1443",
-                                      x1: "0",
-                                      y1: "0",
-                                      x2: "176",
-                                      y2: "0",
-                                      stroke: "#b6b6b6",
-                                      "stroke-dasharray": "0",
-                                      "stroke-width": "1"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("line", {
-                                    staticClass:
-                                      "apexcharts-ycrosshairs-hidden",
-                                    attrs: {
-                                      id: "SvgjsLine1444",
-                                      x1: "0",
-                                      y1: "0",
-                                      x2: "176",
-                                      y2: "0",
-                                      "stroke-dasharray": "0",
-                                      "stroke-width": "0"
-                                    }
+                                  _c("g", {
+                                    staticClass: "apexcharts-annotations",
+                                    attrs: { id: "SvgjsG1417" }
                                   })
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("g", {
-                                staticClass: "apexcharts-annotations",
-                                attrs: { id: "SvgjsG1417" }
-                              })
+                              _c("div", { staticClass: "apexcharts-legend" })
                             ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "apexcharts-legend" })
+                          )
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mt-10 mb-5" }, [
+                    _c("div", { staticClass: "row row-paddingless mb-10" }, [
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex align-items-center mr-2" },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "symbol symbol-45 symbol-light-info mr-4 flex-shrink-0"
+                              },
+                              [
+                                _c("div", { staticClass: "symbol-label" }, [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "svg-icon svg-icon-lg svg-icon-info"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            "xmlns:xlink":
+                                              "http://www.w3.org/1999/xlink",
+                                            width: "24px",
+                                            height: "24px",
+                                            viewBox: "0 0 24 24",
+                                            version: "1.1"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "g",
+                                            {
+                                              attrs: {
+                                                stroke: "none",
+                                                "stroke-width": "1",
+                                                fill: "none",
+                                                "fill-rule": "evenodd"
+                                              }
+                                            },
+                                            [
+                                              _c("rect", {
+                                                attrs: {
+                                                  x: "0",
+                                                  y: "0",
+                                                  width: "24",
+                                                  height: "24"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  d:
+                                                    "M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z",
+                                                  fill: "#000000",
+                                                  "fill-rule": "nonzero",
+                                                  opacity: "0.3"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  d:
+                                                    "M3.5,9 L20.5,9 C21.0522847,9 21.5,9.44771525 21.5,10 C21.5,10.132026 21.4738562,10.2627452 21.4230769,10.3846154 L17.7692308,19.1538462 C17.3034221,20.271787 16.2111026,21 15,21 L9,21 C7.78889745,21 6.6965779,20.271787 6.23076923,19.1538462 L2.57692308,10.3846154 C2.36450587,9.87481408 2.60558331,9.28934029 3.11538462,9.07692308 C3.23725479,9.02614384 3.36797398,9 3.5,9 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z",
+                                                  fill: "#000000"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(10)
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex align-items-center mr-2" },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "symbol symbol-45 symbol-light-danger mr-4 flex-shrink-0"
+                              },
+                              [
+                                _c("div", { staticClass: "symbol-label" }, [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "svg-icon svg-icon-lg svg-icon-danger"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            "xmlns:xlink":
+                                              "http://www.w3.org/1999/xlink",
+                                            width: "24px",
+                                            height: "24px",
+                                            viewBox: "0 0 24 24",
+                                            version: "1.1"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "g",
+                                            {
+                                              attrs: {
+                                                stroke: "none",
+                                                "stroke-width": "1",
+                                                fill: "none",
+                                                "fill-rule": "evenodd"
+                                              }
+                                            },
+                                            [
+                                              _c("rect", {
+                                                attrs: {
+                                                  x: "0",
+                                                  y: "0",
+                                                  width: "24",
+                                                  height: "24"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  d:
+                                                    "M5,3 L6,3 C6.55228475,3 7,3.44771525 7,4 L7,20 C7,20.5522847 6.55228475,21 6,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,4 C4,3.44771525 4.44771525,3 5,3 Z M10,3 L11,3 C11.5522847,3 12,3.44771525 12,4 L12,20 C12,20.5522847 11.5522847,21 11,21 L10,21 C9.44771525,21 9,20.5522847 9,20 L9,4 C9,3.44771525 9.44771525,3 10,3 Z",
+                                                  fill: "#000000"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("rect", {
+                                                attrs: {
+                                                  fill: "#000000",
+                                                  opacity: "0.3",
+                                                  transform:
+                                                    "translate(17.825568, 11.945519) rotate(-19.000000) translate(-17.825568, -11.945519)",
+                                                  x: "16.3255682",
+                                                  y: "2.94551858",
+                                                  width: "3",
+                                                  height: "18",
+                                                  rx: "1"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(11)
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row row-paddingless" }, [
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex align-items-center mr-2" },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "symbol symbol-45 symbol-light-success mr-4 flex-shrink-0"
+                              },
+                              [
+                                _c("div", { staticClass: "symbol-label" }, [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "svg-icon svg-icon-lg svg-icon-success"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            "xmlns:xlink":
+                                              "http://www.w3.org/1999/xlink",
+                                            width: "24px",
+                                            height: "24px",
+                                            viewBox: "0 0 24 24",
+                                            version: "1.1"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "g",
+                                            {
+                                              attrs: {
+                                                stroke: "none",
+                                                "stroke-width": "1",
+                                                fill: "none",
+                                                "fill-rule": "evenodd"
+                                              }
+                                            },
+                                            [
+                                              _c("rect", {
+                                                attrs: {
+                                                  x: "0",
+                                                  y: "0",
+                                                  width: "24",
+                                                  height: "24"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  d:
+                                                    "M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z",
+                                                  fill: "#000000",
+                                                  "fill-rule": "nonzero",
+                                                  opacity: "0.3"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  d:
+                                                    "M3.5,9 L20.5,9 C21.0522847,9 21.5,9.44771525 21.5,10 C21.5,10.132026 21.4738562,10.2627452 21.4230769,10.3846154 L17.7692308,19.1538462 C17.3034221,20.271787 16.2111026,21 15,21 L9,21 C7.78889745,21 6.6965779,20.271787 6.23076923,19.1538462 L2.57692308,10.3846154 C2.36450587,9.87481408 2.60558331,9.28934029 3.11538462,9.07692308 C3.23725479,9.02614384 3.36797398,9 3.5,9 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z",
+                                                  fill: "#000000"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(12)
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex align-items-center mr-2" },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "symbol symbol-45 symbol-light-primary mr-4 flex-shrink-0"
+                              },
+                              [
+                                _c("div", { staticClass: "symbol-label" }, [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "svg-icon svg-icon-lg svg-icon-primary"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            "xmlns:xlink":
+                                              "http://www.w3.org/1999/xlink",
+                                            width: "24px",
+                                            height: "24px",
+                                            viewBox: "0 0 24 24",
+                                            version: "1.1"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "g",
+                                            {
+                                              attrs: {
+                                                stroke: "none",
+                                                "stroke-width": "1",
+                                                fill: "none",
+                                                "fill-rule": "evenodd"
+                                              }
+                                            },
+                                            [
+                                              _c("rect", {
+                                                attrs: {
+                                                  x: "0",
+                                                  y: "0",
+                                                  width: "24",
+                                                  height: "24"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("rect", {
+                                                attrs: {
+                                                  fill: "#000000",
+                                                  opacity: "0.3",
+                                                  x: "4",
+                                                  y: "4",
+                                                  width: "8",
+                                                  height: "16"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  d:
+                                                    "M6,18 L9,18 C9.66666667,18.1143819 10,18.4477153 10,19 C10,19.5522847 9.66666667,19.8856181 9,20 L4,20 L4,15 C4,14.3333333 4.33333333,14 5,14 C5.66666667,14 6,14.3333333 6,15 L6,18 Z M18,18 L18,15 C18.1143819,14.3333333 18.4477153,14 19,14 C19.5522847,14 19.8856181,14.3333333 20,15 L20,20 L15,20 C14.3333333,20 14,19.6666667 14,19 C14,18.3333333 14.3333333,18 15,18 L18,18 Z M18,6 L15,6 C14.3333333,5.88561808 14,5.55228475 14,5 C14,4.44771525 14.3333333,4.11438192 15,4 L20,4 L20,9 C20,9.66666667 19.6666667,10 19,10 C18.3333333,10 18,9.66666667 18,9 L18,6 Z M6,6 L6,9 C5.88561808,9.66666667 5.55228475,10 5,10 C4.44771525,10 4.11438192,9.66666667 4,9 L4,4 L9,4 C9.66666667,4 10,4.33333333 10,5 C10,5.66666667 9.66666667,6 9,6 L6,6 Z",
+                                                  fill: "#000000",
+                                                  "fill-rule": "nonzero"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(13)
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-8" }, [
+            _c(
+              "div",
+              { staticClass: "card card-custom card-stretch gutter-b" },
+              [
+                _vm._m(14),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body pt-2 pb-0 mt-n3" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "tab-content mt-2",
+                      attrs: { id: "myTabTables2" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "tab-pane fade",
+                          attrs: {
+                            id: "kt_tab_pane_2_1",
+                            role: "tabpanel",
+                            "aria-labelledby": "kt_tab_pane_2_1"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "table-responsive" }, [
+                            _c(
+                              "table",
+                              {
+                                staticClass:
+                                  "table table-borderless table-vertical-center"
+                              },
+                              [
+                                _vm._m(15),
+                                _vm._v(" "),
+                                _c("tbody", [
+                                  _c("tr", [
+                                    _vm._m(16),
+                                    _vm._v(" "),
+                                    _vm._m(17),
+                                    _vm._v(" "),
+                                    _vm._m(18),
+                                    _vm._v(" "),
+                                    _vm._m(19),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(20),
+                                    _vm._v(" "),
+                                    _vm._m(21),
+                                    _vm._v(" "),
+                                    _vm._m(22),
+                                    _vm._v(" "),
+                                    _vm._m(23),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(24),
+                                    _vm._v(" "),
+                                    _vm._m(25),
+                                    _vm._v(" "),
+                                    _vm._m(26),
+                                    _vm._v(" "),
+                                    _vm._m(27),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(28),
+                                    _vm._v(" "),
+                                    _vm._m(29),
+                                    _vm._v(" "),
+                                    _vm._m(30),
+                                    _vm._v(" "),
+                                    _vm._m(31),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(32),
+                                    _vm._v(" "),
+                                    _vm._m(33),
+                                    _vm._v(" "),
+                                    _vm._m(34),
+                                    _vm._v(" "),
+                                    _vm._m(35),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "tab-pane fade",
+                          attrs: {
+                            id: "kt_tab_pane_2_2",
+                            role: "tabpanel",
+                            "aria-labelledby": "kt_tab_pane_2_2"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "table-responsive" }, [
+                            _c(
+                              "table",
+                              {
+                                staticClass:
+                                  "table table-borderless table-vertical-center"
+                              },
+                              [
+                                _vm._m(36),
+                                _vm._v(" "),
+                                _c("tbody", [
+                                  _c("tr", [
+                                    _vm._m(37),
+                                    _vm._v(" "),
+                                    _vm._m(38),
+                                    _vm._v(" "),
+                                    _vm._m(39),
+                                    _vm._v(" "),
+                                    _vm._m(40),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(41),
+                                    _vm._v(" "),
+                                    _vm._m(42),
+                                    _vm._v(" "),
+                                    _vm._m(43),
+                                    _vm._v(" "),
+                                    _vm._m(44),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(45),
+                                    _vm._v(" "),
+                                    _vm._m(46),
+                                    _vm._v(" "),
+                                    _vm._m(47),
+                                    _vm._v(" "),
+                                    _vm._m(48),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(49),
+                                    _vm._v(" "),
+                                    _vm._m(50),
+                                    _vm._v(" "),
+                                    _vm._m(51),
+                                    _vm._v(" "),
+                                    _vm._m(52),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(53),
+                                    _vm._v(" "),
+                                    _vm._m(54),
+                                    _vm._v(" "),
+                                    _vm._m(55),
+                                    _vm._v(" "),
+                                    _vm._m(56),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "tab-pane fade show active",
+                          attrs: {
+                            id: "kt_tab_pane_2_3",
+                            role: "tabpanel",
+                            "aria-labelledby": "kt_tab_pane_2_3"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "table-responsive" }, [
+                            _c(
+                              "table",
+                              {
+                                staticClass:
+                                  "table table-borderless table-vertical-center"
+                              },
+                              [
+                                _vm._m(57),
+                                _vm._v(" "),
+                                _c("tbody", [
+                                  _c("tr", [
+                                    _vm._m(58),
+                                    _vm._v(" "),
+                                    _vm._m(59),
+                                    _vm._v(" "),
+                                    _vm._m(60),
+                                    _vm._v(" "),
+                                    _vm._m(61),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(62),
+                                    _vm._v(" "),
+                                    _vm._m(63),
+                                    _vm._v(" "),
+                                    _vm._m(64),
+                                    _vm._v(" "),
+                                    _vm._m(65),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(66),
+                                    _vm._v(" "),
+                                    _vm._m(67),
+                                    _vm._v(" "),
+                                    _vm._m(68),
+                                    _vm._v(" "),
+                                    _vm._m(69),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(70),
+                                    _vm._v(" "),
+                                    _vm._m(71),
+                                    _vm._v(" "),
+                                    _vm._m(72),
+                                    _vm._v(" "),
+                                    _vm._m(73),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _vm._m(74),
+                                    _vm._v(" "),
+                                    _vm._m(75),
+                                    _vm._v(" "),
+                                    _vm._m(76),
+                                    _vm._v(" "),
+                                    _vm._m(77),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right pr-0" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-icon btn-light btn-sm",
+                                            attrs: { href: "#" }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "svg-icon svg-icon-md svg-icon-success"
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      "xmlns:xlink":
+                                                        "http://www.w3.org/1999/xlink",
+                                                      width: "24px",
+                                                      height: "24px",
+                                                      viewBox: "0 0 24 24",
+                                                      version: "1.1"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "g",
+                                                      {
+                                                        attrs: {
+                                                          stroke: "none",
+                                                          "stroke-width": "1",
+                                                          fill: "none",
+                                                          "fill-rule": "evenodd"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("polygon", {
+                                                          attrs: {
+                                                            points:
+                                                              "0 0 24 0 24 24 0 24"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("rect", {
+                                                          attrs: {
+                                                            fill: "#000000",
+                                                            opacity: "0.3",
+                                                            transform:
+                                                              "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
+                                                            x: "11",
+                                                            y: "5",
+                                                            width: "2",
+                                                            height: "14",
+                                                            rx: "1"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
+                                                            fill: "#000000",
+                                                            "fill-rule":
+                                                              "nonzero",
+                                                            transform:
+                                                              "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              ]
+                            )
+                          ])
                         ]
                       )
                     ]
                   )
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "mt-10 mb-5" }, [
-                _c("div", { staticClass: "row row-paddingless mb-10" }, [
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "div",
-                      { staticClass: "d-flex align-items-center mr-2" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "symbol symbol-45 symbol-light-info mr-4 flex-shrink-0"
-                          },
-                          [
-                            _c("div", { staticClass: "symbol-label" }, [
-                              _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "svg-icon svg-icon-lg svg-icon-info"
-                                },
-                                [
-                                  _c(
-                                    "svg",
-                                    {
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        "xmlns:xlink":
-                                          "http://www.w3.org/1999/xlink",
-                                        width: "24px",
-                                        height: "24px",
-                                        viewBox: "0 0 24 24",
-                                        version: "1.1"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "g",
-                                        {
-                                          attrs: {
-                                            stroke: "none",
-                                            "stroke-width": "1",
-                                            fill: "none",
-                                            "fill-rule": "evenodd"
-                                          }
-                                        },
-                                        [
-                                          _c("rect", {
-                                            attrs: {
-                                              x: "0",
-                                              y: "0",
-                                              width: "24",
-                                              height: "24"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("path", {
-                                            attrs: {
-                                              d:
-                                                "M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z",
-                                              fill: "#000000",
-                                              "fill-rule": "nonzero",
-                                              opacity: "0.3"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("path", {
-                                            attrs: {
-                                              d:
-                                                "M3.5,9 L20.5,9 C21.0522847,9 21.5,9.44771525 21.5,10 C21.5,10.132026 21.4738562,10.2627452 21.4230769,10.3846154 L17.7692308,19.1538462 C17.3034221,20.271787 16.2111026,21 15,21 L9,21 C7.78889745,21 6.6965779,20.271787 6.23076923,19.1538462 L2.57692308,10.3846154 C2.36450587,9.87481408 2.60558331,9.28934029 3.11538462,9.07692308 C3.23725479,9.02614384 3.36797398,9 3.5,9 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z",
-                                              fill: "#000000"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(10)
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "div",
-                      { staticClass: "d-flex align-items-center mr-2" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "symbol symbol-45 symbol-light-danger mr-4 flex-shrink-0"
-                          },
-                          [
-                            _c("div", { staticClass: "symbol-label" }, [
-                              _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "svg-icon svg-icon-lg svg-icon-danger"
-                                },
-                                [
-                                  _c(
-                                    "svg",
-                                    {
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        "xmlns:xlink":
-                                          "http://www.w3.org/1999/xlink",
-                                        width: "24px",
-                                        height: "24px",
-                                        viewBox: "0 0 24 24",
-                                        version: "1.1"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "g",
-                                        {
-                                          attrs: {
-                                            stroke: "none",
-                                            "stroke-width": "1",
-                                            fill: "none",
-                                            "fill-rule": "evenodd"
-                                          }
-                                        },
-                                        [
-                                          _c("rect", {
-                                            attrs: {
-                                              x: "0",
-                                              y: "0",
-                                              width: "24",
-                                              height: "24"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("path", {
-                                            attrs: {
-                                              d:
-                                                "M5,3 L6,3 C6.55228475,3 7,3.44771525 7,4 L7,20 C7,20.5522847 6.55228475,21 6,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,4 C4,3.44771525 4.44771525,3 5,3 Z M10,3 L11,3 C11.5522847,3 12,3.44771525 12,4 L12,20 C12,20.5522847 11.5522847,21 11,21 L10,21 C9.44771525,21 9,20.5522847 9,20 L9,4 C9,3.44771525 9.44771525,3 10,3 Z",
-                                              fill: "#000000"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("rect", {
-                                            attrs: {
-                                              fill: "#000000",
-                                              opacity: "0.3",
-                                              transform:
-                                                "translate(17.825568, 11.945519) rotate(-19.000000) translate(-17.825568, -11.945519)",
-                                              x: "16.3255682",
-                                              y: "2.94551858",
-                                              width: "3",
-                                              height: "18",
-                                              rx: "1"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(11)
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row row-paddingless" }, [
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "div",
-                      { staticClass: "d-flex align-items-center mr-2" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "symbol symbol-45 symbol-light-success mr-4 flex-shrink-0"
-                          },
-                          [
-                            _c("div", { staticClass: "symbol-label" }, [
-                              _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "svg-icon svg-icon-lg svg-icon-success"
-                                },
-                                [
-                                  _c(
-                                    "svg",
-                                    {
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        "xmlns:xlink":
-                                          "http://www.w3.org/1999/xlink",
-                                        width: "24px",
-                                        height: "24px",
-                                        viewBox: "0 0 24 24",
-                                        version: "1.1"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "g",
-                                        {
-                                          attrs: {
-                                            stroke: "none",
-                                            "stroke-width": "1",
-                                            fill: "none",
-                                            "fill-rule": "evenodd"
-                                          }
-                                        },
-                                        [
-                                          _c("rect", {
-                                            attrs: {
-                                              x: "0",
-                                              y: "0",
-                                              width: "24",
-                                              height: "24"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("path", {
-                                            attrs: {
-                                              d:
-                                                "M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z",
-                                              fill: "#000000",
-                                              "fill-rule": "nonzero",
-                                              opacity: "0.3"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("path", {
-                                            attrs: {
-                                              d:
-                                                "M3.5,9 L20.5,9 C21.0522847,9 21.5,9.44771525 21.5,10 C21.5,10.132026 21.4738562,10.2627452 21.4230769,10.3846154 L17.7692308,19.1538462 C17.3034221,20.271787 16.2111026,21 15,21 L9,21 C7.78889745,21 6.6965779,20.271787 6.23076923,19.1538462 L2.57692308,10.3846154 C2.36450587,9.87481408 2.60558331,9.28934029 3.11538462,9.07692308 C3.23725479,9.02614384 3.36797398,9 3.5,9 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z",
-                                              fill: "#000000"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(12)
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "div",
-                      { staticClass: "d-flex align-items-center mr-2" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "symbol symbol-45 symbol-light-primary mr-4 flex-shrink-0"
-                          },
-                          [
-                            _c("div", { staticClass: "symbol-label" }, [
-                              _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "svg-icon svg-icon-lg svg-icon-primary"
-                                },
-                                [
-                                  _c(
-                                    "svg",
-                                    {
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        "xmlns:xlink":
-                                          "http://www.w3.org/1999/xlink",
-                                        width: "24px",
-                                        height: "24px",
-                                        viewBox: "0 0 24 24",
-                                        version: "1.1"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "g",
-                                        {
-                                          attrs: {
-                                            stroke: "none",
-                                            "stroke-width": "1",
-                                            fill: "none",
-                                            "fill-rule": "evenodd"
-                                          }
-                                        },
-                                        [
-                                          _c("rect", {
-                                            attrs: {
-                                              x: "0",
-                                              y: "0",
-                                              width: "24",
-                                              height: "24"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("rect", {
-                                            attrs: {
-                                              fill: "#000000",
-                                              opacity: "0.3",
-                                              x: "4",
-                                              y: "4",
-                                              width: "8",
-                                              height: "16"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("path", {
-                                            attrs: {
-                                              d:
-                                                "M6,18 L9,18 C9.66666667,18.1143819 10,18.4477153 10,19 C10,19.5522847 9.66666667,19.8856181 9,20 L4,20 L4,15 C4,14.3333333 4.33333333,14 5,14 C5.66666667,14 6,14.3333333 6,15 L6,18 Z M18,18 L18,15 C18.1143819,14.3333333 18.4477153,14 19,14 C19.5522847,14 19.8856181,14.3333333 20,15 L20,20 L15,20 C14.3333333,20 14,19.6666667 14,19 C14,18.3333333 14.3333333,18 15,18 L18,18 Z M18,6 L15,6 C14.3333333,5.88561808 14,5.55228475 14,5 C14,4.44771525 14.3333333,4.11438192 15,4 L20,4 L20,9 C20,9.66666667 19.6666667,10 19,10 C18.3333333,10 18,9.66666667 18,9 L18,6 Z M6,6 L6,9 C5.88561808,9.66666667 5.55228475,10 5,10 C4.44771525,10 4.11438192,9.66666667 4,9 L4,4 L9,4 C9.66666667,4 10,4.33333333 10,5 C10,5.66666667 9.66666667,6 9,6 L6,6 Z",
-                                              fill: "#000000",
-                                              "fill-rule": "nonzero"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(13)
-                      ]
-                    )
-                  ])
                 ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-lg-8" }, [
-          _c("div", { staticClass: "card card-custom card-stretch gutter-b" }, [
-            _vm._m(14),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body pt-2 pb-0 mt-n3" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "tab-content mt-2",
-                  attrs: { id: "myTabTables2" }
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "tab-pane fade",
-                      attrs: {
-                        id: "kt_tab_pane_2_1",
-                        role: "tabpanel",
-                        "aria-labelledby": "kt_tab_pane_2_1"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "table-responsive" }, [
-                        _c(
-                          "table",
-                          {
-                            staticClass:
-                              "table table-borderless table-vertical-center"
-                          },
-                          [
-                            _vm._m(15),
-                            _vm._v(" "),
-                            _c("tbody", [
-                              _c("tr", [
-                                _vm._m(16),
-                                _vm._v(" "),
-                                _vm._m(17),
-                                _vm._v(" "),
-                                _vm._m(18),
-                                _vm._v(" "),
-                                _vm._m(19),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(20),
-                                _vm._v(" "),
-                                _vm._m(21),
-                                _vm._v(" "),
-                                _vm._m(22),
-                                _vm._v(" "),
-                                _vm._m(23),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(24),
-                                _vm._v(" "),
-                                _vm._m(25),
-                                _vm._v(" "),
-                                _vm._m(26),
-                                _vm._v(" "),
-                                _vm._m(27),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(28),
-                                _vm._v(" "),
-                                _vm._m(29),
-                                _vm._v(" "),
-                                _vm._m(30),
-                                _vm._v(" "),
-                                _vm._m(31),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(32),
-                                _vm._v(" "),
-                                _vm._m(33),
-                                _vm._v(" "),
-                                _vm._m(34),
-                                _vm._v(" "),
-                                _vm._m(35),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "tab-pane fade",
-                      attrs: {
-                        id: "kt_tab_pane_2_2",
-                        role: "tabpanel",
-                        "aria-labelledby": "kt_tab_pane_2_2"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "table-responsive" }, [
-                        _c(
-                          "table",
-                          {
-                            staticClass:
-                              "table table-borderless table-vertical-center"
-                          },
-                          [
-                            _vm._m(36),
-                            _vm._v(" "),
-                            _c("tbody", [
-                              _c("tr", [
-                                _vm._m(37),
-                                _vm._v(" "),
-                                _vm._m(38),
-                                _vm._v(" "),
-                                _vm._m(39),
-                                _vm._v(" "),
-                                _vm._m(40),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(41),
-                                _vm._v(" "),
-                                _vm._m(42),
-                                _vm._v(" "),
-                                _vm._m(43),
-                                _vm._v(" "),
-                                _vm._m(44),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(45),
-                                _vm._v(" "),
-                                _vm._m(46),
-                                _vm._v(" "),
-                                _vm._m(47),
-                                _vm._v(" "),
-                                _vm._m(48),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(49),
-                                _vm._v(" "),
-                                _vm._m(50),
-                                _vm._v(" "),
-                                _vm._m(51),
-                                _vm._v(" "),
-                                _vm._m(52),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(53),
-                                _vm._v(" "),
-                                _vm._m(54),
-                                _vm._v(" "),
-                                _vm._m(55),
-                                _vm._v(" "),
-                                _vm._m(56),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "tab-pane fade show active",
-                      attrs: {
-                        id: "kt_tab_pane_2_3",
-                        role: "tabpanel",
-                        "aria-labelledby": "kt_tab_pane_2_3"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "table-responsive" }, [
-                        _c(
-                          "table",
-                          {
-                            staticClass:
-                              "table table-borderless table-vertical-center"
-                          },
-                          [
-                            _vm._m(57),
-                            _vm._v(" "),
-                            _c("tbody", [
-                              _c("tr", [
-                                _vm._m(58),
-                                _vm._v(" "),
-                                _vm._m(59),
-                                _vm._v(" "),
-                                _vm._m(60),
-                                _vm._v(" "),
-                                _vm._m(61),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(62),
-                                _vm._v(" "),
-                                _vm._m(63),
-                                _vm._v(" "),
-                                _vm._m(64),
-                                _vm._v(" "),
-                                _vm._m(65),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(66),
-                                _vm._v(" "),
-                                _vm._m(67),
-                                _vm._v(" "),
-                                _vm._m(68),
-                                _vm._v(" "),
-                                _vm._m(69),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(70),
-                                _vm._v(" "),
-                                _vm._m(71),
-                                _vm._v(" "),
-                                _vm._m(72),
-                                _vm._v(" "),
-                                _vm._m(73),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _vm._m(74),
-                                _vm._v(" "),
-                                _vm._m(75),
-                                _vm._v(" "),
-                                _vm._m(76),
-                                _vm._v(" "),
-                                _vm._m(77),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right pr-0" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "btn btn-icon btn-light btn-sm",
-                                      attrs: { href: "#" }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "svg-icon svg-icon-md svg-icon-success"
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                "xmlns:xlink":
-                                                  "http://www.w3.org/1999/xlink",
-                                                width: "24px",
-                                                height: "24px",
-                                                viewBox: "0 0 24 24",
-                                                version: "1.1"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "g",
-                                                {
-                                                  attrs: {
-                                                    stroke: "none",
-                                                    "stroke-width": "1",
-                                                    fill: "none",
-                                                    "fill-rule": "evenodd"
-                                                  }
-                                                },
-                                                [
-                                                  _c("polygon", {
-                                                    attrs: {
-                                                      points:
-                                                        "0 0 24 0 24 24 0 24"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("rect", {
-                                                    attrs: {
-                                                      fill: "#000000",
-                                                      opacity: "0.3",
-                                                      transform:
-                                                        "translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)",
-                                                      x: "11",
-                                                      y: "5",
-                                                      width: "2",
-                                                      height: "14",
-                                                      rx: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("path", {
-                                                    attrs: {
-                                                      d:
-                                                        "M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z",
-                                                      fill: "#000000",
-                                                      "fill-rule": "nonzero",
-                                                      transform:
-                                                        "translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        )
-                      ])
-                    ]
-                  )
-                ]
-              )
-            ])
+              ]
+            )
           ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -59860,106 +60053,333 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "bw-login container-fluid" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "pt-5 bw-colside" }, [
-          _c(
-            "div",
-            { staticClass: "login-form" },
-            [
-              _c("img", { attrs: { src: "images/logo/bw.svg" } }),
-              _vm._v(" "),
-              _c("h5", [_vm._v(_vm._s(_vm.signheading))]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(_vm.signpara))]),
-              _vm._v(" "),
-              _vm.errors.length
-                ? _c("div", { staticClass: " mycustomalert" }, [
-                    _c(
-                      "ul",
-                      { staticClass: "mb-0" },
-                      _vm._l(_vm.errors, function(error, index) {
-                        return _c(
-                          "li",
-                          {
-                            key: index,
-                            staticClass: "toastnew",
-                            class: { active: _vm.isActive }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fas fa-exclamation-triangle"
+  return _c(
+    "div",
+    { staticClass: "insidecont", attrs: { id: "mainlogincontainer" } },
+    [
+      _c("div", { staticClass: "bw-login container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "pt-3 bw-colside" }, [
+            _c(
+              "div",
+              { staticClass: "login-form" },
+              [
+                _c("img", { attrs: { src: "images/logo/kblogo.svg" } }),
+                _vm._v(" "),
+                _c("h5", [_vm._v(_vm._s(_vm.signheading))]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.signpara))]),
+                _vm._v(" "),
+                _vm.errors.length
+                  ? _c("div", { staticClass: " mycustomalert" }, [
+                      _c(
+                        "ul",
+                        { staticClass: "mb-0" },
+                        _vm._l(_vm.errors, function(error, index) {
+                          return _c(
+                            "li",
+                            {
+                              key: index,
+                              staticClass: "toastnew",
+                              class: { active: _vm.isActive }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fas fa-exclamation-triangle"
+                              }),
+                              _vm._v(" "),
+                              _c("i", { staticClass: "far fa-thumbs-up" }),
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(error) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("transition", { attrs: { name: "slide-fade" } }, [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.onLogin.apply(null, arguments)
+                        }
+                      }
+                    },
+                    [
+                      _vm.loginbox
+                        ? _c("div", { staticClass: "bu-forlogin" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.email,
+                                  expression: "email"
+                                }
+                              ],
+                              staticClass: "form-control mb-3",
+                              attrs: { type: "email", placeholder: "Email" },
+                              domProps: { value: _vm.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.email = $event.target.value
+                                }
+                              }
                             }),
                             _vm._v(" "),
-                            _c("i", { staticClass: "far fa-thumbs-up" }),
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(error) +
-                                "\n                            "
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("transition", { attrs: { name: "slide-fade" } }, [
-                _c(
-                  "form",
-                  {
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.onLogin.apply(null, arguments)
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.password,
+                                  expression: "password"
+                                }
+                              ],
+                              staticClass: "form-control mb-3",
+                              attrs: {
+                                type: "password",
+                                placeholder: "******"
+                              },
+                              domProps: { value: _vm.password },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.password = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-outline-dark login-btn",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("Login")]
+                            ),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-outline-dark signup-btn",
+                                on: { click: _vm.anchorforget }
+                              },
+                              [
+                                _vm._v(
+                                  "Forget\n                                    password?"
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mt-4" }, [
+                              _c("span", { staticClass: "txt-light" }, [
+                                _vm._v("Don't have an account yet?")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "btn btn-outline-dark signup-btn",
+                                  on: { click: _vm.anchorsignup }
+                                },
+                                [_vm._v("Sign Up")]
+                              )
+                            ])
+                          ])
+                        : _vm._e()
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("transition", { attrs: { name: "slide-fade" } }, [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.onRegister.apply(null, arguments)
+                        }
                       }
-                    }
-                  },
-                  [
-                    _vm.loginbox
-                      ? _c("div", { staticClass: "bu-forlogin" }, [
+                    },
+                    [
+                      _vm.registerbox
+                        ? _c("div", { staticClass: "bu-forregister" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.username,
+                                  expression: "username"
+                                }
+                              ],
+                              staticClass: "form-control mb-3",
+                              attrs: {
+                                type: "text",
+                                placeholder: "Username..."
+                              },
+                              domProps: { value: _vm.username },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.username = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registeremail,
+                                  expression: "registeremail"
+                                }
+                              ],
+                              staticClass: "form-control mb-3",
+                              attrs: { type: "email", placeholder: "Email..." },
+                              domProps: { value: _vm.registeremail },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.registeremail = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registerpassword,
+                                  expression: "registerpassword"
+                                }
+                              ],
+                              staticClass: "form-control mb-3",
+                              attrs: {
+                                type: "password",
+                                placeholder: "Password..."
+                              },
+                              domProps: { value: _vm.registerpassword },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.registerpassword = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.passwordagain,
+                                  expression: "passwordagain"
+                                }
+                              ],
+                              staticClass: "form-control mb-3",
+                              attrs: {
+                                type: "password",
+                                placeholder: "Password Again..."
+                              },
+                              domProps: { value: _vm.passwordagain },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.passwordagain = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-outline-dark login-btn",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("Register")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mt-4" }, [
+                              _c("span", { staticClass: "txt-light" }, [
+                                _vm._v("Have an account?")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "btn btn-outline-dark signup-btn",
+                                  on: { click: _vm.anchorsignin }
+                                },
+                                [_vm._v("Log In")]
+                              )
+                            ])
+                          ])
+                        : _vm._e()
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.forforget
+                  ? _c("div", { staticClass: "bw-forforget" }, [
+                      _c(
+                        "form",
+                        {
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.sentToken.apply(null, arguments)
+                            }
+                          }
+                        },
+                        [
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.email,
-                                expression: "email"
+                                value: _vm.emailforget,
+                                expression: "emailforget"
                               }
                             ],
                             staticClass: "form-control mb-3",
                             attrs: { type: "email", placeholder: "Email" },
-                            domProps: { value: _vm.email },
+                            domProps: { value: _vm.emailforget },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.email = $event.target.value
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.password,
-                                expression: "password"
-                              }
-                            ],
-                            staticClass: "form-control mb-3",
-                            attrs: { type: "password", placeholder: "******" },
-                            domProps: { value: _vm.password },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.password = $event.target.value
+                                _vm.emailforget = $event.target.value
                               }
                             }
                           }),
@@ -59970,20 +60390,9 @@ var render = function() {
                               staticClass: "btn btn-outline-dark login-btn",
                               attrs: { type: "submit" }
                             },
-                            [_vm._v("Login")]
-                          ),
-                          _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-outline-dark signup-btn",
-                              on: { click: _vm.anchorforget }
-                            },
                             [
                               _vm._v(
-                                "Forget\n                                    password?"
+                                "Sign Token To Email\n                                Address"
                               )
                             ]
                           ),
@@ -60002,91 +60411,98 @@ var render = function() {
                               [_vm._v("Sign Up")]
                             )
                           ])
-                        ])
-                      : _vm._e()
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("transition", { attrs: { name: "slide-fade" } }, [
-                _c(
-                  "form",
-                  {
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.onRegister.apply(null, arguments)
-                      }
-                    }
-                  },
-                  [
-                    _vm.registerbox
-                      ? _c("div", { staticClass: "bu-forregister" }, [
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.forvalidate
+                  ? _c("div", { staticClass: "bw-forvalidate" }, [
+                      _c(
+                        "form",
+                        {
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.validateToken.apply(null, arguments)
+                            }
+                          }
+                        },
+                        [
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.username,
-                                expression: "username"
+                                value: _vm.token,
+                                expression: "token"
                               }
                             ],
-                            staticClass: "form-control mb-3",
-                            attrs: { type: "text", placeholder: "Username..." },
-                            domProps: { value: _vm.username },
+                            staticClass: "form-control",
+                            attrs: { type: "text", placeholder: "Token..." },
+                            domProps: { value: _vm.token },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.username = $event.target.value
+                                _vm.token = $event.target.value
                               }
                             }
                           }),
                           _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-outline-dark login-btn mt-3",
+                              attrs: { type: "submit" }
+                            },
+                            [
+                              _vm._v(
+                                "Validate\n                                Token"
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.forchangepassword
+                  ? _c("div", { staticClass: "bw-forchangepassword" }, [
+                      _c(
+                        "form",
+                        {
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.changePassword.apply(null, arguments)
+                            }
+                          }
+                        },
+                        [
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.registeremail,
-                                expression: "registeremail"
+                                value: _vm.newpassword,
+                                expression: "newpassword"
                               }
                             ],
-                            staticClass: "form-control mb-3",
-                            attrs: { type: "email", placeholder: "Email..." },
-                            domProps: { value: _vm.registeremail },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.registeremail = $event.target.value
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.registerpassword,
-                                expression: "registerpassword"
-                              }
-                            ],
-                            staticClass: "form-control mb-3",
+                            staticClass: "form-control",
                             attrs: {
                               type: "password",
-                              placeholder: "Password..."
+                              placeholder: "New Password"
                             },
-                            domProps: { value: _vm.registerpassword },
+                            domProps: { value: _vm.newpassword },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.registerpassword = $event.target.value
+                                _vm.newpassword = $event.target.value
                               }
                             }
                           }),
@@ -60100,10 +60516,10 @@ var render = function() {
                                 expression: "passwordagain"
                               }
                             ],
-                            staticClass: "form-control mb-3",
+                            staticClass: "form-control mt-3 mb-3",
                             attrs: {
                               type: "password",
-                              placeholder: "Password Again..."
+                              placeholder: "Password Again"
                             },
                             domProps: { value: _vm.passwordagain },
                             on: {
@@ -60122,398 +60538,212 @@ var render = function() {
                               staticClass: "btn btn-outline-dark login-btn",
                               attrs: { type: "submit" }
                             },
-                            [_vm._v("Register")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "mt-4" }, [
-                            _c("span", { staticClass: "txt-light" }, [
-                              _vm._v("Have an account?")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "btn btn-outline-dark signup-btn",
-                                on: { click: _vm.anchorsignin }
-                              },
-                              [_vm._v("Log In")]
-                            )
-                          ])
-                        ])
-                      : _vm._e()
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _vm.forforget
-                ? _c("div", { staticClass: "bw-forforget" }, [
-                    _c(
-                      "form",
-                      {
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.sentToken.apply(null, arguments)
-                          }
-                        }
-                      },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.emailforget,
-                              expression: "emailforget"
-                            }
-                          ],
-                          staticClass: "form-control mb-3",
-                          attrs: { type: "email", placeholder: "Email" },
-                          domProps: { value: _vm.emailforget },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.emailforget = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-outline-dark login-btn",
-                            attrs: { type: "submit" }
-                          },
-                          [
-                            _vm._v(
-                              "Sign Token To Email\n                                Address"
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "mt-4" }, [
-                          _c("span", { staticClass: "txt-light" }, [
-                            _vm._v("Don't have an account yet?")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-outline-dark signup-btn",
-                              on: { click: _vm.anchorsignup }
-                            },
-                            [_vm._v("Sign Up")]
+                            [_vm._v("Submit")]
                           )
-                        ])
-                      ]
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.forvalidate
-                ? _c("div", { staticClass: "bw-forvalidate" }, [
-                    _c(
-                      "form",
-                      {
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.validateToken.apply(null, arguments)
-                          }
-                        }
-                      },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.token,
-                              expression: "token"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "Token..." },
-                          domProps: { value: _vm.token },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.token = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-outline-dark login-btn mt-3",
-                            attrs: { type: "submit" }
-                          },
-                          [
-                            _vm._v(
-                              "Validate\n                                Token"
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.forchangepassword
-                ? _c("div", { staticClass: "bw-forchangepassword" }, [
-                    _c(
-                      "form",
-                      {
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.changePassword.apply(null, arguments)
-                          }
-                        }
-                      },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.newpassword,
-                              expression: "newpassword"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "password",
-                            placeholder: "New Password"
-                          },
-                          domProps: { value: _vm.newpassword },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.newpassword = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.passwordagain,
-                              expression: "passwordagain"
-                            }
-                          ],
-                          staticClass: "form-control mt-3 mb-3",
-                          attrs: {
-                            type: "password",
-                            placeholder: "Password Again"
-                          },
-                          domProps: { value: _vm.passwordagain },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.passwordagain = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-outline-dark login-btn",
-                            attrs: { type: "submit" }
-                          },
-                          [_vm._v("Submit")]
-                        )
-                      ]
-                    )
-                  ])
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "bw-anthoersignin" }, [
-            _c("div", { staticClass: "google-login__container" }, [
-              _c("a", { staticClass: "eds-btn", attrs: { href: "" } }, [
+                        ]
+                      )
+                    ])
+                  : _vm._e()
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "bw-anthoersignin" }, [
+              _c("div", { staticClass: "google-login__container" }, [
                 _c(
-                  "i",
+                  "a",
                   {
-                    staticClass: "eds-vector-image ",
-                    attrs: {
-                      "data-spec": "icon",
-                      "data-testid": "icon",
-                      "aria-hidden": "true"
-                    }
+                    staticClass: "eds-btn",
+                    attrs: { href: "/auth/redirect/google" }
                   },
                   [
                     _c(
-                      "svg",
-                      { attrs: { width: "24", height: "24", fill: "none" } },
+                      "i",
+                      {
+                        staticClass: "eds-vector-image ",
+                        attrs: {
+                          "data-spec": "icon",
+                          "data-testid": "icon",
+                          "aria-hidden": "true"
+                        }
+                      },
                       [
-                        _c("g", [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M21.99 12.108c0-.84-.069-1.452-.216-2.088H12.2v3.79h5.62c-.113.943-.725 2.362-2.084 3.315l-.02.127 3.028 2.349.21.021c1.926-1.782 3.037-4.404 3.037-7.514",
-                              fill: "#4285F4"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M12.2 22.096c2.753 0 5.064-.908 6.753-2.474l-3.218-2.497c-.862.602-2.017 1.021-3.536 1.021-2.697 0-4.985-1.781-5.801-4.244l-.12.01-3.148 2.44-.041.115c1.677 3.337 5.122 5.63 9.11 5.63z",
-                              fill: "#34A853"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M6.397 13.902a6.298 6.298 0 01-.34-2.02c0-.704.125-1.385.33-2.02l-.007-.136-3.187-2.48-.104.05A10.238 10.238 0 002 11.881c0 1.646.397 3.201 1.088 4.586l3.308-2.565",
-                              fill: "#FBBC05"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M12.2 5.616c1.914 0 3.206.829 3.942 1.521l2.879-2.814c-1.768-1.646-4.068-2.656-6.822-2.656-3.988 0-7.433 2.292-9.11 5.63L6.386 9.86c.828-2.463 3.116-4.245 5.813-4.245",
-                              fill: "#EB4335"
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("defs", [
-                          _c(
-                            "clipPath",
-                            { attrs: { id: "logo-google_svg__clip0" } },
-                            [
+                        _c(
+                          "svg",
+                          {
+                            attrs: { width: "24", height: "24", fill: "none" }
+                          },
+                          [
+                            _c("g", [
                               _c("path", {
                                 attrs: {
-                                  fill: "#fff",
-                                  transform: "translate(2 1.667)",
-                                  d: "M0 0h20v20.5H0z"
+                                  d:
+                                    "M21.99 12.108c0-.84-.069-1.452-.216-2.088H12.2v3.79h5.62c-.113.943-.725 2.362-2.084 3.315l-.02.127 3.028 2.349.21.021c1.926-1.782 3.037-4.404 3.037-7.514",
+                                  fill: "#4285F4"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M12.2 22.096c2.753 0 5.064-.908 6.753-2.474l-3.218-2.497c-.862.602-2.017 1.021-3.536 1.021-2.697 0-4.985-1.781-5.801-4.244l-.12.01-3.148 2.44-.041.115c1.677 3.337 5.122 5.63 9.11 5.63z",
+                                  fill: "#34A853"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M6.397 13.902a6.298 6.298 0 01-.34-2.02c0-.704.125-1.385.33-2.02l-.007-.136-3.187-2.48-.104.05A10.238 10.238 0 002 11.881c0 1.646.397 3.201 1.088 4.586l3.308-2.565",
+                                  fill: "#FBBC05"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M12.2 5.616c1.914 0 3.206.829 3.942 1.521l2.879-2.814c-1.768-1.646-4.068-2.656-6.822-2.656-3.988 0-7.433 2.292-9.11 5.63L6.386 9.86c.828-2.463 3.116-4.245 5.813-4.245",
+                                  fill: "#EB4335"
                                 }
                               })
-                            ]
-                          )
-                        ])
+                            ]),
+                            _vm._v(" "),
+                            _c("defs", [
+                              _c(
+                                "clipPath",
+                                { attrs: { id: "logo-google_svg__clip0" } },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      fill: "#fff",
+                                      transform: "translate(2 1.667)",
+                                      d: "M0 0h20v20.5H0z"
+                                    }
+                                  })
+                                ]
+                              )
+                            ])
+                          ]
+                        )
                       ]
+                    ),
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.anothersigngoogle) +
+                        "\n                            "
                     )
                   ]
-                ),
-                _vm._v(" Sign in with Google\n                            ")
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "bw-anthoersignin" }, [
+              _c("div", { staticClass: "facebook-button-container" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "eds-btn",
+                    attrs: { href: "/auth/redirect/facebook" }
+                  },
+                  [
+                    _c(
+                      "i",
+                      {
+                        staticClass: "eds-vector-image ",
+                        attrs: {
+                          "data-spec": "icon",
+                          "data-testid": "icon",
+                          "aria-hidden": "true"
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            attrs: { width: "24", height: "24", fill: "none" }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                "clip-rule": "evenodd",
+                                d:
+                                  "M21.999 12c0-5.524-4.477-10-10-10s-10 4.476-10 10c0 4.99 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.795c0-2.506 1.493-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989c4.78-.75 8.437-4.887 8.437-9.879z",
+                                fill: "#1877F2"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                "clip-rule": "evenodd",
+                                d:
+                                  "M15.892 14.89l.443-2.89h-2.774v-1.877c0-.79.388-1.561 1.63-1.561h1.261V6.1s-1.144-.195-2.238-.195c-2.284 0-3.777 1.384-3.777 3.89V12h-2.54v2.89h2.54v6.989a10.073 10.073 0 003.125 0V14.89h2.33z",
+                                fill: "#fff"
+                              }
+                            })
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(
+                      "\n                               " +
+                        _vm._s(_vm.anothersignfacebook) +
+                        "\n                        "
+                    )
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "bw-anthoersignin" }, [
+              _c("div", { staticClass: "apple-login__container" }, [
+                _c("a", { staticClass: "eds-btn", attrs: { href: "" } }, [
+                  _c(
+                    "i",
+                    {
+                      staticClass: "eds-vector-image",
+                      attrs: {
+                        "data-spec": "icon",
+                        "data-testid": "icon",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c(
+                        "svg",
+                        { attrs: { width: "24", height: "24", fill: "none" } },
+                        [
+                          _c("path", {
+                            attrs: {
+                              "fill-rule": "evenodd",
+                              "clip-rule": "evenodd",
+                              d:
+                                "M16.012 2c-.997.046-2.222.679-2.947 1.516-.658.747-1.224 1.946-1.066 3.099 1.112.09 2.267-.565 2.97-1.402.704-.86 1.18-2.036 1.043-3.213zm-.022 4.842c-1.564-.16-3.06.927-3.854.927s-2.019-.905-3.311-.882c-1.7.045-3.265.995-4.15 2.51-1.746 3.077-.43 7.602 1.293 10.09.838 1.199 1.859 2.579 3.174 2.51 1.27-.044 1.746-.813 3.288-.813 1.52 0 1.973.814 3.31.791 1.36-.022 2.223-1.244 3.062-2.465.975-1.403 1.36-1.923 1.383-1.991-.022-.023-2.653-1.878-2.698-4.887-.023-2.534 2.063-3.755 2.177-3.823-1.18-1.718-3.016-1.945-3.674-1.967z",
+                              fill: "#4B4D63"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(
+                    "\n                            Sign in with Apple\n                        "
+                  )
+                ])
               ])
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "bw-anthoersignin" }, [
-            _c("div", { staticClass: "facebook-button-container" }, [
-              _c("a", { staticClass: "eds-btn", attrs: { href: "" } }, [
-                _c(
-                  "i",
-                  {
-                    staticClass: "eds-vector-image ",
-                    attrs: {
-                      "data-spec": "icon",
-                      "data-testid": "icon",
-                      "aria-hidden": "true"
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      { attrs: { width: "24", height: "24", fill: "none" } },
-                      [
-                        _c("path", {
-                          attrs: {
-                            "fill-rule": "evenodd",
-                            "clip-rule": "evenodd",
-                            d:
-                              "M21.999 12c0-5.524-4.477-10-10-10s-10 4.476-10 10c0 4.99 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.795c0-2.506 1.493-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989c4.78-.75 8.437-4.887 8.437-9.879z",
-                            fill: "#1877F2"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            "fill-rule": "evenodd",
-                            "clip-rule": "evenodd",
-                            d:
-                              "M15.892 14.89l.443-2.89h-2.774v-1.877c0-.79.388-1.561 1.63-1.561h1.261V6.1s-1.144-.195-2.238-.195c-2.284 0-3.777 1.384-3.777 3.89V12h-2.54v2.89h2.54v6.989a10.073 10.073 0 003.125 0V14.89h2.33z",
-                            fill: "#fff"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(
-                  "\n                                Sign in with Facebook\n                        "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "bw-anthoersignin" }, [
-            _c("div", { staticClass: "apple-login__container" }, [
-              _c("a", { staticClass: "eds-btn", attrs: { href: "" } }, [
-                _c(
-                  "i",
-                  {
-                    staticClass: "eds-vector-image",
-                    attrs: {
-                      "data-spec": "icon",
-                      "data-testid": "icon",
-                      "aria-hidden": "true"
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      { attrs: { width: "24", height: "24", fill: "none" } },
-                      [
-                        _c("path", {
-                          attrs: {
-                            "fill-rule": "evenodd",
-                            "clip-rule": "evenodd",
-                            d:
-                              "M16.012 2c-.997.046-2.222.679-2.947 1.516-.658.747-1.224 1.946-1.066 3.099 1.112.09 2.267-.565 2.97-1.402.704-.86 1.18-2.036 1.043-3.213zm-.022 4.842c-1.564-.16-3.06.927-3.854.927s-2.019-.905-3.311-.882c-1.7.045-3.265.995-4.15 2.51-1.746 3.077-.43 7.602 1.293 10.09.838 1.199 1.859 2.579 3.174 2.51 1.27-.044 1.746-.813 3.288-.813 1.52 0 1.973.814 3.31.791 1.36-.022 2.223-1.244 3.062-2.465.975-1.403 1.36-1.923 1.383-1.991-.022-.023-2.653-1.878-2.698-4.887-.023-2.534 2.063-3.755 2.177-3.823-1.18-1.718-3.016-1.945-3.674-1.967z",
-                            fill: "#4B4D63"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(
-                  "\n                            Sign in with Apple\n                        "
-                )
-              ])
-            ])
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "bw-container__bg", style: _vm.cssVars })
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "bw-container__bg", style: _vm.cssVars })
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -60623,7 +60853,7 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "bw-sidebar-logo" }, [
-                _c("img", { attrs: { src: "images/logo/bw.svg", alt: "" } })
+                _c("img", { attrs: { src: "images/logo/kblogo.svg", alt: "" } })
               ]),
               _vm._v(" "),
               _c(

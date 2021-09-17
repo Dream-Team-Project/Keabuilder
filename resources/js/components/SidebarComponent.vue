@@ -3,7 +3,7 @@
     <div id="bw-sidebar" class="bw-sidebar-content reduce open absolute" v-if="fullsidebar" style="width:50px;" @mouseover="hoveropen = true" @mouseleave="hoveropen = false" :class="{ 'hoveropen' : hoveropen }">
         <!-- ...img logo -->
         <div class="bw-sidebar-logo">
-            <img v-bind:src="'images/logo/bw.svg'" alt="">
+            <img v-bind:src="'images/logo/kblogo.svg'" alt="">
         </div>
         <div class="bw-sidebar">
             <router-link :to="{name: 'dashboard'}">

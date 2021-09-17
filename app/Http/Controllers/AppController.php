@@ -38,6 +38,8 @@ class AppController extends Controller
         $user->name = $request->username;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->provider = '';
+        $user->provider_id ='';
         $user->save();
         Auth::login($user);
 

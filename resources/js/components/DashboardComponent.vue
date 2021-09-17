@@ -1,5 +1,5 @@
 <template>
-    <div id="dasboardcontainer">
+    <div id="dasboardcontainer" class="insidecont">
         <div class="container-fluid">
             <!-- first row start -->
             <div class="row">

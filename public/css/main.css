@@ -2,6 +2,14 @@ body{
    font-family: Poppins!important;   
    /* background: #F2F3F7!important; */
 }
+.insidecont{
+    margin-left: 49px;
+    padding-top: 20px;
+     padding-left: 20px;
+}
+#dasboardcontainer{
+    background: #F2F3F7!important;
+}
 /* router progressBar */
 
     #nprogress .bar {
@@ -547,11 +555,11 @@ button:focus {
 
 
 /* Index all margin left */
-div#mainindex {
-    margin-left: 49px;
+/* div#mainindex { */
+    /* margin-left: 49px;
     padding-top: 20px;
     padding-left: 20px;
-}
+} */
 /* Index all margin left */
 
 
