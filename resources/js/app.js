@@ -70,6 +70,8 @@ Vue.component('sidebar-component', require('./components/SidebarComponent.vue').
  import login from './components/LoginComponent.vue';
  import dashboard from './components/DashboardComponent.vue';
  import funnel from './components/FunnelComponent.vue';
+ import buildfunnel from './components/BuildfunnelComponent.vue';
+ import createfunnel from './components/CreatefunnelComponent.vue';
  import membership from './components/MembershipComponent.vue';
  import analytics from './components/AnalyticsComponent.vue';
  import edituser from './components/EdituserComponent.vue';
@@ -81,6 +83,8 @@ const routes = [
   {path : '/login', name: 'login', component: login},
   {path : '/register', name: 'register', component: login},  
   {path : '/funnel', name: 'funnel', component: funnel},
+  {path : '/build-funnel', name: 'buildfunnel', component: buildfunnel},
+  {path : '/create-funnel', name: 'createfunnel', component: createfunnel},
   {path : '/pages', name: 'pages', component: pages},
   {path : '/strategies', name: 'strategies', component: strategies},
   {path : '/membership', name: 'membership', component: membership},

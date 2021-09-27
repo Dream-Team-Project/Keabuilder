@@ -1,8 +1,177 @@
+<style scoped>  
+    .bw-login {
+        margin-top: -19px;
+    }
+    .mycustomalert ul {
+        position: fixed;
+        top: 5px;
+        right: 18px;
+        z-index: 9;
+        color: #fff;
+    }
+    .mycustomalert ul li {
+        background-color: #F64E60;
+        border-color: #F64E60;
+        list-style: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+
+    .bw-login img {
+        width: 100px;
+    }
+
+    .login-form {
+        width: 100%;
+        max-width: 450px;
+        color: rgb(0, 0, 0);
+        text-align: left;
+    }
+
+    .login-form h5 {
+        font-size: 19px;
+        margin-top: 15px;
+    }
+
+    .login-form p {
+        font-size: 13px;
+        opacity: 0.6;
+    }
+
+    .signup-btn {
+        border: none;
+        font-size: 13px;
+    }
+
+    .login-btn {
+        padding: 10px 50px !important;
+    }
+
+    .txt-light {
+        font-size: 13px;
+        opacity: 0.7;
+    }
+
+    .signup-btn:hover {
+        background: transparent !important;
+        opacity: 0.7;
+    }
+
+    .error {
+        color: #F64E60;
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .first-login input::placeholder,
+    .bu-forlogin input::placeholder,
+    .bu-forlogin input:focus,
+    .first-login input:focus {
+        color: rgb(0, 0, 0);
+        font-size: 13px;
+    }
+
+    .first-login input,
+    .bu-forlogin input {
+        opacity: 0.7;
+        padding: 13px 26px;
+        height: 45px;
+    }
+
+    .toastnew .fa-thumbs-up {
+        display: none;
+    }
+
+    .toastnew.active .fa-thumbs-up {
+        display: inline-block;
+    }
+
+    .toastnew.active .fa-exclamation-triangle {
+        display: none;
+    }
+
+    .toastnew.active {
+        background: green !important;
+    }
+
+    .apple-login__container{
+        display: none;
+    }
+
+     .bw-anthoersignin a:focus, .bw-anthoersignin a:hover {
+        background-color: #f8f7fa;
+        border-color: #f8f7fa;
+        color:#3d64ff;
+    }
+    .bw-anthoersignin a{
+        font-size: 14px;
+        padding: 10px 20px;
+        display: inline-block;
+        width: 50%;
+    }
+    .bw-container__divider {
+        position: relative;
+        width: 50%;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .bw-container__divider:before {
+        content: "";
+        height: 1px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        background-color: #a9a8b3;
+        top: 14px;
+    }
+
+    .bw-container__divider-text {
+        color: #6f7287;
+        border: 1px solid #a9a8b3;
+        border-radius: 100px;
+        background: #fff;
+        position: relative;
+        display: inline-block;
+        padding: 0 12px 3px;
+        min-width: 20px;
+        text-align: center;
+        left: 41%;
+    }
+     .bw-container__bg {
+         background: var(--login-bk);
+        background-position: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+   
+
+    .bw-colside {
+        /* display: -webkit-box ;
+    display: -ms-flexbox ;
+    display: flex ;    */
+        flex: 1;
+        -ms-flex: 1 0 0px;
+        height: 99.9vh;
+        overflow: hidden;
+    }
+
+
+</style>
+
 <template>
-    <div id="mainlogincontainer" class="insidecont"> 
+    <div id="mainlogincontainer"> 
         <div class="bw-login container-fluid">
             <div class="row">
-                <div class="pt-3 bw-colside">
+                <div class="pt-3 bw-colside ml-4 mt-4">
                     <div class="login-form">
 
                         <img v-bind:src="'images/logo/kblogo.svg'">
@@ -163,177 +332,6 @@
         </div>
     </div>
 </template>
-<style scoped>
-   
-    .bw-login {
-        margin-top: -19px;
-    }
-
-    .mycustomalert ul {
-        position: fixed;
-        top: 5px;
-        right: 18px;
-        z-index: 9;
-        color: #fff;
-    }
-
-    .mycustomalert ul li {
-        background-color: #F64E60;
-        border-color: #F64E60;
-        list-style: none;
-        padding: 10px 20px;
-        font-size: 14px;
-        margin-top: 20px;
-        border-radius: 5px;
-    }
-
-    .bw-login img {
-        width: 100px;
-    }
-
-    .login-form {
-        width: 100%;
-        max-width: 450px;
-        color: rgb(0, 0, 0);
-        text-align: left;
-    }
-
-    .login-form h5 {
-        font-size: 19px;
-        margin-top: 15px;
-    }
-
-    .login-form p {
-        font-size: 13px;
-        opacity: 0.6;
-    }
-
-    .signup-btn {
-        border: none;
-        font-size: 13px;
-    }
-
-    .login-btn {
-        padding: 10px 50px !important;
-    }
-
-    .txt-light {
-        font-size: 13px;
-        opacity: 0.7;
-    }
-
-    .signup-btn:hover {
-        background: transparent !important;
-        opacity: 0.7;
-    }
-
-    .error {
-        color: #F64E60;
-        font-size: 12px;
-        font-weight: 400;
-    }
-
-    .first-login input::placeholder,
-    .bu-forlogin input::placeholder,
-    .bu-forlogin input:focus,
-    .first-login input:focus {
-        color: rgb(0, 0, 0);
-        font-size: 13px;
-    }
-
-    .first-login input,
-    .bu-forlogin input {
-        opacity: 0.7;
-        padding: 13px 26px;
-        height: 45px;
-    }
-
-    .toastnew .fa-thumbs-up {
-        display: none;
-    }
-
-    .toastnew.active .fa-thumbs-up {
-        display: inline-block;
-    }
-
-    .toastnew.active .fa-exclamation-triangle {
-        display: none;
-    }
-
-    .toastnew.active {
-        background: green !important;
-    }
-
-    .apple-login__container{
-        display: none;
-    }
-
-     .bw-anthoersignin a:focus, .bw-anthoersignin a:hover {
-        background-color: #f8f7fa;
-        border-color: #f8f7fa;
-        color:#3d64ff;
-    }
-    .bw-anthoersignin a{
-        font-size: 14px;
-        padding: 10px 20px;
-        display: inline-block;
-        width: 50%;
-    }
-    .bw-container__divider {
-        position: relative;
-        width: 50%;
-        margin-top: 30px;
-        margin-bottom: 20px;
-    }
-
-    .bw-container__divider:before {
-        content: "";
-        height: 1px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        background-color: #a9a8b3;
-        top: 14px;
-    }
-
-    .bw-container__divider-text {
-        color: #6f7287;
-        border: 1px solid #a9a8b3;
-        border-radius: 100px;
-        background: #fff;
-        position: relative;
-        display: inline-block;
-        padding: 0 12px 3px;
-        min-width: 20px;
-        text-align: center;
-        left: 41%;
-    }
-     .bw-container__bg {
-         background: var(--login-bk);
-        background-position: 0;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: top center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-   
-
-    .bw-colside {
-        /* display: -webkit-box ;
-    display: -ms-flexbox ;
-    display: flex ;    */
-        flex: 1;
-        -ms-flex: 1 0 0px;
-        height: 99.9vh;
-        overflow: hidden;
-    }
-
-
-</style>
 <script>
     export default {
         data() {

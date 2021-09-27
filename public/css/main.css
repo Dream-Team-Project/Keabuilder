@@ -4,8 +4,8 @@ body{
 }
 .insidecont{
     margin-left: 49px;
-    padding-top: 20px;
-     padding-left: 20px;
+     margin-top: 70px;
+     padding:20px;
 }
 #dasboardcontainer{
     background: #F2F3F7!important;
@@ -21,14 +21,168 @@ body{
     }
 /* router progressBar */
 
-/* button focus none */
+/* button  */
 button:focus {
     outline: none!important;
 }
-/* button focus none */
+#mainindex .btn-primary{
+ background-color: #d8c898;  
+ border-color: #d8c898; 
+ box-shadow: -4px 4px 6px 0 rgb(55 70 95 / 12%);
+}
+#mainindex .btn-primary:hover{
+opacity: 0.8;
+}
+/* button */
+
+/* navbar css */
+
+.navshadow{    
+    box-shadow: -8px 12px 18px 0 rgb(25 42 70 / 13%);
+}
+
+.header-navbar {
+    padding: 0;
+    min-height: 4rem;
+    -webkit-transition: .1s ease all,background 0s;
+    transition: .1s ease all,background 0s;
+    z-index: 1000;
+    background-color: #FFF;
+    /* box-shadow: -8px 12px 18px 0 rgb(25 42 70 / 13%); */
+}
+.header-navbar.fixed-top {
+    left: 48px;
+    position: fixed;
+    background-color: #F2F4F4;
+    padding: 0px;
+}
+.header-navbar .navbar-wrapper {
+    width: 100%;
+}
+.header-navbar .navbar-container {
+    padding-left: 1rem;
+    -webkit-transition: .3s ease all;
+    transition: .3s ease all;
+    background: inherit;
+    margin-left: 0;
+}
+.navbar-sticky .navbar-container {
+    padding-left: 1.8rem;
+    padding-right: 1rem;
+}
+.header-navbar .navbar-container ul.nav li a.nav-link-search {
+    padding: 1.5rem .75rem 1.15rem;
+}
+.navbar-container .search-input {
+    float: left;
+    width: 0;
+    display: none;
+}
+.navbar-container .search-input .search-input-icon {
+    z-index: 2;
+    z-index: 1002;
+    display: none;
+    position: absolute;
+    left: 1.5rem;
+    top: 37%;
+    cursor: pointer;
+}
+.navbar-container .search-input input {
+    width: 0;
+    border: none;
+    background: 0 0;
+    line-height: 16px;
+    padding: 1.7rem 3.6rem;
+}
+.navbar-container .search-input .search-input-close {
+    z-index: 1001;
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 32%;
+    cursor: pointer;
+}
+.navbar-container .search-input.open {
+    position: absolute;
+    left: 0;
+    background: #FFF;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+    margin-top: -1px;
+    box-shadow: -8px 12px 18px 0 rgb(25 42 70 / 13%);
+    display:block;
+}
+.navbar-container .search-input.open input {
+    width: 100%;
+    outline: 0;
+    background: 0 0;
+}
+.navbar-container .search-input.open .search-input-close, .navbar-container .search-input.open .search-input-icon {
+    display: block;
+}
+.header-navbar .navbar-container ul.nav li a.dropdown-user-link {
+    padding: .9rem 1.25rem .9rem 1rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.header-navbar .navbar-container ul.nav li>a.nav-link {
+    color: #727E8C;
+}
+.header-navbar .navbar-container ul.nav li a.dropdown-user-link .user-nav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    float: left;
+    margin-right: .8rem;
+}
+.header-navbar .navbar-container ul.nav li a.dropdown-user-link .user-name {
+    display: inline-block;
+    margin-left: .2rem;
+    line-height: 1.2;
+}
+.header-navbar .navbar-container ul.nav li a.dropdown-user-link .user-status {
+    font-size: smaller;
+}
+.dropdown.dropdown-notification {
+    top: 18px;
+}
+.nav-link-search .fa-search {
+    font-size: 17px;
+    margin-top: 6px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+/* navbar css */
+
+
 
 /* Sidebar css */
-
+.bw-sidebar__item__icon img{
+    width: 27px;
+    left: 0px;
+    position: relative;
+}
+.hoveropen .kb-padinglft .bw-sidebar__item{
+    padding-left: 20px!important;
+}
 
 /* user notification */
 
@@ -101,7 +255,7 @@ button:focus {
 }
 .symbol.symbol-light-primary .symbol-label {
     background-color: #E1F0FF;
-    color: #3699FF;
+    color: #d8c898;
 }
 .font-size-lg {
     font-size: 14px;
@@ -155,7 +309,7 @@ button:focus {
     color: #F64E60 !important;
 }
 #topbar_notifications_events .text-primary {
-    color: #3699FF !important;
+    color: #d8c898 !important;
 }
 
 /* user notification */
@@ -270,7 +424,7 @@ button:focus {
 }
 .bw-sidebar__item.active ,.bw-sidebar__item.active a{
     opacity: 1;
-    color: rgba(26,92,255,1)!important;
+    color: #d8c898!important;
 }
 .bw-sidebar-content.reduce .bw-sidebar__item {
     padding-left: 16px;
@@ -308,7 +462,7 @@ button:focus {
     top: 0;
     width: 10px;
     height: 100%;
-    background: rgba(26,92,255,1);
+    background: #d8c898;
     border-radius: 0 20px 20px 0;
     -webkit-transform: translate(-6px);
     transform: translate(-6px);
@@ -346,7 +500,7 @@ button:focus {
     position: absolute;
     left: 0;
     top: 0;
-    background: rgba(26,92,255,.3);
+    background: rgb(216 200 152 / 50%);
     width: 4px;
     height: 100%;
     opacity: 0;
@@ -373,7 +527,7 @@ button:focus {
     top: 0;
     width: 10px;
     height: 100%;
-    background: rgba(26,92,255,.3);
+    background: rgb(216 200 152 / 50%);
     border-radius: 0 20px 20px 0;
     -webkit-transform: translate(-6px);
     transform: translate(-6px);
@@ -486,10 +640,12 @@ button:focus {
     bottom: auto;
 }
 .bw-sidebar__group.open .bw-sidebar__group__content{
-    height: 140px!important;
+    height: auto!important;
 }
 
-
+.bw-sidebar__group__content .bw-sidebar__item, .bw-sidebar__group__content .bw-sidebar__item__icon {
+    background: #f3f6f9;
+}
 .hidden .bw-avatar-content {
     margin-top: 10px;
 }
@@ -909,8 +1065,8 @@ a:hover{
 .offcanvas {
     z-index: 1001;
     position: fixed;
-    top: 0;
-    bottom: 0;
+    top: 77px;
+    bottom: 7px;
     -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
     transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
     left: -395px;
@@ -924,7 +1080,7 @@ a:hover{
 .offcanvas.offcanvas-right.offcanvas-on {
     -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
     transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
-    right: 0;
+    right: 7px;
     left: auto;
 }
 .offcanvas h3{
@@ -956,11 +1112,11 @@ a:hover{
 .svg-icon.svg-icon-primary svg g [fill] {
     -webkit-transition: fill 0.3s ease;
     transition: fill 0.3s ease;
-    fill: #3699FF !important;
+    fill: #d8c898 !important;
 }
 .offcanvas .btn.btn-light-primary {
-    color: #3699FF;
-    background-color: #E1F0FF;
+    color: #000000;
+    background-color: #d8c898;
     border-color: transparent;
     display: inline-block;
     font-size: 11px;
@@ -999,7 +1155,7 @@ a:hover{
     color: #3F4254;
 }
 .navi .navi-item .navi-link:hover .navi-text {
-    color: #3699FF;
+    color: #d8c898;
 }
 .bg-light-warning {
     background-color: #FFF4DE !important;
@@ -1060,7 +1216,7 @@ a:hover{
     border-color: transparent!important;
 }
 .nav.nav-tabs.nav-tabs-line.nav-tabs-line-3x .nav-link.active{
-    border-bottom: 3px solid #3699FF!important;
+    border-bottom: 3px solid #d8c898!important;
 }
 .nav-tabs {
     border-bottom: transparent!important;
@@ -1212,7 +1368,7 @@ a:hover{
 .checkbox > input:checked ~ span {
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    background-color: #3699FF;
+    background-color: #d8c898;
 
 }
 .checkbox > input:checked ~ span:after {
@@ -1264,7 +1420,7 @@ a:hover{
     border-radius: 0.42rem;
 }
 .btn.btn-light-primary {
-    color: #3699FF;
+    color: #d8c898;
     background-color: #E1F0FF;
     border-color: transparent;
     font-size: 13px;
@@ -1272,7 +1428,7 @@ a:hover{
 }
 .btn.btn-light-primary:hover:not(.btn-text):not(:disabled):not(.disabled){   
     color: #FFFFFF;
-    background-color: #3699FF;
+    background-color: #d8c898;
     border-color: transparent;
 
 }
@@ -1318,7 +1474,7 @@ a:hover{
 .switch input:empty ~ span {
     display: inline-block;
     position: relative;
-    float: left;
+    /* float: left; */
     width: 1px;
     text-indent: 0;
     cursor: pointer;
@@ -1383,7 +1539,7 @@ a:hover{
 .switch input:checked ~ span:after {
     opacity: 1;
     color: #ffffff;
-    background-color: #3699FF;
+    background-color: #d8c898;
 }
 .checkbox.checkbox-success > input:checked ~ span {
     background-color: #1BC5BD;
@@ -1433,3 +1589,76 @@ a:hover{
 /* Dashboard css end */
 
 
+
+
+
+/* mobile media query */
+@media screen and (max-width:500px){
+    .navbar-nav{
+        display: -webkit-inline-box!important;
+    }
+}
+/* mobile media query */
+
+
+/* animation */
+.loadEffect {
+    animation-name: slideUp;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    transform-origin: center;
+    position: relative;
+}
+
+@keyframes slideUp{
+        0% {
+            opacity: 0;
+            top: 40px;
+        }
+        100% {
+            opacity: 1;
+            top: 0px;            
+        }
+}
+
+.loadEffectFromLeft {
+    animation-name: slideLeft;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    transform-origin: center;
+    position: relative;    
+}
+
+@keyframes slideLeft{
+    0% {
+        opacity: 0;
+        right: 40px;
+    }
+    100% {
+        opacity: 1;
+        right: 0px;            
+    }
+}
+
+.loadEffectFromRight {
+    animation-name: slideRight;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    transform-origin: center;
+    position: relative;
+}
+
+@keyframes slideRight{
+        0% {
+            opacity: 0;
+            left: 40px;
+        }
+        100% {
+            opacity: 1;
+            left: 0px;            
+        }
+}
+/* animation */

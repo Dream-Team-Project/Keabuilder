@@ -12014,6 +12014,1278 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BuildfunnelComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BuildfunnelComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      allcategory: [{
+        0: true,
+        title: 'Survey Funnel',
+        paragraph: 'Find out who your visitors are first and then send them into the right funnel.'
+      }, {
+        0: true,
+        title: 'Product Launch Funnel',
+        paragraph: 'Built anticipation for your new product with our product launch funnels.'
+      }, {
+        0: true,
+        title: 'Invisible Funnel',
+        paragraph: 'Sell access to an event, but charge them after it\'s over if they like it.'
+      }, {
+        0: true,
+        title: 'Hero Funnel',
+        paragraph: 'Let people know who you are and how to connect with you.'
+      }, {
+        0: true,
+        title: 'Auto Webinar Funnel',
+        paragraph: 'Create auto webinars that automatically sell your products around the clock.'
+      }, {
+        0: true,
+        title: 'Squeeze Page Funnel',
+        paragraph: 'Use curiosity to generate leads with this simple two page funnel.'
+      }, {
+        0: true,
+        title: 'Video Sales Letter Funnel',
+        paragraph: 'Use video to sell your products or services through a VSL funnel.'
+      }, {
+        0: true,
+        title: 'Lead Magnet Funnel',
+        paragraph: 'Give people an ethical bribe in exchange for their email address.'
+      }, {
+        0: true,
+        title: 'Ask Campaign Funnel',
+        paragraph: 'Find out what your customers actually want before you create it for them.'
+      }, {
+        0: true,
+        title: 'Live Demo Funnel',
+        paragraph: 'Demonstrate your product through your own live demo funnel.'
+      }, {
+        0: true,
+        title: 'Homepage Funnel',
+        paragraph: 'A traditional "website" that pushes people into your core funnels.'
+      }, {
+        0: true,
+        title: 'Reverse Squeeze Page Funnel',
+        paragraph: 'Give value first, then ask for their email with a reverse squeeze funnel.'
+      }, {
+        0: true,
+        title: 'Webinar Funnel',
+        paragraph: 'This funnel will get people to registered and attend your webinar events.'
+      }, {
+        0: true,
+        title: 'Storefront Funnel',
+        paragraph: 'A traditional ecommerce "website" that pushes people into your core funnels.'
+      }, {
+        0: true,
+        title: 'Membership Funnel',
+        paragraph: 'Create a membership site and sell access to it through this funnel.'
+      }, {
+        0: true,
+        title: 'Application Funnel',
+        paragraph: 'Have people apply to work with you through an application funnel.'
+      }, {
+        0: true,
+        title: 'Sales Letter Funnel',
+        paragraph: 'Use a traditional sales letter to sell your products or services.'
+      }, {
+        0: true,
+        title: 'Summit Funnel',
+        paragraph: 'Grow your list and build your following by running a summit funnel.'
+      }, {
+        0: true,
+        title: 'Bridge Funnel',
+        paragraph: 'Generate a lead, then bridge the gap before you send them to the next funnel.'
+      }, {
+        0: true,
+        title: '2-Step Tripwire Funnel',
+        paragraph: 'Use a low ticket front end product and then upsell them your others products.'
+      }, {
+        0: true,
+        title: 'Cancellation Funnel',
+        paragraph: 'Create a survey asking people why they are leaving then try to save the sale.'
+      }, {
+        0: true,
+        title: 'Daily Deal Funnel',
+        paragraph: 'Make an irresistable offer to get new customers (Nickname: Groupon Funnel).'
+      }],
+      author: false,
+      professional: false,
+      retail: false,
+      ecommerce: false,
+      b2b: false,
+      network: false,
+      other1: false,
+      generate: false,
+      sellaproduct: false,
+      createaevent: false,
+      other2: false
+    };
+  },
+  methods: {
+    loopthefor: function loopthefor(value, which) {
+      if (which == 'author') {
+        this.author = !this.author;
+      } else if (which == 'professional') {
+        this.professional = !this.professional;
+      } else if (which == 'retail') {
+        this.retail = !this.retail;
+      } else if (which == 'ecommerce') {
+        this.ecommerce = !this.ecommerce;
+      } else if (which == 'b2b') {
+        this.b2b = !this.b2b;
+      } else if (which == 'network') {
+        this.network = !this.network;
+      } else if (which == 'other1') {
+        this.other1 = !this.other1;
+      } else if (which == 'generate') {
+        this.generate = !this.generate;
+      } else if (which == 'sellaproduct') {
+        this.sellaproduct = !this.sellaproduct;
+      } else if (which == 'createaevent') {
+        this.createaevent = !this.createaevent;
+      } else if (which == 'other2') {
+        this.other2 = !this.other2;
+      }
+
+      for (var index = 0; index <= 21; index++) {
+        if (value.indexOf(index) == -1) {
+          this.allcategory[index][0] = !this.allcategory[index][0];
+        }
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreatefunnelComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreatefunnelComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      createvariation: false,
+      overview: true,
+      automation: false,
+      publishing: false,
+      automationaddnewaction: true,
+      automationaddnewemail: false,
+      automationaddnewtext: false,
+      poupsidebar: false,
+      tabOpen: 'overview'
+    };
+  },
+  methods: {
+    showvariation: function showvariation() {
+      this.createvariation = true;
+    },
+    hidevariation: function hidevariation() {
+      this.createvariation = false;
+    },
+    totalmy: function totalmy() {
+      var thsvalue = document.getElementById('kb-splittestmake').value;
+      document.getElementById('kb-changemyprogress').style.width = thsvalue + '%';
+      document.getElementById('kb-control').innerHTML = thsvalue + '%';
+      document.getElementById('kb-variation').innerHTML = 100 - thsvalue + '%';
+    },
+    automation_show: function automation_show(value) {
+      if (value == 'action') {
+        this.automationaddnewaction = true;
+        this.automationaddnewemail = false;
+        this.automationaddnewtext = false;
+      } else if (value == 'email') {
+        this.automationaddnewaction = false;
+        this.automationaddnewemail = true;
+        this.automationaddnewtext = false;
+      } else if (value == 'sms') {
+        this.automationaddnewaction = false;
+        this.automationaddnewemail = false;
+        this.automationaddnewtext = true;
+      }
+
+      this.poupsidebar = true;
+    },
+    hidepopupsidebar: function hidepopupsidebar() {
+      this.poupsidebar = false;
+    },
+    kb_substeps: function kb_substeps(value) {
+      this.tabOpen = value;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EdituserComponent.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EdituserComponent.vue?vue&type=script&lang=js& ***!
@@ -12611,7 +13883,216 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      show: false,
+      funnels: [{
+        id: '1',
+        name: 'Marketing',
+        steps: [{
+          title: 'Facebook Campaign 😎',
+          updatedat: 'Feb 6',
+          variation: '1',
+          tag: 'campaign',
+          color: 'success'
+        }, {
+          title: 'Social Media Graphics',
+          updatedat: 'Feb 8',
+          variation: '0',
+          tag: 'graphic, media',
+          color: 'warning'
+        }, {
+          title: 'Database Management System (DBMS) is a collection of programs',
+          updatedat: 'Mar 6',
+          variation: '1',
+          tag: 'DBMS, program',
+          color: 'info'
+        }]
+      }, {
+        id: '2',
+        name: 'Developing',
+        steps: [{
+          title: 'Sales page',
+          updatedat: 'Feb 6',
+          variation: '1',
+          tag: 'campaign',
+          color: 'secondary'
+        }, {
+          title: 'Upsell 1',
+          updatedat: 'Feb 8',
+          variation: '0',
+          tag: 'graphic, media',
+          color: 'primary'
+        }, {
+          title: 'Upsell 2',
+          updatedat: 'Mar 6',
+          variation: '0',
+          tag: 'graphic, media',
+          color: 'primary'
+        }, {
+          title: 'Downsell 1',
+          updatedat: 'Feb 6',
+          variation: '1',
+          tag: 'DBMS, program',
+          color: 'info'
+        }, {
+          title: 'Downsell 2',
+          updatedat: 'Feb 6',
+          variation: '1',
+          tag: 'DBMS, program',
+          color: 'danger'
+        }, {
+          title: 'Thank you',
+          updatedat: 'Feb 6',
+          variation: '1',
+          tag: 'DBMS, program',
+          color: 'info'
+        }]
+      }, {
+        id: '3',
+        name: 'Webinar',
+        steps: [{
+          title: 'Webinar Registration',
+          updatedat: 'Feb 6',
+          variation: '1',
+          tag: 'campaign',
+          color: 'success'
+        }, {
+          title: 'Webinar Confrimation',
+          updatedat: 'Feb 8',
+          variation: '0',
+          tag: 'graphic, media',
+          color: 'primary'
+        }, {
+          title: 'Thank you',
+          updatedat: 'Mar 6',
+          variation: '1',
+          tag: 'DBMS, program',
+          color: 'info'
+        }]
+      }, {
+        id: '4',
+        name: 'kea Ebook',
+        steps: [{
+          title: 'kea Customer Optin',
+          updatedat: 'Feb 6',
+          variation: '1',
+          tag: 'optin',
+          color: 'danger'
+        }, {
+          title: 'kea Customer Variation',
+          updatedat: 'Feb 8',
+          variation: '0',
+          tag: 'variation, media',
+          color: 'warning'
+        }, {
+          title: 'Thank you',
+          updatedat: 'Mar 6',
+          variation: '1',
+          tag: 'DBMS, program',
+          color: 'secondary'
+        }]
+      }]
+    };
+  },
+  mounted: function mounted() {
+    this.show = true;
+  }
+});
 
 /***/ }),
 
@@ -12700,8 +14181,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
 //
 //
 //
@@ -14301,6 +15780,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -14314,7 +15856,9 @@ __webpack_require__.r(__webpack_exports__);
       offcanvasoverlay: false,
       bwname: '',
       bwemail: '',
-      notification: false
+      notification: false,
+      issearch: false,
+      scrollPosition: null
     };
   },
   created: function created() {
@@ -14333,12 +15877,14 @@ __webpack_require__.r(__webpack_exports__);
       immediate: true
     }
   },
+  mounted: function mounted() {
+    window.addEventListener('scroll', this.updateScroll);
+  },
   methods: {
     init: function init() {
       var _this = this;
 
       axios.get('auth/init').then(function (response) {
-        // console.log(response);
         _this.bwname = response.data.user.name;
         _this.bwemail = response.data.user.email;
         var geturl = window.location.pathname;
@@ -14351,6 +15897,9 @@ __webpack_require__.r(__webpack_exports__);
           _this.setActive('dashboard');
         }
       });
+    },
+    updateScroll: function updateScroll() {
+      this.scrollPosition = window.scrollY;
     },
     openClose: function openClose() {
       this.isOpen = !this.isOpen;
@@ -14389,6 +15938,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     shownotification: function shownotification() {
       this.notification = !this.notification;
+    },
+    showsearch: function showsearch() {
+      this.issearch = !this.issearch;
     }
   }
 });
@@ -18867,6 +20419,63 @@ exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base
 
 // module
 exports.push([module.i, "\r\n:root {\r\n  --overlay-bg: #1867c0;\r\n  --transition-duration: .35s;\r\n}\r\n\r\n.fade-enter-active[data-v-4c22b934],\r\n.fade-leave-active[data-v-4c22b934] {\r\n  transition-duration: 0.3s;\r\n  transition-property: opacity;\r\n  transition-timing-function: ease;\r\n}\r\n.fade-enter[data-v-4c22b934],\r\n.fade-leave-active[data-v-4c22b934] {\r\n  opacity: 0;\r\n}\r\n@-webkit-keyframes fadeInDown {\r\nfrom {\r\n    transform: translate3d(0, -40px, 0);\r\n}\r\nto {\r\n    transform: translate3d(0, 0, 0);\r\n    opacity: 1;\r\n}\r\n}\r\n@keyframes fadeInDown {\r\nfrom {\r\n    transform: translate3d(0, -40px, 0);\r\n}\r\nto {\r\n    transform: translate3d(0, 0, 0);\r\n    opacity: 1;\r\n}\r\n}\r\n.fade-in-down-leave-to[data-v-4c22b934] {\r\n  opacity: 0;\r\n  transition: opacity .3s;\r\n}\r\n.fade-in-down-enter[data-v-4c22b934] {\r\n  opacity: 0;\r\n  transform: translate3d(0, -40px, 0);\r\n}\r\n.fade-in-down-enter-to[data-v-4c22b934] {\r\n  opacity: 0;\r\n  -webkit-animation-duration: .7s;\r\n          animation-duration: .7s;\r\n  -webkit-animation-fill-mode: both;\r\n          animation-fill-mode: both;\r\n  -webkit-animation-name: fadeInDown;\r\n          animation-name: fadeInDown;\r\n}\r\n@-webkit-keyframes fadeInRight {\r\nfrom {\r\n    transform: translate3d(40px, 0, 0);\r\n}\r\nto {\r\n    transform: translate3d(0, 0, 0);\r\n    opacity: 1;\r\n}\r\n}\r\n@keyframes fadeInRight {\r\nfrom {\r\n    transform: translate3d(40px, 0, 0);\r\n}\r\nto {\r\n    transform: translate3d(0, 0, 0);\r\n    opacity: 1;\r\n}\r\n}\r\n.fade-in-right-leave-to[data-v-4c22b934] {\r\n  opacity: 0;\r\n  transition: opacity .3s;\r\n}\r\n.fade-in-right-enter[data-v-4c22b934] {\r\n  opacity: 0;\r\n  transform: translate3d(40px, 0, 0);\r\n}\r\n.fade-in-right-enter-to[data-v-4c22b934] {\r\n  opacity: 0;\r\n  -webkit-animation-duration: .7s;\r\n          animation-duration: .7s;\r\n  -webkit-animation-fill-mode: both;\r\n          animation-fill-mode: both;\r\n  -webkit-animation-name: fadeInRight;\r\n          animation-name: fadeInRight;\r\n}\r\n@-webkit-keyframes fadeInUp {\r\nfrom {\r\n    transform: translate3d(0, 40px, 0);\r\n}\r\nto {\r\n    transform: translate3d(0, 0, 0);\r\n    opacity: 1;\r\n}\r\n}\r\n@keyframes fadeInUp {\r\nfrom {\r\n    transform: translate3d(0, 40px, 0);\r\n}\r\nto {\r\n    transform: translate3d(0, 0, 0);\r\n    opacity: 1;\r\n}\r\n}\r\n.fade-in-up-leave-to[data-v-4c22b934] {\r\n  opacity: 0;\r\n  transition: opacity .3s;\r\n}\r\n.fade-in-up-enter[data-v-4c22b934] {\r\n  opacity: 0;\r\n  transform: translate3d(0, 40px, 0);\r\n}\r\n.fade-in-up-enter-to[data-v-4c22b934] {\r\n  opacity: 0;\r\n  -webkit-animation-duration: .7s;\r\n          animation-duration: .7s;\r\n  -webkit-animation-fill-mode: both;\r\n          animation-fill-mode: both;\r\n  -webkit-animation-name: fadeInUp;\r\n          animation-name: fadeInUp;\r\n}\r\n@-webkit-keyframes fadeInLeft {\r\nfrom {\r\n    transform: translate3d(-40px, 0, 0);\r\n}\r\nto {\r\n    transform: translate3d(0, 0, 0);\r\n    opacity: 1;\r\n}\r\n}\r\n@keyframes fadeInLeft {\r\nfrom {\r\n    transform: translate3d(-40px, 0, 0);\r\n}\r\nto {\r\n    transform: translate3d(0, 0, 0);\r\n    opacity: 1;\r\n}\r\n}\r\n.fade-in-left-leave-to[data-v-4c22b934] {\r\n  opacity: 0;\r\n  transition: opacity .3s;\r\n}\r\n.fade-in-left-enter[data-v-4c22b934] {\r\n  opacity: 0;\r\n  transform: translate3d(-40px, 0, 0);\r\n}\r\n.fade-in-left-enter-to[data-v-4c22b934] {\r\n  opacity: 0;\r\n  -webkit-animation-duration: .7s;\r\n          animation-duration: .7s;\r\n  -webkit-animation-fill-mode: both;\r\n          animation-fill-mode: both;\r\n  -webkit-animation-name: fadeInLeft;\r\n          animation-name: fadeInLeft;\r\n}\r\n.zoom-enter-active[data-v-4c22b934],\r\n.zoom-leave-active[data-v-4c22b934] {\r\n  transition-duration: 0.3s;\r\n  transition-property: all;\r\n  transition-timing-function: ease;\r\n}\r\n.zoom-enter[data-v-4c22b934],\r\n.zoom-leave-to[data-v-4c22b934] {\r\n  opacity: 0;\r\n  transform: scale(0);\r\n}\r\n.flip-x-enter-active[data-v-4c22b934],\r\n.flip-x-leave-active[data-v-4c22b934] {\r\n  transition-duration: 0.3s;\r\n  transition-property: all;\r\n  transition-timing-function: ease;\r\n}\r\n.flip-x-enter[data-v-4c22b934],\r\n.flip-x-leave-to[data-v-4c22b934] {\r\n  transform: rotateX(-180deg);\r\n  opacity: 0;\r\n}\r\n.flip-y-enter-active[data-v-4c22b934],\r\n.flip-y-leave-active[data-v-4c22b934] {\r\n  transition-duration: 0.3s;\r\n  transition-property: all;\r\n  transition-timing-function: ease;\r\n}\r\n.flip-y-enter[data-v-4c22b934],\r\n.flip-y-leave-to[data-v-4c22b934] {\r\n  transform: rotateY(-180deg);\r\n  opacity: 0;\r\n}\r\n.overlay-right[data-v-4c22b934] {\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  height: 100vh;\r\n  width: 0;\r\n  background: var(--overlay-bg);\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-right-enter ~ .overlay-right[data-v-4c22b934],\r\n.overlay-right-leave-to ~ .overlay-right[data-v-4c22b934] {\r\n  width: 0;\r\n}\r\n.overlay-right-enter-active ~ .overlay-right[data-v-4c22b934],\r\n.overlay-right-leave-active ~ .overlay-right[data-v-4c22b934] {\r\n  width: 100vw;\r\n}\r\n.overlay-right-enter-active ~ .overlay-right[data-v-4c22b934] {\r\n  transition-timing-function: ease-in;\r\n}\r\n.overlay-right-leave-active ~ .overlay-right[data-v-4c22b934] {\r\n  transition-timing-function: ease-out;\r\n}\r\n.overlay-right-enter-active[data-v-4c22b934],\r\n.overlay-right-leave-active[data-v-4c22b934] {\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-top[data-v-4c22b934] {\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  height: 0;\r\n  width: 100vw;\r\n  background: var(--overlay-bg);\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-down-enter ~ .overlay-top[data-v-4c22b934],\r\n.overlay-down-leave-to ~ .overlay-top[data-v-4c22b934] {\r\n  height: 0;\r\n}\r\n.overlay-down-enter-active ~ .overlay-top[data-v-4c22b934],\r\n.overlay-down-leave-active ~ .overlay-top[data-v-4c22b934] {\r\n  height: 100vh;\r\n}\r\n.overlay-down-enter-active ~ .overlay-top[data-v-4c22b934] {\r\n  transition-timing-function: ease-in;\r\n}\r\n.overlay-down-leave-active ~ .overlay-top[data-v-4c22b934] {\r\n  transition-timing-function: ease-out;\r\n}\r\n.overlay-down-enter-active[data-v-4c22b934],\r\n.overlay-down-leave-active[data-v-4c22b934] {\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-bottom[data-v-4c22b934] {\r\n  position: fixed;\r\n  bottom: 0;\r\n  left: 0;\r\n  height: 0;\r\n  width: 100vw;\r\n  background: var(--overlay-bg);\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-up-enter ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-up-leave-to ~ .overlay-bottom[data-v-4c22b934] {\r\n  height: 0;\r\n}\r\n.overlay-up-enter-active ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-up-leave-active ~ .overlay-bottom[data-v-4c22b934] {\r\n  height: 100vh;\r\n}\r\n.overlay-up-enter-active ~ .overlay-bottom[data-v-4c22b934] {\r\n  transition-timing-function: ease-in;\r\n}\r\n.overlay-up-leave-active ~ .overlay-bottom[data-v-4c22b934] {\r\n  transition-timing-function: ease-out;\r\n}\r\n.overlay-up-enter-active[data-v-4c22b934],\r\n.overlay-up-leave-active[data-v-4c22b934] {\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-left[data-v-4c22b934] {\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  height: 100vh;\r\n  width: 0;\r\n  background: var(--overlay-bg);\r\n  transition-duration: .35s;\r\n}\r\n.overlay-left-enter ~ .overlay-left[data-v-4c22b934],\r\n.overlay-left-leave-to ~ .overlay-left[data-v-4c22b934] {\r\n  width: 0;\r\n}\r\n.overlay-left-enter-active ~ .overlay-left[data-v-4c22b934],\r\n.overlay-left-leave-active ~ .overlay-left[data-v-4c22b934] {\r\n  width: 100vw;\r\n}\r\n.overlay-left-enter-active ~ .overlay-left[data-v-4c22b934] {\r\n  transition-timing-function: ease-in;\r\n}\r\n.overlay-left-leave-active ~ .overlay-left[data-v-4c22b934] {\r\n  transition-timing-function: ease-out;\r\n}\r\n.overlay-left-enter-active[data-v-4c22b934],\r\n.overlay-left-leave-active[data-v-4c22b934] {\r\n  transition-duration: .35s;\r\n}\r\n.overlay-up-full-enter ~ .overlay-bottom[data-v-4c22b934] {\r\n  height: 100vh;\r\n}\r\n.overlay-up-full-enter-active ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-up-full-leave-active ~ .overlay-bottom[data-v-4c22b934] {\r\n  height: 100vh;\r\n}\r\n.overlay-up-full-enter-active ~ .overlay-bottom[data-v-4c22b934] {\r\n  transition-timing-function: ease-in;\r\n}\r\n.overlay-up-full-enter-active ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-up-full-enter-to ~ .overlay-bottom[data-v-4c22b934] {\r\n  display: none;\r\n}\r\n.overlay-up-full-enter-to ~ .overlay-top[data-v-4c22b934] {\r\n  height: 0;\r\n}\r\n.overlay-up-full-leave-active ~ .overlay-top[data-v-4c22b934] {\r\n  transition-timing-function: ease;\r\n}\r\n.overlay-up-full-enter ~ .overlay-top[data-v-4c22b934],\r\n.overlay-up-full-enter-active ~ .overlay-top[data-v-4c22b934],\r\n.overlay-up-full-enter-to ~ .overlay-top[data-v-4c22b934] {\r\n  transition-duration: unset !important;\r\n  height: 100vh;\r\n}\r\n.overlay-up-full-enter-active[data-v-4c22b934],\r\n.overlay-up-full-leave-active[data-v-4c22b934] {\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-right-full-enter ~ .overlay-left[data-v-4c22b934] {\r\n  width: 100vw;\r\n}\r\n.overlay-right-full-enter-active ~ .overlay-left[data-v-4c22b934],\r\n.overlay-right-full-leave-active ~ .overlay-left[data-v-4c22b934] {\r\n  width: 100vw;\r\n}\r\n.overlay-right-full-enter-active ~ .overlay-left[data-v-4c22b934] {\r\n  transition-timing-function: ease-in;\r\n}\r\n.overlay-right-full-enter-active ~ .overlay-left[data-v-4c22b934],\r\n.overlay-right-full-enter-to ~ .overlay-left[data-v-4c22b934] {\r\n  display: none;\r\n}\r\n.overlay-right-full-enter-to ~ .overlay-right[data-v-4c22b934] {\r\n  width: 0;\r\n}\r\n.overlay-right-full-leave-active ~ .overlay-right[data-v-4c22b934] {\r\n  transition-timing-function: ease;\r\n}\r\n.overlay-right-full-enter ~ .overlay-right[data-v-4c22b934],\r\n.overlay-right-full-enter-active ~ .overlay-right[data-v-4c22b934],\r\n.overlay-right-full-enter-to ~ .overlay-right[data-v-4c22b934] {\r\n  transition-duration: unset !important;\r\n  width: 100vw;\r\n}\r\n.overlay-right-full-enter-active[data-v-4c22b934],\r\n.overlay-right-full-leave-active[data-v-4c22b934] {\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-down-full-enter ~ .overlay-top[data-v-4c22b934] {\r\n  height: 100vh;\r\n}\r\n.overlay-down-full-enter-to ~ .overlay-bottom[data-v-4c22b934] {\r\n  height: 0;\r\n}\r\n.overlay-down-full-enter-active ~ .overlay-top[data-v-4c22b934],\r\n.overlay-down-full-leave-active ~ .overlay-top[data-v-4c22b934] {\r\n  height: 100vh;\r\n}\r\n.overlay-down-full-enter-active ~ .overlay-top[data-v-4c22b934] {\r\n  transition-timing-function: ease-in;\r\n}\r\n.overlay-down-full-leave-active ~ .overlay-bottom[data-v-4c22b934] {\r\n  transition-timing-function: ease;\r\n}\r\n.overlay-down-full-enter-active[data-v-4c22b934],\r\n.overlay-down-full-leave-active[data-v-4c22b934] {\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-down-full-enter-active ~ .overlay-top[data-v-4c22b934],\r\n.overlay-down-full-enter-to ~ .overlay-top[data-v-4c22b934] {\r\n  display: none;\r\n}\r\n.overlay-down-full-enter ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-down-full-enter-active ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-down-full-enter-to ~ .overlay-bottom[data-v-4c22b934] {\r\n  transition-duration: unset !important;\r\n  height: 100vh;\r\n}\r\n.overlay-left-full-enter ~ .overlay-right[data-v-4c22b934] {\r\n  width: 100vw;\r\n}\r\n.overlay-left-full-enter-active ~ .overlay-right[data-v-4c22b934],\r\n.overlay-left-full-leave-active ~ .overlay-right[data-v-4c22b934] {\r\n  width: 100vw;\r\n}\r\n.overlay-left-full-enter-active ~ .overlay-right[data-v-4c22b934] {\r\n  transition-timing-function: ease-in;\r\n}\r\n.overlay-left-full-enter-active ~ .overlay-right[data-v-4c22b934],\r\n.overlay-left-full-enter-to ~ .overlay-right[data-v-4c22b934] {\r\n  display: none;\r\n}\r\n.overlay-left-full-enter-to ~ .overlay-left[data-v-4c22b934] {\r\n  width: 0;\r\n}\r\n.overlay-left-full-leave-active ~ .overlay-left[data-v-4c22b934] {\r\n  transition-timing-function: ease;\r\n}\r\n.overlay-left-full-enter ~ .overlay-left[data-v-4c22b934],\r\n.overlay-left-full-enter-active ~ .overlay-left[data-v-4c22b934],\r\n.overlay-left-full-enter-to ~ .overlay-left[data-v-4c22b934] {\r\n  transition-duration: unset !important;\r\n  width: 100vw;\r\n}\r\n.overlay-left-full-enter-active[data-v-4c22b934],\r\n.overlay-left-full-leave-active[data-v-4c22b934] {\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-up-down-enter ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-up-down-enter ~ .overlay-top[data-v-4c22b934] {\r\n  height: 0;\r\n}\r\n.overlay-up-down-leave-active ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-up-down-leave-to ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-up-down-leave-to ~ .overlay-top[data-v-4c22b934],\r\n.overlay-up-down-leave-to ~ .overlay-top[data-v-4c22b934] {\r\n  height: 51vh;\r\n}\r\n.overlay-up-down-enter-active ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-up-down-enter-active ~ .overlay-top[data-v-4c22b934] {\r\n  transition-timing-function: ease;\r\n}\r\n.overlay-up-down-leave-active ~ .overlay-bottom[data-v-4c22b934],\r\n.overlay-up-down-leave-active ~ .overlay-top[data-v-4c22b934] {\r\n  transition-timing-function: ease;\r\n}\r\n.overlay-up-down-enter-active[data-v-4c22b934],\r\n.overlay-up-down-leave-active[data-v-4c22b934] {\r\n  transition-duration: var(--transition-duration);\r\n}\r\n.overlay-left-right-enter ~ .overlay-left[data-v-4c22b934],\r\n.overlay-left-right-enter ~ .overlay-right[data-v-4c22b934] {\r\n  width: 0;\r\n}\r\n.overlay-left-right-leave-active ~ .overlay-left[data-v-4c22b934],\r\n.overlay-left-right-leave-to ~ .overlay-left[data-v-4c22b934],\r\n.overlay-left-right-leave-to ~ .overlay-right[data-v-4c22b934],\r\n.overlay-left-right-leave-to ~ .overlay-right[data-v-4c22b934] {\r\n  width: 51vw;\r\n}\r\n.overlay-left-right-enter-active ~ .overlay-left[data-v-4c22b934],\r\n.overlay-left-right-enter-active ~ .overlay-right[data-v-4c22b934] {\r\n  transition-timing-function: ease;\r\n}\r\n.overlay-left-right-leave-active ~ .overlay-left[data-v-4c22b934],\r\n.overlay-left-right-leave-active ~ .overlay-right[data-v-4c22b934] {\r\n  transition-timing-function: ease;\r\n}\r\n.overlay-left-right-enter-active[data-v-4c22b934],\r\n.overlay-left-right-leave-active[data-v-4c22b934] {\r\n  transition-duration: var(--transition-duration);\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#buildfunnelcomp[data-v-f98ee3b8]{\r\n    background:#F2F4F4;\n}\n.clmwithshadow[data-v-f98ee3b8]{\r\n    padding: 20px;\n}\n.clmwithshadow >div[data-v-f98ee3b8]{\r\n    text-align: center;\r\n    padding: 20px;\r\n    box-shadow: -8px 12px 18px 0 rgb(25 42 70 / 13%);\r\n    transition: all .3s ease-in-out,background 0s,color 0s,border-color 0s;\r\n    border-radius: .267rem;\r\n    background:#fff;\r\n    cursor: pointer;\n}\n.clmicon svg[data-v-f98ee3b8] {\r\n    width: 112px;\r\n    margin-bottom: 13px;\r\n    color: rgb(216 200 152 / 40%);\n}\n.adjustloopvfor >div[data-v-f98ee3b8]{\r\n    width: 33%;\r\n    float: left;\n}\n.list-unstyled li a.active[data-v-f98ee3b8] {\r\n    color: #2c2c28!important;\r\n    font-weight: bold;\r\n    background: #d8c898;\n}\n.loader-transition1-enter-active[data-v-f98ee3b8] {\r\n  transition: all .3s ease;\n}\n.loader-transition1-leave-active[data-v-f98ee3b8] {\r\n  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.loader-transition1-enter[data-v-f98ee3b8], .loader-transition1-leave-to[data-v-f98ee3b8]{\r\n  transform: translateX(10px);\r\n  opacity: 0;\n}\n.fixedcategory[data-v-f98ee3b8]{\r\n    position: fixed;\r\n    top: 126px;\r\n    z-index: 99;\n}\n.gobackward[data-v-f98ee3b8]{\r\n    font-size: 10px;\r\n    color: #444;\r\n    cursor: pointer;\r\n    opacity: 0.5;\r\n    transition: .5s ease;\n}\n.gobackward[data-v-f98ee3b8]:hover{\r\n    opacity: 1;\n}\n@media screen and (max-width:500px){\n.adjustloopvfor >div[data-v-f98ee3b8]{\r\n      width: 100%;\n}\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\r\n/* nav */\n.rightbrder[data-v-05bcaae0]{\r\n    border-right: 4px solid #f2f4f4;\n}\n.wizard-steps[data-v-05bcaae0] {\r\n    display: flex;\r\n    align-items: flex-end;\r\n    justify-content: space-between;\r\n    flex-wrap: wrap;\r\n    box-shadow: 0px 0px 30px 0px rgb(82 63 105 / 5%);\r\n    border-radius: 0.42rem;\n}\n.wizard-step[data-v-05bcaae0] {\r\n    cursor: pointer;\n}\n.wizard-nav .wizard-steps .wizard-step[data-v-05bcaae0] {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-wrap: wrap;\r\n    flex: 0 0 calc(20% - 0.25rem);\r\n    width: calc(20% - 0.25rem);\r\n    background-color: #F3F6F9;\n}\n.wizard-step[data-wizard-state=\"current\"][data-v-05bcaae0]{\r\n    border-top-left-radius: 0.5rem;\r\n    border-top-right-radius: 0.5rem;\n}\n.wizard-nav .wizard-steps .wizard-step .wizard-wrapper[data-v-05bcaae0] {\r\n    flex: 1;\r\n    display: flex;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    color: #3F4254;\r\n    padding: 15px 20px;\n}\n.wizard-nav .wizard-steps .wizard-step .wizard-wrapper .wizard-label[data-v-05bcaae0] {\r\n    display: flex;\r\n    flex-direction: column;\n}\n.wizard-nav .wizard-steps .wizard-step .wizard-wrapper .wizard-label .wizard-title[data-v-05bcaae0] {\r\n    font-size: 1.1rem;\r\n    font-weight: 600;\n}\n.wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-wrapper .wizard-label .wizard-title[data-v-05bcaae0] {\r\n    color: #d8c898;\n}\n.wizard-nav .wizard-steps .wizard-step[data-wizard-state=current][data-v-05bcaae0] {\r\n    background-color: #ffffff;\n}\n.wizard-nav .wizard-steps .wizard-step .wizard-wrapper .wizard-number[data-v-05bcaae0] {\r\n    font-size: 1.3rem;\r\n    font-weight: 600;\r\n    flex: 0 0 2.75rem;\r\n    height: 2.75rem;\r\n    width: 2.75rem;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    background-color: rgb(216 200 152 / 10%);\r\n    color: #d8c898;\r\n    margin-right: 1rem;\r\n    border-radius: 0.5rem;\n}\n.wizard-nav .wizard-steps .wizard-step .wizard-wrapper .wizard-label .wizard-title[data-v-05bcaae0] {\r\n    font-size: 14px;\r\n    font-weight: 600;\n}\n.wizard-nav .wizard-steps .wizard-step .wizard-wrapper .wizard-label .wizard-desc[data-v-05bcaae0]{\r\n    font-size: 13px;\n}\n#secondwizard .wizard-step[data-v-05bcaae0] {\r\n    flex: 0 0 calc(25% - 0.25rem);\r\n    width: calc(25% - 0.25rem);\n}\r\n\r\n/* nav */\r\n/* body */\n.whitefunnel[data-v-05bcaae0]{\r\n    background:#fff;\n}\n.kiabuilder-item[data-v-05bcaae0] {\r\n    padding: 10px 20px;\r\n    border-radius: 0.267rem;\r\n    margin-bottom: 20px;\r\n    box-shadow: -4px 4px 6px 0 rgb(55 70 95 / 12%);\r\n    position: relative;\r\n    font-size: 14px;\r\n    font-weight: bold;\r\n    background: #f2f4f4;\r\n    transition: all .3s cubic-bezier(.23,1,.32,1);\r\n    cursor: pointer;\r\n    margin-top: 10px;\n}\n.kiabuilder-item[data-v-05bcaae0]:before {\r\n    content: \"\";\r\n    width: 3px;\r\n    height: 100%;\r\n    position: absolute;\r\n    left: 0;\r\n    top: 0;\r\n    border-radius: 0.5rem;\n}\n.kiabuilder-item.success[data-v-05bcaae0]:before {\r\n    background-color: #39DA8A;\n}\n.kiabuilder-item i[data-v-05bcaae0] {\r\n    top: 0px;\r\n    position: relative;\r\n    opacity: 0.5;\r\n    transition: .5s ease-in;\r\n    width: 40px;\r\n    height: 20px;\r\n    text-align: center;\n}\n.kiabuilder-item i[data-v-05bcaae0]:hover, .kb-sharelink[data-v-05bcaae0]:hover, .kb-settings-i[data-v-05bcaae0]:hover {\r\n    opacity: 1;\n}\n.dropdown-menu[data-v-05bcaae0] {\r\n    top: 16px!important;\r\n    left: -115px!important;\r\n    min-width: 120px!important;\n}\n.dropdown-menu[data-v-05bcaae0] {\r\n    box-shadow: -7px 8px 16px 0 rgb(55 70 95 / 20%);\n}\n.dropdown-menu[data-v-05bcaae0] {\r\n    position: absolute;\r\n    top: 100%;\r\n    left: 0;\r\n    z-index: 1000;\r\n    display: none;\r\n    float: left;\r\n    min-width: 10rem;\r\n    padding: .5rem 0;\r\n    margin: .125rem 0 0;\r\n    font-size: 1rem;\r\n    color: #212529;\r\n    text-align: left;\r\n    list-style: none;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid rgba(0,0,0,.15);\r\n    border-radius: .25rem;\n}\n.dropdown-menu .dropdown-item[data-v-05bcaae0] {\r\n    text-transform: uppercase;\r\n    display: flex;\r\n    align-items: center;\n}\n.dropdown-item[data-v-05bcaae0] {\r\n    font-size: 12px;\r\n    padding: 10px!important;\n}\n.dropdownMenuButton i[data-v-05bcaae0] {\r\n    font-size: 12px;\n}\n.dropdown-menu i[data-v-05bcaae0] {\r\n    color: #475F7B;\n}\n.dropdownMenuButton:hover .dropdown-menu[data-v-05bcaae0] {\r\n    display: block;\n}\n.sage-input[data-v-05bcaae0]:not(:last-child) {\r\n    margin-bottom: 1.5rem;\n}\n.sage-input[data-v-05bcaae0] {\r\n    display: flex;\r\n    position: relative;\r\n    flex-direction: column;\n}\n.sage-input__field[data-v-05bcaae0]:valid:not(:-moz-placeholder-shown) {\r\n    outline: none;\r\n    background: transparent;\n}\n.sage-input__field[data-v-05bcaae0]:valid:not(:-ms-input-placeholder) {\r\n    outline: none;\r\n    background: transparent;\n}\n.sage-input__field[data-v-05bcaae0]:valid:not(:placeholder-shown) {\r\n    outline: none;\r\n    background: transparent;\n}\n.sage-input__field[data-v-05bcaae0] {\r\n    width: 100%;\r\n    color: #91959c;\r\n    -webkit-appearance: none;\r\n    -moz-appearance: none;\r\n    appearance: none;\r\n    border: .0625rem solid #e0e7f1;\r\n    border-radius: .375rem;\r\n    background: transparent;\r\n    transition: border .2s ease-in-out,box-shadow .2s ease-in-out;\r\n    height: 2.5rem;\r\n    padding: .9375rem 1rem;\n}\n.sage-input__field:valid:not(:-moz-placeholder-shown)~.sage-input__label[data-v-05bcaae0] {\r\n    transform: translateY(-var(--sage-font-size-body).5rem);\r\n    transform: translateY(calc(-50% - 1.25rem));\r\n    transform: translateY(calc(-50% - var(--sage-font-size-body) - .25rem));\r\n    -moz-transition: opacity .1s ease-in,transform .15s ease-in-out,color .15s ease-out;\r\n    transition: opacity .1s ease-in,transform .15s ease-in-out,color .15s ease-out;\r\n    opacity: 1;\n}\n.sage-input__field:valid:not(:-ms-input-placeholder)~.sage-input__label[data-v-05bcaae0] {\r\n    transform: translateY(-var(--sage-font-size-body).5rem);\r\n    transform: translateY(calc(-50% - 1.25rem));\r\n    transform: translateY(calc(-50% - var(--sage-font-size-body) - .25rem));\r\n    -ms-transition: opacity .1s ease-in,transform .15s ease-in-out,color .15s ease-out;\r\n    transition: opacity .1s ease-in,transform .15s ease-in-out,color .15s ease-out;\r\n    opacity: 1;\n}\n.sage-input__field:valid:not(:placeholder-shown)~.sage-input__label[data-v-05bcaae0] {\r\n    transform: translateY(-var(--sage-font-size-body).5rem);\r\n    transform: translateY(calc(-50% - 1.25rem));\r\n    transform: translateY(calc(-50% - var(--sage-font-size-body) - .25rem));\r\n    transition: opacity .1s ease-in,transform .15s ease-in-out,color .15s ease-out;\r\n    opacity: 1;\n}\n.sage-input__field~label[data-v-05bcaae0] {\r\n    position: absolute;\r\n    padding-left: .25rem;\r\n    padding-right: .25rem;\r\n    color: inherit;\r\n    font-weight: 600;\r\n    white-space: nowrap;\r\n    background-color: #fff;\r\n    pointer-events: none;\r\n    opacity: 0;\r\n    font-size: 12px;\r\n    top: -9px;\r\n    left: 20px;\n}\n#secondwizard .wizard-wrapper[data-v-05bcaae0] {\r\n    padding: 5px 10px;\r\n    background:rgb(243 246 249);\n}\n#createfunnel[data-v-05bcaae0]{\r\n    background:#F2F4F4;\n}\n.kb-sharelink[data-v-05bcaae0], .kb-settings-i[data-v-05bcaae0] {\r\n    position: absolute;\r\n    right: 10px;\r\n    bottom: 8px;\r\n    cursor: pointer;\r\n    opacity: 0.5;\r\n    transition: .5s ease-in;\n}\n.kb-settings-i[data-v-05bcaae0]{\r\n    right: 40px;\n}\r\n\r\n/* progressbar */\n.progress.progress-sm[data-v-05bcaae0] {\r\n    height: .4rem;\n}\n.progress[data-v-05bcaae0] {\r\n    height: .6rem;\r\n    overflow: visible;\r\n    background-color: #F2F4F4;\n}\n.progress-bar[data-v-05bcaae0] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    color: #FFF;\r\n    text-align: center;\r\n    background-color: #F2F4F4;\r\n    transition: width .6s ease;\n}\n.progress .progress-bar[data-v-05bcaae0] {\r\n    position: relative;\r\n    border-radius: 1.28rem;\r\n    box-shadow: 0 2px 6px 0 rgb(90 141 238 / 60%);\n}\n.progress-bar-success .progress-bar[data-v-05bcaae0] {\r\n    background-color: #39DA8A;\r\n    box-shadow: 0 2px 6px 0 rgb(57 218 138 / 60%);\n}\r\n\r\n/* progressbar */\n.kb-internalshadow .toast[data-v-05bcaae0]{\r\n    opacity: 1;\n}\n.kb-split-text >div[data-v-05bcaae0]{\r\n    display: flex;\n}\n.kb-split-text .fa-vials[data-v-05bcaae0]{\r\n    opacity:0.4;\r\n    color: #007aff;\n}\n.svgimg3 svg[data-v-05bcaae0]{\r\n  width:182px;\r\n  margin:auto;\r\n  position:relative;\r\n  left:34%;\r\n  opacity: 0.5;\r\n  transition: .5s ease-in-out;\n}\n.svgimg3 svg[data-v-05bcaae0]:hover{\r\n    opacity: 1;\n}\n#Bubble-1[data-v-05bcaae0]{\r\n  -webkit-animation: bubbleup-data-v-05bcaae0 1s ease-in-out infinite;\r\n          animation: bubbleup-data-v-05bcaae0 1s ease-in-out infinite;\r\n  stroke:red;\n}\n#Bubble-2[data-v-05bcaae0]{\r\n  -webkit-animation: bubbleup2-data-v-05bcaae0 2s ease-in-out infinite;\r\n          animation: bubbleup2-data-v-05bcaae0 2s ease-in-out infinite;\r\n  stroke:blue;\n}\n#Bubble-3[data-v-05bcaae0] {\r\n  -webkit-animation: bubbleup3-data-v-05bcaae0 3s ease-in-out infinite;\r\n          animation: bubbleup3-data-v-05bcaae0 3s ease-in-out infinite;\r\n  stroke:pink;\n}\n#Bubble-4[data-v-05bcaae0]{\r\n  -webkit-animation: bubbleup4-data-v-05bcaae0 2s ease-in-out infinite;\r\n          animation: bubbleup4-data-v-05bcaae0 2s ease-in-out infinite;\r\n    stroke:gold;\n}\n#Bubble-5[data-v-05bcaae0]{\r\n  -webkit-animation: bubbleup5-data-v-05bcaae0 1s infinite;\r\n          animation: bubbleup5-data-v-05bcaae0 1s infinite;\r\n  stroke:green;\n}\n#Bubble-6[data-v-05bcaae0]{\r\n  -webkit-animation: bubbleup6-data-v-05bcaae0 4s infinite;\r\n          animation: bubbleup6-data-v-05bcaae0 4s infinite;\r\n  stroke:#91959c;\n}\n@-webkit-keyframes bubbleup-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -10);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -30);\n}\n}\n@keyframes bubbleup-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -10);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -30);\n}\n}\n@-webkit-keyframes bubbleup2-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -10);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -40);\n}\n}\n@keyframes bubbleup2-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -10);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -40);\n}\n}\n@-webkit-keyframes bubbleup3-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -30);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -40);\n}\n}\n@keyframes bubbleup3-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -30);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -40);\n}\n}\n@-webkit-keyframes bubbleup4-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -30);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -40);\n}\n}\n@keyframes bubbleup4-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -30);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -40);\n}\n}\n@-webkit-keyframes bubbleup5-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -10);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -20);\n}\n}\n@keyframes bubbleup5-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -10);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -20);\n}\n}\n@-webkit-keyframes bubbleup6-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -15);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -30);\n}\n}\n@keyframes bubbleup6-data-v-05bcaae0 {\nfrom{\r\n opacity:0;\r\n        transform: matrix(1, 0, 0, 1, 0, -15);\n}to{\r\n opacity:0.5;\r\n        transform: matrix(1, 0, 0, 1, 0, -30);\n}\n}\n#Bubble-1[data-v-05bcaae0],#Bubble-2[data-v-05bcaae0],#Bubble-3[data-v-05bcaae0],#Bubble-4[data-v-05bcaae0],#Bubble-5[data-v-05bcaae0],#Bubble-6[data-v-05bcaae0] {\r\n    display:none;\n}\n#Layer_1:hover #Bubble-1[data-v-05bcaae0], #Layer_1:hover #Bubble-2[data-v-05bcaae0], #Layer_1:hover #Bubble-3[data-v-05bcaae0], #Layer_1:hover #Bubble-4[data-v-05bcaae0], #Layer_1:hover #Bubble-5[data-v-05bcaae0], #Layer_1:hover #Bubble-6[data-v-05bcaae0]{\r\n  display:block;\n}\n.kb-createvar[data-v-05bcaae0] {\r\n    display: inline-block!important;\r\n    box-shadow: -7px 8px 16px 0 rgb(55 70 95 / 20%);\r\n    color: #212529;\r\n    text-align: left;\r\n    list-style: none;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid rgba(0,0,0,.15);\r\n    border-radius: .25rem;\r\n    position: absolute;\r\n    top: 34%;\r\n    width: 100%;\r\n    padding: 20px;\r\n    left: 0px;\r\n    z-index: 9;\n}\n.kb-bxoverlay[data-v-05bcaae0] {\r\n    background: rgb(0 0 0 / 15%);\r\n    width: 100%;\r\n    height: 100%;\r\n    position: absolute;\r\n    top: 0px;\r\n    left: 0px;\n}\n.declarewinner[data-v-05bcaae0] {\r\n    width: 100%;\r\n    height: 70%;\r\n    position: absolute;\r\n    top: 37px;\r\n    left: 0px;\r\n    font-size: 24px;\r\n    text-align: center;\r\n    background: rgb(0 122 255 / 37%);\r\n    color: #fff;\r\n    padding-top: 24%;\r\n    display: none;\n}\n.declarewinner i[data-v-05bcaae0] {\r\n    font-size: 50px;\r\n    width: 100%;\n}\n.declarewinner a[data-v-05bcaae0] {\r\n    color: #fff;\n}\n.yesdeclarewinner:hover .declarewinner[data-v-05bcaae0]{\r\n    display:block;\n}\n#kb-splittestmake[data-v-05bcaae0]{\r\n    cursor: pointer;\r\n    width: 100%;\r\n    height: 1.4rem;\r\n    padding: 0;\r\n    background-color: transparent;\r\n    -webkit-appearance: none;\r\n    -moz-appearance: none;\r\n    appearance: none;\r\n    position: relative;\r\n    top: -15px;\n}\n.kb-red[data-v-05bcaae0]{\r\n    background:rgb(255 0 0 / 20%);\n}\ninput[type=\"range\"][data-v-05bcaae0]::-webkit-slider-thumb {\r\n  -webkit-appearance: none;\r\n  height: 20px;\r\n  width: 20px;\r\n  border-radius: 50%;\r\n  background: #d8c898;\r\n  cursor:pointer;\r\n  -webkit-transition: background .3s ease-in-out;\r\n  transition: background .3s ease-in-out;\r\n   box-shadow: -4px 4px 6px 0 rgb(55 70 95 / 12%);\n}\ninput[type=range][data-v-05bcaae0]::-webkit-slider-runnable-track  {\r\n  -webkit-appearance: none;\r\n  box-shadow: none;\r\n  border: none;\r\n  background: transparent;\n}\n.splitTestText[data-v-05bcaae0] {\r\n    width: 50%;\r\n    float: left;\r\n    margin-bottom: 20px;\n}\n.splitTestText.variation[data-v-05bcaae0] {\r\n    text-align: right;\n}\n.splitTestText .number[data-v-05bcaae0] {\r\n    font-weight: bold;\n}\n.savechangesvs[data-v-05bcaae0] {\r\n    text-align: center;\r\n    float: left;\r\n    width: 100%;\r\n    background: #e7edf3;\r\n    padding: 23px 0px;\r\n    box-shadow: -4px 4px 6px 0 rgb(55 70 95 / 12%);\n}\n.kb-split-text center[data-v-05bcaae0] {\r\n    margin: 25px 0px;\r\n    font-size: 18px;\n}\n.footer-wizard-kb[data-v-05bcaae0] {\r\n    margin: auto;\r\n    display: flex;\r\n    justify-content: center;\n}\n.footer-wizard-kb button[data-v-05bcaae0] {\r\n    font-size: 12px;\r\n    background: transparent;\r\n    color: #444;\r\n    margin-right: 10px;\n}\n#secondwizard .wizard-step[data-wizard-state=current] >div[data-v-05bcaae0]{\r\n    background:#fff;\n}\n#kb-automation-actions >div[data-v-05bcaae0] {\r\n    overflow-y: scroll;\n}\r\n/* width */\n#kb-automation-actions >div[data-v-05bcaae0]::-webkit-scrollbar{\r\n    width: 5px;\n}\r\n  \r\n  /* Track */\n#kb-automation-actions >div[data-v-05bcaae0]::-webkit-scrollbar-track{\r\n    background: transparent;\n}\r\n   \r\n  /* Handle */\n#kb-automation-actions >div[data-v-05bcaae0]::-webkit-scrollbar-thumb {\r\n    background: #e2e2e2;\n}\n#kb-automation-actions .fa-times[data-v-05bcaae0] {\r\n    position: absolute;\r\n    right: 24px;\r\n    z-index: 99999;\r\n    cursor: pointer;\n}\r\n\r\n/* body */\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.keabuilder-board[data-v-602592cc] {\r\n    position: relative;\r\n    float: left;\r\n    background: #e2e4e6;\r\n    transition: all .3s cubic-bezier(.23,1,.32,1);\n}\n.keabuilder-container .keabuilder-board[data-v-602592cc] {\r\n    border-radius: 0.267rem;\r\n    background-color: #e7edf3;\r\n    width: 100%;\r\n    height: 340px;\r\n    overflow-y: scroll;\n}\r\n/* width */\n.keabuilder-container .keabuilder-board[data-v-602592cc]::-webkit-scrollbar{\r\n    width: 5px;\n}\r\n  \r\n  /* Track */\n.keabuilder-container .keabuilder-board[data-v-602592cc]::-webkit-scrollbar-track{\r\n    background: transparent;\n}\r\n   \r\n  /* Handle */\n.keabuilder-container .keabuilder-board[data-v-602592cc]::-webkit-scrollbar-thumb {\r\n    background: #e2e2e2;\n}\n.keabuilder-container .keabuilder-board .keabuilder-board-header[data-v-602592cc] {\r\n    font-size: 1.2rem;\r\n    color: #475F7B;\r\n    padding: 13px;\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.line-ellipsis[data-v-602592cc] {\r\n    overflow: hidden;\r\n    white-space: nowrap;\r\n    text-overflow: ellipsis;\n}\n.keabuilder-board main[data-v-602592cc] {\r\n    padding: 0px 15px;\n}\n.keabuilder-board header .keabuilder-title-board[data-v-602592cc] {\r\n    font-weight: 700;\r\n    margin: 0;\r\n    padding: 0;\r\n    display: inline;\n}\n.keabuilder-container .keabuilder-board .keabuilder-board-header .keabuilder-title-board[data-v-602592cc] {\r\n    font-weight: normal;\r\n    cursor: text;\r\n    padding: 0 0.5rem;\r\n    width: 200px;\n}\n.keabuilder-container .keabuilder-board .keabuilder-board-header .dropdown[data-v-602592cc] {\r\n    float: right;\n}\n.dropdown-menu[data-v-602592cc] {\r\n    box-shadow: -7px 8px 16px 0 rgb(55 70 95 / 20%);\n}\n.dropdown-menu .dropdown-item[data-v-602592cc] {\r\n    text-transform: uppercase;\r\n    display: flex;\r\n    align-items: center;\n}\n.dropdown-item[data-v-602592cc] {\r\n    display: block;\r\n    width: 100%;\r\n    padding: .8rem 1.6rem;\r\n    clear: both;\r\n    color: #475F7B;\r\n    text-align: inherit;\r\n    background-color: transparent;\r\n    border: 0;\n}\n.dropdown-menu i[data-v-602592cc] {\r\n    color: #475F7B;\n}\n.keabuilder-container .keabuilder-board .keabuilder-drag[data-v-602592cc] {\r\n    padding: 13px;\r\n    min-height: auto;\n}\n.keabuilder-item[data-v-602592cc] {\r\n    background: #fff;\r\n    padding: 15px;\r\n    margin-bottom: 20px;\r\n    transition: all .3s cubic-bezier(.23,1,.32,1);\r\n    cursor: pointer;\n}\n.keabuilder-container .keabuilder-board .keabuilder-item[data-v-602592cc] {\r\n    padding: 0.53rem 0.8rem;\r\n    border-radius: 0.267rem;\r\n    margin-bottom: 1rem;\r\n    box-shadow: -4px 4px 6px 0 rgb(55 70 95 / 12%);\r\n    position: relative;\r\n    font-size:14px;\n}\n.keabuilder-container .keabuilder-board .keabuilder-item[data-border=success][data-v-602592cc]:before {\r\n    background-color: #39DA8A;\n}\n.keabuilder-container .keabuilder-board .keabuilder-item[data-border=warning][data-v-602592cc]:before {\r\nbackground-color: #FDAC41;\n}\n.keabuilder-container .keabuilder-board .keabuilder-item[data-border=info][data-v-602592cc]:before {\r\nbackground-color: #00CFDD;\n}\n.keabuilder-container .keabuilder-board .keabuilder-item[data-border=primary][data-v-602592cc]:before {\r\nbackground-color: #5A8DEE;\n}\n.keabuilder-container .keabuilder-board .keabuilder-item[data-border=secondary][data-v-602592cc]:before {\r\nbackground-color: #475F7B;\n}\n.keabuilder-container .keabuilder-board .keabuilder-item[data-border=danger][data-v-602592cc]:before {\r\nbackground-color: #FF5B5C;\n}\n.keabuilder-item[data-v-602592cc]:hover {\r\n    opacity: 0.7;\n}\n.keabuilder-container .keabuilder-board .keabuilder-item[data-v-602592cc]:before {\r\n    content: \"\";\r\n    width: 3px;\r\n    height: 100%;\r\n    position: absolute;\r\n    left: 0;\r\n    top: 0;\r\n    border-radius: 0.5rem;\n}\n.font-size-small[data-v-602592cc], .dropdownMenuButton i[data-v-602592cc] {\r\n    font-size: 12px;\n}\n.keabuilder-footer i[data-v-602592cc] {\r\n    font-size: 10px;\r\n    margin-right: 5px;\r\n    margin-left: 5px;\n}\n.keabuilder-footer-left >div[data-v-602592cc] {\r\n    padding-left: 10px;\r\n    margin-left: -7px;\r\n    border-right: 2px solid #e2e2e2;\r\n    padding-right: 10px;\n}\n.keabuilder-footer-left >div[data-v-602592cc]:last-child {\r\n    border: none;\n}\n.keabuilder-board-header .dropdown-menu[data-v-602592cc] {\r\n    min-width: 120px;\r\n    padding: 0px;\n}\n.keabuilder-board-header a[data-v-602592cc] {\r\n    font-size: 12px;\r\n    padding: 10px!important;\n}\n.dropdown-item[data-v-602592cc]:focus, .dropdown-item[data-v-602592cc]:hover {\r\n    color: #475F7B;\r\n    text-decoration: none;\r\n    background-color: #F2F4F4;\n}\n.dropdownMenuButton:hover .dropdown-menu[data-v-602592cc] {\r\n    display: block;\n}\n.dropdownMenuButton .dropdown-menu[data-v-602592cc] {\r\n    top:20px;\r\n    left: -115px;\n}\n.keabuilder-title-board:hover span[data-v-602592cc] {\r\n    display: none;\n}\n.keabuilder-title-board:hover input[data-v-602592cc] {\r\n display: block;\n}\n.keabuilder-title-board input[data-v-602592cc] {\r\n    display:none;\r\n    background-color: #475F7B;\r\n    color: #FFFFFF;\r\n    border-radius: 0.267rem;\r\n    outline: none;\r\n    text-overflow: clip;\r\n    font-size: 14px;\n}\n.kea-barfunnelsearch[data-v-602592cc] {\r\n    margin: 0;\r\n    padding: 0;\r\n    list-style: none;\r\n    float: left;\n}\n.kea-barfunnelsearch li[data-v-602592cc]:hover {\r\n    color: #000;\n}\n.kea-barfunnelsearch li[data-v-602592cc] {\r\n    border: 1px solid #DFE3E7;\r\n    cursor: pointer;\r\n    display: inline-block;\r\n    color: #727E8C;\r\n    text-align: center;\r\n    vertical-align: middle;\r\n    background-color: transparent;\r\n    padding: .467rem 1rem;\r\n    font-size: 14px;\r\n    line-height: 1.6rem;\r\n    border-radius: .267rem;\n}\n.kea-barfieldset[data-v-602592cc]{\r\n    width: 50%;\r\n    float: right;\n}\n.form-control-position[data-v-602592cc] {\r\n    position: absolute;\r\n    top: 2px;\r\n    right: 0;\r\n    display: block;\r\n    width: 2.5rem;\r\n    height: 2.5rem;\r\n    line-height: 2.5rem;\r\n    text-align: center;\r\n    color: rgba(0,0,0,.4);\r\n    cursor: pointer;\n}\n.has-icon-left .form-control-position[data-v-602592cc] {\r\n    right: auto;\n}\n.has-icon-left .form-control[data-v-602592cc] {\r\n    border-color: #DFE3E7;\r\n    font-size: 13px;\r\n    padding: 20px 10px 20px 30px;\n}\nul.kea-barfunnelsearch li.active[data-v-602592cc] {\r\n    box-shadow: 0 1px 6px 1px rgb(216 200 152 / 71%);\n}\r\n", ""]);
 
 // exports
 
@@ -50199,6 +51808,96 @@ module.exports = camel2hyphen;
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoginComponent.vue?vue&type=style&index=0&id=4d2414bf&scoped=true&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LoginComponent.vue?vue&type=style&index=0&id=4d2414bf&scoped=true&lang=css& ***!
@@ -51549,6 +53248,1750 @@ var render = function() {
   return _c("div")
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BuildfunnelComponent.vue?vue&type=template&id=f98ee3b8&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BuildfunnelComponent.vue?vue&type=template&id=f98ee3b8&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "insidecont", attrs: { id: "buildfunnelcomp" } },
+    [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c(
+              "h3",
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "gobackward", attrs: { to: "funnel" } },
+                  [_c("i", { staticClass: "fas fa-arrow-left fa-2x " })]
+                ),
+                _vm._v(" Choose Your Path \n                     "),
+                _c("router-link", { attrs: { to: "create-funnel" } }, [
+                  _c("button", { staticClass: "btn btn-primary" }, [
+                    _vm._v("Or.. Create a Custom Funnel")
+                  ])
+                ])
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-2 mt-3 fixedcategory" }, [
+            _c("h6", [_vm._v("INDUSTRY")]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "list-unstyled" }, [
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.author },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor(
+                          [
+                            5,
+                            3,
+                            7,
+                            10,
+                            11,
+                            20,
+                            17,
+                            16,
+                            6,
+                            0,
+                            1,
+                            8,
+                            18,
+                            19,
+                            12,
+                            14,
+                            15,
+                            4,
+                            2,
+                            9
+                          ],
+                          "author"
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      " Author / Speaker / Coach / Consultant" +
+                        _vm._s(_vm.allcategory.survey)
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.professional },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor(
+                          [5, 3, 7, 10, 11, 0, 8, 18, 12, 15, 4, 9, 21],
+                          "professional"
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v(" Professional Services")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.retail },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor([5, 7, 11, 18, 19, 13], "retail")
+                      }
+                    }
+                  },
+                  [_vm._v("Retail")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.ecommerce },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor(
+                          [5, 7, 11, 16, 6, 18, 19, 9, 21, 13],
+                          "ecommerce"
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v("Ecommerce")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.b2b },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor(
+                          [5, 3, 7, 11, 18, 4, 15, 4, 9, 13],
+                          "b2b"
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v(" B2B")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.network },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor(
+                          [5, 3, 7, 11, 0, 8, 18, 12, 15, 4, 9],
+                          "network"
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v(" Network Marketing")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.other1 },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor(
+                          [
+                            5,
+                            3,
+                            7,
+                            10,
+                            11,
+                            20,
+                            17,
+                            16,
+                            6,
+                            0,
+                            1,
+                            8,
+                            18,
+                            19,
+                            12,
+                            14,
+                            15,
+                            4,
+                            9,
+                            21,
+                            13
+                          ],
+                          "other1"
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v(" Other")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("h6", [_vm._v("TYPE OF FUNNEL")]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "list-unstyled" }, [
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.generate },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor(
+                          [5, 7, 10, 11, 0, 8, 18, 15, 9],
+                          "generate"
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v("Generate Leads")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.sellaproduct },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor(
+                          [20, 16, 6, 1, 19, 12, 14, 4, 2, 9, 21, 13],
+                          "sellaproduct"
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v(" Sell A Product")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.createaevent },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor([17, 1, 12, 4, 2], "createaevent")
+                      }
+                    }
+                  },
+                  [_vm._v("Create An Event")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "mb-1" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-muted ",
+                    class: { active: _vm.other2 },
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loopthefor(
+                          [
+                            5,
+                            3,
+                            7,
+                            10,
+                            11,
+                            20,
+                            17,
+                            16,
+                            6,
+                            0,
+                            1,
+                            8,
+                            18,
+                            19,
+                            12,
+                            14,
+                            15,
+                            4,
+                            2,
+                            9,
+                            21,
+                            13
+                          ],
+                          "other2"
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v("Other")]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-2 mt-3" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-10" }, [
+            _c(
+              "div",
+              {},
+              _vm._l(_vm.allcategory, function(value, index) {
+                return _c(
+                  "span",
+                  { key: index, staticClass: "adjustloopvfor" },
+                  [
+                    _vm.allcategory[index][0]
+                      ? _c("div", { staticClass: "clmwithshadow loadEffect" }, [
+                          _c("div", [
+                            _c("div", { staticClass: "clmicon" }, [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "svg-inline--fa fa-funnel-dollar fa-w-20 fa-7x",
+                                  attrs: {
+                                    "aria-hidden": "true",
+                                    focusable: "false",
+                                    "data-prefix": "fal",
+                                    "data-icon": "funnel-dollar",
+                                    role: "img",
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    viewBox: "0 0 640 512"
+                                  }
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      fill: "currentColor",
+                                      d:
+                                        "M464.02 160c-4.7 0-9.32.34-13.93.7L568.06 46.09C585.02 29.13 573.01 0 548.97 0H27.03C3.05 0-9.05 29.1 7.94 46.09L224 256v182c0 8.81 4.3 17.07 11.52 22.12l74 46.98c4.82 3.37 10.15 4.9 15.36 4.9 13.99 0 27.12-11.03 27.12-27.02v-13.22c30.43 25.12 69.46 40.21 112.02 40.21 97.34 0 175.98-78.78 175.98-175.98C640 238.64 561.22 160 464.02 160zM320 474l-63.74-38.25-.26-.22V242.47L39.35 32h497.29l-150.7 146.41c-58.01 28.78-97.9 88.42-97.9 157.56 0 37.65 11.88 72.42 31.96 101.01V474zm144.02 5.96c-79.39 0-143.98-64.59-143.98-143.98S384.63 192 464.02 192 608 256.59 608 335.98s-64.59 143.98-143.98 143.98zm27.11-152.54l-45-13.5c-5.16-1.55-8.77-6.78-8.77-12.73 0-7.27 5.3-13.19 11.8-13.19h28.11c4.56 0 8.96 1.29 12.82 3.72 3.24 2.03 7.36 1.91 10.13-.73l11.75-11.21c3.53-3.37 3.33-9.21-.57-12.14-9.1-6.83-20.08-10.77-31.37-11.35V240c0-4.42-3.58-8-8-8h-16c-4.42 0-8 3.58-8 8v16.12c-23.62.63-42.67 20.55-42.67 45.07 0 19.97 12.98 37.81 31.58 43.39l45 13.5c5.16 1.55 8.77 6.78 8.77 12.73 0 7.27-5.3 13.19-11.8 13.19H450.8c-4.56 0-8.96-1.29-12.82-3.72-3.24-2.03-7.36-1.91-10.13.73l-11.75 11.21c-3.53 3.37-3.33 9.21.57 12.14 9.1 6.83 20.08 10.77 31.37 11.35V432c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8v-16.12c23.62-.63 42.67-20.54 42.67-45.07 0-19.97-12.98-37.81-31.58-43.39z"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("h5", [_vm._v(_vm._s(value.title))]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "text-muted" }, [
+                              _vm._v(_vm._s(value.paragraph))
+                            ])
+                          ])
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreatefunnelComponent.vue?vue&type=template&id=05bcaae0&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreatefunnelComponent.vue?vue&type=template&id=05bcaae0&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "insidecont", attrs: { id: "createfunnel" } },
+    [
+      _vm.poupsidebar
+        ? _c("div", { attrs: { id: "kb-automation-actions" } }, [
+            _c("i", {
+              staticClass: "fas fa-times",
+              on: { click: _vm.hidepopupsidebar }
+            }),
+            _vm._v(" "),
+            _vm.automationaddnewaction
+              ? _c(
+                  "div",
+                  { staticClass: "offcanvas offcanvas-right p-4 offcanvas-on" },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Give your action a name"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "mt-3", attrs: { for: "" } }, [
+                      _vm._v("Condition")
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "mt-3", attrs: { for: "" } }, [
+                      _vm._v("Integration")
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "mt-3", attrs: { for: "" } }, [
+                      _vm._v("Action To Do")
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Delay Days")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "number",
+                        placeholder: "# Of Days Before Action Happens..."
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "mt-3", attrs: { for: "" } }, [
+                      _vm._v("Delay Hours")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "number",
+                        placeholder: "# Of Hours Before Action Happens..."
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _vm._m(6)
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.automationaddnewemail
+              ? _c(
+                  "div",
+                  { staticClass: "offcanvas offcanvas-right p-4 offcanvas-on" },
+                  [_vm._m(7), _vm._v(" "), _vm._m(8)]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.automationaddnewtext
+              ? _c(
+                  "div",
+                  { staticClass: "offcanvas offcanvas-right p-4 offcanvas-on" },
+                  [_vm._m(9), _vm._v(" "), _vm._m(10)]
+                )
+              : _vm._e()
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.poupsidebar
+        ? _c("div", {
+            staticClass: "offcanvas-overlay ",
+            on: { click: _vm.hidepopupsidebar }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._m(11),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row whitefunnel" }, [
+          _vm._m(12),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-9" }, [
+            _c("div", { staticClass: "wizard-nav" }, [
+              _c(
+                "div",
+                { staticClass: "wizard-steps", attrs: { id: "secondwizard" } },
+                [
+                  _c("div", {
+                    staticClass: "wizard-step",
+                    attrs: {
+                      "data-wizard-type": "step",
+                      "data-wizard-state": "pending"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "wizard-step",
+                      attrs: {
+                        "data-wizard-type": "step",
+                        "data-wizard-state":
+                          _vm.tabOpen == "overview" ? "current" : "pending"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.kb_substeps("overview")
+                        }
+                      }
+                    },
+                    [_vm._m(13)]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "wizard-step",
+                      attrs: {
+                        "data-wizard-type": "step",
+                        "data-wizard-state":
+                          _vm.tabOpen == "automation" ? "current" : "pending"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.kb_substeps("automation")
+                        }
+                      }
+                    },
+                    [_vm._m(14)]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "wizard-step",
+                      attrs: {
+                        "data-wizard-type": "step",
+                        "data-wizard-state":
+                          _vm.tabOpen == "publishing" ? "current" : "pending"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.kb_substeps("publishing")
+                        }
+                      }
+                    },
+                    [_vm._m(15)]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.tabOpen == "overview"
+                ? _c("div", { staticClass: "kb-overview loadEffectFromLeft" }, [
+                    _vm._m(16),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "kb-insidebodycard row pb-5" }, [
+                      _vm._m(17),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "kb-insidecard col-md-4 kb-internalshadow"
+                        },
+                        [
+                          _c("div", { staticClass: " kb-internalshadow" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "toast toast-light toast-translucent mr-auto ml-auto pt-2 pb-2",
+                                attrs: {
+                                  role: "alert",
+                                  "aria-live": "assertive",
+                                  "aria-atomic": "true"
+                                }
+                              },
+                              [
+                                _vm._m(18),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "toast-body" }, [
+                                  _vm._m(19),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    attrs: {
+                                      type: "range",
+                                      min: "0",
+                                      max: "100",
+                                      value: "50",
+                                      id: "kb-splittestmake"
+                                    },
+                                    on: { change: _vm.totalmy }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._m(20),
+                                  _vm._v(" "),
+                                  _vm._m(21),
+                                  _vm._v(" "),
+                                  _vm._m(22)
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "kb-split-text pl-2 pr-2",
+                                    staticStyle: { display: "none" }
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "btn-block mb-3" },
+                                      [
+                                        _c("div", { staticClass: "svgimg3" }, [
+                                          _c(
+                                            "svg",
+                                            {
+                                              staticClass: "animation",
+                                              attrs: {
+                                                version: "1.1",
+                                                id: "Layer_1",
+                                                xmlns:
+                                                  "http://www.w3.org/2000/svg",
+                                                "xmlns:xlink":
+                                                  "http://www.w3.org/1999/xlink",
+                                                x: "0px",
+                                                y: "0px",
+                                                viewBox: "0 0 100 100",
+                                                "enable-background":
+                                                  "new 0 0 100 100",
+                                                "xml:space": "preserve"
+                                              }
+                                            },
+                                            [
+                                              _c("path", {
+                                                attrs: {
+                                                  fill: "#333333",
+                                                  d:
+                                                    "M48,67.6c0,0.8-0.6,1.4-1.4,1.4H31.4c-0.8,0-1.4-0.6-1.4-1.4v-0.1c0-0.8,0.6-1.4,1.4-1.4h15.1\n                                                          c0.8,0,1.4,0.6,1.4,1.4V67.6z"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  fill: "none",
+                                                  stroke: "#333333",
+                                                  "stroke-width": "2",
+                                                  "stroke-miterlimit": "10",
+                                                  d:
+                                                    "M50.6,34h10c2.6,0,4.4,1.9,4.4,4.5v16.3\n                                                          c0,3.2,1.1,6.4,2.7,9.1l1.2,1.8l13.3,23.1c2.5,4.4-0.6,10.2-5.6,10.2H50.6H24.3c-5,0-8.2-5.8-5.7-10.2l12.9-22.9l0.8-2.2\n                                                          c1.3-2.5,1.7-5.4,1.7-8.2v-17c0-2.6,2.7-4.5,5.4-4.5h11.1H50.6z"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  fill: "#333333",
+                                                  d:
+                                                    "M44,78.6c0,0.8-0.6,1.4-1.4,1.4H25.4c-0.8,0-1.4-0.6-1.4-1.4v-0.1c0-0.8,0.6-1.4,1.4-1.4h17.1\n                                                          c0.8,0,1.4,0.6,1.4,1.4V78.6z"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  fill: "#333333",
+                                                  d:
+                                                    "M39,88.6c0,0.8-0.6,1.4-1.4,1.4H20.4c-0.8,0-1.4-0.6-1.4-1.4v-0.1c0-0.8,0.6-1.4,1.4-1.4h17.1\n                                                          c0.8,0,1.4,0.6,1.4,1.4V88.6z"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("path", {
+                                                attrs: {
+                                                  fill: "#333333",
+                                                  d:
+                                                    "M69.7,35.5c0,1.5-1.3,2.5-2.9,2.5H32.3c-1.6,0-2.9-1-2.9-2.5l0,0c0-1.5,1.3-2.5,2.9-2.5h34.4\n                                                          C68.4,33,69.7,34,69.7,35.5L69.7,35.5z"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("circle", {
+                                                attrs: {
+                                                  id: "Bubble-1",
+                                                  fill: "none",
+                                                  stroke: "#333333",
+                                                  "stroke-width": "1.5268",
+                                                  "stroke-miterlimit": "10",
+                                                  cx: "53.5",
+                                                  cy: "51",
+                                                  r: "2.4"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("circle", {
+                                                attrs: {
+                                                  id: "Bubble-2",
+                                                  fill: "none",
+                                                  stroke: "#333333",
+                                                  "stroke-width": "1.5268",
+                                                  "stroke-miterlimit": "10",
+                                                  cx: "42.8",
+                                                  cy: "48.9",
+                                                  r: "4.9"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("circle", {
+                                                attrs: {
+                                                  id: "Bubble-3",
+                                                  fill: "none",
+                                                  stroke: "#333333",
+                                                  "stroke-width": "1.5268",
+                                                  "stroke-miterlimit": "10",
+                                                  cx: "56",
+                                                  cy: "45.4",
+                                                  r: "6"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("circle", {
+                                                attrs: {
+                                                  id: "Bubble-4",
+                                                  fill: "none",
+                                                  stroke: "#333333",
+                                                  "stroke-width": "1.5268",
+                                                  "stroke-miterlimit": "10",
+                                                  cx: "42.1",
+                                                  cy: "38.6",
+                                                  r: "3.2"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("circle", {
+                                                attrs: {
+                                                  id: "Bubble-5",
+                                                  fill: "none",
+                                                  stroke: "#333333",
+                                                  "stroke-width": "1.5268",
+                                                  "stroke-miterlimit": "10",
+                                                  cx: "46.5",
+                                                  cy: "47",
+                                                  r: "2.4"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("circle", {
+                                                attrs: {
+                                                  id: "Bubble-6",
+                                                  fill: "none",
+                                                  stroke: "#333333",
+                                                  "stroke-width": "1.5268",
+                                                  "stroke-miterlimit": "10",
+                                                  cx: "52.8",
+                                                  cy: "38.9",
+                                                  r: "4.9"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("center", [
+                                      _c("p", [_vm._v("Start Split Test")])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-secondary m-auto btn-block",
+                                        on: { click: _vm.showvariation }
+                                      },
+                                      [
+                                        _c("i", { staticClass: "fas fa-plus" }),
+                                        _vm._v(" Create Variation")
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.createvariation
+                                      ? _c("div", [
+                                          _vm._m(23),
+                                          _vm._v(" "),
+                                          _c("div", {
+                                            staticClass: "kb-bxoverlay",
+                                            on: { click: _vm.hidevariation }
+                                          })
+                                        ])
+                                      : _vm._e()
+                                  ],
+                                  1
+                                )
+                              ]
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(24)
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(25)
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.tabOpen == "automation"
+                ? _c(
+                    "div",
+                    { staticClass: "kb-automation mt-4 pb-5 loadEffect" },
+                    [
+                      _c("div", { staticClass: "kb-automation-header" }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "kb-automation-footer text-center" },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary",
+                              on: {
+                                click: function($event) {
+                                  return _vm.automation_show("action")
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Add New Action")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary",
+                              on: {
+                                click: function($event) {
+                                  return _vm.automation_show("email")
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Add New Email")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary",
+                              on: {
+                                click: function($event) {
+                                  return _vm.automation_show("sms")
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Add New Sms Text")
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.tabOpen == "publishing"
+                ? _c("div", { staticClass: "kb-publishing loadEffect" }, [
+                    _vm._m(26)
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("b", [_vm._v("NEW FUNNEL STEPS")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", { staticClass: "fas fa-cogs" }),
+      _vm._v(" Action Settings")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      { staticClass: "form-control", attrs: { name: "", id: "" } },
+      [
+        _c("option", { attrs: { value: "" } }, [_vm._v("Everyone")]),
+        _vm._v("n\n            ")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      { staticClass: "form-control", attrs: { name: "", id: "" } },
+      [
+        _c("option", { attrs: { value: "" } }, [
+          _vm._v("Keabuilder Integration")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      { staticClass: "form-control", attrs: { name: "", id: "" } },
+      [
+        _c("option", { attrs: { value: "" } }, [_vm._v("Add To List")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("Remove From List")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("Email Notification")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("Add Tag")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("Remove Tag")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", { staticClass: "far fa-clock" }),
+      _vm._v(" Action Delay")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "btn btn-primary" }, [
+      _c("i", { staticClass: "fas fa-plus" }),
+      _vm._v(" Create Funnel Action")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("b", [_vm._v("CREATE NEW EMAIL")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("Provide your "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Account SMTP Settings")]),
+      _vm._v(" to customize outgoing emails from Keabuilder")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("b", [_vm._v("CREATE NEW TEXT")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("Create a "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Twilio SMS Integration")]),
+      _vm._v(" first to customize outgoing text messages from Keabuilder")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "wizard-nav" }, [
+      _c("div", { staticClass: "wizard-steps" }, [
+        _c(
+          "div",
+          {
+            staticClass: "wizard-step",
+            attrs: {
+              "data-wizard-type": "step",
+              "data-wizard-state": "current"
+            }
+          },
+          [
+            _c("div", { staticClass: "wizard-wrapper" }, [
+              _c("div", { staticClass: "wizard-number" }, [
+                _c("i", { staticClass: "fas fa-filter" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "wizard-label" }, [
+                _c("div", { staticClass: "wizard-title" }, [
+                  _vm._v("My Funnel Name")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "wizard-desc" }, [_vm._v("Steps")])
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "wizard-step",
+            attrs: {
+              "data-wizard-type": "step",
+              "data-wizard-state": "pending"
+            }
+          },
+          [
+            _c("div", { staticClass: "wizard-wrapper" }, [
+              _c("div", { staticClass: "wizard-number" }, [
+                _c("i", { staticClass: "far fa-chart-bar" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "wizard-label" }, [
+                _c("div", { staticClass: "wizard-title" }, [_vm._v("STATS")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "wizard-desc" }, [
+                  _vm._v("View Your Stats")
+                ])
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "wizard-step",
+            attrs: {
+              "data-wizard-type": "step",
+              "data-wizard-state": "pending"
+            }
+          },
+          [
+            _c("div", { staticClass: "wizard-wrapper" }, [
+              _c("div", { staticClass: "wizard-number" }, [
+                _c("i", { staticClass: "fas fa-users" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "wizard-label" }, [
+                _c("div", { staticClass: "wizard-title" }, [
+                  _vm._v("CONTACTS")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "wizard-desc" }, [
+                  _vm._v("Check Your Contacts")
+                ])
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "wizard-step",
+            attrs: {
+              "data-wizard-type": "step",
+              "data-wizard-state": "pending"
+            }
+          },
+          [
+            _c("div", { staticClass: "wizard-wrapper" }, [
+              _c("div", { staticClass: "wizard-number" }, [
+                _c("i", { staticClass: "fas fa-sliders-h" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "wizard-label" }, [
+                _c("div", { staticClass: "wizard-title" }, [
+                  _vm._v("SETTINGS")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "wizard-desc" }, [
+                  _vm._v("Review Your Settings")
+                ])
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "wizard-step",
+            attrs: {
+              "data-wizard-type": "step",
+              "data-wizard-state": "pending"
+            }
+          },
+          [
+            _c("div", { staticClass: "wizard-wrapper" }, [
+              _c("div", { staticClass: "wizard-number" }, [
+                _c("i", { staticClass: "fas fa-network-wired" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "wizard-label" }, [
+                _c("div", { staticClass: "wizard-title" }, [
+                  _vm._v("INTEGRATIONS")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "wizard-desc" }, [
+                  _vm._v("Setup Your Integrations")
+                ])
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 pb-3 pt-3 rightbrder" }, [
+      _c("button", { staticClass: "btn btn-primary mt-2 btn-block mb-3" }, [
+        _c("i", { staticClass: "fas fa-plus" }),
+        _vm._v(" Add A Step")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-group" }, [
+        _c(
+          "div",
+          {
+            staticClass: "kiabuilder-item is-moving success list-group-item",
+            attrs: { "data-border": "success" }
+          },
+          [
+            _vm._v("Optin\n                              "),
+            _c("i", { staticClass: "fas fa-grip-lines float-right mt-1" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "btn-group float-right mr-1" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "cursor-pointer dropdownMenuButton",
+                  attrs: { role: "button" }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-ellipsis-v" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "dropdown-menu" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item",
+                        attrs: { href: "javascript:void(0);" }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-link" }),
+                        _vm._v(
+                          " Copy Link\n                                              "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item kiabuilder-delete",
+                        attrs: { href: "javascript:void(0);" }
+                      },
+                      [
+                        _c("i", { staticClass: "far fa-clone" }),
+                        _vm._v(
+                          " Duplicate\n                                              "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item kiabuilder-changepath",
+                        attrs: { href: "javascript:void(0);" }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-pen-fancy " }),
+                        _vm._v(
+                          " change path\n                                              "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item kiabuilder-delete",
+                        attrs: { href: "javascript:void(0);" }
+                      },
+                      [
+                        _c("i", { staticClass: "far fa-trash-alt" }),
+                        _vm._v(
+                          " Archive\n                                              "
+                        )
+                      ]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "kiabuilder-item is-moving list-group-item" },
+          [
+            _vm._v("Thank you\n                              "),
+            _c("i", { staticClass: "fas fa-grip-lines float-right mt-1" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "btn-group float-right mr-1" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "cursor-pointer dropdownMenuButton",
+                  attrs: { role: "button" }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-ellipsis-v" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "dropdown-menu" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item",
+                        attrs: { href: "javascript:void(0);" }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-link mr-2" }),
+                        _vm._v(
+                          " Copy Link\n                                          "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item kiabuilder-delete",
+                        attrs: { href: "javascript:void(0);" }
+                      },
+                      [
+                        _c("i", { staticClass: "far fa-clone mr-2" }),
+                        _vm._v(
+                          " Duplicate\n                                          "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item kiabuilder-changepath",
+                        attrs: { href: "javascript:void(0);" }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-pen-fancy mr-2" }),
+                        _vm._v(
+                          " change path\n                                          "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item kiabuilder-delete",
+                        attrs: { href: "javascript:void(0);" }
+                      },
+                      [
+                        _c("i", { staticClass: "far fa-trash-alt mr-2" }),
+                        _vm._v(
+                          " Archive\n                                          "
+                        )
+                      ]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wizard-wrapper" }, [
+      _c("div", { staticClass: "wizard-number" }, [
+        _c("i", { staticClass: "fas fa-th" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "wizard-label" }, [
+        _c("div", { staticClass: "wizard-title" }, [_vm._v("Overview")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wizard-wrapper" }, [
+      _c("div", { staticClass: "wizard-number" }, [
+        _c("i", { staticClass: "fas fa-bolt" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "wizard-label" }, [
+        _c("div", { staticClass: "wizard-title" }, [_vm._v("Automation")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wizard-wrapper" }, [
+      _c("div", { staticClass: "wizard-number" }, [
+        _c("i", { staticClass: "fas fa-wrench" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "wizard-label" }, [
+        _c("div", { staticClass: "wizard-title" }, [_vm._v("Publishing")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sage-input site_support_email mt-3" }, [
+      _c("input", {
+        staticClass: "sage-input__field",
+        attrs: {
+          type: "url",
+          value: "http://127.0.0.1:8000/optin",
+          id: "site_support_email"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "label",
+        {
+          staticClass: "sage-input__label",
+          attrs: { for: "site_support_email" }
+        },
+        [_vm._v("Your Link")]
+      ),
+      _vm._v(" "),
+      _c("span", { staticClass: "kb-settings-i" }, [
+        _c("i", { staticClass: "fas fa-cog" })
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "kb-sharelink" }, [
+        _c("i", { staticClass: "fas fa-external-link-alt" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "kb-insidecard col-md-4" }, [
+      _c("div", { staticClass: " kb-internalshadow " }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "toast toast-light toast-translucent mr-auto ml-auto pt-2 pb-2",
+            attrs: {
+              role: "alert",
+              "aria-live": "assertive",
+              "aria-atomic": "true"
+            }
+          },
+          [
+            _c("div", { staticClass: "toast-header" }, [
+              _c("span", { staticClass: "mr-auto toast-title" }, [
+                _vm._v("Main")
+              ]),
+              _vm._v(" "),
+              _c("i", { staticClass: "fas fa-history pr-2" }),
+              _vm._v(" "),
+              _c("small", { staticClass: "d-sm-block d-none" }, [
+                _vm._v("11 mins ago")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "toast-body yesdeclarewinner" }, [
+              _c("img", {
+                staticClass: "img-fluid",
+                attrs: {
+                  src: "/images/funnelpreviewimg/preview1.jpg",
+                  alt: "Kia Builder Logo"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "declarewinner" }, [
+                _c("i", { staticClass: "fas fa-trophy" }),
+                _vm._v(" "),
+                _c("a", { attrs: { href: "#" } }, [
+                  _vm._v(
+                    "\n                                                      Declare As winner\n                                                  "
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "toast-header" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-secondary btn-block mr-2" },
+                [_c("i", { staticClass: "fas fa-pen" }), _vm._v(" Edit Page")]
+              ),
+              _vm._v(" "),
+              _c("button", { staticClass: "btn btn-secondary mr-2" }, [
+                _c("i", { staticClass: "fas fa-external-link-alt" })
+              ]),
+              _vm._v(" "),
+              _c("button", { staticClass: "btn btn-secondary " }, [
+                _c("i", { staticClass: "fas fa-cog" })
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "toast-header" }, [
+      _c("span", { staticClass: "mr-auto toast-title" }, [
+        _vm._v("Split Test")
+      ]),
+      _vm._v(" "),
+      _c("i", { staticClass: "fas fa-bolt mr-2" }),
+      _vm._v(" "),
+      _c("small", { staticClass: "d-sm-block d-none" }, [
+        _vm._v("Optmize your lead")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "progress progress-bar-success progress-sm",
+        staticStyle: { display: "flex" }
+      },
+      [
+        _c("div", {
+          staticClass: "progress-bar",
+          staticStyle: { width: "50%" },
+          attrs: {
+            id: "kb-changemyprogress",
+            role: "progressbar",
+            "aria-valuenow": "79",
+            "aria-valuemin": "101",
+            "aria-valuemax": "100"
+          }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "splitTestText control" }, [
+      _c("span", { staticClass: "number", attrs: { id: "kb-control" } }, [
+        _vm._v("50%")
+      ]),
+      _vm._v(
+        "\n                                                  of traffic\n                                              "
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "splitTestText variation" }, [
+      _c("span", { staticClass: "number", attrs: { id: "kb-variation" } }, [
+        _vm._v("50%")
+      ]),
+      _vm._v(
+        "\n                                                  of traffic\n                                              "
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "savechangesvs" }, [
+      _c("h6", [_vm._v("Ready to go")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "You've changed your split test, which will invalidate any previous results. Please confirm that you'd like to apply these changes and start the test over"
+        )
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-primary" }, [
+        _vm._v("Apply Changes")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "kb-createvar" }, [
+      _c("button", { staticClass: "btn btn-secondary m-auto btn-block" }, [
+        _c("i", { staticClass: "fas fa-plus" }),
+        _vm._v(" Duplicate Variation 1")
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-secondary m-auto btn-block mt-2" }, [
+        _c("i", { staticClass: "fas fa-plus" }),
+        _vm._v(" Create from Templates")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "kb-insidecard col-md-4 kb-internalshadow" },
+      [
+        _c("div", { staticClass: " kb-internalshadow" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "toast toast-light toast-translucent mr-auto ml-auto pt-2 pb-2",
+              attrs: {
+                role: "alert",
+                "aria-live": "assertive",
+                "aria-atomic": "true"
+              }
+            },
+            [
+              _c("div", { staticClass: "toast-header" }, [
+                _c("span", { staticClass: "mr-auto toast-title" }, [
+                  _vm._v("Variation")
+                ]),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-history pr-2" }),
+                _vm._v(" "),
+                _c("small", { staticClass: "d-sm-block d-none" }, [
+                  _vm._v("1 mins ago")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "toast-body yesdeclarewinner" }, [
+                _c("img", {
+                  staticClass: "img-fluid",
+                  attrs: {
+                    src: "/images/funnelpreviewimg/preview1.jpg",
+                    alt: "Kia Builder Logo"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "declarewinner kb-red" }, [
+                  _c("i", { staticClass: "fas fa-trophy" }),
+                  _vm._v(" "),
+                  _c("a", { attrs: { href: "#" } }, [
+                    _vm._v(
+                      "\n                                                      Declare As winner\n                                                  "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "toast-header" }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-secondary btn-block mr-2" },
+                  [_c("i", { staticClass: "fas fa-pen" }), _vm._v(" Edit Page")]
+                ),
+                _vm._v(" "),
+                _c("button", { staticClass: "btn btn-secondary mr-2" }, [
+                  _c("i", { staticClass: "fas fa-external-link-alt" })
+                ]),
+                _vm._v(" "),
+                _c("button", { staticClass: "btn btn-secondary " }, [
+                  _c("i", { staticClass: "fas fa-cog" })
+                ])
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "footer-wizard-kb mb-5" }, [
+      _c("button", { staticClass: "btn btn-secondary" }, [
+        _c("i", { staticClass: "fas fa-times" }),
+        _vm._v(" Remove From Funnel")
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-secondary" }, [
+        _c("i", { staticClass: "far fa-trash-alt" }),
+        _vm._v(" Delete Funnel Step")
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-secondary" }, [
+        _c("i", { staticClass: "far fa-clone" }),
+        _vm._v(" Clone Funnel Step")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-4 pb-5" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("p", [_c("b", [_vm._v("FUNNEL STEP NAME")])]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", value: "Optin" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("p", [_c("b", [_vm._v("PATH")])]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", value: "/optin" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-12 pt-3" }, [
+        _c("button", { staticClass: "btn btn-primary float-right" }, [
+          _vm._v("Update Funnel Step")
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -59962,10 +63405,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc& ***!
-  \******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -59977,9 +63420,349 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    { staticClass: "insidecont", attrs: { id: "funnelcontainer" } },
+    [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-md-2" },
+            [
+              _c("router-link", { attrs: { to: "build-funnel" } }, [
+                _c("button", { staticClass: "btn btn-primary" }, [
+                  _c("i", { staticClass: "far fa-plus-square" }),
+                  _vm._v(" Build A Funnel\n                   ")
+                ])
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm._m(0)
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row keabuilder-container mt-5" },
+          _vm._l(_vm.funnels, function(value, index) {
+            return _c(
+              "div",
+              { key: index, staticClass: "col-md-3 loadEffect" },
+              [
+                _c("div", { staticClass: " keabuilder-board" }, [
+                  _c("header", { staticClass: "keabuilder-board-header" }, [
+                    _c(
+                      "div",
+                      { staticClass: "keabuilder-title-board line-ellipsis" },
+                      [
+                        _c("span", [
+                          _vm._v(_vm._s(_vm.funnels[index]["name"]))
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.funnels[index]["name"],
+                              expression: "funnels[index]['name']"
+                            }
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.funnels[index]["name"] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.funnels[index],
+                                "name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1, true)
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "main",
+                    _vm._l(_vm.funnels[index]["steps"], function(
+                      value2,
+                      index2
+                    ) {
+                      return _c("div", { key: index2 }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "keabuilder-item is-moving",
+                            attrs: {
+                              "data-border":
+                                _vm.funnels[index]["steps"][index2]["color"]
+                            }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.funnels[index]["steps"][index2]["title"]
+                              ) + "\n                                "
+                            ),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "keabuilder-footer d-flex justify-content-between mt-3"
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "keabuilder-footer-left d-flex"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "keabuilder-due-date d-flex align-items-center mr-50"
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "far fa-clock"
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "font-size-small" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.funnels[index]["steps"][
+                                                  index2
+                                                ]["updatedat"]
+                                              )
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "keabuilder-comment d-flex align-items-center mr-50"
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fas fa-puzzle-piece"
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "font-size-small" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.funnels[index]["steps"][
+                                                  index2
+                                                ]["variation"]
+                                              )
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "keabuilder-attachment d-flex align-items-center"
+                                      },
+                                      [
+                                        _c("i", { staticClass: "fas fa-tags" }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "font-size-small" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.funnels[index]["steps"][
+                                                  index2
+                                                ]["tag"]
+                                              )
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", {
+                                  staticClass: "keabuilder-footer-right"
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ]
+            )
+          }),
+          0
+        )
+      ])
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-10" }, [
+      _c("ul", { staticClass: "kea-barfunnelsearch" }, [
+        _c("li", { staticClass: "active" }, [
+          _c("div", [
+            _c("i", { staticClass: "fas fa-filter" }),
+            _vm._v(" All Funnel\n                        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("div", [
+            _c("i", { staticClass: "fas fa-archive" }),
+            _vm._v(" Archived\n                        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("div", [
+            _c("i", { staticClass: "fas fa-store" }),
+            _vm._v(" Marketplace\n                        ")
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "fieldset",
+        {
+          staticClass:
+            "form-group position-relative has-icon-left kea-barfieldset"
+        },
+        [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "email-search",
+              placeholder: "Search funnel"
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-control-position" }, [
+            _c("i", { staticClass: "fab fa-searchengin" })
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "btn-group" }, [
+      _c(
+        "div",
+        {
+          staticClass: "cursor-pointer dropdownMenuButton",
+          attrs: { role: "button" }
+        },
+        [
+          _c("i", { staticClass: "fas fa-ellipsis-v" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "dropdown-menu" }, [
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item keabuilder-edit",
+                attrs: { href: "javascript:void(0);" }
+              },
+              [
+                _c("i", {
+                  staticClass: "fas fa-pencil-alt mr-2",
+                  attrs: { "aria-hidden": "true" }
+                }),
+                _vm._v(" Edit\n                                    ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item keabuilder-copy",
+                attrs: { href: "javascript:void(0);" }
+              },
+              [
+                _c("i", { staticClass: "fas fa-link mr-2" }),
+                _vm._v(" Copy Link\n                                    ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item keabuilder-duplicate",
+                attrs: { href: "javascript:void(0);" }
+              },
+              [
+                _c("i", { staticClass: "far fa-clone mr-2" }),
+                _vm._v(" Duplicate\n                                    ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item keabuilder-changepath",
+                attrs: { href: "javascript:void(0);" }
+              },
+              [
+                _c("i", { staticClass: "fas fa-pen-fancy mr-2" }),
+                _vm._v(" change path\n                                    ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item keabuilder-delete",
+                attrs: { href: "javascript:void(0);" }
+              },
+              [
+                _c("i", { staticClass: "far fa-trash-alt mr-2" }),
+                _vm._v(" Archive\n                                    ")
+              ]
+            )
+          ])
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -60053,333 +63836,106 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "insidecont", attrs: { id: "mainlogincontainer" } },
-    [
-      _c("div", { staticClass: "bw-login container-fluid" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "pt-3 bw-colside" }, [
-            _c(
-              "div",
-              { staticClass: "login-form" },
-              [
-                _c("img", { attrs: { src: "images/logo/kblogo.svg" } }),
-                _vm._v(" "),
-                _c("h5", [_vm._v(_vm._s(_vm.signheading))]),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(_vm.signpara))]),
-                _vm._v(" "),
-                _vm.errors.length
-                  ? _c("div", { staticClass: " mycustomalert" }, [
-                      _c(
-                        "ul",
-                        { staticClass: "mb-0" },
-                        _vm._l(_vm.errors, function(error, index) {
-                          return _c(
-                            "li",
-                            {
-                              key: index,
-                              staticClass: "toastnew",
-                              class: { active: _vm.isActive }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "fas fa-exclamation-triangle"
-                              }),
-                              _vm._v(" "),
-                              _c("i", { staticClass: "far fa-thumbs-up" }),
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(error) +
-                                  "\n                            "
-                              )
-                            ]
-                          )
-                        }),
-                        0
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("transition", { attrs: { name: "slide-fade" } }, [
-                  _c(
-                    "form",
-                    {
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.onLogin.apply(null, arguments)
-                        }
+  return _c("div", { attrs: { id: "mainlogincontainer" } }, [
+    _c("div", { staticClass: "bw-login container-fluid" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "pt-3 bw-colside ml-4 mt-4" }, [
+          _c(
+            "div",
+            { staticClass: "login-form" },
+            [
+              _c("img", { attrs: { src: "images/logo/kblogo.svg" } }),
+              _vm._v(" "),
+              _c("h5", [_vm._v(_vm._s(_vm.signheading))]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.signpara))]),
+              _vm._v(" "),
+              _vm.errors.length
+                ? _c("div", { staticClass: " mycustomalert" }, [
+                    _c(
+                      "ul",
+                      { staticClass: "mb-0" },
+                      _vm._l(_vm.errors, function(error, index) {
+                        return _c(
+                          "li",
+                          {
+                            key: index,
+                            staticClass: "toastnew",
+                            class: { active: _vm.isActive }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fas fa-exclamation-triangle"
+                            }),
+                            _vm._v(" "),
+                            _c("i", { staticClass: "far fa-thumbs-up" }),
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(error) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("transition", { attrs: { name: "slide-fade" } }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.onLogin.apply(null, arguments)
                       }
-                    },
-                    [
-                      _vm.loginbox
-                        ? _c("div", { staticClass: "bu-forlogin" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.email,
-                                  expression: "email"
-                                }
-                              ],
-                              staticClass: "form-control mb-3",
-                              attrs: { type: "email", placeholder: "Email" },
-                              domProps: { value: _vm.email },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.email = $event.target.value
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.password,
-                                  expression: "password"
-                                }
-                              ],
-                              staticClass: "form-control mb-3",
-                              attrs: {
-                                type: "password",
-                                placeholder: "******"
-                              },
-                              domProps: { value: _vm.password },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.password = $event.target.value
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-outline-dark login-btn",
-                                attrs: { type: "submit" }
-                              },
-                              [_vm._v("Login")]
-                            ),
-                            _vm._v(" "),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "btn btn-outline-dark signup-btn",
-                                on: { click: _vm.anchorforget }
-                              },
-                              [
-                                _vm._v(
-                                  "Forget\n                                    password?"
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "mt-4" }, [
-                              _c("span", { staticClass: "txt-light" }, [
-                                _vm._v("Don't have an account yet?")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass:
-                                    "btn btn-outline-dark signup-btn",
-                                  on: { click: _vm.anchorsignup }
-                                },
-                                [_vm._v("Sign Up")]
-                              )
-                            ])
-                          ])
-                        : _vm._e()
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("transition", { attrs: { name: "slide-fade" } }, [
-                  _c(
-                    "form",
-                    {
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.onRegister.apply(null, arguments)
-                        }
-                      }
-                    },
-                    [
-                      _vm.registerbox
-                        ? _c("div", { staticClass: "bu-forregister" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.username,
-                                  expression: "username"
-                                }
-                              ],
-                              staticClass: "form-control mb-3",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Username..."
-                              },
-                              domProps: { value: _vm.username },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.username = $event.target.value
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.registeremail,
-                                  expression: "registeremail"
-                                }
-                              ],
-                              staticClass: "form-control mb-3",
-                              attrs: { type: "email", placeholder: "Email..." },
-                              domProps: { value: _vm.registeremail },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.registeremail = $event.target.value
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.registerpassword,
-                                  expression: "registerpassword"
-                                }
-                              ],
-                              staticClass: "form-control mb-3",
-                              attrs: {
-                                type: "password",
-                                placeholder: "Password..."
-                              },
-                              domProps: { value: _vm.registerpassword },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.registerpassword = $event.target.value
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.passwordagain,
-                                  expression: "passwordagain"
-                                }
-                              ],
-                              staticClass: "form-control mb-3",
-                              attrs: {
-                                type: "password",
-                                placeholder: "Password Again..."
-                              },
-                              domProps: { value: _vm.passwordagain },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.passwordagain = $event.target.value
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-outline-dark login-btn",
-                                attrs: { type: "submit" }
-                              },
-                              [_vm._v("Register")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "mt-4" }, [
-                              _c("span", { staticClass: "txt-light" }, [
-                                _vm._v("Have an account?")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass:
-                                    "btn btn-outline-dark signup-btn",
-                                  on: { click: _vm.anchorsignin }
-                                },
-                                [_vm._v("Log In")]
-                              )
-                            ])
-                          ])
-                        : _vm._e()
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _vm.forforget
-                  ? _c("div", { staticClass: "bw-forforget" }, [
-                      _c(
-                        "form",
-                        {
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.sentToken.apply(null, arguments)
-                            }
-                          }
-                        },
-                        [
+                    }
+                  },
+                  [
+                    _vm.loginbox
+                      ? _c("div", { staticClass: "bu-forlogin" }, [
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.emailforget,
-                                expression: "emailforget"
+                                value: _vm.email,
+                                expression: "email"
                               }
                             ],
                             staticClass: "form-control mb-3",
                             attrs: { type: "email", placeholder: "Email" },
-                            domProps: { value: _vm.emailforget },
+                            domProps: { value: _vm.email },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.emailforget = $event.target.value
+                                _vm.email = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.password,
+                                expression: "password"
+                              }
+                            ],
+                            staticClass: "form-control mb-3",
+                            attrs: { type: "password", placeholder: "******" },
+                            domProps: { value: _vm.password },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.password = $event.target.value
                               }
                             }
                           }),
@@ -60390,9 +63946,20 @@ var render = function() {
                               staticClass: "btn btn-outline-dark login-btn",
                               attrs: { type: "submit" }
                             },
+                            [_vm._v("Login")]
+                          ),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-outline-dark signup-btn",
+                              on: { click: _vm.anchorforget }
+                            },
                             [
                               _vm._v(
-                                "Sign Token To Email\n                                Address"
+                                "Forget\n                                    password?"
                               )
                             ]
                           ),
@@ -60411,98 +63978,91 @@ var render = function() {
                               [_vm._v("Sign Up")]
                             )
                           ])
-                        ]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.forvalidate
-                  ? _c("div", { staticClass: "bw-forvalidate" }, [
-                      _c(
-                        "form",
-                        {
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.validateToken.apply(null, arguments)
-                            }
-                          }
-                        },
-                        [
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("transition", { attrs: { name: "slide-fade" } }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.onRegister.apply(null, arguments)
+                      }
+                    }
+                  },
+                  [
+                    _vm.registerbox
+                      ? _c("div", { staticClass: "bu-forregister" }, [
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.token,
-                                expression: "token"
+                                value: _vm.username,
+                                expression: "username"
                               }
                             ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", placeholder: "Token..." },
-                            domProps: { value: _vm.token },
+                            staticClass: "form-control mb-3",
+                            attrs: { type: "text", placeholder: "Username..." },
+                            domProps: { value: _vm.username },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.token = $event.target.value
+                                _vm.username = $event.target.value
                               }
                             }
                           }),
                           _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-outline-dark login-btn mt-3",
-                              attrs: { type: "submit" }
-                            },
-                            [
-                              _vm._v(
-                                "Validate\n                                Token"
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.forchangepassword
-                  ? _c("div", { staticClass: "bw-forchangepassword" }, [
-                      _c(
-                        "form",
-                        {
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.changePassword.apply(null, arguments)
-                            }
-                          }
-                        },
-                        [
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.newpassword,
-                                expression: "newpassword"
+                                value: _vm.registeremail,
+                                expression: "registeremail"
                               }
                             ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "password",
-                              placeholder: "New Password"
-                            },
-                            domProps: { value: _vm.newpassword },
+                            staticClass: "form-control mb-3",
+                            attrs: { type: "email", placeholder: "Email..." },
+                            domProps: { value: _vm.registeremail },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.newpassword = $event.target.value
+                                _vm.registeremail = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.registerpassword,
+                                expression: "registerpassword"
+                              }
+                            ],
+                            staticClass: "form-control mb-3",
+                            attrs: {
+                              type: "password",
+                              placeholder: "Password..."
+                            },
+                            domProps: { value: _vm.registerpassword },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.registerpassword = $event.target.value
                               }
                             }
                           }),
@@ -60516,10 +64076,10 @@ var render = function() {
                                 expression: "passwordagain"
                               }
                             ],
-                            staticClass: "form-control mt-3 mb-3",
+                            staticClass: "form-control mb-3",
                             attrs: {
                               type: "password",
-                              placeholder: "Password Again"
+                              placeholder: "Password Again..."
                             },
                             domProps: { value: _vm.passwordagain },
                             on: {
@@ -60538,173 +64098,329 @@ var render = function() {
                               staticClass: "btn btn-outline-dark login-btn",
                               attrs: { type: "submit" }
                             },
-                            [_vm._v("Submit")]
-                          )
-                        ]
-                      )
-                    ])
-                  : _vm._e()
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "bw-anthoersignin" }, [
-              _c("div", { staticClass: "google-login__container" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "eds-btn",
-                    attrs: { href: "/auth/redirect/google" }
-                  },
-                  [
+                            [_vm._v("Register")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "mt-4" }, [
+                            _c("span", { staticClass: "txt-light" }, [
+                              _vm._v("Have an account?")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-outline-dark signup-btn",
+                                on: { click: _vm.anchorsignin }
+                              },
+                              [_vm._v("Log In")]
+                            )
+                          ])
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm.forforget
+                ? _c("div", { staticClass: "bw-forforget" }, [
                     _c(
-                      "i",
+                      "form",
                       {
-                        staticClass: "eds-vector-image ",
-                        attrs: {
-                          "data-spec": "icon",
-                          "data-testid": "icon",
-                          "aria-hidden": "true"
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.sentToken.apply(null, arguments)
+                          }
                         }
                       },
                       [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.emailforget,
+                              expression: "emailforget"
+                            }
+                          ],
+                          staticClass: "form-control mb-3",
+                          attrs: { type: "email", placeholder: "Email" },
+                          domProps: { value: _vm.emailforget },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.emailforget = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
                         _c(
-                          "svg",
+                          "button",
                           {
-                            attrs: { width: "24", height: "24", fill: "none" }
+                            staticClass: "btn btn-outline-dark login-btn",
+                            attrs: { type: "submit" }
                           },
                           [
-                            _c("g", [
-                              _c("path", {
-                                attrs: {
-                                  d:
-                                    "M21.99 12.108c0-.84-.069-1.452-.216-2.088H12.2v3.79h5.62c-.113.943-.725 2.362-2.084 3.315l-.02.127 3.028 2.349.21.021c1.926-1.782 3.037-4.404 3.037-7.514",
-                                  fill: "#4285F4"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("path", {
-                                attrs: {
-                                  d:
-                                    "M12.2 22.096c2.753 0 5.064-.908 6.753-2.474l-3.218-2.497c-.862.602-2.017 1.021-3.536 1.021-2.697 0-4.985-1.781-5.801-4.244l-.12.01-3.148 2.44-.041.115c1.677 3.337 5.122 5.63 9.11 5.63z",
-                                  fill: "#34A853"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("path", {
-                                attrs: {
-                                  d:
-                                    "M6.397 13.902a6.298 6.298 0 01-.34-2.02c0-.704.125-1.385.33-2.02l-.007-.136-3.187-2.48-.104.05A10.238 10.238 0 002 11.881c0 1.646.397 3.201 1.088 4.586l3.308-2.565",
-                                  fill: "#FBBC05"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("path", {
-                                attrs: {
-                                  d:
-                                    "M12.2 5.616c1.914 0 3.206.829 3.942 1.521l2.879-2.814c-1.768-1.646-4.068-2.656-6.822-2.656-3.988 0-7.433 2.292-9.11 5.63L6.386 9.86c.828-2.463 3.116-4.245 5.813-4.245",
-                                  fill: "#EB4335"
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("defs", [
-                              _c(
-                                "clipPath",
-                                { attrs: { id: "logo-google_svg__clip0" } },
-                                [
-                                  _c("path", {
-                                    attrs: {
-                                      fill: "#fff",
-                                      transform: "translate(2 1.667)",
-                                      d: "M0 0h20v20.5H0z"
-                                    }
-                                  })
-                                ]
-                              )
-                            ])
+                            _vm._v(
+                              "Sign Token To Email\n                                Address"
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mt-4" }, [
+                          _c("span", { staticClass: "txt-light" }, [
+                            _vm._v("Don't have an account yet?")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-outline-dark signup-btn",
+                              on: { click: _vm.anchorsignup }
+                            },
+                            [_vm._v("Sign Up")]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.forvalidate
+                ? _c("div", { staticClass: "bw-forvalidate" }, [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.validateToken.apply(null, arguments)
+                          }
+                        }
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.token,
+                              expression: "token"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Token..." },
+                          domProps: { value: _vm.token },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.token = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-dark login-btn mt-3",
+                            attrs: { type: "submit" }
+                          },
+                          [
+                            _vm._v(
+                              "Validate\n                                Token"
+                            )
                           ]
                         )
                       ]
-                    ),
-                    _vm._v(
-                      " " +
-                        _vm._s(_vm.anothersigngoogle) +
-                        "\n                            "
                     )
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "bw-anthoersignin" }, [
-              _c("div", { staticClass: "facebook-button-container" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "eds-btn",
-                    attrs: { href: "/auth/redirect/facebook" }
-                  },
-                  [
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.forchangepassword
+                ? _c("div", { staticClass: "bw-forchangepassword" }, [
                     _c(
-                      "i",
+                      "form",
                       {
-                        staticClass: "eds-vector-image ",
-                        attrs: {
-                          "data-spec": "icon",
-                          "data-testid": "icon",
-                          "aria-hidden": "true"
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.changePassword.apply(null, arguments)
+                          }
                         }
                       },
                       [
-                        _c(
-                          "svg",
-                          {
-                            attrs: { width: "24", height: "24", fill: "none" }
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.newpassword,
+                              expression: "newpassword"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "New Password"
                           },
-                          [
+                          domProps: { value: _vm.newpassword },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.newpassword = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.passwordagain,
+                              expression: "passwordagain"
+                            }
+                          ],
+                          staticClass: "form-control mt-3 mb-3",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Password Again"
+                          },
+                          domProps: { value: _vm.passwordagain },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.passwordagain = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-dark login-btn",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("Submit")]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "bw-anthoersignin" }, [
+            _c("div", { staticClass: "google-login__container" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "eds-btn",
+                  attrs: { href: "/auth/redirect/google" }
+                },
+                [
+                  _c(
+                    "i",
+                    {
+                      staticClass: "eds-vector-image ",
+                      attrs: {
+                        "data-spec": "icon",
+                        "data-testid": "icon",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c(
+                        "svg",
+                        { attrs: { width: "24", height: "24", fill: "none" } },
+                        [
+                          _c("g", [
                             _c("path", {
                               attrs: {
-                                "fill-rule": "evenodd",
-                                "clip-rule": "evenodd",
                                 d:
-                                  "M21.999 12c0-5.524-4.477-10-10-10s-10 4.476-10 10c0 4.99 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.795c0-2.506 1.493-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989c4.78-.75 8.437-4.887 8.437-9.879z",
-                                fill: "#1877F2"
+                                  "M21.99 12.108c0-.84-.069-1.452-.216-2.088H12.2v3.79h5.62c-.113.943-.725 2.362-2.084 3.315l-.02.127 3.028 2.349.21.021c1.926-1.782 3.037-4.404 3.037-7.514",
+                                fill: "#4285F4"
                               }
                             }),
                             _vm._v(" "),
                             _c("path", {
                               attrs: {
-                                "fill-rule": "evenodd",
-                                "clip-rule": "evenodd",
                                 d:
-                                  "M15.892 14.89l.443-2.89h-2.774v-1.877c0-.79.388-1.561 1.63-1.561h1.261V6.1s-1.144-.195-2.238-.195c-2.284 0-3.777 1.384-3.777 3.89V12h-2.54v2.89h2.54v6.989a10.073 10.073 0 003.125 0V14.89h2.33z",
-                                fill: "#fff"
+                                  "M12.2 22.096c2.753 0 5.064-.908 6.753-2.474l-3.218-2.497c-.862.602-2.017 1.021-3.536 1.021-2.697 0-4.985-1.781-5.801-4.244l-.12.01-3.148 2.44-.041.115c1.677 3.337 5.122 5.63 9.11 5.63z",
+                                fill: "#34A853"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M6.397 13.902a6.298 6.298 0 01-.34-2.02c0-.704.125-1.385.33-2.02l-.007-.136-3.187-2.48-.104.05A10.238 10.238 0 002 11.881c0 1.646.397 3.201 1.088 4.586l3.308-2.565",
+                                fill: "#FBBC05"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M12.2 5.616c1.914 0 3.206.829 3.942 1.521l2.879-2.814c-1.768-1.646-4.068-2.656-6.822-2.656-3.988 0-7.433 2.292-9.11 5.63L6.386 9.86c.828-2.463 3.116-4.245 5.813-4.245",
+                                fill: "#EB4335"
                               }
                             })
-                          ]
-                        )
-                      ]
-                    ),
-                    _vm._v(
-                      "\n                               " +
-                        _vm._s(_vm.anothersignfacebook) +
-                        "\n                        "
-                    )
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "bw-anthoersignin" }, [
-              _c("div", { staticClass: "apple-login__container" }, [
-                _c("a", { staticClass: "eds-btn", attrs: { href: "" } }, [
+                          ]),
+                          _vm._v(" "),
+                          _c("defs", [
+                            _c(
+                              "clipPath",
+                              { attrs: { id: "logo-google_svg__clip0" } },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    fill: "#fff",
+                                    transform: "translate(2 1.667)",
+                                    d: "M0 0h20v20.5H0z"
+                                  }
+                                })
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.anothersigngoogle) +
+                      "\n                            "
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "bw-anthoersignin" }, [
+            _c("div", { staticClass: "facebook-button-container" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "eds-btn",
+                  attrs: { href: "/auth/redirect/facebook" }
+                },
+                [
                   _c(
                     "i",
                     {
-                      staticClass: "eds-vector-image",
+                      staticClass: "eds-vector-image ",
                       attrs: {
                         "data-spec": "icon",
                         "data-testid": "icon",
@@ -60721,8 +64437,18 @@ var render = function() {
                               "fill-rule": "evenodd",
                               "clip-rule": "evenodd",
                               d:
-                                "M16.012 2c-.997.046-2.222.679-2.947 1.516-.658.747-1.224 1.946-1.066 3.099 1.112.09 2.267-.565 2.97-1.402.704-.86 1.18-2.036 1.043-3.213zm-.022 4.842c-1.564-.16-3.06.927-3.854.927s-2.019-.905-3.311-.882c-1.7.045-3.265.995-4.15 2.51-1.746 3.077-.43 7.602 1.293 10.09.838 1.199 1.859 2.579 3.174 2.51 1.27-.044 1.746-.813 3.288-.813 1.52 0 1.973.814 3.31.791 1.36-.022 2.223-1.244 3.062-2.465.975-1.403 1.36-1.923 1.383-1.991-.022-.023-2.653-1.878-2.698-4.887-.023-2.534 2.063-3.755 2.177-3.823-1.18-1.718-3.016-1.945-3.674-1.967z",
-                              fill: "#4B4D63"
+                                "M21.999 12c0-5.524-4.477-10-10-10s-10 4.476-10 10c0 4.99 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.795c0-2.506 1.493-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989c4.78-.75 8.437-4.887 8.437-9.879z",
+                              fill: "#1877F2"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("path", {
+                            attrs: {
+                              "fill-rule": "evenodd",
+                              "clip-rule": "evenodd",
+                              d:
+                                "M15.892 14.89l.443-2.89h-2.774v-1.877c0-.79.388-1.561 1.63-1.561h1.261V6.1s-1.144-.195-2.238-.195c-2.284 0-3.777 1.384-3.777 3.89V12h-2.54v2.89h2.54v6.989a10.073 10.073 0 003.125 0V14.89h2.33z",
+                              fill: "#fff"
                             }
                           })
                         ]
@@ -60730,20 +64456,60 @@ var render = function() {
                     ]
                   ),
                   _vm._v(
-                    "\n                            Sign in with Apple\n                        "
+                    "\n                               " +
+                      _vm._s(_vm.anothersignfacebook) +
+                      "\n                        "
                   )
-                ])
-              ])
+                ]
+              )
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "bw-container__bg", style: _vm.cssVars })
+          _c("div", { staticClass: "bw-anthoersignin" }, [
+            _c("div", { staticClass: "apple-login__container" }, [
+              _c("a", { staticClass: "eds-btn", attrs: { href: "" } }, [
+                _c(
+                  "i",
+                  {
+                    staticClass: "eds-vector-image",
+                    attrs: {
+                      "data-spec": "icon",
+                      "data-testid": "icon",
+                      "aria-hidden": "true"
+                    }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      { attrs: { width: "24", height: "24", fill: "none" } },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            "clip-rule": "evenodd",
+                            d:
+                              "M16.012 2c-.997.046-2.222.679-2.947 1.516-.658.747-1.224 1.946-1.066 3.099 1.112.09 2.267-.565 2.97-1.402.704-.86 1.18-2.036 1.043-3.213zm-.022 4.842c-1.564-.16-3.06.927-3.854.927s-2.019-.905-3.311-.882c-1.7.045-3.265.995-4.15 2.51-1.746 3.077-.43 7.602 1.293 10.09.838 1.199 1.859 2.579 3.174 2.51 1.27-.044 1.746-.813 3.288-.813 1.52 0 1.973.814 3.31.791 1.36-.022 2.223-1.244 3.062-2.465.975-1.403 1.36-1.923 1.383-1.991-.022-.023-2.653-1.878-2.698-4.887-.023-2.534 2.063-3.755 2.177-3.823-1.18-1.718-3.016-1.945-3.674-1.967z",
+                            fill: "#4B4D63"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(
+                  "\n                            Sign in with Apple\n                        "
+                )
+              ])
+            ])
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "bw-container__bg", style: _vm.cssVars })
         ])
       ])
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -60836,6 +64602,190 @@ var render = function() {
     [
       _vm.fullsidebar
         ? _c(
+            "nav",
+            {
+              staticClass:
+                "header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top",
+              class: { navshadow: _vm.scrollPosition > 100 }
+            },
+            [
+              _c("div", { staticClass: "navbar-wrapper" }, [
+                _c("div", { staticClass: "navbar-container content" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "navbar-collapse",
+                      attrs: { id: "navbar-mobile" }
+                    },
+                    [
+                      _c("div", {
+                        staticClass:
+                          "mr-auto float-left bookmark-wrapper d-flex align-items-center"
+                      }),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "nav navbar-nav float-right" }, [
+                        _c("li", { staticClass: "nav-item nav-search" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link nav-link-search",
+                              on: { click: _vm.showsearch }
+                            },
+                            [_c("i", { staticClass: "fas fa-search" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "search-input",
+                              class: { open: _vm.issearch }
+                            },
+                            [
+                              _vm._m(0),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "input",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Explore Kiabuilder...",
+                                  tabindex: "-1",
+                                  "data-search": "template-search"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "search-input-close",
+                                  on: { click: _vm.showsearch }
+                                },
+                                [_c("i", { staticClass: "fas fa-times" })]
+                              ),
+                              _vm._v(" "),
+                              _c("ul", { staticClass: "search-list" })
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            staticClass:
+                              "dropdown dropdown-notification nav-item"
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "bw-avatar-content bw-change-color-badge"
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "bw-avatar",
+                                    on: { click: _vm.shownotification }
+                                  },
+                                  [
+                                    _c("i", { staticClass: "far fa-bell" }),
+                                    _vm._v(" "),
+                                    _c("span", { staticClass: "pulse-ring" })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "bw-avatar__badge isSlot top-right"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                               28\n                           "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { staticClass: "dropdown dropdown-user nav-item" },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "dropdown-toggle nav-link dropdown-user-link",
+                                attrs: {
+                                  href: "javascript:void(0);",
+                                  "data-toggle": "dropdown",
+                                  "aria-expanded": "false"
+                                }
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "user-nav d-sm-flex d-none" },
+                                  [
+                                    _c("span", { staticClass: "user-name" }, [
+                                      _vm._v(_vm._s(_vm.bwname))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      { staticClass: "user-status text-muted" },
+                                      [_vm._v("Available")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("span", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "bw-avatar-content bw-change-color-badge"
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "bw-avatar",
+                                          on: {
+                                            click: _vm.showoffcanvasoverlay
+                                          }
+                                        },
+                                        [
+                                          _c("img", {
+                                            attrs: {
+                                              src: "images/profile/avatar.png",
+                                              alt: ""
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.fullsidebar
+        ? _c(
             "div",
             {
               staticClass: "bw-sidebar-content reduce open absolute",
@@ -60860,7 +64810,7 @@ var render = function() {
                 "div",
                 { staticClass: "bw-sidebar" },
                 [
-                  _c("router-link", { attrs: { to: { name: "dashboard" } } }, [
+                  _c("router-link", { attrs: { to: { name: "home" } } }, [
                     _c(
                       "button",
                       {
@@ -60882,7 +64832,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "bw-sidebar__item__text" }, [
                           _vm._v(
-                            "\n                        Dashboard\n                    "
+                            "\n                           Dashboard\n                       "
                           )
                         ])
                       ]
@@ -60911,7 +64861,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "vs-sidebar__item__text" }, [
                           _vm._v(
-                            "\n                        Funnels\n                    "
+                            "\n                           Funnels\n                       "
                           )
                         ])
                       ]
@@ -60932,12 +64882,12 @@ var render = function() {
                       },
                       [
                         _c("div", { staticClass: "bw-sidebar__item__icon" }, [
-                          _c("i", { staticClass: "fas fa-file-alt" })
+                          _c("i", { staticClass: "fas fa-desktop" })
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "vs-sidebar__item__text" }, [
                           _vm._v(
-                            "\n                        Pages                  \n                    "
+                            "\n                           Website                  \n                       "
                           )
                         ])
                       ]
@@ -60963,7 +64913,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "vs-sidebar__item__text" }, [
                           _vm._v(
-                            "\n                        Strategies                                     \n                    "
+                            "\n                           Strategies                                     \n                       "
                           )
                         ])
                       ]
@@ -60989,7 +64939,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "bw-sidebar__item__text" }, [
                           _vm._v(
-                            "\n                        Membership\n                    "
+                            "\n                           Membership\n                       "
                           )
                         ])
                       ]
@@ -61015,7 +64965,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "bw-sidebar__item__text" }, [
                           _vm._v(
-                            "\n                        Analytics\n                    "
+                            "\n                           Analytics\n                       "
                           )
                         ])
                       ]
@@ -61034,11 +64984,11 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(0),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c("div", { staticClass: "bw-sidebar__item__text" }, [
                         _vm._v(
-                          "\n                    Contacts\n                "
+                          "\n                       Contacts\n                   "
                         )
                       ])
                     ]
@@ -61056,11 +65006,11 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(1),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "bw-sidebar__item__text" }, [
                         _vm._v(
-                          "\n                    Affilates\n                "
+                          "\n                       Affilates\n                   "
                         )
                       ])
                     ]
@@ -61087,19 +65037,19 @@ var render = function() {
                             }
                           },
                           [
-                            _vm._m(2),
+                            _vm._m(3),
                             _vm._v(" "),
                             _c(
                               "div",
                               { staticClass: "bw-sidebar__item__text" },
                               [
                                 _vm._v(
-                                  "\n                           Integrations\n                        "
+                                  "\n                           Integrations\n                           "
                                 )
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(3)
+                            _vm._m(4)
                           ]
                         )
                       ]),
@@ -61107,7 +65057,8 @@ var render = function() {
                       _c(
                         "div",
                         {
-                          staticClass: "bw-sidebar__group__content v-enter-to",
+                          staticClass:
+                            "bw-sidebar__group__content v-enter-to kb-padinglft",
                           staticStyle: { height: "0px" }
                         },
                         [
@@ -61115,36 +65066,10 @@ var render = function() {
                             "button",
                             {
                               staticClass: "bw-sidebar__item active hasIcon",
-                              class: { active: _vm.isActive("clickfunnels") },
+                              class: { active: _vm.isActive("activecampaign") },
                               on: {
                                 click: function($event) {
-                                  return _vm.setActive("clickfunnels")
-                                }
-                              }
-                            },
-                            [
-                              _vm._m(4),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "bw-sidebar__item__text" },
-                                [
-                                  _vm._v(
-                                    "\n                            Clickfunnel\n                        "
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "bw-sidebar__item hasIcon",
-                              class: { active: _vm.isActive("kajabi") },
-                              on: {
-                                click: function($event) {
-                                  return _vm.setActive("kajabi")
+                                  return _vm.setActive("activecampaign")
                                 }
                               }
                             },
@@ -61156,7 +65081,7 @@ var render = function() {
                                 { staticClass: "bw-sidebar__item__text" },
                                 [
                                   _vm._v(
-                                    "\n                            Kajabi\n                        "
+                                    "\n                               Active Campaign\n                           "
                                   )
                                 ]
                               )
@@ -61167,10 +65092,10 @@ var render = function() {
                             "button",
                             {
                               staticClass: "bw-sidebar__item hasIcon",
-                              class: { active: _vm.isActive("wordpress") },
+                              class: { active: _vm.isActive("mailchimp") },
                               on: {
                                 click: function($event) {
-                                  return _vm.setActive("wordpress")
+                                  return _vm.setActive("mailchimp")
                                 }
                               }
                             },
@@ -61182,7 +65107,137 @@ var render = function() {
                                 { staticClass: "bw-sidebar__item__text" },
                                 [
                                   _vm._v(
-                                    "\n                            Wordpress\n                        "
+                                    "\n                               Mailchimp\n                           "
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "bw-sidebar__item hasIcon",
+                              class: { active: _vm.isActive("caltweet") },
+                              on: {
+                                click: function($event) {
+                                  return _vm.setActive("caltweet")
+                                }
+                              }
+                            },
+                            [
+                              _vm._m(7),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "bw-sidebar__item__text" },
+                                [
+                                  _vm._v(
+                                    "\n                               Caltweet\n                           "
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "bw-sidebar__item hasIcon",
+                              class: { active: _vm.isActive("calendly") },
+                              on: {
+                                click: function($event) {
+                                  return _vm.setActive("calendly")
+                                }
+                              }
+                            },
+                            [
+                              _vm._m(8),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "bw-sidebar__item__text" },
+                                [
+                                  _vm._v(
+                                    "\n                               Calendly\n                           "
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "bw-sidebar__item hasIcon",
+                              class: { active: _vm.isActive("zoho") },
+                              on: {
+                                click: function($event) {
+                                  return _vm.setActive("zoho")
+                                }
+                              }
+                            },
+                            [
+                              _vm._m(9),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "bw-sidebar__item__text" },
+                                [
+                                  _vm._v(
+                                    "\n                               Zoho\n                           "
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "bw-sidebar__item hasIcon",
+                              class: { active: _vm.isActive("hubspot") },
+                              on: {
+                                click: function($event) {
+                                  return _vm.setActive("hubspot")
+                                }
+                              }
+                            },
+                            [
+                              _vm._m(10),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "bw-sidebar__item__text" },
+                                [
+                                  _vm._v(
+                                    "\n                               Hubspot\n                           "
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "bw-sidebar__item hasIcon",
+                              class: { active: _vm.isActive("crmmore") },
+                              on: {
+                                click: function($event) {
+                                  return _vm.setActive("crmmore")
+                                }
+                              }
+                            },
+                            [
+                              _vm._m(11),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "bw-sidebar__item__text" },
+                                [
+                                  _vm._v(
+                                    "\n                               More\n                           "
                                   )
                                 ]
                               )
@@ -61214,19 +65269,19 @@ var render = function() {
                             }
                           },
                           [
-                            _vm._m(7),
+                            _vm._m(12),
                             _vm._v(" "),
                             _c(
                               "div",
                               { staticClass: "bw-sidebar__item__text" },
                               [
                                 _vm._v(
-                                  "\n                           Help\n                        "
+                                  "\n                           Help\n                           "
                                 )
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(8)
+                            _vm._m(13)
                           ]
                         )
                       ]),
@@ -61234,7 +65289,8 @@ var render = function() {
                       _c(
                         "div",
                         {
-                          staticClass: "bw-sidebar__group__content v-enter-to",
+                          staticClass:
+                            "bw-sidebar__group__content v-enter-to kb-padinglft",
                           staticStyle: { height: "0px" }
                         },
                         [
@@ -61250,14 +65306,14 @@ var render = function() {
                               }
                             },
                             [
-                              _vm._m(9),
+                              _vm._m(14),
                               _vm._v(" "),
                               _c(
                                 "div",
                                 { staticClass: "bw-sidebar__item__text" },
                                 [
                                   _vm._v(
-                                    "\n                            Get Help\n                        "
+                                    "\n                               Get Help\n                           "
                                   )
                                 ]
                               )
@@ -61278,14 +65334,14 @@ var render = function() {
                               }
                             },
                             [
-                              _vm._m(10),
+                              _vm._m(15),
                               _vm._v(" "),
                               _c(
                                 "div",
                                 { staticClass: "bw-sidebar__item__text" },
                                 [
                                   _vm._v(
-                                    "\n                            My Support Request\n                        "
+                                    "\n                               My Support Request\n                           "
                                   )
                                 ]
                               )
@@ -61304,14 +65360,14 @@ var render = function() {
                               }
                             },
                             [
-                              _vm._m(11),
+                              _vm._m(16),
                               _vm._v(" "),
                               _c(
                                 "div",
                                 { staticClass: "bw-sidebar__item__text" },
                                 [
                                   _vm._v(
-                                    "\n                            What's New\n                        "
+                                    "\n                               What's New\n                           "
                                   )
                                 ]
                               )
@@ -61343,19 +65399,19 @@ var render = function() {
                             }
                           },
                           [
-                            _vm._m(12),
+                            _vm._m(17),
                             _vm._v(" "),
                             _c(
                               "div",
                               { staticClass: "bw-sidebar__item__text" },
                               [
                                 _vm._v(
-                                  "\n                           Documentation\n                        "
+                                  "\n                           Documentation\n                           "
                                 )
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(13)
+                            _vm._m(18)
                           ]
                         )
                       ]),
@@ -61363,7 +65419,8 @@ var render = function() {
                       _c(
                         "div",
                         {
-                          staticClass: "bw-sidebar__group__content v-enter-to",
+                          staticClass:
+                            "bw-sidebar__group__content v-enter-to kb-padinglft",
                           staticStyle: { height: "0px" }
                         },
                         [
@@ -61379,14 +65436,14 @@ var render = function() {
                               }
                             },
                             [
-                              _vm._m(14),
+                              _vm._m(19),
                               _vm._v(" "),
                               _c(
                                 "div",
                                 { staticClass: "bw-sidebar__item__text" },
                                 [
                                   _vm._v(
-                                    "\n                             Getting Started\n                        "
+                                    "\n                               Getting Started\n                           "
                                   )
                                 ]
                               )
@@ -61407,14 +65464,14 @@ var render = function() {
                               }
                             },
                             [
-                              _vm._m(15),
+                              _vm._m(20),
                               _vm._v(" "),
                               _c(
                                 "div",
                                 { staticClass: "bw-sidebar__item__text" },
                                 [
                                   _vm._v(
-                                    "\n                             My Account Settings\n                        "
+                                    "\n                               My Account Settings\n                           "
                                   )
                                 ]
                               )
@@ -61433,14 +65490,14 @@ var render = function() {
                               }
                             },
                             [
-                              _vm._m(16),
+                              _vm._m(21),
                               _vm._v(" "),
                               _c(
                                 "div",
                                 { staticClass: "bw-sidebar__item__text" },
                                 [
                                   _vm._v(
-                                    "\n                             Follow Up Funnels\n                        "
+                                    "\n                               Follow Up Funnels\n                           "
                                   )
                                 ]
                               )
@@ -61463,33 +65520,11 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(17),
+                      _vm._m(22),
                       _vm._v(" "),
                       _c("div", { staticClass: "bw-sidebar__item__text" }, [
                         _vm._v(
-                          "\n                    Q&As, Advice and Troubleshooting\n                "
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "bw-sidebar__item hasIcon",
-                      class: { active: _vm.isActive("affliateprogram") },
-                      on: {
-                        click: function($event) {
-                          return _vm.setActive("affliateprogram")
-                        }
-                      }
-                    },
-                    [
-                      _vm._m(18),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "bw-sidebar__item__text" }, [
-                        _vm._v(
-                          "\n                    Affiliate Program\n                "
+                          "\n                       Q&As, Advice and Troubleshooting\n                   "
                         )
                       ])
                     ]
@@ -61507,70 +65542,18 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(19),
+                      _vm._m(23),
                       _vm._v(" "),
                       _c("div", { staticClass: "bw-sidebar__item__text" }, [
                         _vm._v(
-                          "\n                   Training & Resources\n                "
+                          "\n                   Training & Resources\n                   "
                         )
                       ])
                     ]
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "bw-sidebar__footer" }, [
-                _c("div", { staticClass: "bw-row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "bw-avatar-content bw-change-color-badge" },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "bw-avatar",
-                          on: { click: _vm.showoffcanvasoverlay }
-                        },
-                        [
-                          _c("img", {
-                            attrs: { src: "images/profile/avatar.png", alt: "" }
-                          })
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "bw-avatar-content bw-change-color-badge" },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "bw-avatar",
-                          on: { click: _vm.shownotification }
-                        },
-                        [
-                          _c("i", { staticClass: "far fa-bell" }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "pulse-ring" })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "bw-avatar__badge isSlot top-right" },
-                        [
-                          _vm._v(
-                            "\n                        28\n                    "
-                          )
-                        ]
-                      )
-                    ]
-                  )
-                ])
-              ])
+              )
             ]
           )
         : _vm._e(),
@@ -61584,7 +65567,7 @@ var render = function() {
             },
             [
               _c("form", [
-                _vm._m(20),
+                _vm._m(24),
                 _vm._v(" "),
                 _c("div", { staticClass: "tab-content" }, [
                   _c(
@@ -61694,7 +65677,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _vm._m(21)
+                              _vm._m(25)
                             ]
                           ),
                           _vm._v(" "),
@@ -61782,7 +65765,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _vm._m(22)
+                              _vm._m(26)
                             ]
                           ),
                           _vm._v(" "),
@@ -61866,7 +65849,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _vm._m(23)
+                              _vm._m(27)
                             ]
                           ),
                           _vm._v(" "),
@@ -61976,7 +65959,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _vm._m(24)
+                              _vm._m(28)
                             ]
                           ),
                           _vm._v(" "),
@@ -62070,7 +66053,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _vm._m(25)
+                              _vm._m(29)
                             ]
                           ),
                           _vm._v(" "),
@@ -62155,7 +66138,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _vm._m(26)
+                              _vm._m(30)
                             ]
                           ),
                           _vm._v(" "),
@@ -62242,19 +66225,19 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _vm._m(27)
+                              _vm._m(31)
                             ]
                           )
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._m(28)
+                      _vm._m(32)
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(29),
+                  _vm._m(33),
                   _vm._v(" "),
-                  _vm._m(30)
+                  _vm._m(34)
                 ])
               ])
             ]
@@ -62263,7 +66246,7 @@ var render = function() {
       _vm._v(" "),
       _c("transition", { attrs: { name: "slide" } }, [
         _vm.offcanvasoverlay
-          ? _c("div", { staticClass: "bw-userdetails " }, [
+          ? _c("div", { staticClass: "bw-userdetails" }, [
               _c(
                 "div",
                 {
@@ -62280,7 +66263,7 @@ var render = function() {
                     },
                     [
                       _c("h3", { staticClass: "font-weight-bold m-0" }, [
-                        _vm._v("User Profile \n\t\t\t\t"),
+                        _vm._v("User Profile \n                       "),
                         _c(
                           "small",
                           { staticClass: "text-muted font-size-sm ml-2" },
@@ -62559,7 +66542,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("div", { staticClass: "text-muted" }, [
                                     _vm._v(
-                                      "Account settings and more \n                                "
+                                      "Account settings and more \n                                       "
                                     )
                                   ])
                                 ])
@@ -63393,6 +67376,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "search-input-icon" }, [
+      _c("i", { staticClass: "fas fa-search" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "bw-sidebar__item__icon" }, [
       _c("i", { staticClass: "far fa-id-badge" })
     ])
@@ -63426,7 +67417,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "bw-sidebar__item__icon" }, [
-      _c("i", { staticClass: "fas fa-external-link-square-alt" })
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: { src: "/images/sidebaricons/activecampaign.svg" }
+      })
     ])
   },
   function() {
@@ -63434,7 +67428,54 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "bw-sidebar__item__icon" }, [
-      _c("i", { staticClass: "fas fa-external-link-square-alt" })
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: { src: "/images/sidebaricons/mailchimp.svg" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bw-sidebar__item__icon" }, [
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: { src: "/images/sidebaricons/caltweet.svg" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bw-sidebar__item__icon" }, [
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: { src: "/images/sidebaricons/calendly.svg" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bw-sidebar__item__icon" }, [
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: { src: "/images/sidebaricons/zoho.svg" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bw-sidebar__item__icon" }, [
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: { src: "/images/sidebaricons/hubspot.svg" }
+      })
     ])
   },
   function() {
@@ -63531,14 +67572,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "bw-sidebar__item__icon" }, [
       _c("i", { staticClass: "fas fa-chalkboard-teacher" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bw-sidebar__item__icon" }, [
-      _c("i", { staticClass: "fas fa-funnel-dollar" })
     ])
   },
   function() {
@@ -64069,7 +68102,7 @@ var staticRenderFns = [
             staticClass: "d-flex flex-center text-center text-muted min-h-200px"
           },
           [
-            _vm._v("All caught up! \n                    "),
+            _vm._v("All caught up! \n                       "),
             _c("br"),
             _vm._v("No new notifications.")
           ]
@@ -80097,11 +84130,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/LoginComponent.vue */ "./resources/js/components/LoginComponent.vue");
 /* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
 /* harmony import */ var _components_FunnelComponent_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/FunnelComponent.vue */ "./resources/js/components/FunnelComponent.vue");
-/* harmony import */ var _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/MembershipComponent.vue */ "./resources/js/components/MembershipComponent.vue");
-/* harmony import */ var _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/AnalyticsComponent.vue */ "./resources/js/components/AnalyticsComponent.vue");
-/* harmony import */ var _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/EdituserComponent.vue */ "./resources/js/components/EdituserComponent.vue");
-/* harmony import */ var _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/PagesComponent.vue */ "./resources/js/components/PagesComponent.vue");
-/* harmony import */ var _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/StrategiesComponent.vue */ "./resources/js/components/StrategiesComponent.vue");
+/* harmony import */ var _components_BuildfunnelComponent_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/BuildfunnelComponent.vue */ "./resources/js/components/BuildfunnelComponent.vue");
+/* harmony import */ var _components_CreatefunnelComponent_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/CreatefunnelComponent.vue */ "./resources/js/components/CreatefunnelComponent.vue");
+/* harmony import */ var _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/MembershipComponent.vue */ "./resources/js/components/MembershipComponent.vue");
+/* harmony import */ var _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/AnalyticsComponent.vue */ "./resources/js/components/AnalyticsComponent.vue");
+/* harmony import */ var _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/EdituserComponent.vue */ "./resources/js/components/EdituserComponent.vue");
+/* harmony import */ var _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/PagesComponent.vue */ "./resources/js/components/PagesComponent.vue");
+/* harmony import */ var _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/StrategiesComponent.vue */ "./resources/js/components/StrategiesComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -80169,6 +84204,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('sidebar-component', __webp
 
 
 
+
+
 var routes = [{
   path: '/login',
   name: 'login',
@@ -80182,25 +84219,33 @@ var routes = [{
   name: 'funnel',
   component: _components_FunnelComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }, {
+  path: '/build-funnel',
+  name: 'buildfunnel',
+  component: _components_BuildfunnelComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+}, {
+  path: '/create-funnel',
+  name: 'createfunnel',
+  component: _components_CreatefunnelComponent_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+}, {
   path: '/pages',
   name: 'pages',
-  component: _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+  component: _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
 }, {
   path: '/strategies',
   name: 'strategies',
-  component: _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
+  component: _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
 }, {
   path: '/membership',
   name: 'membership',
-  component: _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+  component: _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }, {
   path: '/analytics',
   name: 'analytics',
-  component: _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+  component: _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
 }, {
   path: '/edit-user',
   name: 'edituser',
-  component: _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
+  component: _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }, {
   path: '/home',
   name: 'home',
@@ -80361,6 +84406,180 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/BuildfunnelComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/BuildfunnelComponent.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BuildfunnelComponent_vue_vue_type_template_id_f98ee3b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BuildfunnelComponent.vue?vue&type=template&id=f98ee3b8&scoped=true& */ "./resources/js/components/BuildfunnelComponent.vue?vue&type=template&id=f98ee3b8&scoped=true&");
+/* harmony import */ var _BuildfunnelComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BuildfunnelComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/BuildfunnelComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _BuildfunnelComponent_vue_vue_type_style_index_0_id_f98ee3b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css& */ "./resources/js/components/BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _BuildfunnelComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BuildfunnelComponent_vue_vue_type_template_id_f98ee3b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BuildfunnelComponent_vue_vue_type_template_id_f98ee3b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "f98ee3b8",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/BuildfunnelComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/BuildfunnelComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/BuildfunnelComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BuildfunnelComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./BuildfunnelComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BuildfunnelComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BuildfunnelComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BuildfunnelComponent_vue_vue_type_style_index_0_id_f98ee3b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BuildfunnelComponent.vue?vue&type=style&index=0&id=f98ee3b8&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BuildfunnelComponent_vue_vue_type_style_index_0_id_f98ee3b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BuildfunnelComponent_vue_vue_type_style_index_0_id_f98ee3b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BuildfunnelComponent_vue_vue_type_style_index_0_id_f98ee3b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BuildfunnelComponent_vue_vue_type_style_index_0_id_f98ee3b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/BuildfunnelComponent.vue?vue&type=template&id=f98ee3b8&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/BuildfunnelComponent.vue?vue&type=template&id=f98ee3b8&scoped=true& ***!
+  \*****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BuildfunnelComponent_vue_vue_type_template_id_f98ee3b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./BuildfunnelComponent.vue?vue&type=template&id=f98ee3b8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BuildfunnelComponent.vue?vue&type=template&id=f98ee3b8&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BuildfunnelComponent_vue_vue_type_template_id_f98ee3b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BuildfunnelComponent_vue_vue_type_template_id_f98ee3b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/CreatefunnelComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/CreatefunnelComponent.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreatefunnelComponent_vue_vue_type_template_id_05bcaae0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreatefunnelComponent.vue?vue&type=template&id=05bcaae0&scoped=true& */ "./resources/js/components/CreatefunnelComponent.vue?vue&type=template&id=05bcaae0&scoped=true&");
+/* harmony import */ var _CreatefunnelComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreatefunnelComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CreatefunnelComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _CreatefunnelComponent_vue_vue_type_style_index_0_id_05bcaae0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css& */ "./resources/js/components/CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _CreatefunnelComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreatefunnelComponent_vue_vue_type_template_id_05bcaae0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreatefunnelComponent_vue_vue_type_template_id_05bcaae0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "05bcaae0",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CreatefunnelComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CreatefunnelComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/CreatefunnelComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreatefunnelComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CreatefunnelComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreatefunnelComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreatefunnelComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css&":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/js/components/CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css& ***!
+  \********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreatefunnelComponent_vue_vue_type_style_index_0_id_05bcaae0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreatefunnelComponent.vue?vue&type=style&index=0&id=05bcaae0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreatefunnelComponent_vue_vue_type_style_index_0_id_05bcaae0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreatefunnelComponent_vue_vue_type_style_index_0_id_05bcaae0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreatefunnelComponent_vue_vue_type_style_index_0_id_05bcaae0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreatefunnelComponent_vue_vue_type_style_index_0_id_05bcaae0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/CreatefunnelComponent.vue?vue&type=template&id=05bcaae0&scoped=true&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/CreatefunnelComponent.vue?vue&type=template&id=05bcaae0&scoped=true& ***!
+  \******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreatefunnelComponent_vue_vue_type_template_id_05bcaae0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CreatefunnelComponent.vue?vue&type=template&id=05bcaae0&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreatefunnelComponent.vue?vue&type=template&id=05bcaae0&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreatefunnelComponent_vue_vue_type_template_id_05bcaae0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreatefunnelComponent_vue_vue_type_template_id_05bcaae0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/DashboardComponent.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/DashboardComponent.vue ***!
@@ -80492,9 +84711,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FunnelComponent_vue_vue_type_template_id_602592cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FunnelComponent.vue?vue&type=template&id=602592cc& */ "./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc&");
+/* harmony import */ var _FunnelComponent_vue_vue_type_template_id_602592cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FunnelComponent.vue?vue&type=template&id=602592cc&scoped=true& */ "./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc&scoped=true&");
 /* harmony import */ var _FunnelComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FunnelComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/FunnelComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _FunnelComponent_vue_vue_type_style_index_0_id_602592cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css& */ "./resources/js/components/FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -80502,13 +84723,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _FunnelComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _FunnelComponent_vue_vue_type_template_id_602592cc___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _FunnelComponent_vue_vue_type_template_id_602592cc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _FunnelComponent_vue_vue_type_template_id_602592cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FunnelComponent_vue_vue_type_template_id_602592cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "602592cc",
   null
   
 )
@@ -80534,19 +84755,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc& ***!
-  \************************************************************************************/
+/***/ "./resources/js/components/FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css& ***!
+  \**************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_style_index_0_id_602592cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FunnelComponent.vue?vue&type=style&index=0&id=602592cc&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_style_index_0_id_602592cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_style_index_0_id_602592cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_style_index_0_id_602592cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_style_index_0_id_602592cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc&scoped=true& ***!
+  \************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_template_id_602592cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FunnelComponent.vue?vue&type=template&id=602592cc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_template_id_602592cc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_template_id_602592cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FunnelComponent.vue?vue&type=template&id=602592cc&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FunnelComponent.vue?vue&type=template&id=602592cc&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_template_id_602592cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_template_id_602592cc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FunnelComponent_vue_vue_type_template_id_602592cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
