@@ -37,57 +37,68 @@
                 </div>
             </div>
 
-            <div class="row keabuilder-container mt-5" >
-                <div class="col-md-3 loadEffect"  v-for="(value,index) in funnels" :key="index">
-                    <div class=" keabuilder-board">
-                        <header class="keabuilder-board-header">
-                            <div class="keabuilder-title-board line-ellipsis"><span>{{funnels[index]['name']}}</span> <input type="text" v-model="funnels[index]['name']"></div>
-                            <div class="btn-group">
-                                <div class="cursor-pointer dropdownMenuButton" role="button">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    <div class="dropdown-menu" >
-                                         <a class="dropdown-item keabuilder-edit" href="javascript:void(0);">
-                                            <i class="fas fa-pencil-alt mr-2" aria-hidden="true"></i> Edit
-                                        </a>
-                                        <a class="dropdown-item keabuilder-copy" href="javascript:void(0);">
-                                            <i class="fas fa-link mr-2"></i> Copy Link
-                                        </a>
-                                        <a class="dropdown-item keabuilder-duplicate" href="javascript:void(0);">
-                                            <i class="far fa-clone mr-2"></i> Duplicate
-                                        </a>
-                                         <a class="dropdown-item keabuilder-changepath" href="javascript:void(0);">
-                                            <i class="fas fa-pen-fancy mr-2"></i> change path
-                                        </a>
-                                        <a class="dropdown-item keabuilder-delete" href="javascript:void(0);">
-                                            <i class="far fa-trash-alt mr-2"></i> Archive
-                                        </a>
+            <div class="" >
+                <draggable
+                        :steps="steps"
+                        :disabled="!enabled"
+                        class="steps-group row keabuilder-container mt-5"
+                        ghost-class="ghost"
+                        @start="dragging = true"
+                        @end="draggingend"
+                    >
+                    <div class="col-md-3 loadEffect"  v-for="(value,index) in funnels" :key="index">
+                        <div class=" keabuilder-board">
+                            <header class="keabuilder-board-header">
+                                <div class="keabuilder-title-board line-ellipsis"><span>{{funnels[index]['name']}}</span> <input type="text" v-model="funnels[index]['name']"></div>
+                                <div class="btn-group">
+                                    <div class="cursor-pointer dropdownMenuButton" role="button">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                        <div class="dropdown-menu" >
+                                            <a class="dropdown-item keabuilder-edit" href="javascript:void(0);">
+                                                <i class="fas fa-pencil-alt mr-2" aria-hidden="true"></i> Edit
+                                            </a>
+                                            <a class="dropdown-item keabuilder-copy" href="javascript:void(0);">
+                                                <i class="fas fa-link mr-2"></i> Copy Link
+                                            </a>
+                                            <a class="dropdown-item keabuilder-duplicate" href="javascript:void(0);">
+                                                <i class="far fa-clone mr-2"></i> Duplicate
+                                            </a>
+                                            <a class="dropdown-item keabuilder-changepath" href="javascript:void(0);">
+                                                <i class="fas fa-pen-fancy mr-2"></i> change path
+                                            </a>
+                                            <a class="dropdown-item keabuilder-delete" href="javascript:void(0);">
+                                                <i class="far fa-trash-alt mr-2"></i> Archive
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </header>
-                        <main>
-                            <div v-for="(value2,index2) in funnels[index]['steps']" :key="index2">
-                                <div class="keabuilder-item is-moving" :data-border="funnels[index]['steps'][index2]['color']">{{funnels[index]['steps'][index2]['title']}}
-                                    <div class="keabuilder-footer d-flex justify-content-between mt-3">
-                                    <div class="keabuilder-footer-left d-flex">
-                                        <div class="keabuilder-due-date d-flex align-items-center mr-50">
-                                            <i class="far fa-clock"></i> <span
-                                                class="font-size-small">{{funnels[index]['steps'][index2]['updatedat']}}</span></div>
-                                        <div class="keabuilder-comment d-flex align-items-center mr-50">
-                                            <i class="fas fa-puzzle-piece"></i> <span
-                                                class="font-size-small">{{funnels[index]['steps'][index2]['variation']}}</span>
-                                                </div>
-                                        <div class="keabuilder-attachment d-flex align-items-center">
-                                            <i class="fas fa-tags"></i> <span
-                                                class="font-size-small">{{funnels[index]['steps'][index2]['tag']}}</span></div>
-                                    </div>
-                                    <div class="keabuilder-footer-right"></div>
+                            </header>
+                            <main>
+                                <div v-for="(value2,index2) in funnels[index]['steps']" :key="index2">
+                                    <div class="keabuilder-item is-moving" :data-border="funnels[index]['steps'][index2]['color']">{{funnels[index]['steps'][index2]['title']}}
+                                        <div class="keabuilder-footer d-flex justify-content-between mt-3">
+                                        <div class="keabuilder-footer-left d-flex">
+                                            <div class="keabuilder-due-date d-flex align-items-center mr-50">
+                                                <i class="far fa-clock"></i> <span
+                                                    class="font-size-small">{{funnels[index]['steps'][index2]['updatedat']}}</span></div>
+                                            <div class="keabuilder-comment d-flex align-items-center mr-50">
+                                                <i class="fas fa-puzzle-piece"></i> <span
+                                                    class="font-size-small">{{funnels[index]['steps'][index2]['variation']}}</span>
+                                                    </div>
+                                            <div class="keabuilder-attachment d-flex align-items-center">
+                                                <i class="fas fa-tags"></i> <span
+                                                    class="font-size-small">{{funnels[index]['steps'][index2]['tag']}}</span></div>
+                                        </div>
+                                        <div class="keabuilder-footer-right"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </main>
+                            </main>
+                        </div>
                     </div>
-                </div>
+
+                </draggable>
+
 
             </div>
         </div>
@@ -233,11 +244,19 @@ export default {
           },
 
       ],
+       enabled: true,
+       dragging: false,
+
     }
   },
   mounted() {
     this.show = true;
-  }
+  },
+    methods: {
+        draggingend(e){
+            this.dragging = false;
+        },
+    }
 }
 
 </script>
@@ -277,6 +296,7 @@ export default {
     padding: 13px;
     display: flex;
     justify-content: space-between;
+    cursor: move;
 }
 .line-ellipsis {
     overflow: hidden;

@@ -13,6 +13,7 @@ import DragDrop from 'vue-drag-n-drop';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import draggable from 'vuedraggable'
 
 require('./bootstrap');
 
@@ -23,6 +24,7 @@ Vue.use(VuePageTransition);
 Vue.use(VueMq);
 Vue.use(VueCookies);
 Vue.use(DragDrop);
+Vue.use(draggable);
 
 
 Vue.use(VueMq, {
@@ -59,6 +61,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('indexlogin-component', require('./components/IndexloginComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
+Vue.component('draggable', draggable);
 
 
 /**

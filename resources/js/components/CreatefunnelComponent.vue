@@ -143,13 +143,14 @@
     background-color: #39DA8A;
 }
 .kiabuilder-item i {
-    top: 0px;
+    top: 4px;
     position: relative;
     opacity: 0.5;
     transition: .5s ease-in;
-    width: 40px;
-    height: 20px;
+    width: 22px;
+    /* height: 20px; */
     text-align: center;
+    right: 0px;
 }
 .kiabuilder-item i:hover, .kb-sharelink:hover, .kb-settings-i:hover {
     opacity: 1;
@@ -553,6 +554,173 @@ input[type=range]::-webkit-slider-runnable-track  {
     z-index: 99999;
     cursor: pointer;
 }
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+.fa-grip-lines {
+    cursor: move;
+}
+.keabuilder-title-board {
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+     font-weight: normal;
+    cursor: text;
+    padding: 0 0.5rem;
+    /* width: 65%; */
+}
+.keabuilder-title-board span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 135px;
+    display: inline-block;
+}
+.keabuilder-title-board input {
+    display:none;
+    background-color: #475F7B;
+    color: #FFFFFF;
+    border-radius: 0.267rem;
+    outline: none;
+    text-overflow: clip;
+    font-size: 14px;
+    height: 20px;
+}
+.keabuilder-title-board:hover span {
+    display: none;
+}
+.keabuilder-title-board:hover input {
+ display: block;
+}
+.kb-temp-ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top:30px;
+    position:relative;
+}
+.kb-temp-ul li{
+    display: block;
+    padding: 8px 20px;
+    box-shadow: -8px 12px 18px 0 rgb(25 42 70 / 13%);
+    margin-right: 10px;
+    float: left;
+    position: relative;
+}
+.kb-temp-ul li a{
+    color: #444;
+}
+.kb-temp-ul ul {
+    position: absolute;
+    top: 39px;
+    left: 0px;
+    display: none;
+    float: left;
+    min-width: 240px;
+    padding: 0;
+}
+.kb-temp-ul ul li {
+    display: inline-block;
+    box-shadow: -4px 4px 6px 0 rgb(55 70 95 / 12%);
+    background: #fff;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+    transition: .5s ease;
+}
+.kb-temp-ul ul li:hover{
+    background:#e2e2e2;
+}
+.kb-temp-ul li:hover > ul{
+    display: block;
+}
+.kb-showtemplates {
+    width: 100%;
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.kb-showtemplates li {
+    display: inline;
+    width: 50%;
+    padding:2%;
+    text-align: center;
+    float: left;
+    border-bottom: 1px solid #DFE3E7!important;
+}
+.kb-showtemplates li a {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    padding: 15px;
+    box-shadow: -4px 4px 6px 0 rgb(55 70 95 / 12%);
+    width:100%;
+    float: left;
+    background:#fff;
+}
+.kb-showtemplates li a.active{
+    background: #d8c898;
+    color:#fff;
+}
+#secondwizard .wizard-number {
+    background: #d8c898;
+    color: #fff;
+}
+#secondwizard {
+    height: 17px;
+    overflow: hidden;
+    opacity: 0.5;
+    transition: height 0.15s ease-out;
+}
+#secondwizard:hover {
+    height: 54px;
+    opacity: 1;
+    transition: height 0.25s ease-in;
+}
+#secondwizard:hover .showwhendrag{
+    opacity: 0;
+}
+.showwhendrag {
+    position: relative;
+    top: -23px;
+    font-size: 25px;
+    transition: opacity .5 ease-in;
+}
+.kb-alltemplates{
+    margin: 0;
+    padding:0;
+    list-style: none;
+    float: left;
+}
+.kb-alltemplates li{
+    text-align: center;
+    box-shadow: -8px 12px 18px 0 rgb(25 42 70 / 13%);
+    transition: all .3s ease-in-out,background 0s,color 0s,border-color 0s;
+    border-radius: .267rem;
+    background: #fff;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    width: 31%;
+    margin: 1%;
+}
+
+.kb-alltemplates .kb-showtemp-footer {
+    padding: 13px;
+    border-top: 1px solid #e2e2e2;
+    height: 110px;
+}
+.kb-showtemp-footer button {
+    height: 0;
+    transition: 0.25s ease-in-out;
+    font-size: 13px;
+    padding: 0 10px;
+}
+.kb-alltemplates li:hover .kb-showtemp-footer button {
+    height: 39px;
+}
 
 /* body */
 </style>
@@ -570,7 +738,7 @@ input[type=range]::-webkit-slider-runnable-track  {
               <input type="text" placeholder="Give your action a name" class="form-control">
               <label for="" class="mt-3">Condition</label>
               <select name="" id="" class="form-control">
-                  <option value="">Everyone</option>n
+                  <option value="">Everyone</option>
               </select>
               <label for="" class="mt-3">Integration</label>
               <select name="" id="" class="form-control">
@@ -613,7 +781,7 @@ input[type=range]::-webkit-slider-runnable-track  {
       <header class="wizard-nav">  
           <div class="wizard-steps">
                 <!--begin::Wizard Step 1 Nav-->
-                <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
+                <div class="wizard-step" data-wizard-type="step" :data-wizard-state="mainOpen == 'steps' ? 'current' : 'pending'"  @click="kb_mainsteps('steps')">
                     <div class="wizard-wrapper">
                         <div class="wizard-number"><i class="fas fa-filter"></i></div>
                         <div class="wizard-label">
@@ -624,7 +792,7 @@ input[type=range]::-webkit-slider-runnable-track  {
                 </div>
                 <!--end::Wizard Step 1 Nav-->
                 <!--begin::Wizard Step 3 Nav-->
-                <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending">
+                <div class="wizard-step" data-wizard-type="step" :data-wizard-state="mainOpen == 'stats' ? 'current' : 'pending'" @click="kb_mainsteps('stats')" >
                     <div class="wizard-wrapper">
                         <div class="wizard-number"><i class="far fa-chart-bar"></i></div>
                         <div class="wizard-label">
@@ -635,7 +803,7 @@ input[type=range]::-webkit-slider-runnable-track  {
                 </div>
                 <!--end::Wizard Step 3 Nav-->
                 <!--begin::Wizard Step 4 Nav-->
-                <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending">
+                <div class="wizard-step" data-wizard-type="step" :data-wizard-state="mainOpen == 'contacts' ? 'current' : 'pending'" @click="kb_mainsteps('contacts')">
                     <div class="wizard-wrapper">
                         <div class="wizard-number"><i class="fas fa-users"></i></div>
                         <div class="wizard-label">
@@ -646,7 +814,7 @@ input[type=range]::-webkit-slider-runnable-track  {
                 </div>
                 <!--end::Wizard Step 4 Nav-->
                 <!--begin::Wizard Step 4 Nav-->
-                <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending">
+                <div class="wizard-step" data-wizard-type="step" :data-wizard-state="mainOpen == 'reviews' ? 'current' : 'pending'" @click="kb_mainsteps('reviews')">
                     <div class="wizard-wrapper">
                         <div class="wizard-number"><i class="fas fa-sliders-h"></i></div>
                         <div class="wizard-label">
@@ -657,7 +825,7 @@ input[type=range]::-webkit-slider-runnable-track  {
                 </div>
                 <!--end::Wizard Step 4 Nav-->                
                 <!--begin::Wizard Step 2 Nav-->
-                <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending">
+                <div class="wizard-step" data-wizard-type="step" :data-wizard-state="mainOpen == 'integrations' ? 'current' : 'pending'" @click="kb_mainsteps('integrations')">
                     <div class="wizard-wrapper">
                         <div class="wizard-number"><i class="fas fa-network-wired"></i></div>
                         <div class="wizard-label">
@@ -670,68 +838,58 @@ input[type=range]::-webkit-slider-runnable-track  {
             </div>
       </header>
       <div class="container-fluid">
-          <div class="row whitefunnel">
+          <div class="row whitefunnel"  v-if="mainOpen == 'steps'">
               <div class="col-md-3 pb-3 pt-3 rightbrder">
-                  <button class="btn btn-primary mt-2 btn-block mb-3"><i class="fas fa-plus"></i> Add A Step</button>
+                  <button class="btn btn-primary mt-2 btn-block mb-3" @click="addsteps"><i class="fas fa-plus"></i> Add A Step</button>
+                    <draggable
+                        :steps="steps"
+                        :disabled="!enabled"
+                        class="steps-group"
+                        ghost-class="ghost"
+                        @start="dragging = true"
+                        @end="draggingend"
+                    >
+                        <div
+                        class="kiabuilder-item"
+                        :class="tabOpen2 == element.id ? 'success' : ''" 
+                        @click="kb_substeps2(element.id)"
+                        v-for="element in steps"
+                        :key="element.id" :data-listid="element.id"
+                        >
+                            <div class="keabuilder-title-board">
+                                <span>{{ element.name }}</span> 
+                                <input type="text" v-model="element.name">
+                            </div>
 
-                  <div class="list-group">
-
-                        <div class="kiabuilder-item is-moving success list-group-item" data-border="success">Optin
-                                <i class="fas fa-grip-lines float-right mt-1"></i>
-                                <div class="btn-group float-right mr-1">
-                                        <div class="cursor-pointer dropdownMenuButton" role="button">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                            <div class="dropdown-menu" >
-                                                <a class="dropdown-item" href="javascript:void(0);">
-                                                    <i class="fas fa-link"></i> Copy Link
-                                                </a>
-                                                <a class="dropdown-item kiabuilder-delete" href="javascript:void(0);">
-                                                    <i class="far fa-clone"></i> Duplicate
-                                                </a>
-                                                <a class="dropdown-item kiabuilder-changepath" href="javascript:void(0);">
-                                                    <i class="fas fa-pen-fancy "></i> change path
-                                                </a>
-                                                <a class="dropdown-item kiabuilder-delete" href="javascript:void(0);">
-                                                    <i class="far fa-trash-alt"></i> Archive
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                        </div>
-
-                        <div class="kiabuilder-item is-moving list-group-item">Thank you
-                                <i class="fas fa-grip-lines float-right mt-1"></i>
-                                <div class="btn-group float-right mr-1">
-                                    <div class="cursor-pointer dropdownMenuButton" role="button">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                        <div class="dropdown-menu" >
-                                            <a class="dropdown-item" href="javascript:void(0);">
-                                                <i class="fas fa-link mr-2"></i> Copy Link
-                                            </a>
-                                            <a class="dropdown-item kiabuilder-delete" href="javascript:void(0);">
-                                                <i class="far fa-clone mr-2"></i> Duplicate
-                                            </a>
-                                                <a class="dropdown-item kiabuilder-changepath" href="javascript:void(0);">
-                                                <i class="fas fa-pen-fancy mr-2"></i> change path
-                                            </a>
-                                            <a class="dropdown-item kiabuilder-delete" href="javascript:void(0);">
-                                                <i class="far fa-trash-alt mr-2"></i> Archive
-                                            </a>
-                                        </div>
+                            <i class="fas fa-grip-lines float-right mt-1"></i>
+                            <div class="btn-group float-right mr-1">
+                                <div class="cursor-pointer dropdownMenuButton" role="button">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <div class="dropdown-menu" >
+                                        <a class="dropdown-item" href="javascript:void(0);">
+                                            <i class="fas fa-link"></i> Copy Link
+                                        </a>
+                                        <a class="dropdown-item kiabuilder-delete" href="javascript:void(0);">
+                                            <i class="far fa-clone"></i> Duplicate
+                                        </a>
+                                        <a class="dropdown-item kiabuilder-changepath" href="javascript:void(0);">
+                                            <i class="fas fa-pen-fancy "></i> change path
+                                        </a>
+                                        <a class="dropdown-item kiabuilder-delete" href="javascript:void(0);">
+                                            <i class="far fa-trash-alt"></i> Archive
+                                        </a>
                                     </div>
                                 </div>
+                            </div>
                         </div>
-
-                  </div>
-
-                 
-
-
+                    </draggable>
+                    
               </div>
               <!-- col -->
               <div class="col-md-9">
                     <div class="wizard-nav">  
                         <div class="wizard-steps" id="secondwizard">
+                                <div class="showwhendrag"><i class="fas fa-caret-down"></i></div>
                                 <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending"></div>
                                 <div class="wizard-step" data-wizard-type="step" :data-wizard-state="tabOpen == 'overview' ? 'current' : 'pending'" @click="kb_substeps('overview')">
                                     <div class="wizard-wrapper">
@@ -758,8 +916,140 @@ input[type=range]::-webkit-slider-runnable-track  {
                                     </div>
                                 </div>
                         </div>
-                    
-                        <div class="kb-overview loadEffectFromLeft" v-if="tabOpen == 'overview'">
+
+                        <!-- templates -->
+                        <div class="kb-templates loadEffectFromLeft" v-if="tabOpen == 'overview'">
+                            <ul class="kb-temp-ul">
+                                <li>
+                                    <a href=""><i class="fas fa-envelope"></i> OPTIN <i class="fas fa-chevron-down"></i></a>
+                                    <ul>
+                                        <li>
+                                            <a href=""><i class="fas fa-envelope"></i> Email Optin</a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fas fa-download"></i> Thank you</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=""><i class="fas fa-shopping-cart"></i> SALES <i class="fas fa-chevron-down"></i></a>
+                                    <ul>
+                                        <li>
+                                            <a href=""><i class="fas fa-search-dollar"></i> Sales Page</a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fas fa-rocket"></i> Product Launch</a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fas fa-shopping-cart"></i> Order Form</a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fas fa-level-up-alt"></i> One Click Upsell (OTO)</a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fas fa-level-down-alt"></i> One Click Downsell</a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fas fa-check-circle"></i> Order Confirmation</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=""><i class="fas fa-microphone-alt"></i> WEBINAR <i class="fas fa-chevron-down"></i></a>
+                                    <ul>
+                                        <li>
+                                            <a href=""><i class="fas fa-mail-bulk"></i> Registration</a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fas fa-download"></i> Thank you</a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fas fa-microphone"></i> Boadcast Room</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=""><i class="fas fa-graduation-cap"></i> MEMBERSHIP <i class="fas fa-chevron-down"></i></a>
+                                    <ul>
+                                        <li>
+                                            <a href=""><i class="fas fa-sign-in-alt"></i> Membership Access</a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fas fa-tachometer-alt"></i> Membership Area</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href=""><i class="fas fa-external-link-square-alt"></i> CLICKPOPUP</a></li>
+                                <li><a href=""><i class="fas fa-bars"></i> OTHER</a></li>
+                            </ul>
+
+                            <ul class="kb-showtemplates">
+                                <li>
+                                    <a href=""><i class="fas fa-file-alt"></i> SHOW MY TEMPLATES</a>
+                                </li>
+                                <li>
+                                    <a href="" class="active"><i class="fas fa-envelope"></i> EMAIL OPTIN TEMPLATES</a>
+                                </li>
+                            </ul>
+
+                            <ul class="kb-alltemplates mb-5">
+                                <li>
+                                    <div class="kb-showtemp-header">
+                                        <img src="/images/funnelpreviewimg/preview1.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="kb-showtemp-footer">
+                                       <p>Step 1</p>
+                                       <button class="btn btn-primary"><i class="fas fa-plus-square"></i> Select Template</button>
+                                       <button class="btn btn-secondary"><i class="fas fa-eye"></i> Preview</button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="kb-showtemp-header">
+                                        <img src="/images/funnelpreviewimg/preview1.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="kb-showtemp-footer">
+                                            <p>Blog Render</p>
+                                            <button class="btn btn-primary"><i class="fas fa-plus-square"></i> Select Template</button>
+                                            <button class="btn btn-secondary"><i class="fas fa-eye"></i> Preview</button>
+                                        </div>
+                                </li>
+                                <li>
+                                    <div class="kb-showtemp-header">
+                                        <img src="/images/funnelpreviewimg/preview1.jpg" class="img-fluid" alt="">
+                                    </div>
+                                   <div class="kb-showtemp-footer">
+                                            <p>Blog Render</p>
+                                            <button class="btn btn-primary"><i class="fas fa-plus-square"></i> Select Template</button>
+                                            <button class="btn btn-secondary"><i class="fas fa-eye"></i> Preview</button>
+                                        </div>
+                                </li>
+                                <li>
+                                    <div class="kb-showtemp-header">
+                                        <img src="/images/funnelpreviewimg/preview1.jpg" class="img-fluid" alt="">
+                                    </div>
+                                   <div class="kb-showtemp-footer">
+                                            <p>Clean leanding</p>
+                                            <button class="btn btn-primary"><i class="fas fa-plus-square"></i> Select Template</button>
+                                            <button class="btn btn-secondary"><i class="fas fa-eye"></i> Preview</button>
+                                        </div>
+                                </li>
+                                <li>
+                                    <div class="kb-showtemp-header">
+                                        <img src="/images/funnelpreviewimg/preview1.jpg" class="img-fluid" alt="">
+                                    </div>
+                                   <div class="kb-showtemp-footer">
+                                            <p>Big Sale</p>
+                                            <button class="btn btn-primary"><i class="fas fa-plus-square"></i> Select Template</button>
+                                            <button class="btn btn-secondary"><i class="fas fa-eye"></i> Preview</button>
+                                        </div>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                        <!-- templates -->
+
+                        <div class="kb-overview loadEffectFromLeft" v-if="tabOpen == 'overviewstep'">
                              <div class="sage-input site_support_email mt-3">
                            <input class="sage-input__field" type="url" value="http://127.0.0.1:8000/optin" id="site_support_email">
                            <label class="sage-input__label" for="site_support_email">Your Link</label>
@@ -934,25 +1224,35 @@ input[type=range]::-webkit-slider-runnable-track  {
               </div>
               <!-- col -->
           </div>
-          <!-- row -->
+          <!-- row 1 end / for steps -->
+
+        <div class="row whitefunnel" v-if="mainOpen == 'stats'">
+                
+        </div>
+
       </div>
       <!-- container -->
   </div>
 </template>
 <script>
+let id = 2;
 export default {
     data(){
         return{
             createvariation:false,
-            overview:true,
-            automation:false,
-            publishing:false,
             automationaddnewaction:true,
             automationaddnewemail:false,
             automationaddnewtext:false,
             poupsidebar:false,
+            mainOpen:'steps',
             tabOpen:'overview',
-            
+            tabOpen2:0,
+            enabled: true,
+            steps: [
+                { name: "Optin", id: 0 },
+                { name: "Thank you", id: 1 },
+            ],
+            dragging: false,
         }
     },
     methods: {
@@ -989,9 +1289,21 @@ export default {
         hidepopupsidebar(){
             this.poupsidebar = false;
         },
+        kb_mainsteps(value){
+            this.mainOpen = value;
+        },
         kb_substeps(value){
             this.tabOpen = value;
-        }
+        },
+        kb_substeps2(value){
+            this.tabOpen2 = value;
+        },
+        addsteps() {
+             this.steps.push({ name: "New Step ", id: id++ });
+        },
+        draggingend(e){
+            this.dragging = false;
+        },
     },
    
 }
