@@ -14,6 +14,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import draggable from 'vuedraggable'
+import VueApexCharts from 'vue-apexcharts'
+
 
 require('./bootstrap');
 
@@ -25,7 +27,7 @@ Vue.use(VueMq);
 Vue.use(VueCookies);
 Vue.use(DragDrop);
 Vue.use(draggable);
-
+Vue.use(VueApexCharts);
 
 Vue.use(VueMq, {
     breakpoints: { // default breakpoints - customize this
@@ -62,7 +64,7 @@ Vue.component('login-component', require('./components/LoginComponent.vue').defa
 Vue.component('indexlogin-component', require('./components/IndexloginComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
 Vue.component('draggable', draggable);
-
+Vue.component('apexchart', VueApexCharts);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

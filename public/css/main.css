@@ -29,9 +29,19 @@ button:focus {
  background-color: #d8c898;  
  border-color: #d8c898; 
  box-shadow: -4px 4px 6px 0 rgb(55 70 95 / 12%);
+ font-size: 14px;
+ color: #fff;
+}
+#mainindex .btn-secondary {
+ font-size: 14px;
+ box-shadow: -4px 4px 6px 0 rgb(55 70 95 / 12%);
+ color: #fff;
 }
 #mainindex .btn-primary:hover{
 opacity: 0.8;
+}
+.row .form-control{
+    font-size: 14px;
 }
 /* button */
 

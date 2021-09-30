@@ -75,7 +75,8 @@
                                 style="height: 200px; min-height: 200px;">
                                 <div id="apexcharts3g1ljutpg"
                                     class="apexcharts-canvas apexcharts3g1ljutpg apexcharts-theme-light"
-                                    style="width: 414px; height: 200px;"><svg id="SvgjsSvg1694" width="414" height="200"
+                                    style="width: 414px; height: 200px;">
+                                    <svg id="SvgjsSvg1694" width="414" height="200"
                                         xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)"
@@ -432,87 +433,9 @@
                         <!--begin::Body-->
                         <div class="card-body" style="position: relative;">
                             <!--begin::Chart-->
-                            <div id="kt_mixed_widget_18_chart" style="height: 250px; min-height: 176.26px;">
-                                <div id="apexchartsuge8w2va"
-                                    class="apexcharts-canvas apexchartsuge8w2va apexcharts-theme-light"
-                                    style="width: 354px; height: 176.26px;"><svg id="SvgjsSvg2569" width="354"
-                                        height="176.259765625" xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
-                                        class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)"
-                                        style="background: transparent;">
-                                        <g id="SvgjsG2571" class="apexcharts-inner apexcharts-graphical"
-                                            transform="translate(65, 0)">
-                                            <defs id="SvgjsDefs2570">
-                                                <clipPath id="gridRectMaskuge8w2va">
-                                                    <rect id="SvgjsRect2573" width="232" height="250" x="-3" y="-1"
-                                                        rx="0" ry="0" opacity="1" stroke-width="0" stroke="none"
-                                                        stroke-dasharray="0" fill="#fff"></rect>
-                                                </clipPath>
-                                                <clipPath id="gridRectMarkerMaskuge8w2va">
-                                                    <rect id="SvgjsRect2574" width="230" height="252" x="-2" y="-2"
-                                                        rx="0" ry="0" opacity="1" stroke-width="0" stroke="none"
-                                                        stroke-dasharray="0" fill="#fff"></rect>
-                                                </clipPath>
-                                            </defs>
-                                            <g id="SvgjsG2575" class="apexcharts-radialbar">
-                                                <g id="SvgjsG2576">
-                                                    <g id="SvgjsG2577" class="apexcharts-tracks">
-                                                        <g id="SvgjsG2578"
-                                                            class="apexcharts-radialbar-track apexcharts-track" rel="1">
-                                                            <path id="apexcharts-radialbarTrack-0"
-                                                                d="M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 196.28902439024392 113"
-                                                                fill="none" fill-opacity="1"
-                                                                stroke="rgba(225,233,255,0.85)" stroke-opacity="1"
-                                                                stroke-linecap="round" stroke-width="10.636585365853659"
-                                                                stroke-dasharray="0" class="apexcharts-radialbar-area"
-                                                                data:pathOrig="M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 196.28902439024392 113">
-                                                            </path>
-                                                        </g>
-                                                    </g>
-                                                    <g id="SvgjsG2580">
-                                                        <g id="SvgjsG2585"
-                                                            class="apexcharts-series apexcharts-radial-series"
-                                                            seriesName="Progress" rel="1" data:realIndex="0">
-                                                            <path id="SvgjsPath2586"
-                                                                d="M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 169.80297804535178 52.08626370794575"
-                                                                fill="none" fill-opacity="0.85"
-                                                                stroke="rgba(105,147,255,0.85)" stroke-opacity="1"
-                                                                stroke-linecap="round" stroke-width="10.636585365853659"
-                                                                stroke-dasharray="0"
-                                                                class="apexcharts-radialbar-area apexcharts-radialbar-slice-0"
-                                                                data:angle="133" data:value="74" index="0" j="0"
-                                                                data:pathOrig="M 29.71097560975609 112.99999999999999 A 83.28902439024391 83.28902439024391 0 0 1 169.80297804535178 52.08626370794575">
-                                                            </path>
-                                                        </g>
-                                                        <circle id="SvgjsCircle2581" r="77.97073170731709" cx="113"
-                                                            cy="113" class="apexcharts-radialbar-hollow"
-                                                            fill="transparent"></circle>
-                                                        <g id="SvgjsG2582" class="apexcharts-datalabels-group"
-                                                            transform="translate(0, 0) scale(1)" style="opacity: 1;">
-                                                            <text id="SvgjsText2583"
-                                                                font-family="Helvetica, Arial, sans-serif" x="113"
-                                                                y="108" text-anchor="middle" dominant-baseline="auto"
-                                                                font-size="13px" font-weight="700" fill="#b5b5c3"
-                                                                class="apexcharts-text apexcharts-datalabel-label"
-                                                                style="font-family: Helvetica, Arial, sans-serif;">Progress</text><text
-                                                                id="SvgjsText2584"
-                                                                font-family="Helvetica, Arial, sans-serif" x="113"
-                                                                y="89" text-anchor="middle" dominant-baseline="auto"
-                                                                font-size="30px" font-weight="700" fill="#464e5f"
-                                                                class="apexcharts-text apexcharts-datalabel-value"
-                                                                style="font-family: Helvetica, Arial, sans-serif;">74%</text>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </g>
-                                            <line id="SvgjsLine2587" x1="0" y1="0" x2="226" y2="0" stroke="#b6b6b6"
-                                                stroke-dasharray="0" stroke-width="1" class="apexcharts-ycrosshairs">
-                                            </line>
-                                            <line id="SvgjsLine2588" x1="0" y1="0" x2="226" y2="0" stroke-dasharray="0"
-                                                stroke-width="0" class="apexcharts-ycrosshairs-hidden"></line>
-                                        </g>
-                                        <g id="SvgjsG2572" class="apexcharts-annotations"></g>
-                                    </svg>
+                            <div id="kt_mixed_widget_18_chart">
+                                <div style="    margin-top: -45px;    margin-bottom: 29px;">
+                                        <apexchart type="radialBar" :options="chartOptions" :series="series"></apexchart>
                                     <div class="apexcharts-legend"></div>
                                 </div>
                             </div>
@@ -1177,171 +1100,10 @@
                                 <div id="kt_mixed_widget_16_chart" style="height: 200px; min-height: 178.7px;">
                                     <div id="apexchartskrj4suhrl"
                                         class="apexcharts-canvas apexchartskrj4suhrl apexcharts-theme-light"
-                                        style="width: 355px; height: 178.7px;"><svg id="SvgjsSvg1414" width="355"
-                                            height="178.7" xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                            xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg"
-                                            xmlns:data="ApexChartsNS" transform="translate(0, 0)"
-                                            style="background: transparent;">
-                                            <g id="SvgjsG1416" class="apexcharts-inner apexcharts-graphical"
-                                                transform="translate(90.5, 0)">
-                                                <defs id="SvgjsDefs1415">
-                                                    <clipPath id="gridRectMaskkrj4suhrl">
-                                                        <rect id="SvgjsRect1418" width="182" height="200" x="-3" y="-1"
-                                                            rx="0" ry="0" opacity="1" stroke-width="0" stroke="none"
-                                                            stroke-dasharray="0" fill="#fff"></rect>
-                                                    </clipPath>
-                                                    <clipPath id="gridRectMarkerMaskkrj4suhrl">
-                                                        <rect id="SvgjsRect1419" width="180" height="202" x="-2" y="-2"
-                                                            rx="0" ry="0" opacity="1" stroke-width="0" stroke="none"
-                                                            stroke-dasharray="0" fill="#fff"></rect>
-                                                    </clipPath>
-                                                </defs>
-                                                <g id="SvgjsG1420" class="apexcharts-radialbar">
-                                                    <g id="SvgjsG1421">
-                                                        <g id="SvgjsG1422" class="apexcharts-tracks">
-                                                            <g id="SvgjsG1423"
-                                                                class="apexcharts-radialbar-track apexcharts-track"
-                                                                rel="1">
-                                                                <path id="apexcharts-radialbarTrack-0"
-                                                                    d="M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 87.9885533645814 22.415610755004934"
-                                                                    fill="none" fill-opacity="1"
-                                                                    stroke="rgba(243,246,249,0.85)" stroke-opacity="1"
-                                                                    stroke-linecap="round"
-                                                                    stroke-width="6.179512195121951"
-                                                                    stroke-dasharray="0"
-                                                                    class="apexcharts-radialbar-area"
-                                                                    data:pathOrig="M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 87.9885533645814 22.415610755004934">
-                                                                </path>
-                                                            </g>
-                                                            <g id="SvgjsG1425"
-                                                                class="apexcharts-radialbar-track apexcharts-track"
-                                                                rel="2">
-                                                                <path id="apexcharts-radialbarTrack-1"
-                                                                    d="M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 1 1 87.99050455753722 33.59512277985318"
-                                                                    fill="none" fill-opacity="1"
-                                                                    stroke="rgba(243,246,249,0.85)" stroke-opacity="1"
-                                                                    stroke-linecap="round"
-                                                                    stroke-width="6.179512195121951"
-                                                                    stroke-dasharray="0"
-                                                                    class="apexcharts-radialbar-area"
-                                                                    data:pathOrig="M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 1 1 87.99050455753722 33.59512277985318">
-                                                                </path>
-                                                            </g>
-                                                            <g id="SvgjsG1427"
-                                                                class="apexcharts-radialbar-track apexcharts-track"
-                                                                rel="3">
-                                                                <path id="apexcharts-radialbarTrack-2"
-                                                                    d="M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 87.99245575049304 44.77463480470142"
-                                                                    fill="none" fill-opacity="1"
-                                                                    stroke="rgba(243,246,249,0.85)" stroke-opacity="1"
-                                                                    stroke-linecap="round"
-                                                                    stroke-width="6.179512195121951"
-                                                                    stroke-dasharray="0"
-                                                                    class="apexcharts-radialbar-area"
-                                                                    data:pathOrig="M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 87.99245575049304 44.77463480470142">
-                                                                </path>
-                                                            </g>
-                                                            <g id="SvgjsG1429"
-                                                                class="apexcharts-radialbar-track apexcharts-track"
-                                                                rel="4">
-                                                                <path id="apexcharts-radialbarTrack-3"
-                                                                    d="M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 87.99440694344885 55.954146829549664"
-                                                                    fill="none" fill-opacity="1"
-                                                                    stroke="rgba(243,246,249,0.85)" stroke-opacity="1"
-                                                                    stroke-linecap="round"
-                                                                    stroke-width="6.179512195121951"
-                                                                    stroke-dasharray="0"
-                                                                    class="apexcharts-radialbar-area"
-                                                                    data:pathOrig="M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 87.99440694344885 55.954146829549664">
-                                                                </path>
-                                                            </g>
-                                                        </g>
-                                                        <g id="SvgjsG1431">
-                                                            <g id="SvgjsG1435"
-                                                                class="apexcharts-series apexcharts-radial-series"
-                                                                seriesName="Progress" rel="1" data:realIndex="0">
-                                                                <path id="SvgjsPath1436"
-                                                                    d="M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 49.450462634039795 141.05888627303557"
-                                                                    fill="none" fill-opacity="0.85"
-                                                                    stroke="rgba(137,80,252,0.85)" stroke-opacity="1"
-                                                                    stroke-linecap="round"
-                                                                    stroke-width="6.179512195121951"
-                                                                    stroke-dasharray="0"
-                                                                    class="apexcharts-radialbar-area apexcharts-radialbar-slice-0"
-                                                                    data:angle="216" data:value="60" index="0" j="0"
-                                                                    data:pathOrig="M 88 22.415609756097552 A 65.58439024390245 65.58439024390245 0 1 1 49.450462634039795 141.05888627303557">
-                                                                </path>
-                                                            </g>
-                                                            <g id="SvgjsG1437"
-                                                                class="apexcharts-series apexcharts-radial-series"
-                                                                seriesName="seriesx2" rel="2" data:realIndex="1">
-                                                                <path id="SvgjsPath1438"
-                                                                    d="M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 0 1 88 142.4048780487805"
-                                                                    fill="none" fill-opacity="0.85"
-                                                                    stroke="rgba(246,78,96,0.85)" stroke-opacity="1"
-                                                                    stroke-linecap="round"
-                                                                    stroke-width="6.179512195121951"
-                                                                    stroke-dasharray="0"
-                                                                    class="apexcharts-radialbar-area apexcharts-radialbar-slice-1"
-                                                                    data:angle="180" data:value="50" index="0" j="1"
-                                                                    data:pathOrig="M 88 33.595121951219504 A 54.404878048780496 54.404878048780496 0 0 1 88 142.4048780487805">
-                                                                </path>
-                                                            </g>
-                                                            <g id="SvgjsG1439"
-                                                                class="apexcharts-series apexcharts-radial-series"
-                                                                seriesName="seriesx3" rel="3" data:realIndex="2">
-                                                                <path id="SvgjsPath1440"
-                                                                    d="M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 44.774634146341455 88"
-                                                                    fill="none" fill-opacity="0.85"
-                                                                    stroke="rgba(27,197,189,0.85)" stroke-opacity="1"
-                                                                    stroke-linecap="round"
-                                                                    stroke-width="6.179512195121951"
-                                                                    stroke-dasharray="0"
-                                                                    class="apexcharts-radialbar-area apexcharts-radialbar-slice-2"
-                                                                    data:angle="270" data:value="75" index="0" j="2"
-                                                                    data:pathOrig="M 88 44.774634146341455 A 43.225365853658545 43.225365853658545 0 1 1 44.774634146341455 88">
-                                                                </path>
-                                                            </g>
-                                                            <g id="SvgjsG1441"
-                                                                class="apexcharts-series apexcharts-radial-series"
-                                                                seriesName="seriesx4" rel="4" data:realIndex="3">
-                                                                <path id="SvgjsPath1442"
-                                                                    d="M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 57.52258205780789 78.0972866202596"
-                                                                    fill="none" fill-opacity="0.85"
-                                                                    stroke="rgba(105,147,255,0.85)" stroke-opacity="1"
-                                                                    stroke-linecap="round"
-                                                                    stroke-width="6.179512195121951"
-                                                                    stroke-dasharray="0"
-                                                                    class="apexcharts-radialbar-area apexcharts-radialbar-slice-3"
-                                                                    data:angle="288" data:value="80" index="0" j="3"
-                                                                    data:pathOrig="M 88 55.95414634146341 A 32.04585365853659 32.04585365853659 0 1 1 57.52258205780789 78.0972866202596">
-                                                                </path>
-                                                            </g>
-                                                            <circle id="SvgjsCircle1432" r="28.95609756097561" cx="88"
-                                                                cy="88" class="apexcharts-radialbar-hollow"
-                                                                fill="transparent"></circle>
-                                                            <g id="SvgjsG1433" class="apexcharts-datalabels-group"
-                                                                transform="translate(0, 0) scale(1)"
-                                                                style="opacity: 1;"><text id="SvgjsText1434"
-                                                                    font-family="Helvetica, Arial, sans-serif" x="88"
-                                                                    y="98" text-anchor="middle" dominant-baseline="auto"
-                                                                    font-size="18px" font-weight="700" fill="#464e5f"
-                                                                    class="apexcharts-text apexcharts-datalabel-value"
-                                                                    style="font-family: Helvetica, Arial, sans-serif;">60%</text>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                                <line id="SvgjsLine1443" x1="0" y1="0" x2="176" y2="0" stroke="#b6b6b6"
-                                                    stroke-dasharray="0" stroke-width="1"
-                                                    class="apexcharts-ycrosshairs"></line>
-                                                <line id="SvgjsLine1444" x1="0" y1="0" x2="176" y2="0"
-                                                    stroke-dasharray="0" stroke-width="0"
-                                                    class="apexcharts-ycrosshairs-hidden"></line>
-                                            </g>
-                                            <g id="SvgjsG1417" class="apexcharts-annotations"></g>
-                                        </svg>
+                                        style="width: 355px; height: 178.7px;">
+                                        
+                                            <apexchart type="radialBar" height="240" :options="chartOptions2" :series="series2"></apexchart>
+
                                         <div class="apexcharts-legend"></div>
                                     </div>
                                 </div>
@@ -2357,3 +2119,88 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    data() {
+        return{
+           series: [67],
+          chartOptions: {
+            chart: {
+              height: 350,
+              type: 'radialBar',
+              offsetY: -10
+            },
+            plotOptions: {
+              radialBar: {
+                startAngle: -135,
+                endAngle: 135,
+                dataLabels: {
+                  name: {
+                    fontSize: '16px',
+                    color: undefined,
+                    offsetY: 120
+                  },
+                  value: {
+                    offsetY: 76,
+                    fontSize: '22px',
+                    color: undefined,
+                    formatter: function (val) {
+                      return val + "%";
+                    }
+                  }
+                }
+              }
+            },
+            fill: {
+              type: 'gradient',
+              gradient: {
+                  shade: 'dark',
+                  shadeIntensity: 0.15,
+                  inverseColors: false,
+                  opacityFrom: 1,
+                  opacityTo: 1,
+                  stops: [0, 50, 65, 91]
+              },
+            },
+            stroke: {
+              dashArray: 4
+            },
+            labels: ['Median Ratio'],
+          },
+            // Semi Circle Gauge end
+
+
+        series2: [44, 55, 67, 83],
+          chartOptions2: {
+            chart: {
+              height: 350,
+              type: 'radialBar',
+            },
+            plotOptions: {
+              radialBar: {
+                dataLabels: {
+                  name: {
+                    fontSize: '22px',
+                  },
+                  value: {
+                    fontSize: '16px',
+                  },
+                  total: {
+                    show: true,
+                    label: 'Total',
+                    formatter: function (w) {
+                      // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                      return 890344
+                    }
+                  }
+                }
+              }
+            },
+            labels: ['Author Sales', 'Commission', 'Average Bid', 'All Time Sales'],
+          },
+        //    Multiple Radialbars end
+
+        }
+    },
+}
+</script>
