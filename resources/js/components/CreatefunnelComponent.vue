@@ -670,8 +670,11 @@
         display: inline-block;
         font-weight: normal;
         cursor: text;
-        padding: 0 0.5rem;
+        padding: 0;
         /* width: 65%; */
+        top: 2px;
+        position: relative;
+        left: -8px;
     }
 
     .keabuilder-title-board span {
@@ -690,7 +693,7 @@
         outline: none;
         text-overflow: clip;
         font-size: 14px;
-        height: 20px;
+        height: 26px;
     }
 
     .keabuilder-title-board:hover span {
@@ -1098,6 +1101,9 @@
  #kb-settingsaction ul li{
     float: inherit;
         display: inline;
+}
+.kb-payment-stripe-i i{
+    font-size: 95px;
 }
     /* settings */
 
@@ -1685,7 +1691,7 @@
                 <div class="col-md-12">
                     <section class="users-list-wrapper" id='table-userslist'>
                         <div class="users-list-filter px-1">
-                            <form>
+                            <form class="container-fluid">
                                 <div class="row border rounded py-2 mb-2">
                                     <div class="col-12 col-sm-6 col-lg-3">
                                         <label for="users-list-verified">Showing Contacts for</label>
@@ -1836,7 +1842,7 @@
                 <div class="col-md-12">
                     <section class="users-list-wrapper" id='table-userslist'>
                         <div class="users-list-filter px-1">
-                            <form>
+                            <form class="container-fluid">
                                 <div class="row border rounded py-2 mb-2">
                                     <div class="col-12 col-sm-6 col-lg-3">
                                         <label for="users-list-verified">Showing Contacts for</label>
@@ -2132,19 +2138,49 @@
                                         aria-labelledby="steps-uid-2-h-3" aria-hidden="true" >
                                         <h6 class="py-50">Edit Settings For This Funnel</h6>
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-md-2">
+                                                <div class="kb-payment-stripe-i">
+                                                    <i class="fab fa-stripe"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
                                                 <div class="form-group">
                                                     <label for="eventName13">Stripe Account</label>
                                                     <select name="" id="" class="form-control">
-                                                        <option value="">Stripe</option>
+                                                        <option value="">Account not connnected</option>
                                                     </select>
-                                                    <label for="">Test Mode</label>
-
-                                                    <small>Enable Test Mode for Stripe. Use CC number: 4012888888881881 with any future Exp date and CVV number. Note: To test subscriptions, you MUST have subscription plans with the same ID in Stripe in Test mode and Live mode. In test mode disc delivered will not operate.</small>
                                                     <br>
-
+                                                    <label for="">Test Mode</label>
+                                                    <p style="line-height: 16px;">
+                                                    <small style="line-height:10px;">Enable Test Mode for Stripe. Use CC number: 4012888888881881 with any future Exp date and CVV number. Note: To test subscriptions, you MUST have subscription plans with the same ID in Stripe in Test mode and Live mode. In test mode disc delivered will not operate.</small>
+                                                    </p>
                                                     <small>
-                                                        <a >Edit Stripe Details</a>
+                                                        <a href="">Edit Stripe Details</a>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <hr>
+                                            </div>
+
+                                             <div class="col-md-2">
+                                                <div class="kb-payment-stripe-i">
+                                                    <i class="fab fa-cc-paypal"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="form-group">
+                                                    <label for="eventName13">Paypal Account</label>
+                                                    <select name="" id="" class="form-control">
+                                                        <option value="">Account not connnected</option>
+                                                    </select>
+                                                    <br>
+                                                    <label for="">Test Mode</label>
+                                                    <p style="line-height: 16px;">
+                                                    <small style="line-height:10px;">Enable Test Mode for Stripe. Use CC number: 4012888888881881 with any future Exp date and CVV number. Note: To test subscriptions, you MUST have subscription plans with the same ID in Stripe in Test mode and Live mode. In test mode disc delivered will not operate.</small>
+                                                    </p>
+                                                    <small>
+                                                        <a href="">Edit Stripe Details</a>
                                                     </small>
                                                 </div>
                                             </div>

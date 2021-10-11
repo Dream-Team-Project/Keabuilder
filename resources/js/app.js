@@ -77,8 +77,11 @@ Vue.component('apexchart', VueApexCharts);
  import funnel from './components/FunnelComponent.vue';
  import buildfunnel from './components/BuildfunnelComponent.vue';
  import createfunnel from './components/CreatefunnelComponent.vue';
+ import archievesteps from './components/ArchievestepsComponent.vue';
+ import marketplace from './components/MarketplaceComponent.vue';
  import membership from './components/MembershipComponent.vue';
  import analytics from './components/AnalyticsComponent.vue';
+ import heatmaps from './components/HeatmapsComponent.vue';
  import edituser from './components/EdituserComponent.vue';
  import pages from './components/PagesComponent.vue';
  import strategies from './components/StrategiesComponent.vue';
@@ -90,10 +93,13 @@ const routes = [
   {path : '/funnel', name: 'funnel', component: funnel},
   {path : '/build-funnel', name: 'buildfunnel', component: buildfunnel},
   {path : '/create-funnel', name: 'createfunnel', component: createfunnel},
+  {path : '/archieve-steps', name: 'archievesteps', component: archievesteps},
+  {path : '/marketplace', name: 'marketplace', component: marketplace},
   {path : '/pages', name: 'pages', component: pages},
   {path : '/strategies', name: 'strategies', component: strategies},
   {path : '/membership', name: 'membership', component: membership},
   {path : '/analytics', name: 'analytics', component: analytics},
+  {path : '/heat-maps', name: 'heatmaps', component: heatmaps},
   {path : '/edit-user', name: 'edituser', component: edituser},
   {path : '/home', name: 'home', component: dashboard},
   {path : '/*', name: 'dashboard', component: dashboard},
