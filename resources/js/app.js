@@ -85,6 +85,7 @@ Vue.component('apexchart', VueApexCharts);
  import edituser from './components/EdituserComponent.vue';
  import pages from './components/PagesComponent.vue';
  import strategies from './components/StrategiesComponent.vue';
+ import builder from './components/BuilderComponent.vue';
 
 
 const routes = [
@@ -99,6 +100,7 @@ const routes = [
   {path : '/strategies', name: 'strategies', component: strategies},
   {path : '/membership', name: 'membership', component: membership},
   {path : '/analytics', name: 'analytics', component: analytics},
+  {path : '/builder', name: 'builder', component: builder},
   {path : '/heat-maps', name: 'heatmaps', component: heatmaps},
   {path : '/edit-user', name: 'edituser', component: edituser},
   {path : '/home', name: 'home', component: dashboard},
