@@ -7,6 +7,8 @@
         <!-- csrf_token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script> window.Laravel = { csrfToken: '{{ csrf_token() }}'}</script>
+        
+        <link rel="shortcut icon" href="{{ asset('images/logo/kblogo.svg') }}">
 
         <title>{{ config('app.name') }}</title> 
 
