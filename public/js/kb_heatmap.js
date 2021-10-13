@@ -150,7 +150,6 @@ for (var index = 0; index < allanchor.length; index++) {
     allanchor[index].addEventListener('click',redirectsometime);
 }
 
-
 function forclick(e){
     kb_usergetlocX.push(e.clientX);
 
@@ -159,9 +158,6 @@ function forclick(e){
     }else{
         kb_usergetlocY.push(e.clientY);
     }
-
-    // console.log(kb_usergetlocX);
-    // console.log(kb_usergetlocY);
 
     kb_fulldata['locx'] = kb_usergetlocX;
     kb_fulldata['locY'] = kb_usergetlocY;
@@ -233,8 +229,6 @@ function checkparam(value){
     const myParam = urlParams.get(value);
     return myParam;
 }
-
-
 
 var kb_fullcontent = `
     <style>
@@ -677,7 +671,167 @@ var kb_fullcontent = `
     width: 18px;
     margin-right: 6px;
 }
+#heatmap-options {
+    float: right;
+    right: 18px;
+}
+
+.refreshrotate{
+    animation: rotation 2s infinite linear;
+    -webkit-animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+            transform: rotate(0deg);
+    }
+    to {
+            transform: rotate(359deg);
+    }
+}
+
+@-webkit-keyframes rotation {
+    from {
+            -webkit-transform: rotate(0deg);
+    }
+    to {
+            -webkit-transform: rotate(359deg);
+    }
+}
+
+/* screenshot */
+
+.ui-backdrop {
+    background-color: rgba(44, 50, 61, 0.4);
+    cursor: pointer;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition-property: visibility, opacity;
+    transition: 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+    visibility: visible;
+    z-index: 1003;
+    justify-content:center;
+    display:none;
+}
+.ui-dialog {
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0px 3px 9px rgb(44 50 61 / 25%);
+    cursor: auto;
+    max-height: 99%;
+    max-width: 99%;
+    outline: none;
+    overflow: auto;
+    position: relative;
+    z-index: 1004;
+}
+.ui-a-dialog-enter-active, .ui-a-dialog-leave-active, .ui-dialog {
+    opacity: 1;
+    transform: scale(1);
+    transition-property: transform, opacity;
+    transition: 0.2s cubic-bezier(0.55, 0, 0.1, 1);
+}
+.size-dialog-large .ui-dialog {
+    width: 750px;
+}
+#kb-screenshotcont h2 {
+    font-size: 23px;
+}
+#kb-screenshotcont .padding {
+    padding: 20px;
+}
+.overflow-none {
+    overflow: hidden;
+}
+.screenshot-container {
+    border: 3px solid #fff;
+    height: 100%;
+    max-height: 270px;
+    width: 270px;
+}
+#kb-screenshotcont img{
+    max-width:100%;
+}
+.ui-dialog-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.size-dialog-large .ui-dialog {
+    width: 750px;
+}
+
+.kb-scrbtn{
+    background-image: linear-gradient(
+26deg, #2196F3 0%, #2157f3 100%);
+    border-color: #2196F3;
+    color: #FFFFFF;
+    text-decoration: none!important;
+}
+.kb-scrbtn:hover{
+color:#fff!important;
+}
+#kb-screenshotcont .ui-dialog-close span {
+    padding: 10px 10px 0px;
+}
+#kb-screenshotcont .ui-dialog-close svg {
+    width: 13px;
+    color: lightgray;
+}
+#kb-insidescrn-second a {
+    font-size: 15px;
+}
+#kb-insidescrn-second svg {
+    width: 15px;
+    margin-right:10px;
+}
+/* screenshot */
+
+
 </style>
+<div class="ui-backdrop layout-row layout-align-center-center size-dialog-large" style="position: fixed;" id="kb-screenshotcont">
+ <div class="ui-dialog">
+
+   <div class="text-center padding" id="kb-insidescrn-first">
+      <h2> Taking a screenshot<br><span class="color-grey">(This may take a few seconds)</span></h2> 
+      <div alt="Loading" class="ui-spinner style-1 refreshrotate"></div>
+    </div> 
+   
+
+    <div class="layout-row" id="kb-insidescrn-second" style="display:none;" > 
+    <div class="overflow-none screenshot-container"><a
+            href="" target="_blank" id="kb-link1"
+            class="display-block"><img id="kb-scr-src"
+                src=""
+                alt="Screenshot preview" class="display-block"></a></div>
+    <div class="flex padding">
+        <h2>Your screenshot is ready</h2>
+        <p>Copy or download your screenshot image to place it in emails and presentations, or to save it for later use.
+        </p>
+        <p class="color-grey"></p> <a target="_blank"
+            href="" id="kb-link2"
+            class="flex ui-button ui-button-fill ui-button-primary kb-scrbtn">
+            <span class="ui-button-flex"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="external-link-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-external-link-alt fa-w-16 fa-7x"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z" class=""></path></svg> 
+            Open in new window</span></a> <a
+            class="ui-button flex ui-button-primary ui-button-fill kb-scrbtn" id="capturescreenshot-kb" download><span
+                class="ui-button-flex"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-download fa-w-16 fa-9x"><path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z" class=""></path></svg>
+                Download</span></a>
+     </div>
+   </div>
+
+   <button class="ui-button icon padding-none ui-dialog-close ui-button-default ui-button-text" id="bw-close-scrnsht"><span class="ui-button-flex" >
+   <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-9x"><path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z" class=""></path></svg>
+   </span></button>
+
+
+   </div>
+ </div>
+
+
     <div class="lo-app layout-column size-fill overflow-none">
     <main class="layout-column flex">
         <div id="lo-app-bar" role="toolbar" class="ui-status-bar layout-row layout-align-space-between-center">
@@ -723,7 +877,7 @@ var kb_fullcontent = `
         <div id="lo-status-bar" role="toolbar" class="ui-status-bar layout-row layout-align-space-between-center">
             <div class="flex layout-row layout-align-start-center">
                 <span>
-                    <strong class="filtered">127 of 514 cliks</strong>
+                    <strong class="filtered">0 clicks</strong>
                 </span>
                 <span class="layout-row">
                     <strong class="spacer">·</strong> 
@@ -731,7 +885,7 @@ var kb_fullcontent = `
                 </span> 
                 <span class="layout-row">
                      <button class="ui-button icon padding-none ui-button-default ui-button-text"
-                        id="heatmap-reload-control-button">
+                        id="heatmap-reload">
                             <span class="ui-button-flex">
                                 <svg style=" width: 1em;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="redo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-redo fa-w-16 fa-9x"><path fill="currentColor" d="M500.33 0h-47.41a12 12 0 0 0-12 12.57l4 82.76A247.42 247.42 0 0 0 256 8C119.34 8 7.9 119.53 8 256.19 8.1 393.07 119.1 504 256 504a247.1 247.1 0 0 0 166.18-63.91 12 12 0 0 0 .48-17.43l-34-34a12 12 0 0 0-16.38-.55A176 176 0 1 1 402.1 157.8l-101.53-4.87a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12h200.33a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12z" class=""></path></svg> 
                             </span>
@@ -1359,13 +1513,13 @@ var kb_fullcontent = `
                                         class="ui-form-label flex">Event type</label>
                                     <div role="radiogroup" class="ui-button-group size-full-width" name="heatmap-type">
                                     
-                                    <button class="ui-button padding-none size-small ui-button-default ui-button-text ui-button-primary"
-                                            value="clicks" aria-label="touch_appClicks" role="radio"><span class="ui-button-flex">
+                                    <button class="ui-button padding-none size-small ui-button-default ui-button-text ui-button-primary active"
+                                            value="clicks" id="kb-clicks" role="radio"><span class="ui-button-flex">
                                             <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="hand-pointer" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-hand-pointer fa-w-14 fa-9x"><path fill="currentColor" d="M358.182 179.361c-19.493-24.768-52.679-31.945-79.872-19.098-15.127-15.687-36.182-22.487-56.595-19.629V67c0-36.944-29.736-67-66.286-67S89.143 30.056 89.143 67v161.129c-19.909-7.41-43.272-5.094-62.083 8.872-29.355 21.795-35.793 63.333-14.55 93.152l109.699 154.001C134.632 501.59 154.741 512 176 512h178.286c30.802 0 57.574-21.5 64.557-51.797l27.429-118.999A67.873 67.873 0 0 0 448 326v-84c0-46.844-46.625-79.273-89.818-62.639zM80.985 279.697l27.126 38.079c8.995 12.626 29.031 6.287 29.031-9.283V67c0-25.12 36.571-25.16 36.571 0v175c0 8.836 7.163 16 16 16h6.857c8.837 0 16-7.164 16-16v-35c0-25.12 36.571-25.16 36.571 0v35c0 8.836 7.163 16 16 16H272c8.837 0 16-7.164 16-16v-21c0-25.12 36.571-25.16 36.571 0v21c0 8.836 7.163 16 16 16h6.857c8.837 0 16-7.164 16-16 0-25.121 36.571-25.16 36.571 0v84c0 1.488-.169 2.977-.502 4.423l-27.43 119.001c-1.978 8.582-9.29 14.576-17.782 14.576H176c-5.769 0-11.263-2.878-14.697-7.697l-109.712-154c-14.406-20.223 14.994-42.818 29.394-22.606zM176.143 400v-96c0-8.837 6.268-16 14-16h6c7.732 0 14 7.163 14 16v96c0 8.837-6.268 16-14 16h-6c-7.733 0-14-7.163-14-16zm75.428 0v-96c0-8.837 6.268-16 14-16h6c7.732 0 14 7.163 14 16v96c0 8.837-6.268 16-14 16h-6c-7.732 0-14-7.163-14-16zM327 400v-96c0-8.837 6.268-16 14-16h6c7.732 0 14 7.163 14 16v96c0 8.837-6.268 16-14 16h-6c-7.732 0-14-7.163-14-16z" class=""></path></svg> Clicks</span>
                                     </button> 
                                                     
                                     <button class="ui-button padding-none size-small ui-button-default ui-button-text" value="moves"
-                                            aria-label="gestureMoves" role="radio"><span class="ui-button-flex"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="signature" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="svg-inline--fa fa-signature fa-w-20 fa-7x"><path fill="currentColor" d="M623.2 192c-51.8 3.5-125.7 54.7-163.1 71.5-29.1 13.1-54.2 24.4-76.1 24.4-22.6 0-26-16.2-21.3-51.9 1.1-8 11.7-79.2-42.7-76.1-25.1 1.5-64.3 24.8-169.5 126L192 182.2c30.4-75.9-53.2-151.5-129.7-102.8L7.4 116.3C0 121-2.2 130.9 2.5 138.4l17.2 27c4.7 7.5 14.6 9.7 22.1 4.9l58-38.9c18.4-11.7 40.7 7.2 32.7 27.1L34.3 404.1C27.5 421 37 448 64 448c8.3 0 16.5-3.2 22.6-9.4 42.2-42.2 154.7-150.7 211.2-195.8-2.2 28.5-2.1 58.9 20.6 83.8 15.3 16.8 37.3 25.3 65.5 25.3 35.6 0 68-14.6 102.3-30 33-14.8 99-62.6 138.4-65.8 8.5-.7 15.2-7.3 15.2-15.8v-32.1c.2-9.1-7.5-16.8-16.6-16.2z" class=""></path></svg> Moves</span>
+                                             role="radio" id="kb-moves"><span class="ui-button-flex"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="signature" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="svg-inline--fa fa-signature fa-w-20 fa-7x"><path fill="currentColor" d="M623.2 192c-51.8 3.5-125.7 54.7-163.1 71.5-29.1 13.1-54.2 24.4-76.1 24.4-22.6 0-26-16.2-21.3-51.9 1.1-8 11.7-79.2-42.7-76.1-25.1 1.5-64.3 24.8-169.5 126L192 182.2c30.4-75.9-53.2-151.5-129.7-102.8L7.4 116.3C0 121-2.2 130.9 2.5 138.4l17.2 27c4.7 7.5 14.6 9.7 22.1 4.9l58-38.9c18.4-11.7 40.7 7.2 32.7 27.1L34.3 404.1C27.5 421 37 448 64 448c8.3 0 16.5-3.2 22.6-9.4 42.2-42.2 154.7-150.7 211.2-195.8-2.2 28.5-2.1 58.9 20.6 83.8 15.3 16.8 37.3 25.3 65.5 25.3 35.6 0 68-14.6 102.3-30 33-14.8 99-62.6 138.4-65.8 8.5-.7 15.2-7.3 15.2-15.8v-32.1c.2-9.1-7.5-16.8-16.6-16.2z" class=""></path></svg> Moves</span>
                                     </button> 
                                                     
                                     </div>
@@ -1461,7 +1615,6 @@ var kb_fullcontent = `
                                             this page</span></span> <span class="color-negative cursor-pointer"
                                         style="display: none;">Clear</span></p>
                             </header>
-                            <!---->
                         </main>
                     </div>
                 </div>
@@ -1477,6 +1630,7 @@ if(window.location.hash=='#kb-heatmaps'){
     var kb_width = document.body.scrollWidth;
 
     var data1 = [];
+    var data2 = [];
 
 
     document.getElementsByTagName('body')[0].innerHTML = (kb_fullcontent);
@@ -1498,36 +1652,21 @@ if(window.location.hash=='#kb-heatmaps'){
                 var strng2 = [];
 
                 data.forEach(element => {
-                var elm1 =  element['locY'].split(',')
-                elm1.forEach(element2 => {
-                    strng1.push(element2);
-                });
+                    var elm1 =  element['locY'].split(',')
+                    elm1.forEach(element2 => {
+                        strng1.push(element2);
+                    });
 
-                var elm2 =  element['locx'].split(',')
-                elm2.forEach(element3 => {
-                    var generateelm = 1519%kb_width*0.5;
-                    //    console.log(generateelm);
-                    generateelm = Math.abs(element3-generateelm);
-
-                    strng2.push(generateelm);
-                    //    console.log(element3+'--elm');
-                    //    console.log(generateelm);
+                    var elm2 =  element['locx'].split(',')
+                    elm2.forEach(element3 => {
+                        var generateelm = 1519%kb_width*0.5;
+                        generateelm = Math.abs(element3-generateelm);
+                        strng2.push(generateelm);
+                    });
                 });
-                });
-
-                // console.log(strng1);
-                // console.log(strng2);
 
                 var div1 = document.createElement("div");
-                div1.id = 'kb-heatmap'
-
-            
-
-                // doc.getElementById('myorgdiv').insertBefore(div1,document.getElementsByClassName('back-to-top')[0]);
-
-                // document.getElementById('myorgdiv').insertBefore(div1,document.getElementsByClassName('back-to-top')[0]);
-                // document.getElementById('lo-website-iframe-container').insertBefore(div1,document.getElementById('lo-website-iframe'));
-                
+                div1.id = 'kb-heatmap'                
 
                 var div = document.createElement("canvas");
                 div.id='heat-map';
@@ -1674,12 +1813,16 @@ if(window.location.hash=='#kb-heatmaps'){
                 var kb_main = 0;
                 strng1.forEach(element => {
                     chkmn = [];
-                    chkmn.push(strng2[kb_main]);
-                    chkmn.push(strng1[kb_main]);
-                    // console.log(chkmn);
+                    if(strng2[kb_main]!='' || strng2[kb_main]!=0){
+                        chkmn.push(strng2[kb_main]);
+                        chkmn.push(strng1[kb_main]);
                         data1.push(chkmn);
+                    }
                         kb_main++;
                     });
+
+                document.getElementsByClassName('filtered')[0].innerText = data1.length+' clicks';
+
                 const heat = new HeatMap(canvas, data1);
                 heat.draw(0.85);
 
@@ -1713,6 +1856,7 @@ if(window.location.hash=='#kb-heatmaps'){
     function closeall_floating(){
         document.getElementById('segmentation-panel').style.display = "none";
         document.getElementById('sizing-options').style.display = "none";
+        document.getElementById('heatmap-options').style.display = "none";
     }
 
     var elementsclose = document.getElementsByClassName("closeall-floating");
@@ -1840,6 +1984,8 @@ if(window.location.hash=='#kb-heatmaps'){
             var x = document.getElementById("lo-website-iframe");
             const canvas = x.contentWindow.document.getElementById("heat-map");
 
+            document.getElementsByClassName('filtered')[0].innerText = data1.length+' clicks';
+
             const heat = new HeatMap(canvas, data1);
             heat.draw(0.85);
 
@@ -1848,9 +1994,168 @@ if(window.location.hash=='#kb-heatmaps'){
             // ===================================
 
     }
+    
+    function createheatmpmouse(){
+        $.ajax({
+            url: "http://127.0.0.1:8000/heatfetchmou-request",
+            type: "GET",
+            dataType: 'json',
+            data:  {
+                url: window.location.href.toString().split('#kb-heatmaps')[0]
+            },
+            contentType: 'application/json',
+            CrossDomain:true,
+            success: function (data) {
+
+                var strng1 = [];
+                var strng2 = [];
+
+                data.forEach(element => {
+                    var elm1 =  element['mouseY'].split(',')
+                    elm1.forEach(element2 => {
+                        strng1.push(element2);
+                    });
+
+                    var elm2 =  element['mouseX'].split(',')
+                    elm2.forEach(element3 => {
+                        var generateelm = 1519%kb_width*0.5;
+                        generateelm = Math.abs(element3-generateelm);
+                        strng2.push(generateelm);
+                    });
+                });
+
+                // ===================================
+                // ========== HEATMAP START ==========
+                // ===================================
+                "use strict";
+                class HeatMap {
+                    constructor(canvas, data) {
+                        this.canvas = canvas;
+                        this.ctx = canvas.getContext("2d");
+                        this.width = canvas.width;
+                        this.height = canvas.height;
+                        this.data = data;
+                        this.circle = HeatMap.createCanvas();
+                        this.radius = 15 + 15;
+                        this.computeRadius(15, 15);
+                        this.unit8Gradient = HeatMap.computeGradient({
+                            0.4: "blue",
+                            0.6: "cyan",
+                            0.7: "lime",
+                            0.8: "yellow",
+                            1.0: "red"
+                        });
+                    }
+                    computeRadius(r, blur) {
+                        const { circle } = this;
+                        const ctx = circle.getContext("2d");
+                        if (!ctx) {
+                            throw new Error("The ctx is undefined");
+                        }
+                        const r2 = this.radius;
+                        circle.height = r2 * 2;
+                        circle.width = r2 * 2;
+                        ctx.shadowOffsetY = r2 * 2;
+                        ctx.shadowOffsetX = r2 * 2;
+                        ctx.shadowBlur = blur;
+                        ctx.shadowColor = "black";
+                        ctx.beginPath();
+                        ctx.arc(-r2, -r2, r, 0, Math.PI * 2, true);
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+                    resize() {
+                        this.width = this.canvas.width;
+                        this.height = this.canvas.height;
+                    }
+                    draw(minOpacity) {
+                        const { ctx } = this;
+                        if (!ctx) {
+                            throw new Error("The ctx is undefined");
+                        }
+                        ctx.clearRect(0, 0, this.width, this.height);
+                        for (let i = 0, len = this.data.length, p; i < len; i++) {
+                            p = this.data[i];
+                            ctx.globalAlpha = Math.min(minOpacity, 1);
+                            if (!this.circle || !this.radius) {
+                                throw new Error("The circle || radius is undefined");
+                            }
+                            ctx.drawImage(this.circle, p[0] - this.radius, p[1] - this.radius,30,30);
+                        }
+                        const colored = HeatMap.colorize(ctx.getImageData(0, 0, this.width, this.height), this.unit8Gradient);
+                        ctx.putImageData(colored, 0, 0);
+                    }
+                    static computeGradient(grad) {
+                        const canvas = HeatMap.createCanvas();
+                        const ctx = canvas.getContext("2d");
+                        if (!ctx) {
+                            throw new Error("The ctx is undefined");
+                        }
+                        const gradient = ctx.createLinearGradient(0, 0, 0, 256);
+                        canvas.width = 1;
+                        canvas.height = 256;
+                        Object.keys(grad).forEach((i) => {
+                            gradient.addColorStop(+i, grad[+i]);
+                        });
+                        ctx.fillStyle = gradient;
+                        ctx.fillRect(0, 0, 1, 256);
+                        return ctx.getImageData(0, 0, 1, 256).data;
+                    }
+                    static colorize(imageData, gradient) {
+                        const pixels = imageData.data;
+                        for (let i = 0, len = pixels.length, j; i < len; i += 4) {
+                            j = pixels[i + 3] * 4;
+                            if (j) {
+                                pixels[i] = gradient[j];
+                                pixels[i + 1] = gradient[j + 1];
+                                pixels[i + 2] = gradient[j + 2];
+                            }
+                        }
+                        return imageData;
+                    }
+                    static createCanvas() {
+                        return document.createElement("canvas");
+                    }
+                }
+
+                var chkmn = [];
+                
+                var kb_main = 0;
+                strng1.forEach(element => {
+                    chkmn = [];
+                    chkmn.push(strng2[kb_main]);
+                    chkmn.push(strng1[kb_main]);
+                    // console.log(chkmn);
+                        data2.push(chkmn);
+                        kb_main++;
+                    });
+
+                var x = document.getElementById("lo-website-iframe");
+                const canvas2 = x.contentWindow.document.getElementById("heat-map");
+
+                document.getElementsByClassName('filtered')[0].innerText = data2.length+' Moves';
+
+                const heat = new HeatMap(canvas2, data2);
+                heat.draw(0.85);
+
+                // ===================================
+                // =========== HEATMAP END ===========
+                // ===================================
+
+
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+
+            }
+        });
+    }
 
     var scrheight = 0;
     var scrwidth = 0;
+    var heatmapready = false;
 
     function removeactiveclass(value,position){
         var array = document.getElementsByClassName(value);
@@ -1876,7 +2181,13 @@ if(window.location.hash=='#kb-heatmaps'){
                     x.contentWindow.document.getElementById("heat-map").setAttribute('width',scrwidth);
                     x.contentWindow.document.getElementById("heat-map").setAttribute('height',scrheight);
                     x.contentWindow.document.getElementById("kb-heatmap").style.height = scrheight+'px';
-                    createheatmp();
+
+                    if(heatmapready==false){
+                        createheatmp(); 
+                    }else{
+                        createheatmpmouse();
+                    }
+
                 },500);               
 
                 break;
@@ -1893,7 +2204,13 @@ if(window.location.hash=='#kb-heatmaps'){
                     scrwidth = (x.contentDocument.body.scrollWidth)-60;
                     x.contentWindow.document.getElementById("heat-map").setAttribute('height',scrheight);
                     x.contentWindow.document.getElementById("kb-heatmap").style.height = scrheight+'px';
-                    createheatmp();
+
+                    if(heatmapready==false){
+                        createheatmp(); 
+                    }else{
+                        createheatmpmouse();
+                    }
+                    
                 },500);               
 
                 break;
@@ -1911,7 +2228,12 @@ if(window.location.hash=='#kb-heatmaps'){
                     x.contentWindow.document.getElementById("heat-map").setAttribute('height',scrheight);
                     x.contentWindow.document.getElementById("kb-heatmap").style.height = scrheight+'px';
 
-                    createheatmp();
+                    if(heatmapready==false){
+                        createheatmp(); 
+                    }else{
+                        createheatmpmouse();
+                    }
+
                 },500);               
 
                 break;
@@ -1984,6 +2306,100 @@ if(window.location.hash=='#kb-heatmaps'){
         }
     });
 
+    document.getElementById('kb-moves').addEventListener('click',function(){
+        document.getElementById('kb-clicks').classList.remove('active');
+        this.classList.add('active');
+        createheatmpmouse();
+        heatmapready = true;
+    });
+    
+    document.getElementById('kb-clicks').addEventListener('click',function(){
+        document.getElementById('kb-moves').classList.remove('active');
+        this.classList.add('active');
+        createheatmp();
+        heatmapready = false;
+    });
+
+    document.getElementById('heatmap-reload').addEventListener('click',function(){
+        this.classList.add('refreshrotate');
+        var ths = this;
+        if(heatmapready==false){
+            createheatmp(); 
+        }else{
+            createheatmpmouse();
+        }
+        setTimeout(() => {
+           ths.classList.remove('refreshrotate');
+        }, 1000);
+    });
+    
+    function createhtml2canvasscript(){
+        var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+		wa.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js';
+        wa.id = 'kb-html2canvas';
+		var s = document.getElementsByTagName('body')[0]; s.appendChild(wa);
+
+    }
+
+    var checkhtml2canvas = false;
+
+    document.getElementById('screenshot-button').addEventListener('click',function(){
+
+        if(checkhtml2canvas==false){
+            createhtml2canvasscript();
+            checkhtml2canvas = true;
+        }
+
+        document.getElementById('kb-screenshotcont').style.display = "flex";
+        document.getElementById('kb-insidescrn-first').style.display = "block";
+
+        setTimeout(() => {
+            var x = document.getElementById("lo-website-iframe");
+            var y =  x.contentDocument.body;
+
+            html2canvas(y, {
+                onrendered: function(canvas)  
+                {
+                    //src = url;
+                    var img = canvas.toDataURL();
+                    document.getElementById('capturescreenshot-kb').href = img;
+
+                    var dateObj = new Date();
+                    var month = dateObj.getUTCMonth() + 1;
+                    var day = dateObj.getUTCDate();
+                    var year = dateObj.getUTCFullYear();
+                    
+                    newdate = year + "-" + month + "-" + day;
+
+                    var topurl = window.location.href.toString().split('#kb-heatmaps')[0];
+
+                    document.getElementById('capturescreenshot-kb').setAttribute('download','heatmat-'+newdate+'-'+topurl);
+
+
+                    canvas.toBlob(function(blob) {
+                        //     saveAs(blob, "screenshot.png");
+                    var url = URL.createObjectURL(blob);
+                        // console.log(url);
+
+                        document.getElementById('kb-scr-src').src = url;
+                        document.getElementById('kb-link1').href = url;
+                        document.getElementById('kb-link2').href = url;
+                        
+                        document.getElementById('kb-insidescrn-first').style.display = "none";
+                        document.getElementById('kb-insidescrn-second').style.display = "flex";
+                        
+                    });
+                }
+            });
+            return false;
+        }, 1000);
+  
+    });
+
+    document.getElementById('bw-close-scrnsht').addEventListener('click',function(){
+        document.getElementById('kb-screenshotcont').style.display = "none";
+        document.getElementById('kb-insidescrn-second').style.display = "none";
+    });
 
     // layout js
   

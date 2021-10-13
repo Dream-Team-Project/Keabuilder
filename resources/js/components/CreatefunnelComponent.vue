@@ -764,7 +764,7 @@
 
     .kb-showtemplates li {
         display: inline;
-        width: 50%;
+        width: 33%;
         padding: 2%;
         text-align: center;
         float: left;
@@ -1385,6 +1385,11 @@
                                 </li>
                                 <li>
                                     <a href="" class="active"><i class="fas fa-envelope"></i> EMAIL OPTIN TEMPLATES</a>
+                                </li>
+                                 <li>
+                                     <router-link to="builder">
+                                        <i class="fas fa-plus"></i> BUILD FROM SCRATCH
+                                     </router-link>
                                 </li>
                             </ul>
 
