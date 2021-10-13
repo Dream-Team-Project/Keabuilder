@@ -1,5 +1,12 @@
+<style scoped>
+    div.insidecont {
+        background: #F2F3F7!important;
+        padding: 0px!important;
+    }
+</style>
+
 <template>
-    <div id="dasboardcontainer" class="insidecont">
+    <div id="dasboardcontainer">
         <div class="container-fluid">
             <!-- first row start -->
             <div class="row">

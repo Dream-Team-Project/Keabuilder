@@ -60,8 +60,8 @@
                 <img v-bind:src="'images/logo/kblogo.svg'" alt="">
             </div>
             <div class="bw-sidebar">
-                <router-link :to="{name: 'home'}">
-                    <button class="bw-sidebar__item hasIcon" v-on:click="setActive('dashboard')" :class="{ active:isActive('dashboard') }">
+                <router-link :to="{name: 'dashboard'}">
+                    <button class="bw-sidebar__item hasIcon">
                         <div class="bw-sidebar__item__icon">
                             <i class="fa fa-home" aria-hidden="true"></i>
                         </div>
@@ -72,7 +72,7 @@
                 </router-link>
 
                 <router-link :to="{name: 'funnel'}">
-                    <button class="bw-sidebar__item hasIcon" v-on:click="setActive('funnel')" :class="{ active:isActive('funnel') }">
+                    <button class="bw-sidebar__item hasIcon">
                         <div class="bw-sidebar__item__icon">
                             <i class="fa fa-filter" aria-hidden="true"></i>
                         </div>
@@ -83,7 +83,7 @@
                 </router-link>
 
                 <router-link :to="{name: 'pages'}">    
-                    <button class="bw-sidebar__item hasIcon" v-on:click="setActive('Pages')" :class="{ active:isActive('Pages') }">
+                    <button class="bw-sidebar__item hasIcon">
                         <div class="bw-sidebar__item__icon">
                             <i class="fas fa-desktop"></i>
                         </div>
@@ -94,7 +94,7 @@
                 </router-link>
 
                 <router-link :to="{name: 'strategies'}">    
-                    <button class="bw-sidebar__item hasIcon" v-on:click="setActive('strategies')" :class="{ active:isActive('strategies') }">
+                    <button class="bw-sidebar__item hasIcon">
                         <div class="bw-sidebar__item__icon">
                             <i class="fas fa-chess-knight"></i>
                         </div>
@@ -105,7 +105,7 @@
                 </router-link>
 
                 <router-link :to="{name: 'membership'}">
-                    <button class="bw-sidebar__item hasIcon"  v-on:click="setActive('membership')" :class="{ active:isActive('membership') }">
+                    <button class="bw-sidebar__item hasIcon">
                         <div class="bw-sidebar__item__icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
@@ -116,7 +116,7 @@
                 </router-link>
 
                 <router-link :to="{name: 'analytics'}">
-                    <button class="bw-sidebar__item hasIcon"  v-on:click="setActive('analytics')" :class="{ active:isActive('analytics') }">
+                    <button class="bw-sidebar__item hasIcon">
                         <div class="bw-sidebar__item__icon">
                             <i class="fas fa-chart-pie"></i>
                         </div>

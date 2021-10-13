@@ -2,7 +2,7 @@
 
 </style>
 <template>
-    <div id="heatmapcomntainer" class="insidecont">
+    <div id="heatmapcomntainer">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">

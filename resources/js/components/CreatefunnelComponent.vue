@@ -1112,7 +1112,7 @@
 </style>
 
 <template>
-    <div id="createfunnel" class="insidecont">
+    <div id="createfunnel">
 
         <div id="kb-automation-actions" v-if="poupsidebar">
             <i class="fas fa-times" @click="hidepopupsidebar"></i>

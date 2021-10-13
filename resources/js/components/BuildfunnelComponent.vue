@@ -63,7 +63,7 @@
 </style>
 
 <template>
-  <div id="buildfunnelcomp" class="insidecont">
+  <div id="buildfunnelcomp">
       <div class="container-fluid">
           <div class="row">
               <div class="col-md-12">
