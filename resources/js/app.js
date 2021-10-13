@@ -9,7 +9,7 @@ import VueRouter from 'vue-router';
 import VuePageTransition from 'vue-page-transition';
 import VueMq from 'vue-mq';
 import VueCookies from 'vue-cookies';
-import DragDrop from 'vue-drag-n-drop';
+import VueDragDrop from 'vue-drag-n-drop';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -25,7 +25,7 @@ Vue.use(VueRouter);
 Vue.use(VuePageTransition);
 Vue.use(VueMq);
 Vue.use(VueCookies);
-Vue.use(DragDrop);
+Vue.use(VueDragDrop);
 Vue.use(draggable);
 Vue.use(VueApexCharts);
 
@@ -63,8 +63,12 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('indexlogin-component', require('./components/IndexloginComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
-Vue.component('draggable', draggable);
 Vue.component('apexchart', VueApexCharts);
+Vue.component('draggable', draggable);
+Vue.component('drag-drop', VueDragDrop);
+Vue.component('drag', VueDragDrop.Drag)
+Vue.component('drop', VueDragDrop.Drop)
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -85,6 +89,7 @@ Vue.component('apexchart', VueApexCharts);
  import edituser from './components/EdituserComponent.vue';
  import pages from './components/PagesComponent.vue';
  import strategies from './components/StrategiesComponent.vue';
+ import builder from './components/BuilderComponent.vue';
 
 
 const routes = [
@@ -99,9 +104,9 @@ const routes = [
   {path : '/strategies', name: 'strategies', component: strategies},
   {path : '/membership', name: 'membership', component: membership},
   {path : '/analytics', name: 'analytics', component: analytics},
+  {path : '/builder', name: 'builder', component: builder, prams: ''},
   {path : '/heat-maps', name: 'heatmaps', component: heatmaps},
   {path : '/edit-user', name: 'edituser', component: edituser},
-  {path : '/home', name: 'home', component: dashboard},
   {path : '/*', name: 'dashboard', component: dashboard},
 ]
 

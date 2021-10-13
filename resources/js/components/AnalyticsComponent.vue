@@ -9,7 +9,7 @@
     }
 </style>
 <template>
-    <div id="kb-analytics" class="insidecont">
+    <div id="kb-analytics">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">

@@ -5,8 +5,8 @@
         </vue-page-transition>
 
         <div v-if="loginstate">
-            <sidebar-component></sidebar-component>
-            <vue-page-transition name="fade-in-up" >
+            <sidebar-component v-if="$route.name != 'builder'"></sidebar-component>
+            <vue-page-transition name="fade-in-up" class="insidecont" :class="$route.name == 'dashboard' ? 'bg-gray-100' : ''">
                 <router-view></router-view>
             </vue-page-transition>
         </div>
@@ -25,7 +25,8 @@ export default{
     created(){
         this.init();
         // this.hide = window.location.pathname != '/login' && window.location.pathname != '/register' ? false : true ;
-    },watch:{
+    },
+watch:{
         '$route.params.search': {
         handler: function(search) {
         //    console.log(search+'login');       

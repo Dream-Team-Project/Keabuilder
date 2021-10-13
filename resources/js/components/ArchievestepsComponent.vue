@@ -92,7 +92,7 @@ label {
 }
 </style>
 <template>
-  <div id="archievesteps" class="insidecont">
+  <div id="archievesteps">
       <div class="container-fluid">
           <div class="row whitefunnel pb-5 loadEffect">
               <div class="col-md-12 mb-5">

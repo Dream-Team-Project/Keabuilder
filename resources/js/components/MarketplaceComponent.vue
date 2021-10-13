@@ -2,7 +2,7 @@
 
 </style>
 <template>
-  <div id="kb-martketplace" class="insidecont">
+  <div id="kb-martketplace">
       <div class="container-fluid">
           <div class="row">
               <div class="col-md-12 ">

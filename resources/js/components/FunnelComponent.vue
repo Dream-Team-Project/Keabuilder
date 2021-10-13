@@ -246,7 +246,7 @@ ul.kea-barfunnelsearch li.active {
 
 <template>
 
-    <div id="funnelcontainer" class="insidecont">
+    <div id="funnelcontainer">
 
         <div class="container-fluid">
             <div class="row">
@@ -285,7 +285,6 @@ ul.kea-barfunnelsearch li.active {
 
             <div class="" >
                 <draggable
-                        :steps="steps"
                         :disabled="!enabled"
                         class="steps-group row keabuilder-container mt-5"
                         ghost-class="ghost"
@@ -461,7 +460,7 @@ export default {
                 }
             ],
           },
-           {
+            {
             id:'4',  
             name:'kea Ebook',
             steps:[

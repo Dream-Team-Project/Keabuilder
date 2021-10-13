@@ -27,14 +27,13 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.36",
         "@fortawesome/free-solid-svg-icons": "^5.15.4",
         "@fortawesome/vue-fontawesome": "^2.0.2",
-        "apexcharts": "^3.28.3",
+        "apexcharts": "^3.29.0",
         "vue-apexcharts": "^1.6.2",
         "vue-cookies": "^1.7.4",
         "vue-drag-n-drop": "^1.2.2",
         "vue-mq": "^1.0.1",
         "vue-page-transition": "^0.2.2",
         "vue-router": "^3.5.2",
-        "vuedraggable": "^2.24.3",
-        "vuesax": "^4.0.1-alpha.25"
+        "vuedraggable": "^2.24.3"
     }
 }
