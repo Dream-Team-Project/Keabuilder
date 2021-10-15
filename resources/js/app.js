@@ -63,6 +63,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('indexlogin-component', require('./components/IndexloginComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
+Vue.component('builder-component', require('./components/BuilderComponent.vue').default);
 Vue.component('apexchart', VueApexCharts);
 Vue.component('draggable', draggable);
 Vue.component('drag-drop', VueDragDrop);
@@ -89,7 +90,6 @@ Vue.component('drop', VueDragDrop.Drop)
  import edituser from './components/EdituserComponent.vue';
  import pages from './components/PagesComponent.vue';
  import strategies from './components/StrategiesComponent.vue';
- import builder from './components/BuilderComponent.vue';
 
 
 const routes = [
@@ -104,7 +104,6 @@ const routes = [
   {path : '/strategies', name: 'strategies', component: strategies},
   {path : '/membership', name: 'membership', component: membership},
   {path : '/analytics', name: 'analytics', component: analytics},
-  {path : '/builder', name: 'builder', component: builder, prams: ''},
   {path : '/heat-maps', name: 'heatmaps', component: heatmaps},
   {path : '/edit-user', name: 'edituser', component: edituser},
   {path : '/*', name: 'dashboard', component: dashboard},

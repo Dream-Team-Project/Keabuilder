@@ -33,22 +33,28 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function adminLogin(Request $request){
-        //validate request
-        $this->validate($request,[
-            'email'=>  'required',
-            'password'=> 'bail|required|min:6'
-        ]);
 
-        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-            return response()->json([
-                'msg'=> 'You are Logged in'
-            ]);
-        }else{
-            return response()->json([
-                'msg'=> 'Incorrect login details'
-            ]);
-        }
+    public function builder()
+    {
+        return view('builder');
     }
+
+    // public function adminLogin(Request $request){
+    //     //validate request
+    //     $this->validate($request,[
+    //         'email'=>  'required',
+    //         'password'=> 'bail|required|min:6'
+    //     ]);
+
+    //     if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
+    //         return response()->json([
+    //             'msg'=> 'You are Logged in'
+    //         ]);
+    //     }else{
+    //         return response()->json([
+    //             'msg'=> 'Incorrect login details'
+    //         ]);
+    //     }
+    // }
   
 }
