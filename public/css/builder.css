@@ -9,6 +9,14 @@
     position: relative;
 }
 
+#draggable-container {
+    position: absolute;
+    z-index: 9;
+  }
+  #draggable-header {
+    z-index: 10;
+  }
+
 /* selection */
 
 div#kb-slectction-ask  span.kb-cut {
@@ -163,10 +171,13 @@ div.kb-row.kb-contain-element {
     margin: auto;
 }
 
+div.kb-row.kb-contain-element:not(:last-child) {
+    margin-bottom: 30px;
+}
+
 div.kb-row div.kb-inner-row {
     height: 100%;
     min-height: 120px;
-    border-right: 1px solid #e2e2e2;
     position: relative;
     float: left;
     align-items: center;
@@ -174,14 +185,24 @@ div.kb-row div.kb-inner-row {
     justify-content: center;
 }
 
+div.kb-row div.kb-inner-row:after {
+    content: '';
+    border-right: 1px solid #e2e2e2;
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+}
+
 /* section and row */
 
 /* selection module */
 
 div.kb-module-setting span {
-    padding: 0 6px;
+    padding: 0 8px;
     cursor: pointer;
     transition: 0.1s ease-in-out;
+    display: inline-block;
 }
 
 div.kb-module-setting span:hover {
@@ -192,15 +213,20 @@ div.kb-module-setting i {
     font-size: 14px;
 }
 
+div.kb-module-setting span:first-child {
+    cursor: move;
+}
+
 div.kb-module-setting {
     color: var(--light);
     position: absolute;
     top: 0px;
     left: 0px;
-    line-height: 24px;
-    padding: 6px 12px;
+    line-height: 36px;
+    padding: 0 8px;
     border-radius: 3px 0px 3px 0px;
     animation: show 0.2s linear;
+    z-index: 9;
 }
 
 @keyframes show {
@@ -236,8 +262,8 @@ div.kb-row span.kb-ispan-add.add-element {
 }
 
 span.kb-ispan-add {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 100px;
     align-items: center;
     justify-content: center;
@@ -245,16 +271,17 @@ span.kb-ispan-add {
     cursor: pointer;
     transition: 0.1s ease-in-out;
     margin: auto;
+    z-index: 9;
 }
 
 span.kb-ispan-add:hover {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
 }
 
 span.kb-ispan-add i{
     color: var(--light);
-    font-size: 13px;
+    font-size: 12px;
 }
 
 /* add new button */
