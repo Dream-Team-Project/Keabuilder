@@ -10,11 +10,12 @@ import VuePageTransition from 'vue-page-transition';
 import VueMq from 'vue-mq';
 import VueCookies from 'vue-cookies';
 import VueDragDrop from 'vue-drag-n-drop';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import draggable from 'vuedraggable'
-import VueApexCharts from 'vue-apexcharts'
+import draggable from 'vuedraggable';
+import VueApexCharts from 'vue-apexcharts';
+import {Tabs, Tab} from 'vue-tabs-component';
+import VTooltip from 'v-tooltip';
+import 'v-tooltip/dist/v-tooltip.css';
+
 
 
 require('./bootstrap');
@@ -28,6 +29,7 @@ Vue.use(VueCookies);
 Vue.use(VueDragDrop);
 Vue.use(draggable);
 Vue.use(VueApexCharts);
+Vue.use(VTooltip);
 
 Vue.use(VueMq, {
     breakpoints: { // default breakpoints - customize this
@@ -37,8 +39,6 @@ Vue.use(VueMq, {
     },
     defaultBreakpoint: 'sm' // customize this for SSR
   })
-
-library.add(faUserSecret)
 
 plugins: [
   {
@@ -59,15 +59,17 @@ plugins: [
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('indexlogin-component', require('./components/IndexloginComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
+Vue.component('builder-component', require('./components/BuilderComponent.vue').default);
 Vue.component('apexchart', VueApexCharts);
 Vue.component('draggable', draggable);
 Vue.component('drag-drop', VueDragDrop);
-Vue.component('drag', VueDragDrop.Drag)
-Vue.component('drop', VueDragDrop.Drop)
+Vue.component('drag', VueDragDrop.Drag);
+Vue.component('drop', VueDragDrop.Drop);
+Vue.component('tabs', Tabs);
+Vue.component('tab', Tab);
 
 
 /**
@@ -89,7 +91,6 @@ Vue.component('drop', VueDragDrop.Drop)
  import edituser from './components/EdituserComponent.vue';
  import pages from './components/PagesComponent.vue';
  import strategies from './components/StrategiesComponent.vue';
- import builder from './components/BuilderComponent.vue';
 
 
 const routes = [
@@ -104,7 +105,6 @@ const routes = [
   {path : '/strategies', name: 'strategies', component: strategies},
   {path : '/membership', name: 'membership', component: membership},
   {path : '/analytics', name: 'analytics', component: analytics},
-  {path : '/builder', name: 'builder', component: builder, prams: ''},
   {path : '/heat-maps', name: 'heatmaps', component: heatmaps},
   {path : '/edit-user', name: 'edituser', component: edituser},
   {path : '/*', name: 'dashboard', component: dashboard},

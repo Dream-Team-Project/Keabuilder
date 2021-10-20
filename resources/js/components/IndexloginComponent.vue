@@ -6,7 +6,7 @@
 
         <div v-if="loginstate">
             <sidebar-component v-if="$route.name != 'builder'"></sidebar-component>
-            <vue-page-transition name="fade-in-up" class="insidecont" :class="$route.name == 'dashboard' ? 'bg-gray-100' : ''">
+            <vue-page-transition name="fade-in-up" :class="[$route.name == 'dashboard' ? 'bg-gray-100' : '', $route.name != 'builder' ? 'insidecont' : '']">
                 <router-view></router-view>
             </vue-page-transition>
         </div>

@@ -21,11 +21,12 @@ Route::get('/heatfetchmou-request', 'HeatmapController@fetchmou');
 Route::get('/heatall-request', 'HeatmapController@fetchall');
 Route::get('/heatshome-request', 'HeatmapController@fetchshowme');
 
-Route::get('/{any}', 'HomeController@index')->name('index');
-
 Auth::routes();
 
+Route::get('/builder', 'HomeController@builder')->name('builder');
+
 Route::get('/home', 'HomeController@home')->name('home');
+
 
 // login system
 Route::prefix('auth')->group(function(){
@@ -40,4 +41,7 @@ Route::prefix('auth')->group(function(){
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
+
+Route::get('/{any}', 'HomeController@index')->name('index');
+
 
