@@ -19,7 +19,6 @@ class HeatmapController extends Controller
         $kb_landing_page = $request->name['landing_page'];
         $kb_location = $request->name['location'];
         $kb_doctitle = $request->name['doctitle'];
-
         
         if(isset($request->name['locx'])){
             $locx = $request->name['locx'];
@@ -47,9 +46,6 @@ class HeatmapController extends Controller
             $MlocY = implode(",",$MlocY);
 
         }   
-
-    
-
 
         $data = array(
             "uniqueid"=>$uniqueid,
@@ -106,6 +102,24 @@ class HeatmapController extends Controller
         $data = DB::table('heatmaps')->select('mouseX','mouseY')->where('landing_page', $url)->get();
         return $data;
 
+    }
+
+    public function fetchall(Request $request){
+        $url = $request->url;
+        $data = DB::table('heatmaps')->where('landing_page', $url)->get();
+        return $data;
+    }
+    
+    public function fetchshowme(Request $request){
+        $url = $request->url;
+        $browser_segment = $request->browser_segment;
+        $whichvalue = $request->whichvalue;
+        if(isset($browser_segment)){
+            $data = DB::table('heatmaps')->where('landing_page', $url)->whereIn($whichvalue,$browser_segment)->get();
+        }else{
+            $data = [];
+        }
+        return $data;
     }
 
 }

@@ -944,7 +944,7 @@ color:#fff!important;
                                                 autocomplete="off" /> 
                                         </div>
                                     </div>
-                                    <div class="ui-list-group lo-segment lo-default-segment loadEffect">
+                                    <div class="ui-list-group lo-segment lo-default-segment loadEffect" style="display:none;">
                                         <header
                                             class="layout-row layout-align-start-center padding-y-half cursor-pointer kb-dropdwn">
                                             <h5 class="flex margin-none text-truncate">
@@ -1007,62 +1007,11 @@ color:#fff!important;
                                             </div>
                                         </header>
                                         <div class="border-top margin-bottom-half showmydropdown loadEffect" style="display: none;">
-                                            <div class="segmentation-container padding-top-half ps"
-                                                style="display: block;overflow-y: auto;height: 250px;position: relative;">
-                                                <div role="group" class=""
+                                            <div class="segmentation-container padding-top-half ps--active-y"
+                                                style="display: block;overflow-y: scroll;height: 250px;position: relative;">
+                                                <div role="group" id="kb_bs_segment" class=""
                                                     style="display: block; padding-top: 12px; padding-bottom: 0px;">
-                                                    <div class="padding-bottom-half"><label
-                                                            class="layout-row layout-align-start-center margin-none">
-                                                            <div class="padding-right-half"><input type="checkbox"
-                                                                    value="" /></div>
-                                                            <div aria-label="" role="listitem"
-                                                                class="ui-list-item padding-none flex">
-                                                                <div
-                                                                    class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                    Chrome
-                                                                </div> <strong>116</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                            class="layout-row layout-align-start-center margin-none">
-                                                            <div class="padding-right-half"><input type="checkbox"
-                                                                    value="Google PPC" /></div>
-                                                            <div aria-label="" role="listitem"
-                                                                class="ui-list-item padding-none flex">
-                                                                <div
-                                                                    class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                    Safari
-                                                                </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                        class="layout-row layout-align-start-center margin-none">
-                                                        <div class="padding-right-half"><input type="checkbox"
-                                                                value="Google PPC" /></div>
-                                                        <div aria-label="" role="listitem"
-                                                            class="ui-list-item padding-none flex">
-                                                            <div
-                                                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                Edge
-                                                            </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                        class="layout-row layout-align-start-center margin-none">
-                                                        <div class="padding-right-half"><input type="checkbox"
-                                                                value="Google PPC" /></div>
-                                                        <div aria-label="" role="listitem"
-                                                            class="ui-list-item padding-none flex">
-                                                            <div
-                                                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                Firefox
-                                                            </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -1086,62 +1035,11 @@ color:#fff!important;
                                             </div>
                                         </header>
                                         <div class="border-top margin-bottom-half showmydropdown loadEffect" style="display: none;">
-                                            <div class="segmentation-container padding-top-half ps"
-                                                style="display: block;overflow-y: auto;height: 250px;position: relative;">
-                                                <div role="group" class=""
+                                            <div class="segmentation-container padding-top-half ps--active-y"
+                                                style="display: block;overflow-y: scroll;height: 250px;position: relative;">
+                                                <div role="group" id="kb_os_segment" class=""
                                                     style="display: block; padding-top: 12px; padding-bottom: 0px;">
-                                                    <div class="padding-bottom-half"><label
-                                                            class="layout-row layout-align-start-center margin-none">
-                                                            <div class="padding-right-half"><input type="checkbox"
-                                                                    value="" /> </div>
-                                                            <div aria-label="" role="listitem"
-                                                                class="ui-list-item padding-none flex">
-                                                                <div
-                                                                    class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                    Windows
-                                                                </div> <strong>116</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                            class="layout-row layout-align-start-center margin-none">
-                                                            <div class="padding-right-half"><input type="checkbox"
-                                                                    value="Google PPC" /></div>
-                                                            <div aria-label="" role="listitem"
-                                                                class="ui-list-item padding-none flex">
-                                                                <div
-                                                                    class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                    Mac OS
-                                                                </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                        class="layout-row layout-align-start-center margin-none">
-                                                        <div class="padding-right-half"><input type="checkbox"
-                                                                value="Google PPC" /></div>
-                                                        <div aria-label="" role="listitem"
-                                                            class="ui-list-item padding-none flex">
-                                                            <div
-                                                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                Linux
-                                                            </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                        class="layout-row layout-align-start-center margin-none">
-                                                        <div class="padding-right-half"><input type="checkbox"
-                                                                value="Google PPC" /></div>
-                                                        <div aria-label="" role="listitem"
-                                                            class="ui-list-item padding-none flex">
-                                                            <div
-                                                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                Chromium OS
-                                                            </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -1165,68 +1063,17 @@ color:#fff!important;
                                             </div>
                                         </header>
                                         <div class="border-top margin-bottom-half showmydropdown loadEffect" style="display: none;">
-                                            <div class="segmentation-container padding-top-half ps"
-                                                style="display: block;overflow-y: auto;height: 250px;position: relative;">
-                                                <div role="group" class=""
+                                            <div class="segmentation-container padding-top-half ps--active-y"
+                                                style="display: block;overflow-y: scroll;height: 250px;position: relative;">
+                                                <div role="group" id="kb_country_segment" class=""
                                                     style="display: block; padding-top: 12px; padding-bottom: 0px;">
-                                                    <div class="padding-bottom-half"><label
-                                                            class="layout-row layout-align-start-center margin-none">
-                                                            <div class="padding-right-half"><input type="checkbox"
-                                                                    value="" /></div>
-                                                            <div aria-label="" role="listitem"
-                                                                class="ui-list-item padding-none flex">
-                                                                <div
-                                                                    class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                    United States
-                                                                </div> <strong>116</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                            class="layout-row layout-align-start-center margin-none">
-                                                            <div class="padding-right-half"><input type="checkbox"
-                                                                    value="Google PPC" /></div>
-                                                            <div aria-label="" role="listitem"
-                                                                class="ui-list-item padding-none flex">
-                                                                <div
-                                                                    class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                    Canada
-                                                                </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                        class="layout-row layout-align-start-center margin-none">
-                                                        <div class="padding-right-half"><input type="checkbox"
-                                                                value="Google PPC" /></div>
-                                                        <div aria-label="" role="listitem"
-                                                            class="ui-list-item padding-none flex">
-                                                            <div
-                                                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                Australia
-                                                            </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                        class="layout-row layout-align-start-center margin-none">
-                                                        <div class="padding-right-half"><input type="checkbox"
-                                                                value="Google PPC" /></div>
-                                                        <div aria-label="" role="listitem"
-                                                            class="ui-list-item padding-none flex">
-                                                            <div
-                                                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                New Zeland
-                                                            </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <div class="ui-list-group lo-segment lo-default-segment loadEffect">
+                                    <div class="ui-list-group lo-segment lo-default-segment loadEffect" style="display:none;">
                                         <header 
                                             class="layout-row layout-align-start-center padding-y-half cursor-pointer kb-dropdwn">
                                             <input type="checkbox" checked="checked" class="margin-right-half"
@@ -1244,62 +1091,11 @@ color:#fff!important;
                                             </div>
                                         </header>
                                         <div class="border-top margin-bottom-half showmydropdown loadEffect" style="display: none;">
-                                            <div class="segmentation-container padding-top-half ps"
-                                                style="display: block;overflow-y: auto;height: 250px;position: relative;">
-                                                <div role="group" class=""
+                                            <div class="segmentation-container padding-top-half ps--active-y"
+                                                style="display: block;overflow-y: scroll;height: 250px;position: relative;">
+                                                <div role="group"class=""
                                                     style="display: block; padding-top: 12px; padding-bottom: 0px;">
-                                                    <div class="padding-bottom-half"><label
-                                                            class="layout-row layout-align-start-center margin-none">
-                                                            <div class="padding-right-half"><input type="checkbox"
-                                                                    value="" /></div>
-                                                            <div aria-label="" role="listitem"
-                                                                class="ui-list-item padding-none flex">
-                                                                <div
-                                                                    class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                    California
-                                                                </div> <strong>116</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                            class="layout-row layout-align-start-center margin-none">
-                                                            <div class="padding-right-half"><input type="checkbox"
-                                                                    value="Google PPC" /></div>
-                                                            <div aria-label="" role="listitem"
-                                                                class="ui-list-item padding-none flex">
-                                                                <div
-                                                                    class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                    New York
-                                                                </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                        class="layout-row layout-align-start-center margin-none">
-                                                        <div class="padding-right-half"><input type="checkbox"
-                                                                value="Google PPC" /></div>
-                                                        <div aria-label="" role="listitem"
-                                                            class="ui-list-item padding-none flex">
-                                                            <div
-                                                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                Verginia
-                                                            </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                        class="layout-row layout-align-start-center margin-none">
-                                                        <div class="padding-right-half"><input type="checkbox"
-                                                                value="Google PPC" /></div>
-                                                        <div aria-label="" role="listitem"
-                                                            class="ui-list-item padding-none flex">
-                                                            <div
-                                                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                Texas
-                                                            </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -1322,62 +1118,10 @@ color:#fff!important;
                                             </div>
                                         </header>
                                         <div class="border-top margin-bottom-half showmydropdown loadEffect" style="display: none;">
-                                            <div class="segmentation-container padding-top-half ps"
-                                                style="display: block;overflow-y: auto;height: 250px;position: relative;">
-                                                <div role="group" class=""
+                                            <div class="segmentation-container padding-top-half ps--active-y"
+                                                style="display: block;overflow-y: scroll;height: 250px;position: relative;">
+                                                <div role="group" id="kb_nuofvisit_segment"  class=""
                                                     style="display: block; padding-top: 12px; padding-bottom: 0px;">
-                                                    <div class="padding-bottom-half"><label
-                                                            class="layout-row layout-align-start-center margin-none">
-                                                            <div class="padding-right-half"><input type="checkbox"
-                                                                    value="" /></div>
-                                                            <div aria-label="" role="listitem"
-                                                                class="ui-list-item padding-none flex">
-                                                                <div
-                                                                    class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                    2 - 4
-                                                                </div> <strong>116</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                            class="layout-row layout-align-start-center margin-none">
-                                                            <div class="padding-right-half"><input type="checkbox"
-                                                                    value="Google PPC" /></div>
-                                                            <div aria-label="" role="listitem"
-                                                                class="ui-list-item padding-none flex">
-                                                                <div
-                                                                    class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                    1
-                                                                </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                        class="layout-row layout-align-start-center margin-none">
-                                                        <div class="padding-right-half"><input type="checkbox"
-                                                                value="Google PPC" /></div>
-                                                        <div aria-label="" role="listitem"
-                                                            class="ui-list-item padding-none flex">
-                                                            <div
-                                                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                1-2
-                                                            </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div class="padding-bottom-half"><label
-                                                        class="layout-row layout-align-start-center margin-none">
-                                                        <div class="padding-right-half"><input type="checkbox"
-                                                                value="Google PPC" /></div>
-                                                        <div aria-label="" role="listitem"
-                                                            class="ui-list-item padding-none flex">
-                                                            <div
-                                                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
-                                                                5 - 9
-                                                            </div> <strong>51</strong>
-                                                            </div>
-                                                        </label>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1631,6 +1375,7 @@ if(window.location.hash=='#kb-heatmaps'){
 
     var data1 = [];
     var data2 = [];
+    var data3 = [];
 
 
     document.getElementsByTagName('body')[0].innerHTML = (kb_fullcontent);
@@ -1840,6 +1585,314 @@ if(window.location.hash=='#kb-heatmaps'){
             }
         });
 
+        // fetch all data
+
+        $.ajax({
+            url: "http://127.0.0.1:8000/heatall-request",
+            type: "GET",
+            dataType: 'json',
+            data:  {
+                url: window.location.href.toString().split('#kb-heatmaps')[0]
+            },
+            contentType: 'application/json',
+            CrossDomain:true,
+            success: function (data) {
+                // console.log(data);
+
+                var browser_segment = [];
+                var os_segment = [];
+                var country_segment = [];
+                var numberofvisit_segment = [];
+                data.forEach(element => {
+                        browser_segment.push(element['browser']);
+                        os_segment.push(element['os']);
+                        country_segment.push(element['location']);
+                        numberofvisit_segment.push(element['created_at'].substr(0, 10));
+                });
+
+                // browser_segment
+                var counts = {};
+                browser_segment.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+                for (bs in counts) {
+                    document.getElementById('kb_bs_segment').innerHTML+=`<div class="padding-bottom-half"><label
+                        class="layout-row layout-align-start-center margin-none">
+                        <div class="padding-right-half"><input type="checkbox"
+                                value="`+bs+`" name="browser_segment" checked /></div>
+                        <div aria-label="" role="listitem"
+                            class="ui-list-item padding-none flex">
+                            <div
+                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
+                                `+bs+`
+                            </div> <strong>`+counts[bs]+`</strong>
+                                </div>
+                            </label>
+                        </div>`;
+                }
+                var brsegmnt = [];
+                document.getElementsByName('browser_segment').forEach((brseg) => {
+                brsegmnt.push(brseg.value);
+                    brseg.addEventListener('click',function(){
+                        data3 = [];
+                        if (this.checked) {
+                            brsegmnt.push(this.value);
+                            getrequireddata(brsegmnt,'browser');
+                        }else{
+                            var index = brsegmnt.indexOf(this.value);
+                            if (index > -1) {
+                                brsegmnt.splice(index, 1);
+                            }
+                            getrequireddata(brsegmnt);
+                        }
+                    });
+                   
+                });
+                // browser_segment
+
+                // os_segment
+                var counts2 = {};
+                os_segment.forEach(function (x) { counts2[x] = (counts2[x] || 0) + 1; });
+                for (bs in counts2) {
+                    document.getElementById('kb_os_segment').innerHTML+=`<div class="padding-bottom-half"><label
+                        class="layout-row layout-align-start-center margin-none">
+                        <div class="padding-right-half"><input type="checkbox"
+                                value="`+bs+`" name="os_segment"  /></div>
+                        <div aria-label="" role="listitem"
+                            class="ui-list-item padding-none flex">
+                            <div
+                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
+                                `+bs+`
+                            </div> <strong>`+counts2[bs]+`</strong>
+                                </div>
+                            </label>
+                        </div>`;
+                }
+                var ossegmnt = [];
+                document.getElementsByName('os_segment').forEach((brseg) => {
+                    ossegmnt.push(brseg.value);
+                        brseg.addEventListener('click',function(){
+                            data3 = [];
+                            if (this.checked) {
+                                ossegmnt.push(this.value);
+                                getrequireddata(ossegmnt,'os');
+                            }else{
+                                var index = ossegmnt.indexOf(this.value);
+                                if (index > -1) {
+                                    ossegmnt.splice(index, 1);
+                                }
+                                getrequireddata(ossegmnt);
+                            }
+                        });
+                       
+                    });
+                // os_segment
+
+                // country_segment
+                var counts3 = {};
+                country_segment.forEach(function (x) { counts3[x] = (counts3[x] || 0) + 1; });
+                for (bs in counts3) {
+                    document.getElementById('kb_country_segment').innerHTML+=`<div class="padding-bottom-half"><label
+                        class="layout-row layout-align-start-center margin-none">
+                        <div class="padding-right-half"><input type="checkbox"
+                                value="`+bs+`" name="country_segment" /></div>
+                        <div aria-label="" role="listitem"
+                            class="ui-list-item padding-none flex">
+                            <div
+                                class="flex layout-row layout-align-start-center text-truncate padding-right-half">
+                                `+bs+`
+                            </div> <strong>`+counts3[bs]+`</strong>
+                                </div>
+                            </label>
+                        </div>`;
+                }
+                // country_segment
+
+                 // numberofvisit_segment
+                 var counts4 = {};
+                 numberofvisit_segment.forEach(function (x) { counts4[x] = (counts4[x] || 0) + 1; });
+                 for (bs in counts4) {
+                     document.getElementById('kb_nuofvisit_segment').innerHTML+=`<div class="padding-bottom-half"><label
+                         class="layout-row layout-align-start-center margin-none">
+                         <div class="padding-right-half"><input type="checkbox"
+                                 value="`+bs+`" name="numberofvisit_segment" /></div>
+                         <div aria-label="" role="listitem"
+                             class="ui-list-item padding-none flex">
+                             <div
+                                 class="flex layout-row layout-align-start-center text-truncate padding-right-half">
+                                 `+bs+`
+                             </div> <strong>`+counts4[bs]+`</strong>
+                                 </div>
+                             </label>
+                         </div>`;
+                 }
+                 // numberofvisit_segment
+                
+                
+
+            }
+        });
+
+        // fetch all data
+
+
+        // get required data
+
+        function getrequireddata(value1,value2){
+            $.ajax({
+                url: "http://127.0.0.1:8000/heatshome-request",
+                type: "GET",
+                dataType: 'json',
+                data:  {
+                    url: window.location.href.toString().split('#kb-heatmaps')[0],
+                    browser_segment: value1,
+                    whichvalue: value2
+                },
+                contentType: 'application/json',
+                CrossDomain:true,
+                success: function (data) {
+                    // console.log(data);
+
+                var strng1 = [];
+                var strng2 = [];
+
+                data.forEach(element => {
+                    var elm1 =  element['locY'].split(',')
+                    elm1.forEach(element2 => {
+                        strng1.push(element2);
+                    });
+
+                    var elm2 =  element['locx'].split(',')
+                    elm2.forEach(element3 => {
+                        var generateelm = 1519%kb_width*0.5;
+                        generateelm = Math.abs(element3-generateelm);
+                        strng2.push(generateelm);
+                    });
+                });
+
+                // ===================================
+                // ========== HEATMAP START ==========
+                // ===================================
+                "use strict";
+                class HeatMap {
+                    constructor(canvas, data) {
+                        this.canvas = canvas;
+                        this.ctx = canvas.getContext("2d");
+                        this.width = canvas.width;
+                        this.height = canvas.height;
+                        this.data = data;
+                        this.circle = HeatMap.createCanvas();
+                        this.radius = 15 + 15;
+                        this.computeRadius(15, 15);
+                        this.unit8Gradient = HeatMap.computeGradient({
+                            0.4: "blue",
+                            0.6: "cyan",
+                            0.7: "lime",
+                            0.8: "yellow",
+                            1.0: "red"
+                        });
+                    }
+                    computeRadius(r, blur) {
+                        const { circle } = this;
+                        const ctx = circle.getContext("2d");
+                        if (!ctx) {
+                            throw new Error("The ctx is undefined");
+                        }
+                        const r2 = this.radius;
+                        circle.height = r2 * 2;
+                        circle.width = r2 * 2;
+                        ctx.shadowOffsetY = r2 * 2;
+                        ctx.shadowOffsetX = r2 * 2;
+                        ctx.shadowBlur = blur;
+                        ctx.shadowColor = "black";
+                        ctx.beginPath();
+                        ctx.arc(-r2, -r2, r, 0, Math.PI * 2, true);
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+                    resize() {
+                        this.width = this.canvas.width;
+                        this.height = this.canvas.height;
+                    }
+                    draw(minOpacity) {
+                        const { ctx } = this;
+                        if (!ctx) {
+                            throw new Error("The ctx is undefined");
+                        }
+                        ctx.clearRect(0, 0, this.width, this.height);
+                        for (let i = 0, len = this.data.length, p; i < len; i++) {
+                            p = this.data[i];
+                            ctx.globalAlpha = Math.min(minOpacity, 1);
+                            if (!this.circle || !this.radius) {
+                                throw new Error("The circle || radius is undefined");
+                            }
+                            ctx.drawImage(this.circle, p[0] - this.radius, p[1] - this.radius,30,30);
+                        }
+                        const colored = HeatMap.colorize(ctx.getImageData(0, 0, this.width, this.height), this.unit8Gradient);
+                        ctx.putImageData(colored, 0, 0);
+                    }
+                    static computeGradient(grad) {
+                        const canvas = HeatMap.createCanvas();
+                        const ctx = canvas.getContext("2d");
+                        if (!ctx) {
+                            throw new Error("The ctx is undefined");
+                        }
+                        const gradient = ctx.createLinearGradient(0, 0, 0, 256);
+                        canvas.width = 1;
+                        canvas.height = 256;
+                        Object.keys(grad).forEach((i) => {
+                            gradient.addColorStop(+i, grad[+i]);
+                        });
+                        ctx.fillStyle = gradient;
+                        ctx.fillRect(0, 0, 1, 256);
+                        return ctx.getImageData(0, 0, 1, 256).data;
+                    }
+                    static colorize(imageData, gradient) {
+                        const pixels = imageData.data;
+                        for (let i = 0, len = pixels.length, j; i < len; i += 4) {
+                            j = pixels[i + 3] * 4;
+                            if (j) {
+                                pixels[i] = gradient[j];
+                                pixels[i + 1] = gradient[j + 1];
+                                pixels[i + 2] = gradient[j + 2];
+                            }
+                        }
+                        return imageData;
+                    }
+                    static createCanvas() {
+                        return document.createElement("canvas");
+                    }
+                }
+
+                var chkmn = [];
+
+
+                var kb_main = 0;
+                strng1.forEach(element => {
+                    chkmn = [];
+                    if(strng2[kb_main]!='' || strng2[kb_main]!=0){
+                        chkmn.push(strng2[kb_main]);
+                        chkmn.push(strng1[kb_main]);
+                        data3.push(chkmn);
+                    }
+                        kb_main++;
+                    });
+
+                var x = document.getElementById("lo-website-iframe");
+                const canvas2 = x.contentWindow.document.getElementById("heat-map");
+
+                document.getElementsByClassName('filtered')[0].innerText = data3.length+' Clicks';
+                const heat = new HeatMap(canvas2, data3);
+                heat.draw(0.85);
+
+                // ===================================
+                // =========== HEATMAP END ===========
+                // ===================================
+
+
+                }
+            });
+        }
+            
+
     }, 500);
 
     // layout js
@@ -1847,7 +1900,7 @@ if(window.location.hash=='#kb-heatmaps'){
     function showmydrop(e){
         this.parentNode.classList.toggle('active');
     }
-
+    
     var elements = document.getElementsByClassName("kb-dropdwn");
     Array.from(elements).forEach(function(element) {
       element.addEventListener('click', showmydrop);
@@ -2120,13 +2173,25 @@ if(window.location.hash=='#kb-heatmaps'){
 
                 var chkmn = [];
                 
+                // var kb_main = 0;
+                // strng1.forEach(element => {
+                //     chkmn = [];
+                //     chkmn.push(strng2[kb_main]);
+                //     chkmn.push(strng1[kb_main]);
+                //     // console.log(chkmn);
+                //         data2.push(chkmn);
+                //         kb_main++;
+                //     });
+
+
                 var kb_main = 0;
                 strng1.forEach(element => {
                     chkmn = [];
-                    chkmn.push(strng2[kb_main]);
-                    chkmn.push(strng1[kb_main]);
-                    // console.log(chkmn);
+                    if(strng2[kb_main]!='' || strng2[kb_main]!=0){
+                        chkmn.push(strng2[kb_main]);
+                        chkmn.push(strng1[kb_main]);
                         data2.push(chkmn);
+                    }
                         kb_main++;
                     });
 
@@ -2395,6 +2460,8 @@ if(window.location.hash=='#kb-heatmaps'){
         }, 1000);
   
     });
+
+    // https://www.w3schools.com/jsref/tryit.asp?filename=try_dom_event_timestamp
 
     document.getElementById('bw-close-scrnsht').addEventListener('click',function(){
         document.getElementById('kb-screenshotcont').style.display = "none";

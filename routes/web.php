@@ -18,6 +18,8 @@ Route::get('/heat-request', 'HeatmapController@store');
 Route::get('/heatget-request', 'HeatmapController@get');
 Route::get('/heatfetchloc-request', 'HeatmapController@fetchloc');
 Route::get('/heatfetchmou-request', 'HeatmapController@fetchmou');
+Route::get('/heatall-request', 'HeatmapController@fetchall');
+Route::get('/heatshome-request', 'HeatmapController@fetchshowme');
 
 Route::get('/{any}', 'HomeController@index')->name('index');
 
