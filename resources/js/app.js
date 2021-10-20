@@ -10,10 +10,12 @@ import VuePageTransition from 'vue-page-transition';
 import VueMq from 'vue-mq';
 import VueCookies from 'vue-cookies';
 import VueDragDrop from 'vue-drag-n-drop';
-import draggable from 'vuedraggable'
-import VueApexCharts from 'vue-apexcharts'
+import draggable from 'vuedraggable';
+import VueApexCharts from 'vue-apexcharts';
+import {Tabs, Tab} from 'vue-tabs-component';
 import VTooltip from 'v-tooltip';
 import 'v-tooltip/dist/v-tooltip.css';
+
 
 
 require('./bootstrap');
@@ -64,8 +66,10 @@ Vue.component('builder-component', require('./components/BuilderComponent.vue').
 Vue.component('apexchart', VueApexCharts);
 Vue.component('draggable', draggable);
 Vue.component('drag-drop', VueDragDrop);
-Vue.component('drag', VueDragDrop.Drag)
-Vue.component('drop', VueDragDrop.Drop)
+Vue.component('drag', VueDragDrop.Drag);
+Vue.component('drop', VueDragDrop.Drop);
+Vue.component('tabs', Tabs);
+Vue.component('tab', Tab);
 
 
 /**

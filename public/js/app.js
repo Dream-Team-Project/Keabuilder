@@ -5463,27 +5463,264 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      m_link: {
+        tb: false,
+        lr: false,
+        as: false
+      },
+      p_link: {
+        tb: false,
+        lr: false,
+        as: false
+      },
+      b_link: {
+        tb: true,
+        lr: true,
+        as: true
+      },
+      rowTypes: [{
+        cls: '1',
+        appendCls: 'full-block',
+        nofcolumn: 1
+      }, {
+        cls: '1-2',
+        appendCls: 'half-block',
+        nofcolumn: 2
+      }, {
+        cls: '1-3',
+        appendCls: 'three-block',
+        nofcolumn: 3
+      }, {
+        cls: '1-4',
+        appendCls: 'four-block',
+        nofcolumn: 4
+      }, {
+        cls: '1-5',
+        appendCls: 'five-block',
+        nofcolumn: 5
+      }, {
+        cls: '1-6',
+        appendCls: 'six-block',
+        nofcolumn: 6
+      }, {
+        cls: '40-60',
+        appendCls: 'f-s-block',
+        nofcolumn: 2
+      }, {
+        cls: '60-40',
+        appendCls: 's-f-block',
+        nofcolumn: 2
+      }, {
+        cls: '25-75',
+        appendCls: 'tf-sf-block',
+        nofcolumn: 2
+      }, {
+        cls: '75-25',
+        appendCls: 'sf-tf-block',
+        nofcolumn: 2
+      }, {
+        cls: '20-80',
+        appendCls: 't-e-block',
+        nofcolumn: 2
+      }, {
+        cls: '80-20',
+        appendCls: 'e-t-block',
+        nofcolumn: 2
+      }, {
+        cls: '10-90',
+        appendCls: 't-n-block',
+        nofcolumn: 2
+      }, {
+        cls: '90-10',
+        appendCls: 'n-t-block',
+        nofcolumn: 2
+      }, {
+        cls: '30-40-30',
+        appendCls: 't-f-t-block',
+        nofcolumn: 3
+      }, {
+        cls: '20-60-20',
+        appendCls: 't-s-t-block',
+        nofcolumn: 3
+      }, {
+        cls: '15-70-15',
+        appendCls: 'ft-s-ft-block',
+        nofcolumn: 3
+      }, {
+        cls: '10-80-10',
+        appendCls: 't-e-t-block',
+        nofcolumn: 3
+      }, {
+        cls: '30-30-40',
+        appendCls: 't-t-f-block',
+        nofcolumn: 3
+      }, {
+        cls: '40-30-30',
+        appendCls: 'f-t-t-block',
+        nofcolumn: 3
+      }, {
+        cls: '20-20-60',
+        appendCls: 't-t-s-block',
+        nofcolumn: 3
+      }, {
+        cls: '60-20-20',
+        appendCls: 's-t-t-block',
+        nofcolumn: 3
+      }, {
+        cls: '15-15-70',
+        appendCls: 'ft-ft-s-block',
+        nofcolumn: 3
+      }, {
+        cls: '70-15-15',
+        appendCls: 's-ft-ft-block',
+        nofcolumn: 3
+      }, {
+        cls: '10-10-80',
+        appendCls: 't-t-e-block',
+        nofcolumn: 3
+      }, {
+        cls: '80-10-10',
+        appendCls: 'e-t-t-block',
+        nofcolumn: 3
+      }],
+      drag: false,
       builder: [],
       buildObj: {
-        id: null,
+        id: 0,
         sectionSetting: false,
         rowArr: []
       },
       rowObj: {
-        id: null,
+        id: 0,
         columnLength: 0,
         rowSize: '',
         rowSetting: false
       },
-      selectedSection: '',
+      selectedSectionRows: [],
       selectedRow: '',
       showSelection: false,
       rowSelection: false,
-      section_id: 0,
       row_id: 0,
+      row_index: 0,
       positions: {
         clientX: undefined,
         clientY: undefined,
@@ -5493,40 +5730,70 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.addNewSection(this.section_id);
+    this.addNewSection(0);
   },
-  computed: {},
-  watch: {},
+  computed: {
+    dragOptions: function dragOptions() {
+      return {
+        animation: 200,
+        disabled: false,
+        ghostClass: "ghost"
+      };
+    }
+  },
+  watch: {
+    builder: function builder(val) {
+      val.forEach(function (item, index) {
+        item.id = index;
+      });
+    },
+    selectedSectionRows: function selectedSectionRows(val) {
+      var _this = this;
+
+      this.row_id = 0;
+      this.builder.forEach(function (item1) {
+        item1.rowArr.forEach(function (item2) {
+          item2.id = _this.row_id++;
+        });
+      });
+    }
+  },
   methods: {
+    tabClicked: function tabClicked(selectedTab) {
+      console.log('Current tab re-clicked:' + selectedTab.tab.name);
+    },
+    tabChanged: function tabChanged(selectedTab) {
+      console.log('Tab changed to:' + selectedTab.tab.name);
+    },
     // section
-    appendSection: function appendSection(tempObj, index) {
-      tempObj.id = this.section_id++;
+    appendSection: function appendSection(build, index) {
+      var tempObj = JSON.parse(JSON.stringify(build));
       this.builder.splice(index + 1, 0, tempObj);
     },
     addNewSection: function addNewSection(index) {
-      var tempObj = JSON.parse(JSON.stringify(this.buildObj));
-      this.appendSection(tempObj, index);
+      this.appendSection(this.buildObj, index);
     },
     duplicateSection: function duplicateSection(build, index) {
-      var tempObj = JSON.parse(JSON.stringify(build));
-      this.appendSection(tempObj, index);
+      this.appendSection(build, index);
+      this.selectedSectionRows = [];
+      this.selectedSectionRows = build.rowArr;
     },
     deleteSection: function deleteSection(index) {
       this.builder.splice(index, 1);
     },
     // section
     // row
-    appendRow: function appendRow(tempObj, index) {
-      tempObj.id = this.section_id++;
-      this.builder.splice(index + 1, 0, tempObj);
+    appendRow: function appendRow(rowArr, tempObj, index) {
+      tempObj.id = this.row_id++;
+      rowArr.splice(index + 1, 0, tempObj);
     },
     addNewRow: function addNewRow(rowSize, columnLength) {
       if (!this.selectedRow) {
         var tempObj = JSON.parse(JSON.stringify(this.rowObj));
-        tempObj.id = this.selectedSection.rowArr.length;
         tempObj.rowSize = rowSize;
         tempObj.columnLength = columnLength;
-        this.selectedSection.rowArr.splice(this.row_id + 1, 0, tempObj);
+        this.appendRow(this.selectedSectionRows, tempObj, this.row_index);
+        this.row_index = 0;
       } else {
         this.selectedRow.rowSize = rowSize;
         this.selectedRow.columnLength = columnLength;
@@ -5537,14 +5804,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     duplicateRow: function duplicateRow(rowArr, row, index) {
       var tempObj = JSON.parse(JSON.stringify(row));
-      tempObj.id = rowArr.length;
-      rowArr.splice(index + 1, 0, tempObj);
+      this.appendRow(rowArr, tempObj, index);
     },
     deleteRow: function deleteRow(rowArr, index) {
       rowArr.splice(index, 1);
     },
     // row
-    // dragable
+    // dragable element
     dragMouseDown: function dragMouseDown(event) {
       event.preventDefault(); // get the mouse cursor position at startup:
 
@@ -5566,7 +5832,7 @@ __webpack_require__.r(__webpack_exports__);
     closeDragElement: function closeDragElement() {
       document.onmouseup = null;
       document.onmousemove = null;
-    } //dragable
+    } //dragable element
 
   }
 });
@@ -57849,188 +58115,423 @@ var render = function() {
       "div",
       { attrs: { id: "page-container" } },
       [
-        _vm.showSelection
-          ? _c("div", { attrs: { id: "kb-slectction-ask" } }, [
-              _c(
-                "span",
-                {
-                  staticClass: "kb-cut",
-                  on: {
-                    click: function($event) {
-                      _vm.showSelection = !_vm.showSelection
+        !_vm.showSelection
+          ? _c(
+              "div",
+              {
+                ref: "draggableContainer",
+                staticClass: "forScroll",
+                attrs: { id: "kb-slectction-ask" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "kb-ask-head",
+                    on: { mousedown: _vm.dragMouseDown }
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(
+                        !_vm.rowSelection ? "Section Setting" : "Row Dimension"
+                      )
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "kb-cut",
+                    on: {
+                      click: function($event) {
+                        _vm.showSelection = !_vm.showSelection
+                      }
                     }
-                  }
-                },
-                [_c("i", { staticClass: "fa fa-times" })]
-              ),
-              _vm._v(" "),
-              _vm.rowSelection
-                ? _c("div", { attrs: { id: "kb-row-selection" } }, [
-                    _c("div", { staticClass: "kb-ask-head" }, [
-                      _vm._v("Row Dimension")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c("ul", { staticClass: "row-list" }, [
-                        _c(
-                          "li",
-                          {
-                            staticClass: "kb-row-type row-1",
-                            on: {
-                              click: function($event) {
-                                return _vm.addNewRow("kb-full-block", 1)
-                              }
-                            }
-                          },
-                          [_vm._m(0)]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass: "kb-row-type row-1-2",
-                            on: {
-                              click: function($event) {
-                                return _vm.addNewRow("kb-half-block", 2)
-                              }
-                            }
-                          },
-                          [_vm._m(1), _vm._m(2)]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass: "kb-row-type row-1-3",
-                            on: {
-                              click: function($event) {
-                                return _vm.addNewRow("kb-three-block", 3)
-                              }
-                            }
-                          },
-                          [_vm._m(3), _vm._m(4), _vm._m(5)]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass: "kb-row-type row-1-4",
-                            on: {
-                              click: function($event) {
-                                return _vm.addNewRow("kb-four-block", 4)
-                              }
-                            }
-                          },
-                          [_vm._m(6), _vm._m(7), _vm._m(8), _vm._m(9)]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass: "kb-row-type row-1-5",
-                            on: {
-                              click: function($event) {
-                                return _vm.addNewRow("kb-five-block", 5)
-                              }
-                            }
-                          },
-                          [
-                            _vm._m(10),
-                            _vm._m(11),
-                            _vm._m(12),
-                            _vm._m(13),
-                            _vm._m(14)
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass: "kb-row-type row-1-6",
-                            on: {
-                              click: function($event) {
-                                return _vm.addNewRow("kb-six-block", 6)
-                              }
-                            }
-                          },
-                          [
-                            _vm._m(15),
-                            _vm._m(16),
-                            _vm._m(17),
-                            _vm._m(18),
-                            _vm._m(19),
-                            _vm._m(20)
-                          ]
-                        )
-                      ])
-                    ])
-                  ])
-                : _vm._e()
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm._l(_vm.builder, function(build, index) {
-          return _c(
-            "div",
-            {
-              key: build.id,
-              staticClass: "kb-section kb-contain-element",
-              class: build.sectionSetting ? "kb-border" : "",
-              on: {
-                mouseenter: function($event) {
-                  build.sectionSetting = true
-                },
-                mouseleave: function($event) {
-                  build.sectionSetting = false
-                }
-              }
-            },
-            [
-              _c("div", [
-                build.sectionSetting
-                  ? _c("div", { staticClass: "kb-module-setting" }, [
-                      _vm._m(21, true),
-                      _vm._v(" "),
+                  },
+                  [_c("i", { staticClass: "fa fa-times" })]
+                ),
+                _vm._v(" "),
+                _vm.rowSelection
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "selectionDiv",
+                        attrs: { id: "kb-row-selection" }
+                      },
+                      [
+                        _c("div", [
+                          _c(
+                            "ul",
+                            { staticClass: "row-list" },
+                            _vm._l(_vm.rowTypes, function(rt) {
+                              return _c(
+                                "li",
+                                {
+                                  key: rt.cls,
+                                  staticClass: "kb-row-type",
+                                  class: "row-" + rt.cls,
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.addNewRow(
+                                        "kb-" + rt.appendCls,
+                                        rt.nofcolumn
+                                      )
+                                    }
+                                  }
+                                },
+                                _vm._l(rt.nofcolumn, function(c) {
+                                  return _c(
+                                    "span",
+                                    { key: c, staticClass: "block" },
+                                    [_c("span")]
+                                  )
+                                }),
+                                0
+                              )
+                            }),
+                            0
+                          )
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "selectionDiv" }, [
+                  _c(
+                    "div",
+                    { staticClass: "kb-tabs-component" },
+                    [
                       _c(
-                        "span",
+                        "tabs",
                         {
-                          directives: [
-                            {
-                              name: "tooltip",
-                              rawName: "v-tooltip",
-                              value: { content: "Section Setting" },
-                              expression: "{ content: 'Section Setting' }"
-                            }
-                          ]
-                        },
-                        [_c("i", { staticClass: "far fa-edit" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        {
-                          directives: [
-                            {
-                              name: "tooltip",
-                              rawName: "v-tooltip",
-                              value: { content: "Duplicate Section" },
-                              expression: "{ content: 'Duplicate Section' }"
-                            }
-                          ]
+                          attrs: {
+                            options: { defaultTabHash: "general" },
+                            "cache-lifetime": "10"
+                          },
+                          on: {
+                            clicked: _vm.tabClicked,
+                            changed: _vm.tabChanged
+                          }
                         },
                         [
-                          _c("i", {
-                            staticClass: "far fa-copy",
-                            on: {
-                              click: function($event) {
-                                return _vm.duplicateSection(build, index)
-                              }
-                            }
-                          })
-                        ]
-                      ),
+                          _c(
+                            "tab",
+                            { attrs: { id: "general", name: "General" } },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "kb-inner-tab-component" },
+                                [
+                                  _c("div", { staticClass: "kb-tab-head" }, [
+                                    _vm._v("Border Radius")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "kb-tab-content" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "kb-tab-border-radius" },
+                                      [
+                                        _c("span", [
+                                          _c("input", {
+                                            attrs: {
+                                              type: "text",
+                                              name: "top-left-border"
+                                            }
+                                          })
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("span", [
+                                          _c("input", {
+                                            attrs: {
+                                              type: "text",
+                                              name: "top-right-border"
+                                            }
+                                          })
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "kb-border-radius-demo" },
+                                      [
+                                        _c(
+                                          "span",
+                                          { staticClass: "kb-linkBtw" },
+                                          [
+                                            _c(
+                                              "svg",
+                                              {
+                                                attrs: {
+                                                  viewBox: "0 0 28 28",
+                                                  preserveAspectRatio:
+                                                    "xMidYMid meet",
+                                                  "shape-rendering":
+                                                    "geometricPrecision"
+                                                }
+                                              },
+                                              [
+                                                _c("g", [
+                                                  _c("path", {
+                                                    attrs: {
+                                                      d:
+                                                        "M14.71 17.71a3 3 0 0 1-2.12-.88l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 0 1.41 0l5-4.95a1 1 0 0 0 0-1.41l-1.46-1.42a1 1 0 0 0-1.41 0L16.1 9.07a1 1 0 0 1-1.41-1.41l1.43-1.43a3.07 3.07 0 0 1 4.24 0l1.41 1.41a3 3 0 0 1 0 4.24l-5 4.95a3 3 0 0 1-2.06.88z"
+                                                    }
+                                                  }),
+                                                  _c("path", {
+                                                    attrs: {
+                                                      d:
+                                                        "M9.76 22.66a3 3 0 0 1-2.12-.88l-1.42-1.42a3 3 0 0 1 0-4.24l5-4.95a3.07 3.07 0 0 1 4.24 0l.71.71a1 1 0 0 1-1.41 1.41l-.76-.7a1 1 0 0 0-1.41 0l-5 4.95a1 1 0 0 0 0 1.41L9 20.36a1 1 0 0 0 1.41 0L11.82 19a1 1 0 0 1 1.41 1.41l-1.36 1.36a3 3 0 0 1-2.11.89z"
+                                                    }
+                                                  })
+                                                ])
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "kb-tab-border-radius" },
+                                      [
+                                        _c("span", [
+                                          _c("input", {
+                                            attrs: {
+                                              type: "text",
+                                              name: "bottom-left-border"
+                                            }
+                                          })
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("span", [
+                                          _c("input", {
+                                            attrs: {
+                                              type: "text",
+                                              name: "bottom-right-border"
+                                            }
+                                          })
+                                        ])
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tab",
+                            { attrs: { id: "background", name: "Background" } },
+                            [
+                              _c(
+                                "tabs",
+                                {
+                                  attrs: {
+                                    options: { defaultTabHash: "general" },
+                                    "cache-lifetime": "10"
+                                  },
+                                  on: {
+                                    clicked: _vm.tabClicked,
+                                    changed: _vm.tabChanged
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "tab",
+                                    { attrs: { id: "color", name: "Color" } },
+                                    [
+                                      _vm._v(
+                                        "\n                        Background color\n                    "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tab",
+                                    { attrs: { id: "image", name: "Image" } },
+                                    [
+                                      _vm._v(
+                                        "\n                        Image\n                    "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tab",
+                                    {
+                                      attrs: {
+                                        id: "gradient",
+                                        name: "Gradient"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                        Gradient\n                    "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tab",
+                                    { attrs: { id: "video", name: "video" } },
+                                    [
+                                      _vm._v(
+                                        "\n                        Video\n                    "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tab",
+                            { attrs: { id: "advanced", name: "Advanced" } },
+                            [
+                              _vm._v(
+                                "\n                  This is the content of the second tab\n              "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "draggable",
+          _vm._b(
+            {
+              staticClass: "kb-drag-container",
+              attrs: { tag: "div", group: "section" },
+              on: {
+                start: function($event) {
+                  _vm.drag = true
+                },
+                end: function($event) {
+                  _vm.drag = false
+                }
+              },
+              model: {
+                value: _vm.builder,
+                callback: function($$v) {
+                  _vm.builder = $$v
+                },
+                expression: "builder"
+              }
+            },
+            "draggable",
+            _vm.dragOptions,
+            false
+          ),
+          [
+            _c(
+              "transition-group",
+              {
+                attrs: {
+                  type: "transition",
+                  name: !_vm.drag ? "flip-list" : null
+                }
+              },
+              _vm._l(_vm.builder, function(build, index) {
+                return _c(
+                  "div",
+                  {
+                    key: build.id,
+                    staticClass: "kb-section kb-contain-element",
+                    class: build.sectionSetting ? "kb-border" : "",
+                    on: {
+                      mouseenter: function($event) {
+                        ;(_vm.selectedSectionRows = build.rowArr),
+                          (build.sectionSetting = true)
+                      },
+                      mouseleave: function($event) {
+                        build.sectionSetting = false
+                      }
+                    }
+                  },
+                  [
+                    _c("div", [
+                      build.sectionSetting
+                        ? _c("div", { staticClass: "kb-module-setting" }, [
+                            _c("span", [
+                              _c("i", { staticClass: "fa fa-arrows-alt" })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "tooltip",
+                                    rawName: "v-tooltip",
+                                    value: { content: "Section Setting" },
+                                    expression: "{ content: 'Section Setting' }"
+                                  }
+                                ]
+                              },
+                              [_c("i", { staticClass: "far fa-edit" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "tooltip",
+                                    rawName: "v-tooltip",
+                                    value: { content: "Duplicate Section" },
+                                    expression:
+                                      "{ content: 'Duplicate Section' }"
+                                  }
+                                ],
+                                on: {
+                                  click: function($event) {
+                                    return _vm.duplicateSection(build, index)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-copy" })]
+                            ),
+                            _vm._v(" "),
+                            _vm.builder.length != 1
+                              ? _c(
+                                  "span",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "tooltip",
+                                        rawName: "v-tooltip",
+                                        value: { content: "Delete Section" },
+                                        expression:
+                                          "{ content: 'Delete Section' }"
+                                      }
+                                    ],
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteSection(index)
+                                      }
+                                    }
+                                  },
+                                  [_c("i", { staticClass: "far fa-trash-alt" })]
+                                )
+                              : _vm._e()
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _vm.builder.length != 1
+                      build.rowArr.length == 0
                         ? _c(
                             "span",
                             {
@@ -58038,393 +58539,332 @@ var render = function() {
                                 {
                                   name: "tooltip",
                                   rawName: "v-tooltip",
-                                  value: { content: "Delete Section" },
-                                  expression: "{ content: 'Delete Section' }"
-                                }
-                              ]
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "far fa-trash-alt",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteSection(index)
-                                  }
-                                }
-                              })
-                            ]
-                          )
-                        : _vm._e()
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                build.rowArr.length == 0
-                  ? _c(
-                      "span",
-                      {
-                        directives: [
-                          {
-                            name: "tooltip",
-                            rawName: "v-tooltip",
-                            value: { content: "Add New Row" },
-                            expression: "{ content: 'Add New Row' }"
-                          }
-                        ],
-                        staticClass: "kb-ispan-add add-row",
-                        on: {
-                          click: function($event) {
-                            ;(_vm.selectedSection = build),
-                              (_vm.showSelection = true),
-                              (_vm.rowSelection = true)
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-plus" })]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                build.sectionSetting
-                  ? _c(
-                      "span",
-                      {
-                        directives: [
-                          {
-                            name: "tooltip",
-                            rawName: "v-tooltip",
-                            value: { content: "Add New Section" },
-                            expression: "{ content: 'Add New Section' }"
-                          }
-                        ],
-                        staticClass: "kb-ispan-add add-section bottom-add-btn",
-                        on: {
-                          click: function($event) {
-                            return _vm.addNewSection(index)
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-plus" })]
-                    )
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _vm._l(build.rowArr, function(row, index) {
-                return _c(
-                  "div",
-                  {
-                    key: row.id,
-                    staticClass: "kb-row kb-contain-element kb-border",
-                    on: {
-                      mouseenter: function($event) {
-                        row.rowSetting = true
-                      },
-                      mouseleave: function($event) {
-                        row.rowSetting = false
-                      }
-                    }
-                  },
-                  [
-                    row.rowSetting
-                      ? _c("div", { staticClass: "kb-module-setting" }, [
-                          _vm._m(22, true),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "tooltip",
-                                  rawName: "v-tooltip",
-                                  value: { content: "Column Structure" },
-                                  expression: "{ content: 'Column Structure' }"
-                                }
-                              ]
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "fa fa-columns",
-                                on: {
-                                  click: function($event) {
-                                    ;(_vm.selectedRow = row),
-                                      (_vm.showSelection = true),
-                                      (_vm.rowSelection = true)
-                                  }
-                                }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "tooltip",
-                                  rawName: "v-tooltip",
-                                  value: { content: "Section Row" },
-                                  expression: "{ content: 'Section Row' }"
-                                }
-                              ]
-                            },
-                            [_c("i", { staticClass: "far fa-edit" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "tooltip",
-                                  rawName: "v-tooltip",
-                                  value: { content: "Duplicate Row" },
-                                  expression: "{ content: 'Duplicate Row' }"
-                                }
-                              ]
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "far fa-copy",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.duplicateRow(
-                                      build.rowArr,
-                                      row,
-                                      index
-                                    )
-                                  }
-                                }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "tooltip",
-                                  rawName: "v-tooltip",
-                                  value: { content: "Delete Row" },
-                                  expression: "{ content: 'Delete Row' }"
-                                }
-                              ]
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "far fa-trash-alt",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteRow(build.rowArr, index)
-                                  }
-                                }
-                              })
-                            ]
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm._l(row.columnLength, function(column) {
-                      return _c(
-                        "div",
-                        {
-                          key: column,
-                          staticClass: "kb-inner-row",
-                          class: row.rowSize
-                        },
-                        [
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "tooltip",
-                                  rawName: "v-tooltip",
-                                  value: { content: "Add New Element" },
-                                  expression: "{ content: 'Add New Element' }"
+                                  value: { content: "Add New Row" },
+                                  expression: "{ content: 'Add New Row' }"
                                 }
                               ],
-                              staticClass: "kb-ispan-add add-element"
+                              staticClass: "kb-ispan-add add-row",
+                              on: {
+                                click: function($event) {
+                                  ;(_vm.showSelection = true),
+                                    (_vm.rowSelection = true)
+                                }
+                              }
                             },
                             [_c("i", { staticClass: "fa fa-plus" })]
                           )
-                        ]
-                      )
-                    }),
+                        : _vm._e(),
+                      _vm._v(" "),
+                      build.sectionSetting
+                        ? _c(
+                            "span",
+                            {
+                              directives: [
+                                {
+                                  name: "tooltip",
+                                  rawName: "v-tooltip",
+                                  value: { content: "Add New Section" },
+                                  expression: "{ content: 'Add New Section' }"
+                                }
+                              ],
+                              staticClass:
+                                "kb-ispan-add add-section bottom-add-btn",
+                              on: {
+                                click: function($event) {
+                                  return _vm.addNewSection(index)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-plus" })]
+                          )
+                        : _vm._e()
+                    ]),
                     _vm._v(" "),
                     _c(
-                      "span",
-                      {
-                        directives: [
-                          {
-                            name: "tooltip",
-                            rawName: "v-tooltip",
-                            value: { content: "Add New Row" },
-                            expression: "{ content: 'Add New Row' }"
-                          }
-                        ],
-                        staticClass: "kb-ispan-add add-row bottom-add-btn",
-                        on: {
-                          click: function($event) {
-                            ;(_vm.selectedSection = build),
-                              (_vm.showSelection = true),
-                              (_vm.rowSelection = true)
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-plus" })]
+                      "div",
+                      [
+                        _c(
+                          "draggable",
+                          _vm._b(
+                            {
+                              staticClass: "kb-drag-container",
+                              attrs: { tag: "div", group: "row" },
+                              on: {
+                                start: function($event) {
+                                  _vm.drag = true
+                                },
+                                end: function($event) {
+                                  _vm.drag = false
+                                },
+                                change: function($event) {
+                                  _vm.selectedSectionRows = build.rowArr
+                                }
+                              },
+                              model: {
+                                value: build.rowArr,
+                                callback: function($$v) {
+                                  _vm.$set(build, "rowArr", $$v)
+                                },
+                                expression: "build.rowArr"
+                              }
+                            },
+                            "draggable",
+                            _vm.dragOptions,
+                            false
+                          ),
+                          [
+                            _c(
+                              "transition-group",
+                              {
+                                attrs: {
+                                  type: "transition",
+                                  name: !_vm.drag ? "flip-list" : null
+                                }
+                              },
+                              _vm._l(build.rowArr, function(row, index) {
+                                return _c(
+                                  "div",
+                                  {
+                                    key: row.id,
+                                    staticClass:
+                                      "kb-row kb-contain-element kb-border",
+                                    on: {
+                                      mouseenter: function($event) {
+                                        row.rowSetting = true
+                                      },
+                                      mouseleave: function($event) {
+                                        row.rowSetting = false
+                                      }
+                                    }
+                                  },
+                                  [
+                                    row.rowSetting
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "kb-module-setting" },
+                                          [
+                                            _c("span", [
+                                              _c("i", {
+                                                staticClass: "fa fa-arrows-alt"
+                                              })
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "tooltip",
+                                                    rawName: "v-tooltip",
+                                                    value: {
+                                                      content:
+                                                        "Column Structure"
+                                                    },
+                                                    expression:
+                                                      "{ content: 'Column Structure' }"
+                                                  }
+                                                ],
+                                                on: {
+                                                  click: function($event) {
+                                                    ;(_vm.selectedRow = row),
+                                                      (_vm.showSelection = true),
+                                                      (_vm.rowSelection = true)
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fa fa-columns"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "tooltip",
+                                                    rawName: "v-tooltip",
+                                                    value: {
+                                                      content: "Row Setting"
+                                                    },
+                                                    expression:
+                                                      "{ content: 'Row Setting' }"
+                                                  }
+                                                ]
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "far fa-edit"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "tooltip",
+                                                    rawName: "v-tooltip",
+                                                    value: {
+                                                      content: "Duplicate Row"
+                                                    },
+                                                    expression:
+                                                      "{ content: 'Duplicate Row' }"
+                                                  }
+                                                ],
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.duplicateRow(
+                                                      build.rowArr,
+                                                      row,
+                                                      index
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "far fa-copy"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "tooltip",
+                                                    rawName: "v-tooltip",
+                                                    value: {
+                                                      content: "Delete Row"
+                                                    },
+                                                    expression:
+                                                      "{ content: 'Delete Row' }"
+                                                  }
+                                                ],
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.deleteRow(
+                                                      build.rowArr,
+                                                      index
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "far fa-trash-alt"
+                                                })
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      _vm._l(row.columnLength, function(
+                                        column
+                                      ) {
+                                        return _c(
+                                          "div",
+                                          {
+                                            key: column,
+                                            staticClass: "kb-inner-row",
+                                            class: row.rowSize
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "tooltip",
+                                                    rawName: "v-tooltip",
+                                                    value: {
+                                                      content: "Add New Element"
+                                                    },
+                                                    expression:
+                                                      "{ content: 'Add New Element' }"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "kb-ispan-add add-element"
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fa fa-plus"
+                                                })
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      }),
+                                      0
+                                    ),
+                                    _vm._v(" "),
+                                    row.rowSetting
+                                      ? _c(
+                                          "span",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "tooltip",
+                                                rawName: "v-tooltip",
+                                                value: {
+                                                  content: "Add New Row"
+                                                },
+                                                expression:
+                                                  "{ content: 'Add New Row' }"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "kb-ispan-add add-row bottom-add-btn",
+                                            on: {
+                                              click: function($event) {
+                                                ;(_vm.row_index = index),
+                                                  (_vm.showSelection = true),
+                                                  (_vm.rowSelection = true)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-plus"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                )
+                              }),
+                              0
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
                     )
-                  ],
-                  2
+                  ]
                 )
-              })
-            ],
-            2
-          )
-        })
+              }),
+              0
+            )
+          ],
+          1
+        )
       ],
-      2
+      1
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "block" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "fa fa-arrows-alt" })])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "fa fa-arrows-alt" })])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -78669,6 +79109,979 @@ var Draggable = {
 
 /***/ }),
 
+/***/ "./node_modules/vue-tabs-component/dist/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/vue-tabs-component/dist/index.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else {}
+})(typeof self !== 'undefined' ? self : this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(6)(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.5.7' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__(23);
+var IE8_DOM_DEFINE = __webpack_require__(24);
+var toPrimitive = __webpack_require__(26);
+var dP = Object.defineProperty;
+
+exports.f = __webpack_require__(0) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(8), __webpack_require__(11)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else { var mod; }
+})(this, function (exports, _Tab, _Tabs) {
+    'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.Tabs = exports.Tab = undefined;
+
+    var _Tab2 = _interopRequireDefault(_Tab);
+
+    var _Tabs2 = _interopRequireDefault(_Tabs);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    exports.default = {
+        install: function install(Vue) {
+            Vue.component('tab', _Tab2.default);
+            Vue.component('tabs', _Tabs2.default);
+        }
+    };
+    exports.Tab = _Tab2.default;
+    exports.Tabs = _Tabs2.default;
+});
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(9),
+  /* template */
+  __webpack_require__(10),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else { var mod; }
+})(this, function (exports) {
+    'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.default = {
+        props: {
+            id: { default: null },
+            name: { required: true },
+            prefix: { default: '' },
+            suffix: { default: '' },
+            isDisabled: { default: false }
+        },
+
+        data: function data() {
+            return {
+                isActive: false,
+                isVisible: true
+            };
+        },
+
+        computed: {
+            header: function header() {
+                return this.prefix + this.name + this.suffix;
+            },
+            computedId: function computedId() {
+                return this.id ? this.id : this.name.toLowerCase().replace(/ /g, '-');
+            },
+            hash: function hash() {
+                if (this.isDisabled) {
+                    return '#';
+                }
+
+                return '#' + this.computedId;
+            }
+        }
+    };
+});
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('section', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.isActive),
+      expression: "isActive"
+    }],
+    staticClass: "tabs-component-panel",
+    attrs: {
+      "aria-hidden": !_vm.isActive,
+      "id": _vm.computedId,
+      "role": "tabpanel"
+    }
+  }, [_vm._t("default")], 2)
+},staticRenderFns: []}
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(12),
+  /* template */
+  __webpack_require__(29),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(13)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else { var mod; }
+})(this, function (exports, _expiringStorage) {
+    'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _expiringStorage2 = _interopRequireDefault(_expiringStorage);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    exports.default = {
+        props: {
+            cacheLifetime: {
+                default: 5
+            },
+            options: {
+                type: Object,
+                required: false,
+                default: function _default() {
+                    return {
+                        useUrlFragment: true,
+                        defaultTabHash: null
+                    };
+                }
+            }
+        },
+
+        data: function data() {
+            return {
+                tabs: [],
+                activeTabHash: '',
+                activeTabIndex: 0,
+                lastActiveTabHash: ''
+            };
+        },
+
+        computed: {
+            storageKey: function storageKey() {
+                return 'vue-tabs-component.cache.' + window.location.host + window.location.pathname;
+            }
+        },
+
+        created: function created() {
+            this.tabs = this.$children;
+        },
+        mounted: function mounted() {
+            var _this = this;
+
+            window.addEventListener('hashchange', function () {
+                return _this.selectTab(window.location.hash);
+            });
+
+            if (this.findTab(window.location.hash)) {
+                this.selectTab(window.location.hash);
+                return;
+            }
+
+            var previousSelectedTabHash = _expiringStorage2.default.get(this.storageKey);
+
+            if (this.findTab(previousSelectedTabHash)) {
+                this.selectTab(previousSelectedTabHash);
+                return;
+            }
+
+            if (this.options.defaultTabHash !== null && this.findTab("#" + this.options.defaultTabHash)) {
+                this.selectTab("#" + this.options.defaultTabHash);
+                return;
+            }
+
+            if (this.tabs.length) {
+                this.selectTab(this.tabs[0].hash);
+            }
+        },
+
+
+        methods: {
+            findTab: function findTab(hash) {
+                return this.tabs.find(function (tab) {
+                    return tab.hash === hash;
+                });
+            },
+            selectTab: function selectTab(selectedTabHash, event) {
+                // See if we should store the hash in the url fragment.
+                if (event && !this.options.useUrlFragment) {
+                    event.preventDefault();
+                }
+
+                var selectedTab = this.findTab(selectedTabHash);
+
+                if (!selectedTab) {
+                    return;
+                }
+
+                if (selectedTab.isDisabled) {
+                    event.preventDefault();
+                    return;
+                }
+
+                if (this.lastActiveTabHash === selectedTab.hash) {
+                    this.$emit('clicked', { tab: selectedTab });
+                    return;
+                }
+
+                this.tabs.forEach(function (tab) {
+                    tab.isActive = tab.hash === selectedTab.hash;
+                });
+
+                this.$emit('changed', { tab: selectedTab });
+
+                this.activeTabHash = selectedTab.hash;
+                this.activeTabIndex = this.getTabIndex(selectedTabHash);
+
+                this.lastActiveTabHash = this.activeTabHash = selectedTab.hash;
+
+                _expiringStorage2.default.set(this.storageKey, selectedTab.hash, this.cacheLifetime);
+            },
+            setTabVisible: function setTabVisible(hash, visible) {
+                var tab = this.findTab(hash);
+
+                if (!tab) {
+                    return;
+                }
+
+                tab.isVisible = visible;
+
+                if (tab.isActive) {
+                    // If tab is active, set a different one as active.
+                    tab.isActive = visible;
+
+                    this.tabs.every(function (tab, index, array) {
+                        if (tab.isVisible) {
+                            tab.isActive = true;
+
+                            return false;
+                        }
+
+                        return true;
+                    });
+                }
+            },
+            getTabIndex: function getTabIndex(hash) {
+                var tab = this.findTab(hash);
+
+                return this.tabs.indexOf(tab);
+            },
+            getTabHash: function getTabHash(index) {
+                var _this2 = this;
+
+                var tab = this.tabs.find(function (tab) {
+                    return _this2.tabs.indexOf(tab) === index;
+                });
+
+                if (!tab) {
+                    return;
+                }
+
+                return tab.hash;
+            },
+            getActiveTab: function getActiveTab() {
+                return this.findTab(this.activeTabHash);
+            },
+            getActiveTabIndex: function getActiveTabIndex() {
+                return this.getTabIndex(this.activeTabHash);
+            }
+        }
+    };
+});
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(14), __webpack_require__(15)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else { var mod; }
+})(this, function (exports, _classCallCheck2, _createClass2) {
+    "use strict";
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+    var _createClass3 = _interopRequireDefault(_createClass2);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    var ExpiringStorage = function () {
+        function ExpiringStorage() {
+            (0, _classCallCheck3.default)(this, ExpiringStorage);
+        }
+
+        (0, _createClass3.default)(ExpiringStorage, [{
+            key: "get",
+            value: function get(key) {
+                var cached = JSON.parse(localStorage.getItem(key));
+
+                if (!cached) {
+                    return null;
+                }
+
+                var expires = new Date(cached.expires);
+
+                if (expires < new Date()) {
+                    localStorage.removeItem(key);
+                    return null;
+                }
+
+                return cached.value;
+            }
+        }, {
+            key: "set",
+            value: function set(key, value, lifeTimeInMinutes) {
+                var currentTime = new Date().getTime();
+
+                var expires = new Date(currentTime + lifeTimeInMinutes * 60000);
+
+                localStorage.setItem(key, JSON.stringify({ value: value, expires: expires }));
+            }
+        }]);
+        return ExpiringStorage;
+    }();
+
+    exports.default = new ExpiringStorage();
+});
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _defineProperty = __webpack_require__(16);
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      (0, _defineProperty2.default)(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(17), __esModule: true };
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(18);
+var $Object = __webpack_require__(4).Object;
+module.exports = function defineProperty(it, key, desc) {
+  return $Object.defineProperty(it, key, desc);
+};
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(19);
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !__webpack_require__(0), 'Object', { defineProperty: __webpack_require__(5).f });
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(3);
+var core = __webpack_require__(4);
+var ctx = __webpack_require__(20);
+var hide = __webpack_require__(22);
+var has = __webpack_require__(28);
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var IS_WRAP = type & $export.W;
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE];
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+  var key, own, out;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    if (own && has(exports, key)) continue;
+    // export native or passed
+    out = own ? target[key] : source[key];
+    // prevent global pollution for namespaces
+    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+    // bind timers to global for call from export context
+    : IS_BIND && own ? ctx(out, global)
+    // wrap global constructors for prevent change them in library
+    : IS_WRAP && target[key] == out ? (function (C) {
+      var F = function (a, b, c) {
+        if (this instanceof C) {
+          switch (arguments.length) {
+            case 0: return new C();
+            case 1: return new C(a);
+            case 2: return new C(a, b);
+          } return new C(a, b, c);
+        } return C.apply(this, arguments);
+      };
+      F[PROTOTYPE] = C[PROTOTYPE];
+      return F;
+    // make static versions for prototype methods
+    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+    if (IS_PROTO) {
+      (exports.virtual || (exports.virtual = {}))[key] = out;
+      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+      if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
+    }
+  }
+};
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__(21);
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__(5);
+var createDesc = __webpack_require__(27);
+module.exports = __webpack_require__(0) ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(1);
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__(0) && !__webpack_require__(6)(function () {
+  return Object.defineProperty(__webpack_require__(25)('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(1);
+var document = __webpack_require__(3).document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__(1);
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "tabs-component"
+  }, [_c('ul', {
+    staticClass: "tabs-component-tabs",
+    attrs: {
+      "role": "tablist"
+    }
+  }, _vm._l((_vm.tabs), function(tab, i) {
+    return _c('li', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (tab.isVisible),
+        expression: "tab.isVisible"
+      }],
+      key: i,
+      staticClass: "tabs-component-tab",
+      class: {
+        'is-active': tab.isActive, 'is-disabled': tab.isDisabled
+      },
+      attrs: {
+        "role": "presentation"
+      }
+    }, [_c('a', {
+      staticClass: "tabs-component-tab-a",
+      attrs: {
+        "aria-controls": tab.hash,
+        "aria-selected": tab.isActive,
+        "href": tab.hash,
+        "role": "tab"
+      },
+      domProps: {
+        "innerHTML": _vm._s(tab.header)
+      },
+      on: {
+        "click": function($event) {
+          _vm.selectTab(tab.hash, $event)
+        }
+      }
+    })])
+  })), _vm._v(" "), _c('div', {
+    staticClass: "tabs-component-panels"
+  }, [_vm._t("default")], 2)])
+},staticRenderFns: []}
+
+/***/ })
+/******/ ]);
+});
+
+/***/ }),
+
 /***/ "./node_modules/vue/dist/vue.common.dev.js":
 /*!*************************************************!*\
   !*** ./node_modules/vue/dist/vue.common.dev.js ***!
@@ -93254,27 +94667,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
 /* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var v_tooltip__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! v-tooltip */ "./node_modules/v-tooltip/dist/v-tooltip.esm.js");
-/* harmony import */ var v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! v-tooltip/dist/v-tooltip.css */ "./node_modules/v-tooltip/dist/v-tooltip.css");
-/* harmony import */ var v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/LoginComponent.vue */ "./resources/js/components/LoginComponent.vue");
-/* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
-/* harmony import */ var _components_FunnelComponent_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/FunnelComponent.vue */ "./resources/js/components/FunnelComponent.vue");
-/* harmony import */ var _components_BuildfunnelComponent_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/BuildfunnelComponent.vue */ "./resources/js/components/BuildfunnelComponent.vue");
-/* harmony import */ var _components_CreatefunnelComponent_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/CreatefunnelComponent.vue */ "./resources/js/components/CreatefunnelComponent.vue");
-/* harmony import */ var _components_ArchievestepsComponent_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/ArchievestepsComponent.vue */ "./resources/js/components/ArchievestepsComponent.vue");
-/* harmony import */ var _components_MarketplaceComponent_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/MarketplaceComponent.vue */ "./resources/js/components/MarketplaceComponent.vue");
-/* harmony import */ var _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/MembershipComponent.vue */ "./resources/js/components/MembershipComponent.vue");
-/* harmony import */ var _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/AnalyticsComponent.vue */ "./resources/js/components/AnalyticsComponent.vue");
-/* harmony import */ var _components_HeatmapsComponent_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/HeatmapsComponent.vue */ "./resources/js/components/HeatmapsComponent.vue");
-/* harmony import */ var _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/EdituserComponent.vue */ "./resources/js/components/EdituserComponent.vue");
-/* harmony import */ var _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/PagesComponent.vue */ "./resources/js/components/PagesComponent.vue");
-/* harmony import */ var _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/StrategiesComponent.vue */ "./resources/js/components/StrategiesComponent.vue");
+/* harmony import */ var vue_tabs_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-tabs-component */ "./node_modules/vue-tabs-component/dist/index.js");
+/* harmony import */ var vue_tabs_component__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_tabs_component__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var v_tooltip__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! v-tooltip */ "./node_modules/v-tooltip/dist/v-tooltip.esm.js");
+/* harmony import */ var v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! v-tooltip/dist/v-tooltip.css */ "./node_modules/v-tooltip/dist/v-tooltip.css");
+/* harmony import */ var v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/LoginComponent.vue */ "./resources/js/components/LoginComponent.vue");
+/* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
+/* harmony import */ var _components_FunnelComponent_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/FunnelComponent.vue */ "./resources/js/components/FunnelComponent.vue");
+/* harmony import */ var _components_BuildfunnelComponent_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/BuildfunnelComponent.vue */ "./resources/js/components/BuildfunnelComponent.vue");
+/* harmony import */ var _components_CreatefunnelComponent_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/CreatefunnelComponent.vue */ "./resources/js/components/CreatefunnelComponent.vue");
+/* harmony import */ var _components_ArchievestepsComponent_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/ArchievestepsComponent.vue */ "./resources/js/components/ArchievestepsComponent.vue");
+/* harmony import */ var _components_MarketplaceComponent_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/MarketplaceComponent.vue */ "./resources/js/components/MarketplaceComponent.vue");
+/* harmony import */ var _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/MembershipComponent.vue */ "./resources/js/components/MembershipComponent.vue");
+/* harmony import */ var _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/AnalyticsComponent.vue */ "./resources/js/components/AnalyticsComponent.vue");
+/* harmony import */ var _components_HeatmapsComponent_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/HeatmapsComponent.vue */ "./resources/js/components/HeatmapsComponent.vue");
+/* harmony import */ var _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/EdituserComponent.vue */ "./resources/js/components/EdituserComponent.vue");
+/* harmony import */ var _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/PagesComponent.vue */ "./resources/js/components/PagesComponent.vue");
+/* harmony import */ var _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/StrategiesComponent.vue */ "./resources/js/components/StrategiesComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
 
 
 
@@ -93296,7 +94712,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_cookies__WEBPACK_IMPORTED_MOD
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_drag_n_drop__WEBPACK_IMPORTED_MODULE_5__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuedraggable__WEBPACK_IMPORTED_MODULE_6___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_apexcharts__WEBPACK_IMPORTED_MODULE_7___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_tooltip__WEBPACK_IMPORTED_MODULE_8__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_tooltip__WEBPACK_IMPORTED_MODULE_9__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_mq__WEBPACK_IMPORTED_MODULE_3__["default"], {
   breakpoints: {
     // default breakpoints - customize this
@@ -93331,6 +94747,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('draggable', vuedraggable__
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('drag-drop', vue_drag_n_drop__WEBPACK_IMPORTED_MODULE_5__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('drag', vue_drag_n_drop__WEBPACK_IMPORTED_MODULE_5__["default"].Drag);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('drop', vue_drag_n_drop__WEBPACK_IMPORTED_MODULE_5__["default"].Drop);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('tabs', vue_tabs_component__WEBPACK_IMPORTED_MODULE_8__["Tabs"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('tab', vue_tabs_component__WEBPACK_IMPORTED_MODULE_8__["Tab"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -93353,59 +94771,59 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('drop', vue_drag_n_drop__WE
 var routes = [{
   path: '/login',
   name: 'login',
-  component: _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
+  component: _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }, {
   path: '/register',
   name: 'register',
-  component: _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
+  component: _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }, {
   path: '/funnel',
   name: 'funnel',
-  component: _components_FunnelComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+  component: _components_FunnelComponent_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
 }, {
   path: '/build-funnel',
   name: 'buildfunnel',
-  component: _components_BuildfunnelComponent_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+  component: _components_BuildfunnelComponent_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }, {
   path: '/create-funnel',
   name: 'createfunnel',
-  component: _components_CreatefunnelComponent_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
+  component: _components_CreatefunnelComponent_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
 }, {
   path: '/archieve-steps',
   name: 'archievesteps',
-  component: _components_ArchievestepsComponent_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+  component: _components_ArchievestepsComponent_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }, {
   path: '/marketplace',
   name: 'marketplace',
-  component: _components_MarketplaceComponent_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
+  component: _components_MarketplaceComponent_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
 }, {
   path: '/pages',
   name: 'pages',
-  component: _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_21__["default"]
+  component: _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]
 }, {
   path: '/strategies',
   name: 'strategies',
-  component: _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]
+  component: _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]
 }, {
   path: '/membership',
   name: 'membership',
-  component: _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
+  component: _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
 }, {
   path: '/analytics',
   name: 'analytics',
-  component: _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
+  component: _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_19__["default"]
 }, {
   path: '/heat-maps',
   name: 'heatmaps',
-  component: _components_HeatmapsComponent_vue__WEBPACK_IMPORTED_MODULE_19__["default"]
+  component: _components_HeatmapsComponent_vue__WEBPACK_IMPORTED_MODULE_20__["default"]
 }, {
   path: '/edit-user',
   name: 'edituser',
-  component: _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_20__["default"]
+  component: _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_21__["default"]
 }, {
   path: '/*',
   name: 'dashboard',
-  component: _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+  component: _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
