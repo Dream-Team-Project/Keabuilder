@@ -30,6 +30,7 @@
         "apexcharts": "^3.29.0",
         "v-tooltip": "^3.0.0-alpha.21",
         "vue-apexcharts": "^1.6.2",
+        "vue-color": "^2.8.1",
         "vue-cookies": "^1.7.4",
         "vue-drag-n-drop": "^1.2.2",
         "vue-mq": "^1.0.1",

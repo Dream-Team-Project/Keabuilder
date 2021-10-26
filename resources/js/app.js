@@ -12,10 +12,10 @@ import VueCookies from 'vue-cookies';
 import VueDragDrop from 'vue-drag-n-drop';
 import draggable from 'vuedraggable';
 import VueApexCharts from 'vue-apexcharts';
+import { Chrome, Sketch, Material, Slider } from 'vue-color';
 import {Tabs, Tab} from 'vue-tabs-component';
 import VTooltip from 'v-tooltip';
 import 'v-tooltip/dist/v-tooltip.css';
-
 
 
 require('./bootstrap');
@@ -70,6 +70,10 @@ Vue.component('drag', VueDragDrop.Drag);
 Vue.component('drop', VueDragDrop.Drop);
 Vue.component('tabs', Tabs);
 Vue.component('tab', Tab);
+Vue.component('colour-chrome-picker', Chrome);
+Vue.component('colour-sketch-picker', Sketch);
+Vue.component('colour-material-picker', Material);
+Vue.component('colour-slider-picker', Slider);
 
 
 /**
@@ -91,6 +95,7 @@ Vue.component('tab', Tab);
  import edituser from './components/EdituserComponent.vue';
  import pages from './components/PagesComponent.vue';
  import strategies from './components/StrategiesComponent.vue';
+import { reduce } from 'lodash';
 
 
 const routes = [

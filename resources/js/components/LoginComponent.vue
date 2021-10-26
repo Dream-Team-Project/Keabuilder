@@ -141,7 +141,7 @@
         left: 41%;
     }
      .bw-container__bg {
-         background: var(--login-bk);
+        background: var(--login-bk);
         background-position: 0;
         background-repeat: no-repeat;
         background-size: cover;
