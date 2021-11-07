@@ -5416,6 +5416,79 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5585,6 +5658,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      newD: new Date(),
+      newImg: {
+        id: '',
+        upload: '',
+        name: '',
+        path: ''
+      },
+      galleryImg: [],
+      galleryImgName: [],
+      imgSelection: false,
       presetColors: [{
         hex: '#ffffff'
       }, {
@@ -5646,12 +5729,38 @@ __webpack_require__.r(__webpack_exports__);
         bottom_right: '0px'
       },
       border_color: {
-        hex: '#000000'
+        hex: 'red'
       },
       border_style: 'solid',
       border_style_types: ['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset', 'none'],
       background_color: {
-        hex: ''
+        hex: '#ff000000'
+      },
+      background_gradient: {
+        active: false,
+        direction: '45deg',
+        start: {
+          hex: '#1867c0'
+        },
+        end: {
+          hex: '#1BC5BD'
+        },
+        startPosition: '0%',
+        endPosition: '100%',
+        gradientStart: false,
+        gradientEnd: false,
+        directionReverse: false,
+        startPositionReverse: false,
+        endPositionReverse: false
+      },
+      background_gradient_range_slider: {
+        direction: '45',
+        startPosition: '0',
+        endPosition: '100'
+      },
+      background_image: {
+        active: false,
+        name: ''
       },
       show_border_style_dropdown: false,
       rowTypes: [{
@@ -5788,27 +5897,27 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  created: function created() {
-    this.addNewSection(0);
-  },
   computed: {
     dragOptions: function dragOptions() {
       return {
         animation: 200,
         disabled: false,
-        ghostClass: "ghost"
+        ghostClass: "ghost",
+        scrollSensitivity: 200,
+        forceFallback: true
       };
     },
     demoBorder: function demoBorder() {
       return {
-        '--border-radius': this.border_radius.top_left + ' ' + this.border_radius.top_right + ' ' + this.border_radius.bottom_left + ' ' + this.border_radius.bottom_right,
+        '--border-radius': this.border_radius.top_left + ' ' + this.border_radius.top_right + ' ' + this.border_radius.bottom_right + ' ' + this.border_radius.bottom_left,
         '--border-color': this.border_color.hex,
         '--border-style': this.border_style
       };
     },
     demoBackground: function demoBackground() {
       return {
-        '--background-color': this.background_color.hex
+        '--background-color': this.background_color.hex,
+        '--background-image': this.background_gradient.active ? 'linear-gradient(' + this.background_gradient.direction + ', ' + this.background_gradient.start.hex + ' ' + this.background_gradient.startPosition + ', ' + this.background_gradient.end.hex + ' ' + this.background_gradient.endPosition + ')' : 'none'
       };
     },
     currentStyling: function currentStyling() {
@@ -5816,10 +5925,11 @@ __webpack_require__.r(__webpack_exports__);
         '--margin': this.margin.top + ' ' + this.margin.right + ' ' + this.margin.bottom + ' ' + this.margin.left,
         '--padding': this.padding.top + ' ' + this.padding.right + ' ' + this.padding.bottom + ' ' + this.padding.left,
         '--border-width': this.border.top + ' ' + this.border.right + ' ' + this.border.bottom + ' ' + this.border.left,
-        '--border-radius': this.border_radius.top_left + ' ' + this.border_radius.top_right + ' ' + this.border_radius.bottom_left + ' ' + this.border_radius.bottom_right,
+        '--border-radius': this.border_radius.top_left + ' ' + this.border_radius.top_right + ' ' + this.border_radius.bottom_right + ' ' + this.border_radius.bottom_left,
         '--border-color': this.border_color.hex,
         '--border-style': this.border_style,
-        '--background-color': this.background_color.hex
+        '--background-color': this.background_color.hex,
+        '--background-image': this.background_image.active ? 'url(' + this.background_image.name + ')' : this.background_gradient.active ? 'linear-gradient(' + this.background_gradient.direction + ', ' + this.background_gradient.start.hex + ' ' + this.background_gradient.startPosition + ', ' + this.background_gradient.end.hex + ' ' + this.background_gradient.endPosition + ')' : 'none'
       };
     }
   },
@@ -5848,6 +5958,41 @@ __webpack_require__.r(__webpack_exports__);
       },
       deep: true
     },
+    background_gradient_range_slider: {
+      handler: function handler(val) {
+        this.background_gradient.direction = val.direction + 'deg';
+        this.background_gradient.startPosition = val.startPosition + '%';
+        this.background_gradient.endPosition = val.endPosition + '%';
+      },
+      deep: true
+    },
+    background_gradient: {
+      handler: function handler(val) {
+        var gdir = parseInt(val.direction.replace(/[^0-9]/g, ''));
+        var gsdir = parseInt(val.startPosition.replace(/[^0-9]/g, ''));
+        var gedir = parseInt(val.endPosition.replace(/[^0-9]/g, ''));
+        this.background_gradient_range_slider.direction = gdir;
+        this.background_gradient_range_slider.startPosition = gsdir;
+        this.background_gradient_range_slider.endPosition = gedir;
+
+        if (gdir > 360) {
+          gdir = '360';
+        }
+
+        if (gsdir > 100) {
+          gsdir = '100';
+        }
+
+        if (gedir > 100) {
+          gedir = '100';
+        }
+
+        val.direction = (val.directionReverse ? '-' : '') + (gdir ? gdir : '0') + 'deg';
+        val.startPosition = (val.startPositionReverse ? '-' : '') + (gsdir ? gsdir : '0') + '%';
+        val.endPosition = (val.endPositionReverse ? '-' : '') + (gedir ? gedir : '0') + '%';
+      },
+      deep: true
+    },
     builder: function builder(val) {
       val.forEach(function (item, index) {
         item.id = index;
@@ -5864,28 +6009,107 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
+  created: function created() {
+    this.addNewSection(0);
+    this.getUploadImages();
+  },
   methods: {
+    getUploadImages: function getUploadImages() {
+      var _this2 = this;
+
+      axios.post('api/get_upload_image').then(function (request) {
+        _this2.galleryImg = request.data.data;
+        _this2.galleryImgName = _this2.galleryImg.map(function (item) {
+          return item.name;
+        });
+      });
+    },
+    changeNumeral: function changeNumeral(e, val) {
+      if (e.key == 'ArrowUp' || e.key == 'ArrowDown') {
+        val = (e.key == 'ArrowUp' ? parseInt(val.split('px')[0]) + 1 : parseInt(val.split('px')[0]) - 1) + 'px';
+      }
+    },
+    resetStyling: function resetStyling() {
+      this.margin.top = '0px';
+      this.margin.right = '0px';
+      this.margin.bottom = '0px';
+      this.margin.left = '0px';
+      this.padding.top = '60px';
+      this.padding.right = '0px';
+      this.padding.bottom = '60px';
+      this.padding.left = '0px';
+      this.border.top = '0px';
+      this.border.right = '0px';
+      this.border.bottom = '0px';
+      this.border.left = '0px';
+      this.border_radius.top_left = '0px';
+      this.border_radius.top_right = '0px';
+      this.border_radius.bottom_left = '0px';
+      this.border_radius.bottom_right = '0px';
+      this.border_style = 'solid';
+      this.border_color.hex = '#000000';
+      this.background_color.hex = '#ff000000';
+      this.background_gradient.active = false;
+      this.background_gradient.direction = '45deg';
+      this.background_gradient.start.hex = '#1867c0';
+      this.background_gradient.end.hex = '#1BC5BD';
+      this.background_gradient.startPosition = '0%';
+      this.background_gradient.endPosition = '100%';
+      this.background_gradient.gradientStart = false;
+      this.background_gradient.gradientEnd = false;
+      this.background_gradient.directionReverse = false;
+      this.background_gradient.startPositionReverse = false;
+      this.background_gradient.endPositionReverse = false;
+      this.background_gradient_range_slider.direction = '45';
+      this.background_gradient_range_slider.startPosition = '0';
+      this.background_gradient_range_slider.endPosition = '100';
+      this.background_image.name = '';
+      this.background_image.active = false;
+    },
     updateStyle: function updateStyle() {
-      var margin = 'margin: ' + this.margin.top + ' ' + this.margin.right + ' ' + this.margin.bottom + ' ' + this.margin.left + '; ';
+      var margin = 'margin:' + this.margin.top + ' ' + this.margin.right + ' ' + this.margin.bottom + ' ' + this.margin.left + '; ';
       var padding = 'padding:' + this.padding.top + ' ' + this.padding.right + ' ' + this.padding.bottom + ' ' + this.padding.left + '; ';
       var borderWidth = 'border-width:' + this.border.top + ' ' + this.border.right + ' ' + this.border.bottom + ' ' + this.border.left + '; ';
       var borderStyle = 'border-style:' + this.border_style + '; ';
       var borderColor = 'border-color:' + this.border_color.hex + '; ';
       var borderRadius = 'border-radius:' + this.border_radius.top_left + ' ' + this.border_radius.top_right + ' ' + this.border_radius.bottom_left + ' ' + this.border_radius.bottom_right + '; ';
       var backgroundColor = 'background-color:' + this.background_color.hex + '; ';
-      this.selectedSection.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + backgroundColor;
+
+      if (this.background_gradient.active || this.background_image.active) {
+        if (this.background_gradient.active) {
+          var backgroundImage = 'background-image:' + 'linear-gradient(' + this.background_gradient.direction + ', ' + this.background_gradient.start.hex + ' ' + this.background_gradient.startPosition + ', ' + this.background_gradient.end.hex + ' ' + this.background_gradient.endPosition + ')';
+        } else if (this.background_image.active) {
+          var backgroundImage = 'background-image:' + 'url(' + this.background_image.name + ')';
+        }
+
+        this.selectedSection.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + backgroundImage;
+      } else {
+        this.selectedSection.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + backgroundColor;
+      }
+
       this.showSelection = !this.showSelection;
       this.selectedSection = ''; // var style = document.createElement('STYLE');
       // style.id = "createStyle";
       // document.getElementsByTagName('HEAD')[0].appendChild(style);
-      // this.selectedSection.style = style.innerHTML;
     },
     // general values
     updateSideVals: function updateSideVals(val) {
-      val.top = val.top.replace(/[^0-9]/g, '') ? val.top.replace(/[^0-9]/g, '') + 'px' : '';
-      val.bottom = val.bottom.replace(/[^0-9]/g, '') ? val.bottom.replace(/[^0-9]/g, '') + 'px' : '';
-      val.right = val.right.replace(/[^0-9]/g, '') ? val.right.replace(/[^0-9]/g, '') + 'px' : '';
-      val.left = val.left.replace(/[^0-9]/g, '') ? val.left.replace(/[^0-9]/g, '') + 'px' : '';
+      var it = 0,
+          ib = 0,
+          ir = 0,
+          il = 0;
+      val.top = val.top.replace(/[^0-9]/g, '') ? val.top.replace(/[^0-9]/g, function (m) {
+        return !it++ ? m == '-' ? val.top[0] != '-' ? '' : m : '' : '';
+      }) + 'px' : '';
+      val.bottom = val.bottom.replace(/[^0-9]/g, '') ? val.bottom.replace(/[^0-9]/g, function (m) {
+        return !ib++ ? m == '-' ? val.bottom[0] != '-' ? '' : m : '' : '';
+      }) + 'px' : '';
+      val.left = val.left.replace(/[^0-9]/g, '') ? val.left.replace(/[^0-9]/g, function (m) {
+        return !il++ ? m == '-' ? val.left[0] != '-' ? '' : m : '' : '';
+      }) + 'px' : '';
+      val.right = val.right.replace(/[^0-9]/g, '') ? val.right.replace(/[^0-9]/g, function (m) {
+        return !ir++ ? m == '-' ? val.right[0] != '-' ? '' : m : '' : '';
+      }) + 'px' : '';
     },
     marginUpdate: function marginUpdate(val) {
       if (this.m_link.a) {
@@ -5934,13 +6158,75 @@ __webpack_require__.r(__webpack_exports__);
     },
     borderRadiusUpdate: function borderRadiusUpdate(val) {
       this.br_link ? val.bottom_left = val.bottom_right = val.top_right = val.top_left : '';
-      val.top_left = val.top_left ? val.top_left.replace(/[^0-9]/g, '') + 'px' : '';
-      val.top_right = val.top_right ? val.top_right.replace(/[^0-9]/g, '') + 'px' : '';
-      val.bottom_left = val.bottom_left ? val.bottom_left.replace(/[^0-9]/g, '') + 'px' : '';
-      val.bottom_right = val.bottom_right ? val.bottom_right.replace(/[^0-9]/g, '') + 'px' : '';
+      val.top_left = val.top_left.replace(/[^0-9]/g, '') ? val.top_left.replace(/[^0-9]/g, '') + 'px' : '';
+      val.top_right = val.top_right.replace(/[^0-9]/g, '') ? val.top_right.replace(/[^0-9]/g, '') + 'px' : '';
+      val.bottom_left = val.bottom_left.replace(/[^0-9]/g, '') ? val.bottom_left.replace(/[^0-9]/g, '') + 'px' : '';
+      val.bottom_right = val.bottom_right.replace(/[^0-9]/g, '') ? val.bottom_right.replace(/[^0-9]/g, '') + 'px' : '';
     },
     // general values
     // section
+    editSection: function editSection(build, discard) {
+      this.selectedSection = !discard ? build : '';
+      var str = '';
+
+      if (build.style) {
+        var _iterator = _createForOfIteratorHelper(build.style.split(';')),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var attr = _step.value;
+            var kt = attr.split(':');
+
+            if (kt[0].trim() != 'background-image') {
+              str = kt != ' ' ? str + '"' + kt[0].trim().split('-')[0] + (kt[0].trim().split('-')[1] != undefined ? kt[0].trim().split('-')[1] : '') + '"' + ':' + '"' + kt[1] + '", ' : str.slice(0, str.length - 2);
+            } else {
+              var bg = kt[1].split('(')[1].split(')')[0].split(', ');
+
+              if (bg.length != 1) {
+                this.background_gradient.direction = bg[0];
+                this.background_gradient.start.hex = bg[1].split(' ')[0];
+                this.background_gradient.end.hex = bg[2].split(' ')[0];
+                this.background_gradient.startPosition = bg[1].split(' ')[1];
+                this.background_gradient.endPosition = bg[2].split(' ')[1];
+                this.background_gradient.active = true;
+              } else {
+                this.background_image.name = bg[0];
+                this.background_image.active = true;
+              }
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        str = str[str.length - 2] == ',' ? str.slice(0, str.length - 2) : str;
+        var obj = JSON.parse('{' + str + '}');
+        this.margin.top = obj.margin.split(' ')[0];
+        this.margin.right = obj.margin.split(' ')[1];
+        this.margin.bottom = obj.margin.split(' ')[2];
+        this.margin.left = obj.margin.split(' ')[3];
+        this.padding.top = obj.padding.split(' ')[0];
+        this.padding.right = obj.padding.split(' ')[1];
+        this.padding.bottom = obj.padding.split(' ')[2];
+        this.padding.left = obj.padding.split(' ')[3];
+        this.border.top = obj.borderwidth.split(' ')[0];
+        this.border.right = obj.borderwidth.split(' ')[1];
+        this.border.bottom = obj.borderwidth.split(' ')[2];
+        this.border.left = obj.borderwidth.split(' ')[3];
+        this.border_radius.top_left = obj.borderradius.split(' ')[0];
+        this.border_radius.top_right = obj.borderradius.split(' ')[1];
+        this.border_radius.bottom_left = obj.borderradius.split(' ')[2];
+        this.border_radius.bottom_right = obj.borderradius.split(' ')[3];
+        this.border_style = obj.borderstyle;
+        this.border_color.hex = obj.bordercolor;
+        this.background_color.hex = obj.backgroundcolor;
+      } else {
+        this.resetStyling();
+      }
+    },
     appendSection: function appendSection(build, index) {
       var tempObj = JSON.parse(JSON.stringify(build));
       this.builder.splice(index + 1, 0, tempObj);
@@ -6009,7 +6295,38 @@ __webpack_require__.r(__webpack_exports__);
     closeDragElement: function closeDragElement() {
       document.onmouseup = null;
       document.onmousemove = null;
-    } //dragable element
+    },
+    //dragable element
+    // background Image Selection
+    onSelected: function onSelected(img) {
+      var _this3 = this;
+
+      var files = img.target.files || img.dataTransfer.files;
+      if (!files.length) return;
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = function (e) {
+        vm.newImg.upload = e.target.result;
+        vm.newImg.id = _this3.galleryImg.length;
+        vm.newImg.path = URL.createObjectURL(img.target.files[0]);
+        var strn = img.target.files[0].name;
+        vm.newImg.name = vm.galleryImgName.includes(strn) ? strn.slice(0, strn.lastIndexOf(".")) + '-' + new Date().getTime() + strn.slice(strn.lastIndexOf("."), strn.length) : strn;
+        var obj = new Object();
+        obj.name = 'loading.gif';
+        vm.galleryImg.unshift(obj);
+        axios.post('api/upload_image', vm.newImg).then(function (response) {
+          _this3.getUploadImages();
+
+          vm.newImg = {};
+        });
+      };
+
+      reader.readAsDataURL(files[0]);
+    },
+    selectBgImg: function selectBgImg() {
+      document.getElementById('imgInp').click();
+    } // background Image Selection
 
   }
 });
@@ -18501,6 +18818,25 @@ exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base
 
 // module
 exports.push([module.i, "\n:root {\n  --overlay-bg: #1867c0;\n  --transition-duration: .35s;\n}\n\n.fade-enter-active[data-v-4c22b934],\n.fade-leave-active[data-v-4c22b934] {\n  transition-duration: 0.3s;\n  transition-property: opacity;\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-4c22b934],\n.fade-leave-active[data-v-4c22b934] {\n  opacity: 0;\n}\n@-webkit-keyframes fadeInDown {\nfrom {\n    transform: translate3d(0, -40px, 0);\n}\nto {\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n}\n}\n@keyframes fadeInDown {\nfrom {\n    transform: translate3d(0, -40px, 0);\n}\nto {\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n}\n}\n.fade-in-down-leave-to[data-v-4c22b934] {\n  opacity: 0;\n  transition: opacity .3s;\n}\n.fade-in-down-enter[data-v-4c22b934] {\n  opacity: 0;\n  transform: translate3d(0, -40px, 0);\n}\n.fade-in-down-enter-to[data-v-4c22b934] {\n  opacity: 0;\n  -webkit-animation-duration: .7s;\n          animation-duration: .7s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: fadeInDown;\n          animation-name: fadeInDown;\n}\n@-webkit-keyframes fadeInRight {\nfrom {\n    transform: translate3d(40px, 0, 0);\n}\nto {\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n}\n}\n@keyframes fadeInRight {\nfrom {\n    transform: translate3d(40px, 0, 0);\n}\nto {\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n}\n}\n.fade-in-right-leave-to[data-v-4c22b934] {\n  opacity: 0;\n  transition: opacity .3s;\n}\n.fade-in-right-enter[data-v-4c22b934] {\n  opacity: 0;\n  transform: translate3d(40px, 0, 0);\n}\n.fade-in-right-enter-to[data-v-4c22b934] {\n  opacity: 0;\n  -webkit-animation-duration: .7s;\n          animation-duration: .7s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: fadeInRight;\n          animation-name: fadeInRight;\n}\n@-webkit-keyframes fadeInUp {\nfrom {\n    transform: translate3d(0, 40px, 0);\n}\nto {\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n}\n}\n@keyframes fadeInUp {\nfrom {\n    transform: translate3d(0, 40px, 0);\n}\nto {\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n}\n}\n.fade-in-up-leave-to[data-v-4c22b934] {\n  opacity: 0;\n  transition: opacity .3s;\n}\n.fade-in-up-enter[data-v-4c22b934] {\n  opacity: 0;\n  transform: translate3d(0, 40px, 0);\n}\n.fade-in-up-enter-to[data-v-4c22b934] {\n  opacity: 0;\n  -webkit-animation-duration: .7s;\n          animation-duration: .7s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: fadeInUp;\n          animation-name: fadeInUp;\n}\n@-webkit-keyframes fadeInLeft {\nfrom {\n    transform: translate3d(-40px, 0, 0);\n}\nto {\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n}\n}\n@keyframes fadeInLeft {\nfrom {\n    transform: translate3d(-40px, 0, 0);\n}\nto {\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n}\n}\n.fade-in-left-leave-to[data-v-4c22b934] {\n  opacity: 0;\n  transition: opacity .3s;\n}\n.fade-in-left-enter[data-v-4c22b934] {\n  opacity: 0;\n  transform: translate3d(-40px, 0, 0);\n}\n.fade-in-left-enter-to[data-v-4c22b934] {\n  opacity: 0;\n  -webkit-animation-duration: .7s;\n          animation-duration: .7s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-animation-name: fadeInLeft;\n          animation-name: fadeInLeft;\n}\n.zoom-enter-active[data-v-4c22b934],\n.zoom-leave-active[data-v-4c22b934] {\n  transition-duration: 0.3s;\n  transition-property: all;\n  transition-timing-function: ease;\n}\n.zoom-enter[data-v-4c22b934],\n.zoom-leave-to[data-v-4c22b934] {\n  opacity: 0;\n  transform: scale(0);\n}\n.flip-x-enter-active[data-v-4c22b934],\n.flip-x-leave-active[data-v-4c22b934] {\n  transition-duration: 0.3s;\n  transition-property: all;\n  transition-timing-function: ease;\n}\n.flip-x-enter[data-v-4c22b934],\n.flip-x-leave-to[data-v-4c22b934] {\n  transform: rotateX(-180deg);\n  opacity: 0;\n}\n.flip-y-enter-active[data-v-4c22b934],\n.flip-y-leave-active[data-v-4c22b934] {\n  transition-duration: 0.3s;\n  transition-property: all;\n  transition-timing-function: ease;\n}\n.flip-y-enter[data-v-4c22b934],\n.flip-y-leave-to[data-v-4c22b934] {\n  transform: rotateY(-180deg);\n  opacity: 0;\n}\n.overlay-right[data-v-4c22b934] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100vh;\n  width: 0;\n  background: var(--overlay-bg);\n  transition-duration: var(--transition-duration);\n}\n.overlay-right-enter ~ .overlay-right[data-v-4c22b934],\n.overlay-right-leave-to ~ .overlay-right[data-v-4c22b934] {\n  width: 0;\n}\n.overlay-right-enter-active ~ .overlay-right[data-v-4c22b934],\n.overlay-right-leave-active ~ .overlay-right[data-v-4c22b934] {\n  width: 100vw;\n}\n.overlay-right-enter-active ~ .overlay-right[data-v-4c22b934] {\n  transition-timing-function: ease-in;\n}\n.overlay-right-leave-active ~ .overlay-right[data-v-4c22b934] {\n  transition-timing-function: ease-out;\n}\n.overlay-right-enter-active[data-v-4c22b934],\n.overlay-right-leave-active[data-v-4c22b934] {\n  transition-duration: var(--transition-duration);\n}\n.overlay-top[data-v-4c22b934] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 0;\n  width: 100vw;\n  background: var(--overlay-bg);\n  transition-duration: var(--transition-duration);\n}\n.overlay-down-enter ~ .overlay-top[data-v-4c22b934],\n.overlay-down-leave-to ~ .overlay-top[data-v-4c22b934] {\n  height: 0;\n}\n.overlay-down-enter-active ~ .overlay-top[data-v-4c22b934],\n.overlay-down-leave-active ~ .overlay-top[data-v-4c22b934] {\n  height: 100vh;\n}\n.overlay-down-enter-active ~ .overlay-top[data-v-4c22b934] {\n  transition-timing-function: ease-in;\n}\n.overlay-down-leave-active ~ .overlay-top[data-v-4c22b934] {\n  transition-timing-function: ease-out;\n}\n.overlay-down-enter-active[data-v-4c22b934],\n.overlay-down-leave-active[data-v-4c22b934] {\n  transition-duration: var(--transition-duration);\n}\n.overlay-bottom[data-v-4c22b934] {\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  height: 0;\n  width: 100vw;\n  background: var(--overlay-bg);\n  transition-duration: var(--transition-duration);\n}\n.overlay-up-enter ~ .overlay-bottom[data-v-4c22b934],\n.overlay-up-leave-to ~ .overlay-bottom[data-v-4c22b934] {\n  height: 0;\n}\n.overlay-up-enter-active ~ .overlay-bottom[data-v-4c22b934],\n.overlay-up-leave-active ~ .overlay-bottom[data-v-4c22b934] {\n  height: 100vh;\n}\n.overlay-up-enter-active ~ .overlay-bottom[data-v-4c22b934] {\n  transition-timing-function: ease-in;\n}\n.overlay-up-leave-active ~ .overlay-bottom[data-v-4c22b934] {\n  transition-timing-function: ease-out;\n}\n.overlay-up-enter-active[data-v-4c22b934],\n.overlay-up-leave-active[data-v-4c22b934] {\n  transition-duration: var(--transition-duration);\n}\n.overlay-left[data-v-4c22b934] {\n  position: fixed;\n  top: 0;\n  right: 0;\n  height: 100vh;\n  width: 0;\n  background: var(--overlay-bg);\n  transition-duration: .35s;\n}\n.overlay-left-enter ~ .overlay-left[data-v-4c22b934],\n.overlay-left-leave-to ~ .overlay-left[data-v-4c22b934] {\n  width: 0;\n}\n.overlay-left-enter-active ~ .overlay-left[data-v-4c22b934],\n.overlay-left-leave-active ~ .overlay-left[data-v-4c22b934] {\n  width: 100vw;\n}\n.overlay-left-enter-active ~ .overlay-left[data-v-4c22b934] {\n  transition-timing-function: ease-in;\n}\n.overlay-left-leave-active ~ .overlay-left[data-v-4c22b934] {\n  transition-timing-function: ease-out;\n}\n.overlay-left-enter-active[data-v-4c22b934],\n.overlay-left-leave-active[data-v-4c22b934] {\n  transition-duration: .35s;\n}\n.overlay-up-full-enter ~ .overlay-bottom[data-v-4c22b934] {\n  height: 100vh;\n}\n.overlay-up-full-enter-active ~ .overlay-bottom[data-v-4c22b934],\n.overlay-up-full-leave-active ~ .overlay-bottom[data-v-4c22b934] {\n  height: 100vh;\n}\n.overlay-up-full-enter-active ~ .overlay-bottom[data-v-4c22b934] {\n  transition-timing-function: ease-in;\n}\n.overlay-up-full-enter-active ~ .overlay-bottom[data-v-4c22b934],\n.overlay-up-full-enter-to ~ .overlay-bottom[data-v-4c22b934] {\n  display: none;\n}\n.overlay-up-full-enter-to ~ .overlay-top[data-v-4c22b934] {\n  height: 0;\n}\n.overlay-up-full-leave-active ~ .overlay-top[data-v-4c22b934] {\n  transition-timing-function: ease;\n}\n.overlay-up-full-enter ~ .overlay-top[data-v-4c22b934],\n.overlay-up-full-enter-active ~ .overlay-top[data-v-4c22b934],\n.overlay-up-full-enter-to ~ .overlay-top[data-v-4c22b934] {\n  transition-duration: unset !important;\n  height: 100vh;\n}\n.overlay-up-full-enter-active[data-v-4c22b934],\n.overlay-up-full-leave-active[data-v-4c22b934] {\n  transition-duration: var(--transition-duration);\n}\n.overlay-right-full-enter ~ .overlay-left[data-v-4c22b934] {\n  width: 100vw;\n}\n.overlay-right-full-enter-active ~ .overlay-left[data-v-4c22b934],\n.overlay-right-full-leave-active ~ .overlay-left[data-v-4c22b934] {\n  width: 100vw;\n}\n.overlay-right-full-enter-active ~ .overlay-left[data-v-4c22b934] {\n  transition-timing-function: ease-in;\n}\n.overlay-right-full-enter-active ~ .overlay-left[data-v-4c22b934],\n.overlay-right-full-enter-to ~ .overlay-left[data-v-4c22b934] {\n  display: none;\n}\n.overlay-right-full-enter-to ~ .overlay-right[data-v-4c22b934] {\n  width: 0;\n}\n.overlay-right-full-leave-active ~ .overlay-right[data-v-4c22b934] {\n  transition-timing-function: ease;\n}\n.overlay-right-full-enter ~ .overlay-right[data-v-4c22b934],\n.overlay-right-full-enter-active ~ .overlay-right[data-v-4c22b934],\n.overlay-right-full-enter-to ~ .overlay-right[data-v-4c22b934] {\n  transition-duration: unset !important;\n  width: 100vw;\n}\n.overlay-right-full-enter-active[data-v-4c22b934],\n.overlay-right-full-leave-active[data-v-4c22b934] {\n  transition-duration: var(--transition-duration);\n}\n.overlay-down-full-enter ~ .overlay-top[data-v-4c22b934] {\n  height: 100vh;\n}\n.overlay-down-full-enter-to ~ .overlay-bottom[data-v-4c22b934] {\n  height: 0;\n}\n.overlay-down-full-enter-active ~ .overlay-top[data-v-4c22b934],\n.overlay-down-full-leave-active ~ .overlay-top[data-v-4c22b934] {\n  height: 100vh;\n}\n.overlay-down-full-enter-active ~ .overlay-top[data-v-4c22b934] {\n  transition-timing-function: ease-in;\n}\n.overlay-down-full-leave-active ~ .overlay-bottom[data-v-4c22b934] {\n  transition-timing-function: ease;\n}\n.overlay-down-full-enter-active[data-v-4c22b934],\n.overlay-down-full-leave-active[data-v-4c22b934] {\n  transition-duration: var(--transition-duration);\n}\n.overlay-down-full-enter-active ~ .overlay-top[data-v-4c22b934],\n.overlay-down-full-enter-to ~ .overlay-top[data-v-4c22b934] {\n  display: none;\n}\n.overlay-down-full-enter ~ .overlay-bottom[data-v-4c22b934],\n.overlay-down-full-enter-active ~ .overlay-bottom[data-v-4c22b934],\n.overlay-down-full-enter-to ~ .overlay-bottom[data-v-4c22b934] {\n  transition-duration: unset !important;\n  height: 100vh;\n}\n.overlay-left-full-enter ~ .overlay-right[data-v-4c22b934] {\n  width: 100vw;\n}\n.overlay-left-full-enter-active ~ .overlay-right[data-v-4c22b934],\n.overlay-left-full-leave-active ~ .overlay-right[data-v-4c22b934] {\n  width: 100vw;\n}\n.overlay-left-full-enter-active ~ .overlay-right[data-v-4c22b934] {\n  transition-timing-function: ease-in;\n}\n.overlay-left-full-enter-active ~ .overlay-right[data-v-4c22b934],\n.overlay-left-full-enter-to ~ .overlay-right[data-v-4c22b934] {\n  display: none;\n}\n.overlay-left-full-enter-to ~ .overlay-left[data-v-4c22b934] {\n  width: 0;\n}\n.overlay-left-full-leave-active ~ .overlay-left[data-v-4c22b934] {\n  transition-timing-function: ease;\n}\n.overlay-left-full-enter ~ .overlay-left[data-v-4c22b934],\n.overlay-left-full-enter-active ~ .overlay-left[data-v-4c22b934],\n.overlay-left-full-enter-to ~ .overlay-left[data-v-4c22b934] {\n  transition-duration: unset !important;\n  width: 100vw;\n}\n.overlay-left-full-enter-active[data-v-4c22b934],\n.overlay-left-full-leave-active[data-v-4c22b934] {\n  transition-duration: var(--transition-duration);\n}\n.overlay-up-down-enter ~ .overlay-bottom[data-v-4c22b934],\n.overlay-up-down-enter ~ .overlay-top[data-v-4c22b934] {\n  height: 0;\n}\n.overlay-up-down-leave-active ~ .overlay-bottom[data-v-4c22b934],\n.overlay-up-down-leave-to ~ .overlay-bottom[data-v-4c22b934],\n.overlay-up-down-leave-to ~ .overlay-top[data-v-4c22b934],\n.overlay-up-down-leave-to ~ .overlay-top[data-v-4c22b934] {\n  height: 51vh;\n}\n.overlay-up-down-enter-active ~ .overlay-bottom[data-v-4c22b934],\n.overlay-up-down-enter-active ~ .overlay-top[data-v-4c22b934] {\n  transition-timing-function: ease;\n}\n.overlay-up-down-leave-active ~ .overlay-bottom[data-v-4c22b934],\n.overlay-up-down-leave-active ~ .overlay-top[data-v-4c22b934] {\n  transition-timing-function: ease;\n}\n.overlay-up-down-enter-active[data-v-4c22b934],\n.overlay-up-down-leave-active[data-v-4c22b934] {\n  transition-duration: var(--transition-duration);\n}\n.overlay-left-right-enter ~ .overlay-left[data-v-4c22b934],\n.overlay-left-right-enter ~ .overlay-right[data-v-4c22b934] {\n  width: 0;\n}\n.overlay-left-right-leave-active ~ .overlay-left[data-v-4c22b934],\n.overlay-left-right-leave-to ~ .overlay-left[data-v-4c22b934],\n.overlay-left-right-leave-to ~ .overlay-right[data-v-4c22b934],\n.overlay-left-right-leave-to ~ .overlay-right[data-v-4c22b934] {\n  width: 51vw;\n}\n.overlay-left-right-enter-active ~ .overlay-left[data-v-4c22b934],\n.overlay-left-right-enter-active ~ .overlay-right[data-v-4c22b934] {\n  transition-timing-function: ease;\n}\n.overlay-left-right-leave-active ~ .overlay-left[data-v-4c22b934],\n.overlay-left-right-leave-active ~ .overlay-right[data-v-4c22b934] {\n  transition-timing-function: ease;\n}\n.overlay-left-right-enter-active[data-v-4c22b934],\n.overlay-left-right-leave-active[data-v-4c22b934] {\n  transition-duration: var(--transition-duration);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-range-slider/dist/vue-range-slider.css":
+/*!*************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-range-slider/dist/vue-range-slider.css ***!
+  \*************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".range-slider {\n  display: inline-block;\n  padding: 0 10px;\n  height: 20px;\n  width: 130px;\n}\n\n.range-slider.disabled {\n  opacity: 0.5;\n}\n\n.range-slider-inner {\n  display: inline-block;\n  position: relative;\n  height: 100%;\n  width: 100%;\n}\n\n.range-slider-rail,\n.range-slider-fill {\n  display: block;\n  position: absolute;\n  top: 50%;\n  left: 0;\n  height: 4px;\n  border-radius: 2px;\n  transform: translateY(-50%);\n}\n\n.range-slider-rail {\n  width: 100%;\n  background-color: #e2e2e2;\n}\n\n.range-slider-fill {\n  background-color: #21fb92;\n}\n\n.range-slider-knob {\n  display: block;\n  position: absolute;\n  top: 50%;\n  left: 0;\n  box-sizing: border-box;\n  height: 20px;\n  width: 20px;\n  border: 1px solid #f5f5f5;\n  border-radius: 50%;\n  background-color: #fff;\n  box-shadow: 1px 1px rgba(0, 0, 0, 0.2);\n  transform: translate(-50%, -50%);\n  cursor: pointer;\n}\n\n.range-slider-hidden {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -57747,6 +58083,2683 @@ if (GlobalVue) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-js-toggle-button/dist/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/vue-js-toggle-button/dist/index.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else {}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/dist/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(8)
+
+var Component = __webpack_require__(6)(
+  /* script */
+  __webpack_require__(1),
+  /* template */
+  __webpack_require__(7),
+  /* scopeId */
+  "data-v-25adc6c0",
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(3);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+var DEFAULT_COLOR_CHECKED = '#75c791';
+var DEFAULT_COLOR_UNCHECKED = '#bfcbd9';
+var DEFAULT_LABEL_CHECKED = 'on';
+var DEFAULT_LABEL_UNCHECKED = 'off';
+var DEFAULT_SWITCH_COLOR = '#fff';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'ToggleButton',
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    tag: {
+      type: String
+    },
+    sync: {
+      type: Boolean,
+      default: false
+    },
+    speed: {
+      type: Number,
+      default: 300
+    },
+    color: {
+      type: [String, Object],
+      validator: function validator(value) {
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* isString */])(value) || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'checked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'unchecked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'disabled');
+      }
+    },
+    switchColor: {
+      type: [String, Object],
+      validator: function validator(value) {
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* isString */])(value) || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'checked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'unchecked');
+      }
+    },
+    cssColors: {
+      type: Boolean,
+      default: false
+    },
+    labels: {
+      type: [Boolean, Object],
+      default: false,
+      validator: function validator(value) {
+        return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' ? value.checked || value.unchecked : typeof value === 'boolean';
+      }
+    },
+    height: {
+      type: Number,
+      default: 22
+    },
+    width: {
+      type: Number,
+      default: 50
+    },
+    margin: {
+      type: Number,
+      default: 3
+    },
+    fontSize: {
+      type: Number
+    }
+  },
+  computed: {
+    className: function className() {
+      var toggled = this.toggled,
+          disabled = this.disabled;
+
+
+      return ['vue-js-switch', {
+        toggled: toggled,
+        disabled: disabled
+      }];
+    },
+    coreStyle: function coreStyle() {
+      return {
+        width: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.width),
+        height: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.height),
+        backgroundColor: this.cssColors ? null : this.disabled ? this.colorDisabled : this.colorCurrent,
+        borderRadius: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(Math.round(this.height / 2))
+      };
+    },
+    buttonRadius: function buttonRadius() {
+      return this.height - this.margin * 2;
+    },
+    distance: function distance() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.width - this.height + this.margin);
+    },
+    buttonStyle: function buttonStyle() {
+      var transition = 'transform ' + this.speed + 'ms';
+      var margin = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.margin);
+
+      var transform = this.toggled ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate3d */])(this.distance, margin) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate3d */])(margin, margin);
+
+      var background = this.switchColor ? this.switchColorCurrent : null;
+
+      return {
+        width: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.buttonRadius),
+        height: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.buttonRadius),
+        transition: transition,
+        transform: transform,
+        background: background
+      };
+    },
+    labelStyle: function labelStyle() {
+      return {
+        lineHeight: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.height),
+        fontSize: this.fontSize ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.fontSize) : null
+      };
+    },
+    colorChecked: function colorChecked() {
+      var color = this.color;
+
+
+      if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["e" /* isObject */])(color)) {
+        return color || DEFAULT_COLOR_CHECKED;
+      }
+
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(color, 'checked', DEFAULT_COLOR_CHECKED);
+    },
+    colorUnchecked: function colorUnchecked() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.color, 'unchecked', DEFAULT_COLOR_UNCHECKED);
+    },
+    colorDisabled: function colorDisabled() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.color, 'disabled', this.colorCurrent);
+    },
+    colorCurrent: function colorCurrent() {
+      return this.toggled ? this.colorChecked : this.colorUnchecked;
+    },
+    labelChecked: function labelChecked() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.labels, 'checked', DEFAULT_LABEL_CHECKED);
+    },
+    labelUnchecked: function labelUnchecked() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.labels, 'unchecked', DEFAULT_LABEL_UNCHECKED);
+    },
+    switchColorChecked: function switchColorChecked() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.switchColor, 'checked', DEFAULT_SWITCH_COLOR);
+    },
+    switchColorUnchecked: function switchColorUnchecked() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.switchColor, 'unchecked', DEFAULT_SWITCH_COLOR);
+    },
+    switchColorCurrent: function switchColorCurrent() {
+      var switchColor = this.switchColor;
+
+
+      if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["e" /* isObject */])(this.switchColor)) {
+        return this.switchColor || DEFAULT_SWITCH_COLOR;
+      }
+
+      return this.toggled ? this.switchColorChecked : this.switchColorUnchecked;
+    }
+  },
+  watch: {
+    value: function value(_value) {
+      if (this.sync) {
+        this.toggled = !!_value;
+      }
+    }
+  },
+  data: function data() {
+    return {
+      toggled: !!this.value
+    };
+  },
+
+  methods: {
+    toggle: function toggle(event) {
+      var toggled = !this.toggled;
+
+      if (!this.sync) {
+        this.toggled = toggled;
+      }
+
+      this.$emit('input', toggled);
+      this.$emit('change', {
+        value: toggled,
+        tag: this.tag,
+        srcEvent: event
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Button_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Button_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Button_vue__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "ToggleButton", function() { return __WEBPACK_IMPORTED_MODULE_0__Button_vue___default.a; });
+
+
+var installed = false;
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  install: function install(Vue) {
+    if (installed) {
+      return;
+    }
+
+    Vue.component('ToggleButton', __WEBPACK_IMPORTED_MODULE_0__Button_vue___default.a);
+    installed = true;
+  }
+});
+
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return isString; });
+/* unused harmony export isBoolean */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return isObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return has; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return get; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return px; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return translate3d; });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var isString = function isString(value) {
+  return typeof value === 'string';
+};
+
+var isBoolean = function isBoolean(value) {
+  return typeof value === 'boolean';
+};
+
+var isObject = function isObject(value) {
+  return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object';
+};
+
+var has = function has(object, key) {
+  return isObject(object) && object.hasOwnProperty(key);
+};
+
+var get = function get(object, key, defaultValue) {
+  return has(object, key) ? object[key] : defaultValue;
+};
+
+var px = function px(value) {
+  return value + 'px';
+};
+
+var translate3d = function translate3d(x, y) {
+  var z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '0px';
+
+  return 'translate3d(' + x + ', ' + y + ', ' + z + ')';
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)();
+// imports
+
+
+// module
+exports.push([module.i, ".vue-js-switch[data-v-25adc6c0]{display:inline-block;position:relative;vertical-align:middle;user-select:none;font-size:10px;cursor:pointer}.vue-js-switch .v-switch-input[data-v-25adc6c0]{opacity:0;position:absolute;width:1px;height:1px}.vue-js-switch .v-switch-label[data-v-25adc6c0]{position:absolute;top:0;font-weight:600;color:#fff;z-index:1}.vue-js-switch .v-switch-label.v-left[data-v-25adc6c0]{left:10px}.vue-js-switch .v-switch-label.v-right[data-v-25adc6c0]{right:10px}.vue-js-switch .v-switch-core[data-v-25adc6c0]{display:block;position:relative;box-sizing:border-box;outline:0;margin:0;transition:border-color .3s,background-color .3s;user-select:none}.vue-js-switch .v-switch-core .v-switch-button[data-v-25adc6c0]{display:block;position:absolute;overflow:hidden;top:0;left:0;border-radius:100%;background-color:#fff;z-index:2}.vue-js-switch.disabled[data-v-25adc6c0]{pointer-events:none;opacity:.6}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  scopeId,
+  cssModules
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  // inject cssModules
+  if (cssModules) {
+    var computed = Object.create(options.computed || null)
+    Object.keys(cssModules).forEach(function (key) {
+      var module = cssModules[key]
+      computed[key] = function () { return module }
+    })
+    options.computed = computed
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    class: _vm.className
+  }, [_c('input', {
+    staticClass: "v-switch-input",
+    attrs: {
+      "type": "checkbox",
+      "name": _vm.name,
+      "disabled": _vm.disabled
+    },
+    domProps: {
+      "checked": _vm.value
+    },
+    on: {
+      "change": function($event) {
+        $event.stopPropagation();
+        return _vm.toggle($event)
+      }
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "v-switch-core",
+    style: (_vm.coreStyle)
+  }, [_c('div', {
+    staticClass: "v-switch-button",
+    style: (_vm.buttonStyle)
+  })]), _vm._v(" "), (_vm.labels) ? [(_vm.toggled) ? _c('span', {
+    staticClass: "v-switch-label v-left",
+    style: (_vm.labelStyle)
+  }, [_vm._t("checked", [
+    [_vm._v(_vm._s(_vm.labelChecked))]
+  ])], 2) : _c('span', {
+    staticClass: "v-switch-label v-right",
+    style: (_vm.labelStyle)
+  }, [_vm._t("unchecked", [
+    [_vm._v(_vm._s(_vm.labelUnchecked))]
+  ])], 2)] : _vm._e()], 2)
+},staticRenderFns: []}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(4);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(9)("2283861f", content, true);
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(10)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ })
+/******/ ]);
+});
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vue-lazyload/vue-lazyload.esm.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/vue-lazyload/vue-lazyload.esm.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*!
+ * Vue-Lazyload.js v1.3.3
+ * (c) 2019 Awe <hilongjw@gmail.com>
+ * Released under the MIT License.
+ */
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+
+
+
+
+
+
+
+
+
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+/*!
+ * is-primitive <https://github.com/jonschlinkert/is-primitive>
+ *
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+// see http://jsperf.com/testing-value-is-primitive/7
+
+var isPrimitive = function isPrimitive(value) {
+  return value == null || typeof value !== 'function' && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) !== 'object';
+};
+
+/*!
+ * assign-symbols <https://github.com/jonschlinkert/assign-symbols>
+ *
+ * Copyright (c) 2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+var assignSymbols = function assignSymbols(receiver, objects) {
+  if (receiver === null || typeof receiver === 'undefined') {
+    throw new TypeError('expected first argument to be an object.');
+  }
+
+  if (typeof objects === 'undefined' || typeof Symbol === 'undefined') {
+    return receiver;
+  }
+
+  if (typeof Object.getOwnPropertySymbols !== 'function') {
+    return receiver;
+  }
+
+  var isEnumerable = Object.prototype.propertyIsEnumerable;
+  var target = Object(receiver);
+  var len = arguments.length,
+      i = 0;
+
+  while (++i < len) {
+    var provider = Object(arguments[i]);
+    var names = Object.getOwnPropertySymbols(provider);
+
+    for (var j = 0; j < names.length; j++) {
+      var key = names[j];
+
+      if (isEnumerable.call(provider, key)) {
+        target[key] = provider[key];
+      }
+    }
+  }
+  return target;
+};
+
+var toString = Object.prototype.toString;
+
+/**
+ * Get the native `typeof` a value.
+ *
+ * @param  {*} `val`
+ * @return {*} Native javascript type
+ */
+
+var kindOf = function kindOf(val) {
+  var type = typeof val === 'undefined' ? 'undefined' : _typeof(val);
+
+  // primitivies
+  if (type === 'undefined') {
+    return 'undefined';
+  }
+  if (val === null) {
+    return 'null';
+  }
+  if (val === true || val === false || val instanceof Boolean) {
+    return 'boolean';
+  }
+  if (type === 'string' || val instanceof String) {
+    return 'string';
+  }
+  if (type === 'number' || val instanceof Number) {
+    return 'number';
+  }
+
+  // functions
+  if (type === 'function' || val instanceof Function) {
+    if (typeof val.constructor.name !== 'undefined' && val.constructor.name.slice(0, 9) === 'Generator') {
+      return 'generatorfunction';
+    }
+    return 'function';
+  }
+
+  // array
+  if (typeof Array.isArray !== 'undefined' && Array.isArray(val)) {
+    return 'array';
+  }
+
+  // check for instances of RegExp and Date before calling `toString`
+  if (val instanceof RegExp) {
+    return 'regexp';
+  }
+  if (val instanceof Date) {
+    return 'date';
+  }
+
+  // other objects
+  type = toString.call(val);
+
+  if (type === '[object RegExp]') {
+    return 'regexp';
+  }
+  if (type === '[object Date]') {
+    return 'date';
+  }
+  if (type === '[object Arguments]') {
+    return 'arguments';
+  }
+  if (type === '[object Error]') {
+    return 'error';
+  }
+  if (type === '[object Promise]') {
+    return 'promise';
+  }
+
+  // buffer
+  if (isBuffer(val)) {
+    return 'buffer';
+  }
+
+  // es6: Map, WeakMap, Set, WeakSet
+  if (type === '[object Set]') {
+    return 'set';
+  }
+  if (type === '[object WeakSet]') {
+    return 'weakset';
+  }
+  if (type === '[object Map]') {
+    return 'map';
+  }
+  if (type === '[object WeakMap]') {
+    return 'weakmap';
+  }
+  if (type === '[object Symbol]') {
+    return 'symbol';
+  }
+
+  if (type === '[object Map Iterator]') {
+    return 'mapiterator';
+  }
+  if (type === '[object Set Iterator]') {
+    return 'setiterator';
+  }
+  if (type === '[object String Iterator]') {
+    return 'stringiterator';
+  }
+  if (type === '[object Array Iterator]') {
+    return 'arrayiterator';
+  }
+
+  // typed arrays
+  if (type === '[object Int8Array]') {
+    return 'int8array';
+  }
+  if (type === '[object Uint8Array]') {
+    return 'uint8array';
+  }
+  if (type === '[object Uint8ClampedArray]') {
+    return 'uint8clampedarray';
+  }
+  if (type === '[object Int16Array]') {
+    return 'int16array';
+  }
+  if (type === '[object Uint16Array]') {
+    return 'uint16array';
+  }
+  if (type === '[object Int32Array]') {
+    return 'int32array';
+  }
+  if (type === '[object Uint32Array]') {
+    return 'uint32array';
+  }
+  if (type === '[object Float32Array]') {
+    return 'float32array';
+  }
+  if (type === '[object Float64Array]') {
+    return 'float64array';
+  }
+
+  // must be a plain object
+  return 'object';
+};
+
+/**
+ * If you need to support Safari 5-7 (8-10 yr-old browser),
+ * take a look at https://github.com/feross/is-buffer
+ */
+
+function isBuffer(val) {
+  return val.constructor && typeof val.constructor.isBuffer === 'function' && val.constructor.isBuffer(val);
+}
+
+function assign(target /*, objects*/) {
+  target = target || {};
+  var len = arguments.length,
+      i = 0;
+  if (len === 1) {
+    return target;
+  }
+  while (++i < len) {
+    var val = arguments[i];
+    if (isPrimitive(target)) {
+      target = val;
+    }
+    if (isObject$1(val)) {
+      extend(target, val);
+    }
+  }
+  return target;
+}
+
+/**
+ * Shallow extend
+ */
+
+function extend(target, obj) {
+  assignSymbols(target, obj);
+
+  for (var key in obj) {
+    if (key !== '__proto__' && hasOwn(obj, key)) {
+      var val = obj[key];
+      if (isObject$1(val)) {
+        if (kindOf(target[key]) === 'undefined' && kindOf(val) === 'function') {
+          target[key] = val;
+        }
+        target[key] = assign(target[key] || {}, val);
+      } else {
+        target[key] = val;
+      }
+    }
+  }
+  return target;
+}
+
+/**
+ * Returns true if the object is a plain object or a function.
+ */
+
+function isObject$1(obj) {
+  return kindOf(obj) === 'object' || kindOf(obj) === 'function';
+}
+
+/**
+ * Returns true if the given `key` is an own property of `obj`.
+ */
+
+function hasOwn(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+/**
+ * Expose `assign`
+ */
+
+var assignDeep = assign;
+
+var inBrowser = typeof window !== 'undefined';
+var hasIntersectionObserver = checkIntersectionObserver();
+
+function checkIntersectionObserver() {
+  if (inBrowser && 'IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+    // Minimal polyfill for Edge 15's lack of `isIntersecting`
+    // See: https://github.com/w3c/IntersectionObserver/issues/211
+    if (!('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
+      Object.defineProperty(window.IntersectionObserverEntry.prototype, 'isIntersecting', {
+        get: function get$$1() {
+          return this.intersectionRatio > 0;
+        }
+      });
+    }
+    return true;
+  }
+  return false;
+}
+
+var modeType = {
+  event: 'event',
+  observer: 'observer'
+
+  // CustomEvent polyfill
+};var CustomEvent = function () {
+  if (!inBrowser) return;
+  if (typeof window.CustomEvent === 'function') return window.CustomEvent;
+  function CustomEvent(event, params) {
+    params = params || { bubbles: false, cancelable: false, detail: undefined };
+    var evt = document.createEvent('CustomEvent');
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    return evt;
+  }
+  CustomEvent.prototype = window.Event.prototype;
+  return CustomEvent;
+}();
+
+function remove(arr, item) {
+  if (!arr.length) return;
+  var index = arr.indexOf(item);
+  if (index > -1) return arr.splice(index, 1);
+}
+
+function some(arr, fn) {
+  var has = false;
+  for (var i = 0, len = arr.length; i < len; i++) {
+    if (fn(arr[i])) {
+      has = true;
+      break;
+    }
+  }
+  return has;
+}
+
+function getBestSelectionFromSrcset(el, scale) {
+  if (el.tagName !== 'IMG' || !el.getAttribute('data-srcset')) return;
+
+  var options = el.getAttribute('data-srcset');
+  var result = [];
+  var container = el.parentNode;
+  var containerWidth = container.offsetWidth * scale;
+
+  var spaceIndex = void 0;
+  var tmpSrc = void 0;
+  var tmpWidth = void 0;
+
+  options = options.trim().split(',');
+
+  options.map(function (item) {
+    item = item.trim();
+    spaceIndex = item.lastIndexOf(' ');
+    if (spaceIndex === -1) {
+      tmpSrc = item;
+      tmpWidth = 999998;
+    } else {
+      tmpSrc = item.substr(0, spaceIndex);
+      tmpWidth = parseInt(item.substr(spaceIndex + 1, item.length - spaceIndex - 2), 10);
+    }
+    result.push([tmpWidth, tmpSrc]);
+  });
+
+  result.sort(function (a, b) {
+    if (a[0] < b[0]) {
+      return 1;
+    }
+    if (a[0] > b[0]) {
+      return -1;
+    }
+    if (a[0] === b[0]) {
+      if (b[1].indexOf('.webp', b[1].length - 5) !== -1) {
+        return 1;
+      }
+      if (a[1].indexOf('.webp', a[1].length - 5) !== -1) {
+        return -1;
+      }
+    }
+    return 0;
+  });
+  var bestSelectedSrc = '';
+  var tmpOption = void 0;
+
+  for (var i = 0; i < result.length; i++) {
+    tmpOption = result[i];
+    bestSelectedSrc = tmpOption[1];
+    var next = result[i + 1];
+    if (next && next[0] < containerWidth) {
+      bestSelectedSrc = tmpOption[1];
+      break;
+    } else if (!next) {
+      bestSelectedSrc = tmpOption[1];
+      break;
+    }
+  }
+
+  return bestSelectedSrc;
+}
+
+function find(arr, fn) {
+  var item = void 0;
+  for (var i = 0, len = arr.length; i < len; i++) {
+    if (fn(arr[i])) {
+      item = arr[i];
+      break;
+    }
+  }
+  return item;
+}
+
+var getDPR = function getDPR() {
+  var scale = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+  return inBrowser ? window.devicePixelRatio || scale : scale;
+};
+
+function supportWebp() {
+  if (!inBrowser) return false;
+
+  var support = true;
+  var d = document;
+
+  try {
+    var el = d.createElement('object');
+    el.type = 'image/webp';
+    el.style.visibility = 'hidden';
+    el.innerHTML = '!';
+    d.body.appendChild(el);
+    support = !el.offsetWidth;
+    d.body.removeChild(el);
+  } catch (err) {
+    support = false;
+  }
+
+  return support;
+}
+
+function throttle(action, delay) {
+  var timeout = null;
+  var lastRun = 0;
+  return function () {
+    if (timeout) {
+      return;
+    }
+    var elapsed = Date.now() - lastRun;
+    var context = this;
+    var args = arguments;
+    var runCallback = function runCallback() {
+      lastRun = Date.now();
+      timeout = false;
+      action.apply(context, args);
+    };
+    if (elapsed >= delay) {
+      runCallback();
+    } else {
+      timeout = setTimeout(runCallback, delay);
+    }
+  };
+}
+
+function testSupportsPassive() {
+  if (!inBrowser) return;
+  var support = false;
+  try {
+    var opts = Object.defineProperty({}, 'passive', {
+      get: function get$$1() {
+        support = true;
+      }
+    });
+    window.addEventListener('test', null, opts);
+  } catch (e) {}
+  return support;
+}
+
+var supportsPassive = testSupportsPassive();
+
+var _ = {
+  on: function on(el, type, func) {
+    var capture = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+    if (supportsPassive) {
+      el.addEventListener(type, func, {
+        capture: capture,
+        passive: true
+      });
+    } else {
+      el.addEventListener(type, func, capture);
+    }
+  },
+  off: function off(el, type, func) {
+    var capture = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+    el.removeEventListener(type, func, capture);
+  }
+};
+
+var loadImageAsync = function loadImageAsync(item, resolve, reject) {
+  var image = new Image();
+  if (!item || !item.src) {
+    var err = new Error('image src is required');
+    return reject(err);
+  }
+
+  image.src = item.src;
+
+  image.onload = function () {
+    resolve({
+      naturalHeight: image.naturalHeight,
+      naturalWidth: image.naturalWidth,
+      src: image.src
+    });
+  };
+
+  image.onerror = function (e) {
+    reject(e);
+  };
+};
+
+var style = function style(el, prop) {
+  return typeof getComputedStyle !== 'undefined' ? getComputedStyle(el, null).getPropertyValue(prop) : el.style[prop];
+};
+
+var overflow = function overflow(el) {
+  return style(el, 'overflow') + style(el, 'overflow-y') + style(el, 'overflow-x');
+};
+
+var scrollParent = function scrollParent(el) {
+  if (!inBrowser) return;
+  if (!(el instanceof HTMLElement)) {
+    return window;
+  }
+
+  var parent = el;
+
+  while (parent) {
+    if (parent === document.body || parent === document.documentElement) {
+      break;
+    }
+
+    if (!parent.parentNode) {
+      break;
+    }
+
+    if (/(scroll|auto)/.test(overflow(parent))) {
+      return parent;
+    }
+
+    parent = parent.parentNode;
+  }
+
+  return window;
+};
+
+function isObject(obj) {
+  return obj !== null && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object';
+}
+
+function ObjectKeys(obj) {
+  if (!(obj instanceof Object)) return [];
+  if (Object.keys) {
+    return Object.keys(obj);
+  } else {
+    var keys = [];
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        keys.push(key);
+      }
+    }
+    return keys;
+  }
+}
+
+function ArrayFrom(arrLike) {
+  var len = arrLike.length;
+  var list = [];
+  for (var i = 0; i < len; i++) {
+    list.push(arrLike[i]);
+  }
+  return list;
+}
+
+function noop() {}
+
+var ImageCache = function () {
+  function ImageCache(_ref) {
+    var max = _ref.max;
+    classCallCheck(this, ImageCache);
+
+    this.options = {
+      max: max || 100
+    };
+    this._caches = [];
+  }
+
+  createClass(ImageCache, [{
+    key: 'has',
+    value: function has(key) {
+      return this._caches.indexOf(key) > -1;
+    }
+  }, {
+    key: 'add',
+    value: function add(key) {
+      if (this.has(key)) return;
+      this._caches.push(key);
+      if (this._caches.length > this.options.max) {
+        this.free();
+      }
+    }
+  }, {
+    key: 'free',
+    value: function free() {
+      this._caches.shift();
+    }
+  }]);
+  return ImageCache;
+}();
+
+// el: {
+//     state,
+//     src,
+//     error,
+//     loading
+// }
+
+var ReactiveListener = function () {
+  function ReactiveListener(_ref) {
+    var el = _ref.el,
+        src = _ref.src,
+        error = _ref.error,
+        loading = _ref.loading,
+        bindType = _ref.bindType,
+        $parent = _ref.$parent,
+        options = _ref.options,
+        elRenderer = _ref.elRenderer,
+        imageCache = _ref.imageCache;
+    classCallCheck(this, ReactiveListener);
+
+    this.el = el;
+    this.src = src;
+    this.error = error;
+    this.loading = loading;
+    this.bindType = bindType;
+    this.attempt = 0;
+
+    this.naturalHeight = 0;
+    this.naturalWidth = 0;
+
+    this.options = options;
+
+    this.rect = null;
+
+    this.$parent = $parent;
+    this.elRenderer = elRenderer;
+    this._imageCache = imageCache;
+    this.performanceData = {
+      init: Date.now(),
+      loadStart: 0,
+      loadEnd: 0
+    };
+
+    this.filter();
+    this.initState();
+    this.render('loading', false);
+  }
+
+  /*
+   * init listener state
+   * @return
+   */
+
+
+  createClass(ReactiveListener, [{
+    key: 'initState',
+    value: function initState() {
+      if ('dataset' in this.el) {
+        this.el.dataset.src = this.src;
+      } else {
+        this.el.setAttribute('data-src', this.src);
+      }
+
+      this.state = {
+        loading: false,
+        error: false,
+        loaded: false,
+        rendered: false
+      };
+    }
+
+    /*
+     * record performance
+     * @return
+     */
+
+  }, {
+    key: 'record',
+    value: function record(event) {
+      this.performanceData[event] = Date.now();
+    }
+
+    /*
+     * update image listener data
+     * @param  {String} image uri
+     * @param  {String} loading image uri
+     * @param  {String} error image uri
+     * @return
+     */
+
+  }, {
+    key: 'update',
+    value: function update(_ref2) {
+      var src = _ref2.src,
+          loading = _ref2.loading,
+          error = _ref2.error;
+
+      var oldSrc = this.src;
+      this.src = src;
+      this.loading = loading;
+      this.error = error;
+      this.filter();
+      if (oldSrc !== this.src) {
+        this.attempt = 0;
+        this.initState();
+      }
+    }
+
+    /*
+     * get el node rect
+     * @return
+     */
+
+  }, {
+    key: 'getRect',
+    value: function getRect() {
+      this.rect = this.el.getBoundingClientRect();
+    }
+
+    /*
+     *  check el is in view
+     * @return {Boolean} el is in view
+     */
+
+  }, {
+    key: 'checkInView',
+    value: function checkInView() {
+      this.getRect();
+      return this.rect.top < window.innerHeight * this.options.preLoad && this.rect.bottom > this.options.preLoadTop && this.rect.left < window.innerWidth * this.options.preLoad && this.rect.right > 0;
+    }
+
+    /*
+     * listener filter
+     */
+
+  }, {
+    key: 'filter',
+    value: function filter() {
+      var _this = this;
+
+      ObjectKeys(this.options.filter).map(function (key) {
+        _this.options.filter[key](_this, _this.options);
+      });
+    }
+
+    /*
+     * render loading first
+     * @params cb:Function
+     * @return
+     */
+
+  }, {
+    key: 'renderLoading',
+    value: function renderLoading(cb) {
+      var _this2 = this;
+
+      this.state.loading = true;
+      loadImageAsync({
+        src: this.loading
+      }, function (data) {
+        _this2.render('loading', false);
+        _this2.state.loading = false;
+        cb();
+      }, function () {
+        // handler `loading image` load failed
+        cb();
+        _this2.state.loading = false;
+        if (!_this2.options.silent) console.warn('VueLazyload log: load failed with loading image(' + _this2.loading + ')');
+      });
+    }
+
+    /*
+     * try load image and  render it
+     * @return
+     */
+
+  }, {
+    key: 'load',
+    value: function load() {
+      var _this3 = this;
+
+      var onFinish = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : noop;
+
+      if (this.attempt > this.options.attempt - 1 && this.state.error) {
+        if (!this.options.silent) console.log('VueLazyload log: ' + this.src + ' tried too more than ' + this.options.attempt + ' times');
+        onFinish();
+        return;
+      }
+      if (this.state.rendered && this.state.loaded) return;
+      if (this._imageCache.has(this.src)) {
+        this.state.loaded = true;
+        this.render('loaded', true);
+        this.state.rendered = true;
+        return onFinish();
+      }
+
+      this.renderLoading(function () {
+        _this3.attempt++;
+
+        _this3.options.adapter['beforeLoad'] && _this3.options.adapter['beforeLoad'](_this3, _this3.options);
+        _this3.record('loadStart');
+
+        loadImageAsync({
+          src: _this3.src
+        }, function (data) {
+          _this3.naturalHeight = data.naturalHeight;
+          _this3.naturalWidth = data.naturalWidth;
+          _this3.state.loaded = true;
+          _this3.state.error = false;
+          _this3.record('loadEnd');
+          _this3.render('loaded', false);
+          _this3.state.rendered = true;
+          _this3._imageCache.add(_this3.src);
+          onFinish();
+        }, function (err) {
+          !_this3.options.silent && console.error(err);
+          _this3.state.error = true;
+          _this3.state.loaded = false;
+          _this3.render('error', false);
+        });
+      });
+    }
+
+    /*
+     * render image
+     * @param  {String} state to render // ['loading', 'src', 'error']
+     * @param  {String} is form cache
+     * @return
+     */
+
+  }, {
+    key: 'render',
+    value: function render(state, cache) {
+      this.elRenderer(this, state, cache);
+    }
+
+    /*
+     * output performance data
+     * @return {Object} performance data
+     */
+
+  }, {
+    key: 'performance',
+    value: function performance() {
+      var state = 'loading';
+      var time = 0;
+
+      if (this.state.loaded) {
+        state = 'loaded';
+        time = (this.performanceData.loadEnd - this.performanceData.loadStart) / 1000;
+      }
+
+      if (this.state.error) state = 'error';
+
+      return {
+        src: this.src,
+        state: state,
+        time: time
+      };
+    }
+
+    /*
+     * $destroy
+     * @return
+     */
+
+  }, {
+    key: '$destroy',
+    value: function $destroy() {
+      this.el = null;
+      this.src = null;
+      this.error = null;
+      this.loading = null;
+      this.bindType = null;
+      this.attempt = 0;
+    }
+  }]);
+  return ReactiveListener;
+}();
+
+var DEFAULT_URL = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+var DEFAULT_EVENTS = ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend', 'touchmove'];
+var DEFAULT_OBSERVER_OPTIONS = {
+  rootMargin: '0px',
+  threshold: 0
+};
+
+var Lazy = function (Vue) {
+  return function () {
+    function Lazy(_ref) {
+      var preLoad = _ref.preLoad,
+          error = _ref.error,
+          throttleWait = _ref.throttleWait,
+          preLoadTop = _ref.preLoadTop,
+          dispatchEvent = _ref.dispatchEvent,
+          loading = _ref.loading,
+          attempt = _ref.attempt,
+          _ref$silent = _ref.silent,
+          silent = _ref$silent === undefined ? true : _ref$silent,
+          scale = _ref.scale,
+          listenEvents = _ref.listenEvents,
+          hasbind = _ref.hasbind,
+          filter = _ref.filter,
+          adapter = _ref.adapter,
+          observer = _ref.observer,
+          observerOptions = _ref.observerOptions;
+      classCallCheck(this, Lazy);
+
+      this.version = '1.3.3';
+      this.mode = modeType.event;
+      this.ListenerQueue = [];
+      this.TargetIndex = 0;
+      this.TargetQueue = [];
+      this.options = {
+        silent: silent,
+        dispatchEvent: !!dispatchEvent,
+        throttleWait: throttleWait || 200,
+        preLoad: preLoad || 1.3,
+        preLoadTop: preLoadTop || 0,
+        error: error || DEFAULT_URL,
+        loading: loading || DEFAULT_URL,
+        attempt: attempt || 3,
+        scale: scale || getDPR(scale),
+        ListenEvents: listenEvents || DEFAULT_EVENTS,
+        hasbind: false,
+        supportWebp: supportWebp(),
+        filter: filter || {},
+        adapter: adapter || {},
+        observer: !!observer,
+        observerOptions: observerOptions || DEFAULT_OBSERVER_OPTIONS
+      };
+      this._initEvent();
+      this._imageCache = new ImageCache({ max: 200 });
+      this.lazyLoadHandler = throttle(this._lazyLoadHandler.bind(this), this.options.throttleWait);
+
+      this.setMode(this.options.observer ? modeType.observer : modeType.event);
+    }
+
+    /**
+     * update config
+     * @param  {Object} config params
+     * @return
+     */
+
+
+    createClass(Lazy, [{
+      key: 'config',
+      value: function config() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        assignDeep(this.options, options);
+      }
+
+      /**
+       * output listener's load performance
+       * @return {Array}
+       */
+
+    }, {
+      key: 'performance',
+      value: function performance() {
+        var list = [];
+
+        this.ListenerQueue.map(function (item) {
+          list.push(item.performance());
+        });
+
+        return list;
+      }
+
+      /*
+       * add lazy component to queue
+       * @param  {Vue} vm lazy component instance
+       * @return
+       */
+
+    }, {
+      key: 'addLazyBox',
+      value: function addLazyBox(vm) {
+        this.ListenerQueue.push(vm);
+        if (inBrowser) {
+          this._addListenerTarget(window);
+          this._observer && this._observer.observe(vm.el);
+          if (vm.$el && vm.$el.parentNode) {
+            this._addListenerTarget(vm.$el.parentNode);
+          }
+        }
+      }
+
+      /*
+       * add image listener to queue
+       * @param  {DOM} el
+       * @param  {object} binding vue directive binding
+       * @param  {vnode} vnode vue directive vnode
+       * @return
+       */
+
+    }, {
+      key: 'add',
+      value: function add(el, binding, vnode) {
+        var _this = this;
+
+        if (some(this.ListenerQueue, function (item) {
+          return item.el === el;
+        })) {
+          this.update(el, binding);
+          return Vue.nextTick(this.lazyLoadHandler);
+        }
+
+        var _valueFormatter2 = this._valueFormatter(binding.value),
+            src = _valueFormatter2.src,
+            loading = _valueFormatter2.loading,
+            error = _valueFormatter2.error;
+
+        Vue.nextTick(function () {
+          src = getBestSelectionFromSrcset(el, _this.options.scale) || src;
+          _this._observer && _this._observer.observe(el);
+
+          var container = Object.keys(binding.modifiers)[0];
+          var $parent = void 0;
+
+          if (container) {
+            $parent = vnode.context.$refs[container];
+            // if there is container passed in, try ref first, then fallback to getElementById to support the original usage
+            $parent = $parent ? $parent.$el || $parent : document.getElementById(container);
+          }
+
+          if (!$parent) {
+            $parent = scrollParent(el);
+          }
+
+          var newListener = new ReactiveListener({
+            bindType: binding.arg,
+            $parent: $parent,
+            el: el,
+            loading: loading,
+            error: error,
+            src: src,
+            elRenderer: _this._elRenderer.bind(_this),
+            options: _this.options,
+            imageCache: _this._imageCache
+          });
+
+          _this.ListenerQueue.push(newListener);
+
+          if (inBrowser) {
+            _this._addListenerTarget(window);
+            _this._addListenerTarget($parent);
+          }
+
+          _this.lazyLoadHandler();
+          Vue.nextTick(function () {
+            return _this.lazyLoadHandler();
+          });
+        });
+      }
+
+      /**
+      * update image src
+      * @param  {DOM} el
+      * @param  {object} vue directive binding
+      * @return
+      */
+
+    }, {
+      key: 'update',
+      value: function update(el, binding, vnode) {
+        var _this2 = this;
+
+        var _valueFormatter3 = this._valueFormatter(binding.value),
+            src = _valueFormatter3.src,
+            loading = _valueFormatter3.loading,
+            error = _valueFormatter3.error;
+
+        src = getBestSelectionFromSrcset(el, this.options.scale) || src;
+
+        var exist = find(this.ListenerQueue, function (item) {
+          return item.el === el;
+        });
+        if (!exist) {
+          this.add(el, binding, vnode);
+        } else {
+          exist.update({
+            src: src,
+            loading: loading,
+            error: error
+          });
+        }
+        if (this._observer) {
+          this._observer.unobserve(el);
+          this._observer.observe(el);
+        }
+        this.lazyLoadHandler();
+        Vue.nextTick(function () {
+          return _this2.lazyLoadHandler();
+        });
+      }
+
+      /**
+      * remove listener form list
+      * @param  {DOM} el
+      * @return
+      */
+
+    }, {
+      key: 'remove',
+      value: function remove$$1(el) {
+        if (!el) return;
+        this._observer && this._observer.unobserve(el);
+        var existItem = find(this.ListenerQueue, function (item) {
+          return item.el === el;
+        });
+        if (existItem) {
+          this._removeListenerTarget(existItem.$parent);
+          this._removeListenerTarget(window);
+          remove(this.ListenerQueue, existItem);
+          existItem.$destroy();
+        }
+      }
+
+      /*
+       * remove lazy components form list
+       * @param  {Vue} vm Vue instance
+       * @return
+       */
+
+    }, {
+      key: 'removeComponent',
+      value: function removeComponent(vm) {
+        if (!vm) return;
+        remove(this.ListenerQueue, vm);
+        this._observer && this._observer.unobserve(vm.el);
+        if (vm.$parent && vm.$el.parentNode) {
+          this._removeListenerTarget(vm.$el.parentNode);
+        }
+        this._removeListenerTarget(window);
+      }
+    }, {
+      key: 'setMode',
+      value: function setMode(mode) {
+        var _this3 = this;
+
+        if (!hasIntersectionObserver && mode === modeType.observer) {
+          mode = modeType.event;
+        }
+
+        this.mode = mode; // event or observer
+
+        if (mode === modeType.event) {
+          if (this._observer) {
+            this.ListenerQueue.forEach(function (listener) {
+              _this3._observer.unobserve(listener.el);
+            });
+            this._observer = null;
+          }
+
+          this.TargetQueue.forEach(function (target) {
+            _this3._initListen(target.el, true);
+          });
+        } else {
+          this.TargetQueue.forEach(function (target) {
+            _this3._initListen(target.el, false);
+          });
+          this._initIntersectionObserver();
+        }
+      }
+
+      /*
+      *** Private functions ***
+      */
+
+      /*
+       * add listener target
+       * @param  {DOM} el listener target
+       * @return
+       */
+
+    }, {
+      key: '_addListenerTarget',
+      value: function _addListenerTarget(el) {
+        if (!el) return;
+        var target = find(this.TargetQueue, function (target) {
+          return target.el === el;
+        });
+        if (!target) {
+          target = {
+            el: el,
+            id: ++this.TargetIndex,
+            childrenCount: 1,
+            listened: true
+          };
+          this.mode === modeType.event && this._initListen(target.el, true);
+          this.TargetQueue.push(target);
+        } else {
+          target.childrenCount++;
+        }
+        return this.TargetIndex;
+      }
+
+      /*
+       * remove listener target or reduce target childrenCount
+       * @param  {DOM} el or window
+       * @return
+       */
+
+    }, {
+      key: '_removeListenerTarget',
+      value: function _removeListenerTarget(el) {
+        var _this4 = this;
+
+        this.TargetQueue.forEach(function (target, index) {
+          if (target.el === el) {
+            target.childrenCount--;
+            if (!target.childrenCount) {
+              _this4._initListen(target.el, false);
+              _this4.TargetQueue.splice(index, 1);
+              target = null;
+            }
+          }
+        });
+      }
+
+      /*
+       * add or remove eventlistener
+       * @param  {DOM} el DOM or Window
+       * @param  {boolean} start flag
+       * @return
+       */
+
+    }, {
+      key: '_initListen',
+      value: function _initListen(el, start) {
+        var _this5 = this;
+
+        this.options.ListenEvents.forEach(function (evt) {
+          return _[start ? 'on' : 'off'](el, evt, _this5.lazyLoadHandler);
+        });
+      }
+    }, {
+      key: '_initEvent',
+      value: function _initEvent() {
+        var _this6 = this;
+
+        this.Event = {
+          listeners: {
+            loading: [],
+            loaded: [],
+            error: []
+          }
+        };
+
+        this.$on = function (event, func) {
+          if (!_this6.Event.listeners[event]) _this6.Event.listeners[event] = [];
+          _this6.Event.listeners[event].push(func);
+        };
+
+        this.$once = function (event, func) {
+          var vm = _this6;
+          function on() {
+            vm.$off(event, on);
+            func.apply(vm, arguments);
+          }
+          _this6.$on(event, on);
+        };
+
+        this.$off = function (event, func) {
+          if (!func) {
+            if (!_this6.Event.listeners[event]) return;
+            _this6.Event.listeners[event].length = 0;
+            return;
+          }
+          remove(_this6.Event.listeners[event], func);
+        };
+
+        this.$emit = function (event, context, inCache) {
+          if (!_this6.Event.listeners[event]) return;
+          _this6.Event.listeners[event].forEach(function (func) {
+            return func(context, inCache);
+          });
+        };
+      }
+
+      /**
+       * find nodes which in viewport and trigger load
+       * @return
+       */
+
+    }, {
+      key: '_lazyLoadHandler',
+      value: function _lazyLoadHandler() {
+        var _this7 = this;
+
+        var freeList = [];
+        this.ListenerQueue.forEach(function (listener, index) {
+          if (!listener.el || !listener.el.parentNode) {
+            freeList.push(listener);
+          }
+          var catIn = listener.checkInView();
+          if (!catIn) return;
+          listener.load();
+        });
+        freeList.forEach(function (item) {
+          remove(_this7.ListenerQueue, item);
+          item.$destroy();
+        });
+      }
+      /**
+      * init IntersectionObserver
+      * set mode to observer
+      * @return
+      */
+
+    }, {
+      key: '_initIntersectionObserver',
+      value: function _initIntersectionObserver() {
+        var _this8 = this;
+
+        if (!hasIntersectionObserver) return;
+        this._observer = new IntersectionObserver(this._observerHandler.bind(this), this.options.observerOptions);
+        if (this.ListenerQueue.length) {
+          this.ListenerQueue.forEach(function (listener) {
+            _this8._observer.observe(listener.el);
+          });
+        }
+      }
+
+      /**
+      * init IntersectionObserver
+      * @return
+      */
+
+    }, {
+      key: '_observerHandler',
+      value: function _observerHandler(entries, observer) {
+        var _this9 = this;
+
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            _this9.ListenerQueue.forEach(function (listener) {
+              if (listener.el === entry.target) {
+                if (listener.state.loaded) return _this9._observer.unobserve(listener.el);
+                listener.load();
+              }
+            });
+          }
+        });
+      }
+
+      /**
+      * set element attribute with image'url and state
+      * @param  {object} lazyload listener object
+      * @param  {string} state will be rendered
+      * @param  {bool} inCache  is rendered from cache
+      * @return
+      */
+
+    }, {
+      key: '_elRenderer',
+      value: function _elRenderer(listener, state, cache) {
+        if (!listener.el) return;
+        var el = listener.el,
+            bindType = listener.bindType;
+
+
+        var src = void 0;
+        switch (state) {
+          case 'loading':
+            src = listener.loading;
+            break;
+          case 'error':
+            src = listener.error;
+            break;
+          default:
+            src = listener.src;
+            break;
+        }
+
+        if (bindType) {
+          el.style[bindType] = 'url("' + src + '")';
+        } else if (el.getAttribute('src') !== src) {
+          el.setAttribute('src', src);
+        }
+
+        el.setAttribute('lazy', state);
+
+        this.$emit(state, listener, cache);
+        this.options.adapter[state] && this.options.adapter[state](listener, this.options);
+
+        if (this.options.dispatchEvent) {
+          var event = new CustomEvent(state, {
+            detail: listener
+          });
+          el.dispatchEvent(event);
+        }
+      }
+
+      /**
+      * generate loading loaded error image url
+      * @param {string} image's src
+      * @return {object} image's loading, loaded, error url
+      */
+
+    }, {
+      key: '_valueFormatter',
+      value: function _valueFormatter(value) {
+        var src = value;
+        var loading = this.options.loading;
+        var error = this.options.error;
+
+        // value is object
+        if (isObject(value)) {
+          if (!value.src && !this.options.silent) console.error('Vue Lazyload warning: miss src with ' + value);
+          src = value.src;
+          loading = value.loading || this.options.loading;
+          error = value.error || this.options.error;
+        }
+        return {
+          src: src,
+          loading: loading,
+          error: error
+        };
+      }
+    }]);
+    return Lazy;
+  }();
+};
+
+var LazyComponent = (function (lazy) {
+  return {
+    props: {
+      tag: {
+        type: String,
+        default: 'div'
+      }
+    },
+    render: function render(h) {
+      if (this.show === false) {
+        return h(this.tag);
+      }
+      return h(this.tag, null, this.$slots.default);
+    },
+    data: function data() {
+      return {
+        el: null,
+        state: {
+          loaded: false
+        },
+        rect: {},
+        show: false
+      };
+    },
+    mounted: function mounted() {
+      this.el = this.$el;
+      lazy.addLazyBox(this);
+      lazy.lazyLoadHandler();
+    },
+    beforeDestroy: function beforeDestroy() {
+      lazy.removeComponent(this);
+    },
+
+    methods: {
+      getRect: function getRect() {
+        this.rect = this.$el.getBoundingClientRect();
+      },
+      checkInView: function checkInView() {
+        this.getRect();
+        return inBrowser && this.rect.top < window.innerHeight * lazy.options.preLoad && this.rect.bottom > 0 && this.rect.left < window.innerWidth * lazy.options.preLoad && this.rect.right > 0;
+      },
+      load: function load() {
+        this.show = true;
+        this.state.loaded = true;
+        this.$emit('show', this);
+      },
+      destroy: function destroy() {
+        return this.$destroy;
+      }
+    }
+  };
+});
+
+var LazyContainerMananger = function () {
+  function LazyContainerMananger(_ref) {
+    var lazy = _ref.lazy;
+    classCallCheck(this, LazyContainerMananger);
+
+    this.lazy = lazy;
+    lazy.lazyContainerMananger = this;
+    this._queue = [];
+  }
+
+  createClass(LazyContainerMananger, [{
+    key: 'bind',
+    value: function bind(el, binding, vnode) {
+      var container = new LazyContainer$1({ el: el, binding: binding, vnode: vnode, lazy: this.lazy });
+      this._queue.push(container);
+    }
+  }, {
+    key: 'update',
+    value: function update(el, binding, vnode) {
+      var container = find(this._queue, function (item) {
+        return item.el === el;
+      });
+      if (!container) return;
+      container.update({ el: el, binding: binding, vnode: vnode });
+    }
+  }, {
+    key: 'unbind',
+    value: function unbind(el, binding, vnode) {
+      var container = find(this._queue, function (item) {
+        return item.el === el;
+      });
+      if (!container) return;
+      container.clear();
+      remove(this._queue, container);
+    }
+  }]);
+  return LazyContainerMananger;
+}();
+
+var defaultOptions = {
+  selector: 'img'
+};
+
+var LazyContainer$1 = function () {
+  function LazyContainer(_ref2) {
+    var el = _ref2.el,
+        binding = _ref2.binding,
+        vnode = _ref2.vnode,
+        lazy = _ref2.lazy;
+    classCallCheck(this, LazyContainer);
+
+    this.el = null;
+    this.vnode = vnode;
+    this.binding = binding;
+    this.options = {};
+    this.lazy = lazy;
+
+    this._queue = [];
+    this.update({ el: el, binding: binding });
+  }
+
+  createClass(LazyContainer, [{
+    key: 'update',
+    value: function update(_ref3) {
+      var _this = this;
+
+      var el = _ref3.el,
+          binding = _ref3.binding;
+
+      this.el = el;
+      this.options = assignDeep({}, defaultOptions, binding.value);
+
+      var imgs = this.getImgs();
+      imgs.forEach(function (el) {
+        _this.lazy.add(el, assignDeep({}, _this.binding, {
+          value: {
+            src: 'dataset' in el ? el.dataset.src : el.getAttribute('data-src'),
+            error: ('dataset' in el ? el.dataset.error : el.getAttribute('data-error')) || _this.options.error,
+            loading: ('dataset' in el ? el.dataset.loading : el.getAttribute('data-loading')) || _this.options.loading
+          }
+        }), _this.vnode);
+      });
+    }
+  }, {
+    key: 'getImgs',
+    value: function getImgs() {
+      return ArrayFrom(this.el.querySelectorAll(this.options.selector));
+    }
+  }, {
+    key: 'clear',
+    value: function clear() {
+      var _this2 = this;
+
+      var imgs = this.getImgs();
+      imgs.forEach(function (el) {
+        return _this2.lazy.remove(el);
+      });
+
+      this.vnode = null;
+      this.binding = null;
+      this.lazy = null;
+    }
+  }]);
+  return LazyContainer;
+}();
+
+var LazyImage = (function (lazyManager) {
+  return {
+    props: {
+      src: [String, Object],
+      tag: {
+        type: String,
+        default: 'img'
+      }
+    },
+    render: function render(h) {
+      return h(this.tag, {
+        attrs: {
+          src: this.renderSrc
+        }
+      }, this.$slots.default);
+    },
+    data: function data() {
+      return {
+        el: null,
+        options: {
+          src: '',
+          error: '',
+          loading: '',
+          attempt: lazyManager.options.attempt
+        },
+        state: {
+          loaded: false,
+          error: false,
+          attempt: 0
+        },
+        rect: {},
+        renderSrc: ''
+      };
+    },
+
+    watch: {
+      src: function src() {
+        this.init();
+        lazyManager.addLazyBox(this);
+        lazyManager.lazyLoadHandler();
+      }
+    },
+    created: function created() {
+      this.init();
+      this.renderSrc = this.options.loading;
+    },
+    mounted: function mounted() {
+      this.el = this.$el;
+      lazyManager.addLazyBox(this);
+      lazyManager.lazyLoadHandler();
+    },
+    beforeDestroy: function beforeDestroy() {
+      lazyManager.removeComponent(this);
+    },
+
+    methods: {
+      init: function init() {
+        var _lazyManager$_valueFo = lazyManager._valueFormatter(this.src),
+            src = _lazyManager$_valueFo.src,
+            loading = _lazyManager$_valueFo.loading,
+            error = _lazyManager$_valueFo.error;
+
+        this.state.loaded = false;
+        this.options.src = src;
+        this.options.error = error;
+        this.options.loading = loading;
+        this.renderSrc = this.options.loading;
+      },
+      getRect: function getRect() {
+        this.rect = this.$el.getBoundingClientRect();
+      },
+      checkInView: function checkInView() {
+        this.getRect();
+        return inBrowser && this.rect.top < window.innerHeight * lazyManager.options.preLoad && this.rect.bottom > 0 && this.rect.left < window.innerWidth * lazyManager.options.preLoad && this.rect.right > 0;
+      },
+      load: function load() {
+        var _this = this;
+
+        var onFinish = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : noop;
+
+        if (this.state.attempt > this.options.attempt - 1 && this.state.error) {
+          if (!lazyManager.options.silent) console.log('VueLazyload log: ' + this.options.src + ' tried too more than ' + this.options.attempt + ' times');
+          onFinish();
+          return;
+        }
+        var src = this.options.src;
+        loadImageAsync({ src: src }, function (_ref) {
+          var src = _ref.src;
+
+          _this.renderSrc = src;
+          _this.state.loaded = true;
+        }, function (e) {
+          _this.state.attempt++;
+          _this.renderSrc = _this.options.error;
+          _this.state.error = true;
+        });
+      }
+    }
+  };
+});
+
+var index = {
+  /*
+  * install function
+  * @param  {Vue} Vue
+  * @param  {object} options  lazyload options
+  */
+  install: function install(Vue) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    var LazyClass = Lazy(Vue);
+    var lazy = new LazyClass(options);
+    var lazyContainer = new LazyContainerMananger({ lazy: lazy });
+
+    var isVue2 = Vue.version.split('.')[0] === '2';
+
+    Vue.prototype.$Lazyload = lazy;
+
+    if (options.lazyComponent) {
+      Vue.component('lazy-component', LazyComponent(lazy));
+    }
+
+    if (options.lazyImage) {
+      Vue.component('lazy-image', LazyImage(lazy));
+    }
+
+    if (isVue2) {
+      Vue.directive('lazy', {
+        bind: lazy.add.bind(lazy),
+        update: lazy.update.bind(lazy),
+        componentUpdated: lazy.lazyLoadHandler.bind(lazy),
+        unbind: lazy.remove.bind(lazy)
+      });
+      Vue.directive('lazy-container', {
+        bind: lazyContainer.bind.bind(lazyContainer),
+        componentUpdated: lazyContainer.update.bind(lazyContainer),
+        unbind: lazyContainer.unbind.bind(lazyContainer)
+      });
+    } else {
+      Vue.directive('lazy', {
+        bind: lazy.lazyLoadHandler.bind(lazy),
+        update: function update(newValue, oldValue) {
+          assignDeep(this.vm.$refs, this.vm.$els);
+          lazy.add(this.el, {
+            modifiers: this.modifiers || {},
+            arg: this.arg,
+            value: newValue,
+            oldValue: oldValue
+          }, {
+            context: this.vm
+          });
+        },
+        unbind: function unbind() {
+          lazy.remove(this.el);
+        }
+      });
+
+      Vue.directive('lazy-container', {
+        update: function update(newValue, oldValue) {
+          lazyContainer.update(this.el, {
+            modifiers: this.modifiers || {},
+            arg: this.arg,
+            value: newValue,
+            oldValue: oldValue
+          }, {
+            context: this.vm
+          });
+        },
+        unbind: function unbind() {
+          lazyContainer.unbind(this.el);
+        }
+      });
+    }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index);
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AnalyticsComponent.vue?vue&type=template&id=40463e42&scoped=true&":
 /*!*********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AnalyticsComponent.vue?vue&type=template&id=40463e42&scoped=true& ***!
@@ -58304,6 +61317,87 @@ var render = function() {
       "div",
       { attrs: { id: "page-container" } },
       [
+        _vm.imgSelection
+          ? _c("div", { attrs: { id: "kb-img-group" } }, [
+              _c("div", { staticClass: "kb-img-inner-group forScroll" }, [
+                _c("div", { staticClass: "kb-head" }, [
+                  _vm._v("Choose a Background Image"),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "kb-btn kb-btn-success",
+                      on: {
+                        click: function($event) {
+                          return _vm.selectBgImg()
+                        }
+                      }
+                    },
+                    [_vm._v("Add a new image")]
+                  ),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "kb-cut",
+                      on: {
+                        click: function($event) {
+                          _vm.imgSelection = !_vm.imgSelection
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-times" })]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "kb-img-thumbnail-group" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "kb-img-list" },
+                    _vm._l(_vm.galleryImg, function(img) {
+                      return _c("li", { key: img.id }, [
+                        _c("span", [
+                          _c("img", {
+                            directives: [
+                              {
+                                name: "lazy",
+                                rawName: "v-lazy",
+                                value:
+                                  "images/builder/upload_images/" + img.name,
+                                expression:
+                                  "'images/builder/upload_images/'+img.name"
+                              }
+                            ],
+                            on: {
+                              click: function($event) {
+                                ;(_vm.background_image.name =
+                                  "/images/builder/upload_images/" + img.name),
+                                  (_vm.imgSelection = !_vm.imgSelection)
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _vm.galleryImg.length == 0
+                    ? _c("div", [_c("center", [_vm._v("Upload image")])], 1)
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "kb-d-none",
+                  attrs: { type: "file", name: "image", id: "imgInp" },
+                  on: {
+                    change: function($event) {
+                      return _vm.onSelected($event)
+                    }
+                  }
+                })
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _vm.showSelection
           ? _c(
               "div",
@@ -58364,7 +61458,7 @@ var render = function() {
                         _c("div", [
                           _c(
                             "ul",
-                            { staticClass: "row-list" },
+                            { staticClass: "kb-row-list" },
                             _vm._l(_vm.rowTypes, function(rt) {
                               return _c(
                                 "li",
@@ -58452,6 +61546,27 @@ var render = function() {
                                                 value: _vm.margin.top
                                               },
                                               on: {
+                                                keydown: function($event) {
+                                                  _vm.margin.top =
+                                                    $event.key == "ArrowUp"
+                                                      ? parseInt(
+                                                          _vm.margin.top.split(
+                                                            "px"
+                                                          )[0]
+                                                        ) +
+                                                        1 +
+                                                        "px"
+                                                      : $event.key ==
+                                                        "ArrowDown"
+                                                      ? parseInt(
+                                                          _vm.margin.top.split(
+                                                            "px"
+                                                          )[0]
+                                                        ) -
+                                                        1 +
+                                                        "px"
+                                                      : _vm.margin.top
+                                                },
                                                 input: function($event) {
                                                   if ($event.target.composing) {
                                                     return
@@ -58540,6 +61655,27 @@ var render = function() {
                                                     value: _vm.margin.top
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.margin.top =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.margin.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.margin.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.margin.top
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -58572,6 +61708,27 @@ var render = function() {
                                                     value: _vm.margin.bottom
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.margin.bottom =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.margin.bottom.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.margin.bottom.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.margin.bottom
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -58667,6 +61824,27 @@ var render = function() {
                                                     value: _vm.margin.top
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.margin.top =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.margin.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.margin.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.margin.top
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -58698,6 +61876,27 @@ var render = function() {
                                                     value: _vm.margin.left
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.margin.left =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.margin.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.margin.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.margin.left
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -58788,6 +61987,27 @@ var render = function() {
                                                     value: _vm.margin.top
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.margin.top =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.margin.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.margin.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.margin.top
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -58820,6 +62040,27 @@ var render = function() {
                                                     value: _vm.margin.left
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.margin.left =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.margin.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.margin.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.margin.left
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -58851,6 +62092,27 @@ var render = function() {
                                                     value: _vm.margin.right
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.margin.right =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.margin.right.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.margin.right.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.margin.right
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -58910,6 +62172,27 @@ var render = function() {
                                                 value: _vm.padding.top
                                               },
                                               on: {
+                                                keydown: function($event) {
+                                                  _vm.padding.top =
+                                                    $event.key == "ArrowUp"
+                                                      ? parseInt(
+                                                          _vm.padding.top.split(
+                                                            "px"
+                                                          )[0]
+                                                        ) +
+                                                        1 +
+                                                        "px"
+                                                      : $event.key ==
+                                                        "ArrowDown"
+                                                      ? parseInt(
+                                                          _vm.padding.top.split(
+                                                            "px"
+                                                          )[0]
+                                                        ) -
+                                                        1 +
+                                                        "px"
+                                                      : _vm.padding.top
+                                                },
                                                 input: function($event) {
                                                   if ($event.target.composing) {
                                                     return
@@ -59000,6 +62283,27 @@ var render = function() {
                                                     value: _vm.padding.top
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.padding.top =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.padding.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.padding.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.padding.top
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59032,6 +62336,27 @@ var render = function() {
                                                     value: _vm.padding.bottom
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.padding.bottom =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.padding.bottom.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.padding.bottom.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.padding.bottom
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59129,6 +62454,27 @@ var render = function() {
                                                     value: _vm.padding.top
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.padding.top =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.padding.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.padding.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.padding.top
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59160,6 +62506,27 @@ var render = function() {
                                                     value: _vm.padding.left
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.padding.left =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.padding.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.padding.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.padding.left
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59254,6 +62621,27 @@ var render = function() {
                                                     value: _vm.padding.top
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.padding.top =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.padding.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.padding.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.padding.top
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59286,6 +62674,27 @@ var render = function() {
                                                     value: _vm.padding.left
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.padding.left =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.padding.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.padding.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.padding.left
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59318,6 +62727,27 @@ var render = function() {
                                                     value: _vm.padding.right
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.padding.right =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.padding.right.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.padding.right.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.padding.right
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59377,6 +62807,27 @@ var render = function() {
                                                 value: _vm.border.top
                                               },
                                               on: {
+                                                keydown: function($event) {
+                                                  _vm.border.top =
+                                                    $event.key == "ArrowUp"
+                                                      ? parseInt(
+                                                          _vm.border.top.split(
+                                                            "px"
+                                                          )[0]
+                                                        ) +
+                                                        1 +
+                                                        "px"
+                                                      : $event.key ==
+                                                        "ArrowDown"
+                                                      ? parseInt(
+                                                          _vm.border.top.split(
+                                                            "px"
+                                                          )[0]
+                                                        ) -
+                                                        1 +
+                                                        "px"
+                                                      : _vm.border.top
+                                                },
                                                 input: function($event) {
                                                   if ($event.target.composing) {
                                                     return
@@ -59465,6 +62916,27 @@ var render = function() {
                                                     value: _vm.border.top
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.border.top =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.border.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.border.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.border.top
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59497,6 +62969,27 @@ var render = function() {
                                                     value: _vm.border.bottom
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.border.bottom =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.border.bottom.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.border.bottom.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.border.bottom
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59592,6 +63085,27 @@ var render = function() {
                                                     value: _vm.border.top
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.border.top =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.border.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.border.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.border.top
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59623,6 +63137,27 @@ var render = function() {
                                                     value: _vm.border.left
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.border.left =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.border.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.border.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.border.left
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59713,6 +63248,27 @@ var render = function() {
                                                     value: _vm.border.top
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.border.top =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.border.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.border.top.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.border.top
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59745,6 +63301,27 @@ var render = function() {
                                                     value: _vm.border.left
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.border.left =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.border.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.border.left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.border.left
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59776,6 +63353,27 @@ var render = function() {
                                                     value: _vm.border.right
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.border.right =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.border.right.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.border.right.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.border.right
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59921,6 +63519,28 @@ var render = function() {
                                                       _vm.border_radius.top_left
                                                   },
                                                   on: {
+                                                    keydown: function($event) {
+                                                      _vm.border_radius.top_left =
+                                                        $event.key == "ArrowUp"
+                                                          ? parseInt(
+                                                              _vm.border_radius.top_left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) +
+                                                            1 +
+                                                            "px"
+                                                          : $event.key ==
+                                                            "ArrowDown"
+                                                          ? parseInt(
+                                                              _vm.border_radius.top_left.split(
+                                                                "px"
+                                                              )[0]
+                                                            ) -
+                                                            1 +
+                                                            "px"
+                                                          : _vm.border_radius
+                                                              .top_left
+                                                    },
                                                     input: function($event) {
                                                       if (
                                                         $event.target.composing
@@ -59961,6 +63581,32 @@ var render = function() {
                                                             .top_left
                                                       },
                                                       on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border_radius.top_left =
+                                                            $event.key ==
+                                                            "ArrowUp"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.top_left.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) +
+                                                                1 +
+                                                                "px"
+                                                              : $event.key ==
+                                                                "ArrowDown"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.top_left.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) -
+                                                                1 +
+                                                                "px"
+                                                              : _vm
+                                                                  .border_radius
+                                                                  .top_left
+                                                        },
                                                         input: function(
                                                           $event
                                                         ) {
@@ -60000,6 +63646,32 @@ var render = function() {
                                                             .top_right
                                                       },
                                                       on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border_radius.top_right =
+                                                            $event.key ==
+                                                            "ArrowUp"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.top_right.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) +
+                                                                1 +
+                                                                "px"
+                                                              : $event.key ==
+                                                                "ArrowDown"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.top_right.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) -
+                                                                1 +
+                                                                "px"
+                                                              : _vm
+                                                                  .border_radius
+                                                                  .top_right
+                                                        },
                                                         input: function(
                                                           $event
                                                         ) {
@@ -60111,6 +63783,32 @@ var render = function() {
                                                             .top_left
                                                       },
                                                       on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border_radius.top_left =
+                                                            $event.key ==
+                                                            "ArrowUp"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.top_left.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) +
+                                                                1 +
+                                                                "px"
+                                                              : $event.key ==
+                                                                "ArrowDown"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.top_left.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) -
+                                                                1 +
+                                                                "px"
+                                                              : _vm
+                                                                  .border_radius
+                                                                  .top_left
+                                                        },
                                                         input: function(
                                                           $event
                                                         ) {
@@ -60151,6 +63849,32 @@ var render = function() {
                                                             .bottom_left
                                                       },
                                                       on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border_radius.bottom_left =
+                                                            $event.key ==
+                                                            "ArrowUp"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.bottom_left.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) +
+                                                                1 +
+                                                                "px"
+                                                              : $event.key ==
+                                                                "ArrowDown"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.bottom_left.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) -
+                                                                1 +
+                                                                "px"
+                                                              : _vm
+                                                                  .border_radius
+                                                                  .bottom_left
+                                                        },
                                                         input: function(
                                                           $event
                                                         ) {
@@ -60195,6 +63919,32 @@ var render = function() {
                                                             .top_left
                                                       },
                                                       on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border_radius.top_left =
+                                                            $event.key ==
+                                                            "ArrowUp"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.top_left.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) +
+                                                                1 +
+                                                                "px"
+                                                              : $event.key ==
+                                                                "ArrowDown"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.top_left.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) -
+                                                                1 +
+                                                                "px"
+                                                              : _vm
+                                                                  .border_radius
+                                                                  .top_left
+                                                        },
                                                         input: function(
                                                           $event
                                                         ) {
@@ -60235,6 +63985,32 @@ var render = function() {
                                                             .bottom_right
                                                       },
                                                       on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border_radius.bottom_right =
+                                                            $event.key ==
+                                                            "ArrowUp"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.bottom_right.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) +
+                                                                1 +
+                                                                "px"
+                                                              : $event.key ==
+                                                                "ArrowDown"
+                                                              ? parseInt(
+                                                                  _vm.border_radius.bottom_right.split(
+                                                                    "px"
+                                                                  )[0]
+                                                                ) -
+                                                                1 +
+                                                                "px"
+                                                              : _vm
+                                                                  .border_radius
+                                                                  .bottom_right
+                                                        },
                                                         input: function(
                                                           $event
                                                         ) {
@@ -60272,11 +64048,49 @@ var render = function() {
                                         { staticClass: "kb-tab-head" },
                                         [
                                           _vm._v("Border Color"),
-                                          _c("span", {
-                                            staticClass:
-                                              "kb-color-demo kb-border-color-demo",
-                                            style: _vm.demoBorder
-                                          })
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "kb-color-demo kb-border-color-demo",
+                                              style: _vm.demoBorder
+                                            },
+                                            [
+                                              _c("span", {
+                                                class:
+                                                  _vm.border_color.hex ==
+                                                  "#ff000000"
+                                                    ? "kb-no-color"
+                                                    : ""
+                                              })
+                                            ]
+                                          ),
+                                          _c(
+                                            "span",
+                                            { staticClass: "kb-color-demo" },
+                                            [
+                                              _c("span", {
+                                                directives: [
+                                                  {
+                                                    name: "tooltip",
+                                                    rawName: "v-tooltip",
+                                                    value: {
+                                                      content: "Transparent"
+                                                    },
+                                                    expression:
+                                                      "{content:'Transparent'}"
+                                                  }
+                                                ],
+                                                staticClass: "kb-no-color",
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.border_color.hex =
+                                                      "#ff000000"
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          )
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -60382,11 +64196,49 @@ var render = function() {
                                         { staticClass: "kb-tab-head" },
                                         [
                                           _vm._v("Background Color"),
-                                          _c("span", {
-                                            staticClass:
-                                              "kb-color-demo kb-background-color-demo",
-                                            style: _vm.demoBackground
-                                          })
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "kb-color-demo kb-background-color-demo",
+                                              style: _vm.demoBackground
+                                            },
+                                            [
+                                              _c("span", {
+                                                class:
+                                                  _vm.background_color.hex ==
+                                                  "#ff000000"
+                                                    ? "kb-no-color"
+                                                    : ""
+                                              })
+                                            ]
+                                          ),
+                                          _c(
+                                            "span",
+                                            { staticClass: "kb-color-demo" },
+                                            [
+                                              _c("span", {
+                                                directives: [
+                                                  {
+                                                    name: "tooltip",
+                                                    rawName: "v-tooltip",
+                                                    value: {
+                                                      content: "Transparent"
+                                                    },
+                                                    expression:
+                                                      "{content:'Transparent'}"
+                                                  }
+                                                ],
+                                                staticClass: "kb-no-color",
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.background_color.hex =
+                                                      "#ff000000"
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          )
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -60438,6 +64290,12 @@ var render = function() {
                                                   _vm.presetColors,
                                                   function(color) {
                                                     return _c("span", {
+                                                      directives: [
+                                                        {
+                                                          name: "tooltip",
+                                                          rawName: "v-tooltip"
+                                                        }
+                                                      ],
                                                       key: color.hex,
                                                       class:
                                                         _vm.background_color
@@ -60465,6 +64323,818 @@ var render = function() {
                                           )
                                         ],
                                         1
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "kb-inner-tab-component" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "kb-tab-head" },
+                                        [
+                                          _vm._v(
+                                            "Background Gradient\n                      "
+                                          ),
+                                          _c("toggle-button", {
+                                            directives: [
+                                              {
+                                                name: "tooltip",
+                                                rawName: "v-tooltip",
+                                                value: {
+                                                  content:
+                                                    _vm.background_gradient
+                                                      .active != 0
+                                                      ? "Enable"
+                                                      : "Disable"
+                                                },
+                                                expression:
+                                                  "{content:background_gradient.active != 0 ? 'Enable' : 'Disable' }"
+                                              }
+                                            ],
+                                            staticClass: "kb-toggleBtn",
+                                            attrs: {
+                                              labels: {
+                                                checked: "On",
+                                                unchecked: "Off"
+                                              },
+                                              color: {
+                                                checked: "#1867c0",
+                                                unchecked: "#d3d3d3"
+                                              }
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.background_gradient.active,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.background_gradient,
+                                                  "active",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "background_gradient.active"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "kb-tab-content" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "kb-gradient-color-selection"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kb-gradient-selected-color"
+                                                },
+                                                [
+                                                  _c("span", {
+                                                    directives: [
+                                                      {
+                                                        name: "tooltip",
+                                                        rawName: "v-tooltip",
+                                                        value: {
+                                                          content:
+                                                            "Select Color"
+                                                        },
+                                                        expression:
+                                                          "{content:'Select Color'}"
+                                                      }
+                                                    ],
+                                                    staticClass:
+                                                      "kb-color-demo",
+                                                    style: {
+                                                      "background-color":
+                                                        _vm.background_gradient
+                                                          .start.hex
+                                                    },
+                                                    on: {
+                                                      click: function($event) {
+                                                        ;(_vm.background_gradient.gradientStart = !_vm
+                                                          .background_gradient
+                                                          .gradientStart),
+                                                          (_vm.background_gradient.gradientEnd = false)
+                                                      }
+                                                    }
+                                                  }),
+                                                  _c("colour-material-picker", {
+                                                    attrs: {
+                                                      label: "Pick Colour",
+                                                      picker: "chrome"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        _vm.background_gradient
+                                                          .start,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.background_gradient,
+                                                          "start",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "background_gradient.start"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kb-gradient-selected-color"
+                                                },
+                                                [
+                                                  _c("span", {
+                                                    directives: [
+                                                      {
+                                                        name: "tooltip",
+                                                        rawName: "v-tooltip",
+                                                        value: {
+                                                          content:
+                                                            "Select Color"
+                                                        },
+                                                        expression:
+                                                          "{content:'Select Color'}"
+                                                      }
+                                                    ],
+                                                    staticClass:
+                                                      "kb-color-demo",
+                                                    style: {
+                                                      "background-color":
+                                                        _vm.background_gradient
+                                                          .end.hex
+                                                    },
+                                                    on: {
+                                                      click: function($event) {
+                                                        ;(_vm.background_gradient.gradientEnd = !_vm
+                                                          .background_gradient
+                                                          .gradientEnd),
+                                                          (_vm.background_gradient.gradientStart = false)
+                                                      }
+                                                    }
+                                                  }),
+                                                  _c("colour-material-picker", {
+                                                    attrs: {
+                                                      label: "Pick Colour",
+                                                      picker: "chrome"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        _vm.background_gradient
+                                                          .end,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.background_gradient,
+                                                          "end",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "background_gradient.end"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _vm.background_gradient
+                                                .gradientStart ||
+                                              _vm.background_gradient
+                                                .gradientEnd
+                                                ? _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "kb-color-picker"
+                                                    },
+                                                    [
+                                                      _c("span", {
+                                                        staticClass:
+                                                          "sel-tip-icon",
+                                                        class: _vm
+                                                          .background_gradient
+                                                          .gradientStart
+                                                          ? "start"
+                                                          : "end"
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "kb-slider-color-selection"
+                                                        },
+                                                        [
+                                                          _vm
+                                                            .background_gradient
+                                                            .gradientStart
+                                                            ? _c(
+                                                                "colour-slider-picker",
+                                                                {
+                                                                  attrs: {
+                                                                    label:
+                                                                      "Pick Colour",
+                                                                    picker:
+                                                                      "chrome"
+                                                                  },
+                                                                  model: {
+                                                                    value:
+                                                                      _vm
+                                                                        .background_gradient
+                                                                        .start,
+                                                                    callback: function(
+                                                                      $$v
+                                                                    ) {
+                                                                      _vm.$set(
+                                                                        _vm.background_gradient,
+                                                                        "start",
+                                                                        $$v
+                                                                      )
+                                                                    },
+                                                                    expression:
+                                                                      "background_gradient.start"
+                                                                  }
+                                                                }
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          _vm
+                                                            .background_gradient
+                                                            .gradientEnd
+                                                            ? _c(
+                                                                "colour-slider-picker",
+                                                                {
+                                                                  attrs: {
+                                                                    label:
+                                                                      "Pick Colour",
+                                                                    picker:
+                                                                      "chrome"
+                                                                  },
+                                                                  model: {
+                                                                    value:
+                                                                      _vm
+                                                                        .background_gradient
+                                                                        .end,
+                                                                    callback: function(
+                                                                      $$v
+                                                                    ) {
+                                                                      _vm.$set(
+                                                                        _vm.background_gradient,
+                                                                        "end",
+                                                                        $$v
+                                                                      )
+                                                                    },
+                                                                    expression:
+                                                                      "background_gradient.end"
+                                                                  }
+                                                                }
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "kb-color-preset"
+                                                            },
+                                                            _vm._l(
+                                                              _vm.presetColors,
+                                                              function(color) {
+                                                                return _c(
+                                                                  "span",
+                                                                  {
+                                                                    key:
+                                                                      color.hex,
+                                                                    class: (_vm
+                                                                      .background_gradient
+                                                                      .gradientStart
+                                                                    ? _vm
+                                                                        .background_gradient
+                                                                        .start
+                                                                        .hex ==
+                                                                      color.hex
+                                                                    : _vm
+                                                                        .background_gradient
+                                                                        .end
+                                                                        .hex ==
+                                                                      color.hex)
+                                                                      ? "kb-active-color"
+                                                                      : "",
+                                                                    style: {
+                                                                      "background-color":
+                                                                        color.hex
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm
+                                                                          .background_gradient
+                                                                          .gradientStart
+                                                                          ? (_vm.background_gradient.start = color)
+                                                                          : (_vm.background_gradient.end = color)
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                )
+                                                              }
+                                                            ),
+                                                            0
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e()
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "kb-inner-tab-component" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "kb-tab-head" },
+                                        [
+                                          _vm._v(
+                                            "Background Gradient Direction"
+                                          ),
+                                          _c(
+                                            "span",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "tooltip",
+                                                  rawName: "v-tooltip",
+                                                  value: { content: "Reverse" },
+                                                  expression:
+                                                    "{content:'Reverse'}"
+                                                }
+                                              ],
+                                              staticClass: "kb-reverse-icon",
+                                              class: _vm.background_gradient
+                                                .directionReverse
+                                                ? "active"
+                                                : "",
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.background_gradient.directionReverse = !_vm
+                                                    .background_gradient
+                                                    .directionReverse
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fa fa-sync-alt"
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "kb-tab-content" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-rangeInp" },
+                                            [
+                                              _c("range-slider", {
+                                                staticClass: "slider",
+                                                attrs: {
+                                                  min: "0",
+                                                  max: "360",
+                                                  step: "1"
+                                                },
+                                                model: {
+                                                  value:
+                                                    _vm
+                                                      .background_gradient_range_slider
+                                                      .direction,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.background_gradient_range_slider,
+                                                      "direction",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "background_gradient_range_slider.direction"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.background_gradient
+                                                          .direction,
+                                                      expression:
+                                                        "background_gradient.direction"
+                                                    }
+                                                  ],
+                                                  attrs: {
+                                                    type: "text",
+                                                    name:
+                                                      "background_gradient-direction"
+                                                  },
+                                                  domProps: {
+                                                    value:
+                                                      _vm.background_gradient
+                                                        .direction
+                                                  },
+                                                  on: {
+                                                    input: function($event) {
+                                                      if (
+                                                        $event.target.composing
+                                                      ) {
+                                                        return
+                                                      }
+                                                      _vm.$set(
+                                                        _vm.background_gradient,
+                                                        "direction",
+                                                        $event.target.value
+                                                      )
+                                                    }
+                                                  }
+                                                })
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "kb-inner-tab-component" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "kb-tab-head" },
+                                        [
+                                          _vm._v("Start Position"),
+                                          _c(
+                                            "span",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "tooltip",
+                                                  rawName: "v-tooltip",
+                                                  value: { content: "Reverse" },
+                                                  expression:
+                                                    "{content:'Reverse'}"
+                                                }
+                                              ],
+                                              staticClass: "kb-reverse-icon",
+                                              class: _vm.background_gradient
+                                                .startPositionReverse
+                                                ? "active"
+                                                : "",
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.background_gradient.startPositionReverse = !_vm
+                                                    .background_gradient
+                                                    .startPositionReverse
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fa fa-sync-alt"
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "kb-tab-content" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-rangeInp" },
+                                            [
+                                              _c("range-slider", {
+                                                staticClass: "slider",
+                                                attrs: {
+                                                  min: "0",
+                                                  max: "100",
+                                                  step: "1"
+                                                },
+                                                model: {
+                                                  value:
+                                                    _vm
+                                                      .background_gradient_range_slider
+                                                      .startPosition,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.background_gradient_range_slider,
+                                                      "startPosition",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "background_gradient_range_slider.startPosition"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.background_gradient
+                                                          .startPosition,
+                                                      expression:
+                                                        "background_gradient.startPosition"
+                                                    }
+                                                  ],
+                                                  attrs: {
+                                                    type: "text",
+                                                    name:
+                                                      "background-gradient-start-position"
+                                                  },
+                                                  domProps: {
+                                                    value:
+                                                      _vm.background_gradient
+                                                        .startPosition
+                                                  },
+                                                  on: {
+                                                    input: function($event) {
+                                                      if (
+                                                        $event.target.composing
+                                                      ) {
+                                                        return
+                                                      }
+                                                      _vm.$set(
+                                                        _vm.background_gradient,
+                                                        "startPosition",
+                                                        $event.target.value
+                                                      )
+                                                    }
+                                                  }
+                                                })
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "kb-inner-tab-component" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "kb-tab-head" },
+                                        [
+                                          _vm._v("End Position"),
+                                          _c(
+                                            "span",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "tooltip",
+                                                  rawName: "v-tooltip",
+                                                  value: { content: "Reverse" },
+                                                  expression:
+                                                    "{content:'Reverse'}"
+                                                }
+                                              ],
+                                              staticClass: "kb-reverse-icon",
+                                              class: _vm.background_gradient
+                                                .endPositionReverse
+                                                ? "active"
+                                                : "",
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.background_gradient.endPositionReverse = !_vm
+                                                    .background_gradient
+                                                    .endPositionReverse
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fa fa-sync-alt"
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "kb-tab-content" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-rangeInp" },
+                                            [
+                                              _c("range-slider", {
+                                                staticClass: "slider",
+                                                attrs: {
+                                                  min: "0",
+                                                  max: "100",
+                                                  step: "1"
+                                                },
+                                                model: {
+                                                  value:
+                                                    _vm
+                                                      .background_gradient_range_slider
+                                                      .endPosition,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.background_gradient_range_slider,
+                                                      "endPosition",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "background_gradient_range_slider.endPosition"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.background_gradient
+                                                          .endPosition,
+                                                      expression:
+                                                        "background_gradient.endPosition"
+                                                    }
+                                                  ],
+                                                  attrs: {
+                                                    type: "text",
+                                                    name:
+                                                      "background-gradient-end-position"
+                                                  },
+                                                  domProps: {
+                                                    value:
+                                                      _vm.background_gradient
+                                                        .endPosition
+                                                  },
+                                                  on: {
+                                                    input: function($event) {
+                                                      if (
+                                                        $event.target.composing
+                                                      ) {
+                                                        return
+                                                      }
+                                                      _vm.$set(
+                                                        _vm.background_gradient,
+                                                        "endPosition",
+                                                        $event.target.value
+                                                      )
+                                                    }
+                                                  }
+                                                })
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "kb-inner-tab-component" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "kb-tab-head" },
+                                        [
+                                          _vm._v(
+                                            "Background Image\n                        "
+                                          ),
+                                          _c("toggle-button", {
+                                            directives: [
+                                              {
+                                                name: "tooltip",
+                                                rawName: "v-tooltip",
+                                                value: {
+                                                  content:
+                                                    _vm.background_image
+                                                      .active != 0
+                                                      ? "Enable"
+                                                      : "Disable"
+                                                },
+                                                expression:
+                                                  "{content:background_image.active != 0 ? 'Enable' : 'Disable' }"
+                                              }
+                                            ],
+                                            staticClass: "kb-toggleBtn",
+                                            attrs: {
+                                              labels: {
+                                                checked: "On",
+                                                unchecked: "Off"
+                                              },
+                                              color: {
+                                                checked: "#1867c0",
+                                                unchecked: "#d3d3d3"
+                                              }
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.background_image.active,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.background_image,
+                                                  "active",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "background_image.active"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "kb-tab-content" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "kb-selectedBgImg",
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.imgSelection = !_vm.imgSelection
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm.background_image.name
+                                                ? _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        _vm.background_image
+                                                          .name,
+                                                      width: "auto"
+                                                    }
+                                                  })
+                                                : _c(
+                                                    "span",
+                                                    {
+                                                      staticClass:
+                                                        "kb-ispan-add"
+                                                    },
+                                                    [
+                                                      _c("i", {
+                                                        staticClass:
+                                                          "fa fa-plus"
+                                                      })
+                                                    ]
+                                                  )
+                                            ]
+                                          )
+                                        ]
                                       )
                                     ]
                                   )
@@ -60496,8 +65166,8 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                ;(_vm.showSelection = !_vm.showSelection),
-                                  (_vm.selectedSection = "")
+                                _vm.editSection(_vm.selectedSection, true),
+                                  (_vm.showSelection = !_vm.showSelection)
                               }
                             }
                           },
@@ -60606,7 +65276,7 @@ var render = function() {
                                 ],
                                 on: {
                                   click: function($event) {
-                                    ;(_vm.selectedSection = build),
+                                    _vm.editSection(build, false),
                                       (_vm.rowSelection = false),
                                       (_vm.showSelection = true)
                                   }
@@ -61020,7 +65690,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", [
-      _c("i", { staticClass: "far fa-save" }),
+      _c("i", { staticClass: "fa fa-check" }),
       _vm._v("Apply")
     ])
   }
@@ -77596,6 +82266,352 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-range-slider/dist/vue-range-slider.cjs.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-range-slider/dist/vue-range-slider.cjs.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * vue-range-slider v0.6.0
+ * https://github.com/ktsn/vue-range-slider
+ *
+ * @license
+ * Copyright (c) 2016-2018 katashin
+ * Released under the MIT license
+ * https://github.com/ktsn/vue-range-slider/blob/master/LICENSE
+ */
+
+
+/* global window, document */
+
+var DocumentEventHelper = {
+  created: function created() {
+    if (typeof document === 'undefined') return;
+    forEachListener(this, function (key, listener) {
+      on(document, key, listener);
+    });
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (typeof document === 'undefined') return;
+    forEachListener(this, function (key, listener) {
+      off(document, key, listener);
+    });
+  }
+};
+
+var isBrowser = typeof window !== 'undefined';
+
+var hasPassive = isBrowser && function () {
+  var supported = false;
+
+  try {
+    var desc = {
+      get: function get() {
+        supported = true;
+      }
+    };
+    var opts = Object.defineProperty({}, 'passive', desc);
+
+    window.addEventListener('test', null, opts);
+    window.removeEventListener('test', null, opts);
+  } catch (e) {
+    supported = false;
+  }
+
+  return supported;
+}();
+
+function forEachListener(vm, f) {
+  var events = vm.$options.events;
+  Object.keys(events).forEach(function (key) {
+    f(key, function (event) {
+      return events[key].call(vm, event);
+    });
+  });
+}
+
+function on(el, name, fn) {
+  var options = hasPassive ? { passive: false } : undefined;
+  el.addEventListener(name, fn, options);
+}
+
+function off(el, name, fn) {
+  var options = hasPassive ? { passive: false } : undefined;
+  el.removeEventListener(name, fn, options);
+}
+
+function relativeMouseOffset(offset, base) {
+  var bounds = base.getBoundingClientRect();
+  return {
+    left: offset.clientX - bounds.left,
+    top: offset.clientY - bounds.top
+  };
+}
+
+function round(value, min, max, step) {
+  if (value <= min) {
+    return min;
+  }
+
+  var roundedMax = Math.floor((max - min) / step) * step + min;
+  if (value >= roundedMax) {
+    return roundedMax;
+  }
+
+  var normalize = (value - min) / step;
+  var decimal = Math.floor(normalize);
+  var fraction = normalize - decimal;
+
+  if (fraction === 0) return value;
+
+  if (fraction < 0.5) {
+    return step * decimal + min;
+  } else {
+    return step * (decimal + 1) + min;
+  }
+}
+
+var DragHelper = {
+  mixins: [DocumentEventHelper],
+
+  props: {
+    disabled: Boolean
+  },
+
+  data: function data() {
+    return {
+      isDrag: false
+    };
+  },
+
+
+  events: {
+    mousedown: function mousedown(event) {
+      return this.dragStart(event, this.offsetByMouse);
+    },
+    mousemove: function mousemove(event) {
+      return this.dragMove(event, this.offsetByMouse);
+    },
+    mouseup: function mouseup(event) {
+      return this.dragEnd(event, this.offsetByMouse);
+    },
+    touchstart: function touchstart(event) {
+      return this.dragStart(event, this.offsetByTouch);
+    },
+    touchmove: function touchmove(event) {
+      return this.dragMove(event, this.offsetByTouch);
+    },
+    touchend: function touchend(event) {
+      return this.dragEnd(event, this.offsetByTouch);
+    },
+    touchcancel: function touchcancel(event) {
+      return this.dragEnd(event, this.offsetByTouch);
+    }
+  },
+
+  methods: {
+    isInTarget: function isInTarget(el) {
+      if (!el) return false;
+
+      if (el === this.$el) {
+        return true;
+      } else {
+        return this.isInTarget(el.parentElement);
+      }
+    },
+    offsetByMouse: function offsetByMouse(event) {
+      return relativeMouseOffset(event, this.$el);
+    },
+    offsetByTouch: function offsetByTouch(event) {
+      var touch = event.touches.length === 0 ? event.changedTouches[0] : event.touches[0];
+      return relativeMouseOffset(touch, this.$el);
+    },
+    dragStart: function dragStart(event, f) {
+      if (this.disabled || event.button !== undefined && event.button !== 0 || !this.isInTarget(event.target)) {
+        return;
+      }
+
+      event.preventDefault();
+      this.isDrag = true;
+      this.$emit('dragstart', event, f(event), this.$el);
+    },
+    dragMove: function dragMove(event, f) {
+      if (!this.isDrag) return;
+      event.preventDefault();
+      this.$emit('drag', event, f(event), this.$el);
+    },
+    dragEnd: function dragEnd(event, f) {
+      if (!this.isDrag) return;
+      event.preventDefault();
+      this.isDrag = false;
+      this.$emit('dragend', event, f(event), this.$el);
+    }
+  },
+
+  render: function render() {
+    return this.$slots.default && this.$slots.default[0];
+  }
+};
+
+var RangeSlider = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('span', { staticClass: "range-slider", class: { disabled: _vm.disabled } }, [_c('drag-helper', { attrs: { "disabled": _vm.disabled }, on: { "dragstart": _vm.dragStart, "drag": _vm.drag, "dragend": _vm.dragEnd } }, [_c('span', { ref: "inner", staticClass: "range-slider-inner" }, [_c('input', { staticClass: "range-slider-hidden", attrs: { "type": "text", "name": _vm.name, "disabled": _vm.disabled }, domProps: { "value": _vm.actualValue } }), _vm._v(" "), _c('span', { staticClass: "range-slider-rail" }), _vm._v(" "), _c('span', { staticClass: "range-slider-fill", style: { width: _vm.valuePercent + '%' } }), _vm._v(" "), _c('span', { ref: "knob", staticClass: "range-slider-knob", style: { left: _vm.valuePercent + '%' } }, [_vm._t("knob")], 2)])])], 1);
+  }, staticRenderFns: [],
+  props: {
+    name: String,
+    value: [String, Number],
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    min: {
+      type: [String, Number],
+      default: 0
+    },
+    max: {
+      type: [String, Number],
+      default: 100
+    },
+    step: {
+      type: [String, Number],
+      default: 1
+    }
+  },
+
+  data: function data() {
+    return {
+      actualValue: null,
+      dragStartValue: null
+    };
+  },
+  created: function created() {
+    var min = this._min,
+        max = this._max;
+
+    var defaultValue = Number(this.value);
+
+    if (this.value == null || isNaN(defaultValue)) {
+      if (min > max) {
+        defaultValue = min;
+      } else {
+        defaultValue = (min + max) / 2;
+      }
+    }
+
+    this.actualValue = this.round(defaultValue);
+  },
+
+
+  computed: {
+    _min: function _min() {
+      return Number(this.min);
+    },
+    _max: function _max() {
+      return Number(this.max);
+    },
+    _step: function _step() {
+      return Number(this.step);
+    },
+    valuePercent: function valuePercent() {
+      return (this.actualValue - this._min) / (this._max - this._min) * 100;
+    }
+  },
+
+  watch: {
+    value: function value(newValue) {
+      var value = Number(newValue);
+      if (newValue != null && !isNaN(value)) {
+        this.actualValue = this.round(value);
+      }
+    },
+    min: function min() {
+      this.actualValue = this.round(this.actualValue);
+    },
+    max: function max() {
+      this.actualValue = this.round(this.actualValue);
+    }
+  },
+
+  methods: {
+    dragStart: function dragStart(event, offset) {
+      this.dragStartValue = this.actualValue;
+      if (event.target === this.$refs.knob) {
+        return;
+      }
+      // If the click is out of knob, move it to mouse position
+      this.drag(event, offset);
+    },
+    drag: function drag(event, offset) {
+      var offsetWidth = this.$refs.inner.offsetWidth;
+
+      this.actualValue = this.round(this.valueFromBounds(offset.left, offsetWidth));
+      this.emitInput(this.actualValue);
+    },
+    dragEnd: function dragEnd(event, offset) {
+      var offsetWidth = this.$refs.inner.offsetWidth;
+
+      this.actualValue = this.round(this.valueFromBounds(offset.left, offsetWidth));
+
+      if (this.dragStartValue !== this.actualValue) {
+        this.emitChange(this.actualValue);
+      }
+    },
+    emitInput: function emitInput(value) {
+      this.$emit('input', value);
+    },
+    emitChange: function emitChange(value) {
+      this.$emit('change', value);
+    },
+    valueFromBounds: function valueFromBounds(point, width) {
+      return point / width * (this._max - this._min) + this._min;
+    },
+    round: function round$$1(value) {
+      return round(value, this._min, this._max, this._step);
+    }
+  },
+
+  components: {
+    DragHelper: DragHelper
+  }
+};
+
+module.exports = RangeSlider;
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-range-slider/dist/vue-range-slider.css":
+/*!*****************************************************************!*\
+  !*** ./node_modules/vue-range-slider/dist/vue-range-slider.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vue-range-slider.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-range-slider/dist/vue-range-slider.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -96831,29 +101847,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_color__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_color__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var vue_tabs_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-tabs-component */ "./node_modules/vue-tabs-component/dist/index.js");
 /* harmony import */ var vue_tabs_component__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_tabs_component__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var v_tooltip__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! v-tooltip */ "./node_modules/v-tooltip/dist/v-tooltip.esm.js");
-/* harmony import */ var v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! v-tooltip/dist/v-tooltip.css */ "./node_modules/v-tooltip/dist/v-tooltip.css");
-/* harmony import */ var v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/LoginComponent.vue */ "./resources/js/components/LoginComponent.vue");
-/* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
-/* harmony import */ var _components_FunnelComponent_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/FunnelComponent.vue */ "./resources/js/components/FunnelComponent.vue");
-/* harmony import */ var _components_BuildfunnelComponent_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/BuildfunnelComponent.vue */ "./resources/js/components/BuildfunnelComponent.vue");
-/* harmony import */ var _components_CreatefunnelComponent_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/CreatefunnelComponent.vue */ "./resources/js/components/CreatefunnelComponent.vue");
-/* harmony import */ var _components_ArchievestepsComponent_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/ArchievestepsComponent.vue */ "./resources/js/components/ArchievestepsComponent.vue");
-/* harmony import */ var _components_MarketplaceComponent_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/MarketplaceComponent.vue */ "./resources/js/components/MarketplaceComponent.vue");
-/* harmony import */ var _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/MembershipComponent.vue */ "./resources/js/components/MembershipComponent.vue");
-/* harmony import */ var _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/AnalyticsComponent.vue */ "./resources/js/components/AnalyticsComponent.vue");
-/* harmony import */ var _components_HeatmapsComponent_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/HeatmapsComponent.vue */ "./resources/js/components/HeatmapsComponent.vue");
-/* harmony import */ var _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/EdituserComponent.vue */ "./resources/js/components/EdituserComponent.vue");
-/* harmony import */ var _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/PagesComponent.vue */ "./resources/js/components/PagesComponent.vue");
-/* harmony import */ var _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/StrategiesComponent.vue */ "./resources/js/components/StrategiesComponent.vue");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_25___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_25__);
+/* harmony import */ var vue_js_toggle_button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-js-toggle-button */ "./node_modules/vue-js-toggle-button/dist/index.js");
+/* harmony import */ var vue_js_toggle_button__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue_js_toggle_button__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var vue_lazyload__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-lazyload */ "./node_modules/vue-lazyload/vue-lazyload.esm.js");
+/* harmony import */ var v_tooltip__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! v-tooltip */ "./node_modules/v-tooltip/dist/v-tooltip.esm.js");
+/* harmony import */ var vue_range_slider__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-range-slider */ "./node_modules/vue-range-slider/dist/vue-range-slider.cjs.js");
+/* harmony import */ var vue_range_slider__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(vue_range_slider__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue-range-slider/dist/vue-range-slider.css */ "./node_modules/vue-range-slider/dist/vue-range-slider.css");
+/* harmony import */ var vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! v-tooltip/dist/v-tooltip.css */ "./node_modules/v-tooltip/dist/v-tooltip.css");
+/* harmony import */ var v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(v_tooltip_dist_v_tooltip_css__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/LoginComponent.vue */ "./resources/js/components/LoginComponent.vue");
+/* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
+/* harmony import */ var _components_FunnelComponent_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/FunnelComponent.vue */ "./resources/js/components/FunnelComponent.vue");
+/* harmony import */ var _components_BuildfunnelComponent_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/BuildfunnelComponent.vue */ "./resources/js/components/BuildfunnelComponent.vue");
+/* harmony import */ var _components_CreatefunnelComponent_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/CreatefunnelComponent.vue */ "./resources/js/components/CreatefunnelComponent.vue");
+/* harmony import */ var _components_ArchievestepsComponent_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/ArchievestepsComponent.vue */ "./resources/js/components/ArchievestepsComponent.vue");
+/* harmony import */ var _components_MarketplaceComponent_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/MarketplaceComponent.vue */ "./resources/js/components/MarketplaceComponent.vue");
+/* harmony import */ var _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/MembershipComponent.vue */ "./resources/js/components/MembershipComponent.vue");
+/* harmony import */ var _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/AnalyticsComponent.vue */ "./resources/js/components/AnalyticsComponent.vue");
+/* harmony import */ var _components_HeatmapsComponent_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/HeatmapsComponent.vue */ "./resources/js/components/HeatmapsComponent.vue");
+/* harmony import */ var _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/EdituserComponent.vue */ "./resources/js/components/EdituserComponent.vue");
+/* harmony import */ var _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/PagesComponent.vue */ "./resources/js/components/PagesComponent.vue");
+/* harmony import */ var _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/StrategiesComponent.vue */ "./resources/js/components/StrategiesComponent.vue");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_29___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_29__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+
+
+
 
 
 
@@ -96877,7 +101904,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_cookies__WEBPACK_IMPORTED_MOD
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_drag_n_drop__WEBPACK_IMPORTED_MODULE_5__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuedraggable__WEBPACK_IMPORTED_MODULE_6___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_apexcharts__WEBPACK_IMPORTED_MODULE_7___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_tooltip__WEBPACK_IMPORTED_MODULE_10__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_tooltip__WEBPACK_IMPORTED_MODULE_12__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_toggle_button__WEBPACK_IMPORTED_MODULE_10___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_mq__WEBPACK_IMPORTED_MODULE_3__["default"], {
   breakpoints: {
     // default breakpoints - customize this
@@ -96887,6 +101915,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_mq__WEBPACK_IMPORTED_MODULE_3
   },
   defaultBreakpoint: 'sm' // customize this for SSR
 
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_lazyload__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  preLoad: 1.3,
+  // error: 'dist/error.png',
+  loading: 'images/builder/upload_images/loading.gif',
+  // attempt: 1,
+  // the default is ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend']
+  listenEvents: ['scroll']
 });
 
 plugins: [{
@@ -96918,6 +101954,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('colour-chrome-picker', vue
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('colour-sketch-picker', vue_color__WEBPACK_IMPORTED_MODULE_8__["Sketch"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('colour-material-picker', vue_color__WEBPACK_IMPORTED_MODULE_8__["Material"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('colour-slider-picker', vue_color__WEBPACK_IMPORTED_MODULE_8__["Slider"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('range-slider', vue_range_slider__WEBPACK_IMPORTED_MODULE_13___default.a);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -96941,59 +101978,59 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('colour-slider-picker', vue
 var routes = [{
   path: '/login',
   name: 'login',
-  component: _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+  component: _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }, {
   path: '/register',
   name: 'register',
-  component: _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+  component: _components_LoginComponent_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }, {
   path: '/funnel',
   name: 'funnel',
-  component: _components_FunnelComponent_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
+  component: _components_FunnelComponent_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
 }, {
   path: '/build-funnel',
   name: 'buildfunnel',
-  component: _components_BuildfunnelComponent_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+  component: _components_BuildfunnelComponent_vue__WEBPACK_IMPORTED_MODULE_19__["default"]
 }, {
   path: '/create-funnel',
   name: 'createfunnel',
-  component: _components_CreatefunnelComponent_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
+  component: _components_CreatefunnelComponent_vue__WEBPACK_IMPORTED_MODULE_20__["default"]
 }, {
   path: '/archieve-steps',
   name: 'archievesteps',
-  component: _components_ArchievestepsComponent_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
+  component: _components_ArchievestepsComponent_vue__WEBPACK_IMPORTED_MODULE_21__["default"]
 }, {
   path: '/marketplace',
   name: 'marketplace',
-  component: _components_MarketplaceComponent_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
+  component: _components_MarketplaceComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]
 }, {
   path: '/pages',
   name: 'pages',
-  component: _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]
+  component: _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_27__["default"]
 }, {
   path: '/strategies',
   name: 'strategies',
-  component: _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_24__["default"]
+  component: _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_28__["default"]
 }, {
   path: '/membership',
   name: 'membership',
-  component: _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_19__["default"]
+  component: _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]
 }, {
   path: '/analytics',
   name: 'analytics',
-  component: _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_20__["default"]
+  component: _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_24__["default"]
 }, {
   path: '/heat-maps',
   name: 'heatmaps',
-  component: _components_HeatmapsComponent_vue__WEBPACK_IMPORTED_MODULE_21__["default"]
+  component: _components_HeatmapsComponent_vue__WEBPACK_IMPORTED_MODULE_25__["default"]
 }, {
   path: '/edit-user',
   name: 'edituser',
-  component: _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]
+  component: _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_26__["default"]
 }, {
   path: '/*',
   name: 'dashboard',
-  component: _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+  component: _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',

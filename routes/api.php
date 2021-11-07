@@ -17,4 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('upload_image','UploadimageController@upload');
+Route::post('get_upload_image','UploadimageController@index');
+
 // Route::post('heat-request', 'HeatmapController@store');

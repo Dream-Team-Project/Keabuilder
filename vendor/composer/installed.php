@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'f12e4a52dd883e8b640c302821cafffeb92d09be',
+        'reference' => 'd1df3bd25884822f4c3cdfff9c679605c9fa87f6',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -325,6 +325,15 @@
                 0 => 'v6.20.32',
             ),
         ),
+        'intervention/image' => array(
+            'pretty_version' => '2.7.0',
+            'version' => '2.7.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../intervention/image',
+            'aliases' => array(),
+            'reference' => '9a8cc99d30415ec0b3f7649e1647d03a55698545',
+            'dev_requirement' => false,
+        ),
         'jakub-onderka/php-console-color' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -358,7 +367,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'f12e4a52dd883e8b640c302821cafffeb92d09be',
+            'reference' => 'd1df3bd25884822f4c3cdfff9c679605c9fa87f6',
             'dev_requirement' => false,
         ),
         'laravel/socialite' => array(

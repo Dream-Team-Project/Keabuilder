@@ -14,7 +14,11 @@ import draggable from 'vuedraggable';
 import VueApexCharts from 'vue-apexcharts';
 import { Chrome, Sketch, Material, Slider } from 'vue-color';
 import {Tabs, Tab} from 'vue-tabs-component';
+import ToggleButton from 'vue-js-toggle-button';
+import VueLazyload from 'vue-lazyload';
 import VTooltip from 'v-tooltip';
+import RangeSlider from 'vue-range-slider';
+import 'vue-range-slider/dist/vue-range-slider.css';
 import 'v-tooltip/dist/v-tooltip.css';
 
 
@@ -30,6 +34,7 @@ Vue.use(VueDragDrop);
 Vue.use(draggable);
 Vue.use(VueApexCharts);
 Vue.use(VTooltip);
+Vue.use(ToggleButton);
 
 Vue.use(VueMq, {
     breakpoints: { // default breakpoints - customize this
@@ -38,7 +43,16 @@ Vue.use(VueMq, {
       lg: Infinity,
     },
     defaultBreakpoint: 'sm' // customize this for SSR
-  })
+  });
+
+  Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    // error: 'dist/error.png',
+    loading: 'images/builder/upload_images/loading.gif',
+    // attempt: 1,
+    // the default is ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend']
+    listenEvents: [ 'scroll' ]
+  });
 
 plugins: [
   {
@@ -74,6 +88,7 @@ Vue.component('colour-chrome-picker', Chrome);
 Vue.component('colour-sketch-picker', Sketch);
 Vue.component('colour-material-picker', Material);
 Vue.component('colour-slider-picker', Slider);
+Vue.component('range-slider', RangeSlider);
 
 
 /**
