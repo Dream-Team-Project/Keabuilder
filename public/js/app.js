@@ -5655,9 +5655,82 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      show_dropdown: '',
       newD: new Date(),
       newImg: {
         id: '',
@@ -5688,6 +5761,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         hex: '#000000'
       }],
       expand: false,
+      width: {
+        value: '100%'
+      },
+      widthRange: {
+        value: '100',
+        max: '100',
+        type: '%'
+      },
       m_link: {
         tb: false,
         lr: false,
@@ -5705,8 +5786,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         a: false
       },
       padding: {
-        top: '60px',
-        bottom: '60px',
+        top: '0px',
+        bottom: '0px',
         left: '0px',
         right: '0px'
       },
@@ -5748,10 +5829,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         startPosition: '0%',
         endPosition: '100%',
         gradientStart: false,
-        gradientEnd: false,
-        directionReverse: false,
-        startPositionReverse: false,
-        endPositionReverse: false
+        gradientEnd: false
       },
       background_gradient_range_slider: {
         direction: '45',
@@ -5760,9 +5838,35 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       },
       background_image: {
         active: false,
-        name: ''
+        name: '',
+        size: 'cover',
+        position: 'center',
+        repeat: {
+          name: 'no repeat',
+          value: 'no-repeat'
+        }
       },
-      show_border_style_dropdown: false,
+      background_image_sizes: ['cover', 'contain', 'auto'],
+      background_image_positions: ['top left', 'top center', 'top right', 'center', 'bottom left', 'bottom center', 'bottom right'],
+      background_image_repeats: [{
+        name: 'no repeat',
+        value: 'no-repeat'
+      }, {
+        name: 'repeat',
+        value: 'repeat'
+      }, {
+        name: 'repeat x (horizontal)',
+        value: 'repeat-x'
+      }, {
+        name: 'repeat y (vertical)',
+        value: 'repeat-y'
+      }, {
+        name: 'space',
+        value: 'sapce'
+      }, {
+        name: 'round',
+        value: 'round'
+      }],
       rowTypes: [{
         cls: '1',
         appendCls: 'full-block',
@@ -5874,16 +5978,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         id: 0,
         sectionSetting: false,
         rowArr: [],
-        style: ''
+        style: '',
+        type: 'section'
       },
       rowObj: {
         id: 0,
         columnLength: 0,
         rowSize: '',
-        rowSetting: false
+        rowSetting: false,
+        type: 'row'
       },
       selectedSectionRows: [],
-      selectedSection: '',
+      selectedBlock: '',
       selectedRow: '',
       showSelection: false,
       rowSelection: false,
@@ -5894,7 +6000,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         clientY: undefined,
         movementX: 0,
         movementY: 0
-      }
+      },
+      updateSideUnitsDelay: 1000
     };
   },
   computed: {
@@ -5916,8 +6023,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     demoBackground: function demoBackground() {
       return {
-        '--background-color': this.background_color.hex,
-        '--background-image': this.background_gradient.active ? 'linear-gradient(' + this.background_gradient.direction + ', ' + this.background_gradient.start.hex + ' ' + this.background_gradient.startPosition + ', ' + this.background_gradient.end.hex + ' ' + this.background_gradient.endPosition + ')' : 'none'
+        '--background-color': this.background_color.hex
       };
     },
     currentStyling: function currentStyling() {
@@ -5929,11 +6035,41 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         '--border-color': this.border_color.hex,
         '--border-style': this.border_style,
         '--background-color': this.background_color.hex,
-        '--background-image': this.background_image.active ? 'url(' + this.background_image.name + ')' : this.background_gradient.active ? 'linear-gradient(' + this.background_gradient.direction + ', ' + this.background_gradient.start.hex + ' ' + this.background_gradient.startPosition + ', ' + this.background_gradient.end.hex + ' ' + this.background_gradient.endPosition + ')' : 'none'
+        '--background-image': this.background_image.active ? 'url(' + this.background_image.name + ')' : this.background_gradient.active ? 'linear-gradient(' + this.background_gradient.direction + ', ' + this.background_gradient.start.hex + ' ' + this.background_gradient.startPosition + ', ' + this.background_gradient.end.hex + ' ' + this.background_gradient.endPosition + ')' : 'none',
+        '--background-size': this.background_image.active ? this.background_image.size : '',
+        '--background-position': this.background_image.active ? this.background_image.position : '',
+        '--background-repeat': this.background_image.active ? this.background_image.repeat.value : '',
+        '--width': this.width.value
       };
     }
   },
   watch: {
+    width: {
+      handler: function handler(val) {
+        var vm = this;
+        setTimeout(function () {
+          val.value = vm.updateRexVal(val.value);
+          vm.widthRange.value = val.value.replace(/[^0-9]/g, '');
+
+          if (val.value[val.value.length - 1] != '%') {
+            vm.widthRange.max = screen.width;
+            vm.widthRange.type = 'px';
+          } else {
+            vm.widthRange.max = '100';
+            vm.widthRange.type = '%';
+          }
+
+          val.value[val.value.length - 1] != '%' ? screen.width : '100';
+        }, vm.updateSideUnitsDelay);
+      },
+      deep: true
+    },
+    widthRange: {
+      handler: function handler(val) {
+        this.width.value = val.value + val.type;
+      },
+      deep: true
+    },
     margin: {
       handler: function handler(val) {
         this.marginUpdate(val);
@@ -5968,28 +6104,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     background_gradient: {
       handler: function handler(val) {
-        var gdir = parseInt(val.direction.replace(/[^0-9]/g, ''));
-        var gsdir = parseInt(val.startPosition.replace(/[^0-9]/g, ''));
-        var gedir = parseInt(val.endPosition.replace(/[^0-9]/g, ''));
+        var gdir = parseInt(this.getNumVal(val.direction));
+        var gstart = parseInt(this.getNumVal(val.startPosition));
+        var gend = parseInt(this.getNumVal(val.endPosition));
+        if (gdir > 360) gdir = 360;else if (gdir < -360) gdir = -360;
+        if (gstart > 100) gstart = 100;else if (gstart < -100) gstart = -100;
+        if (gend > 100) gend = 100;else if (gend < -100) gend = -100;
+        val.direction = (gdir ? gdir : '0') + 'deg';
+        val.startPosition = (gstart ? gstart : '0') + '%';
+        val.endPosition = (gend ? gend : '0') + '%';
         this.background_gradient_range_slider.direction = gdir;
-        this.background_gradient_range_slider.startPosition = gsdir;
-        this.background_gradient_range_slider.endPosition = gedir;
-
-        if (gdir > 360) {
-          gdir = '360';
-        }
-
-        if (gsdir > 100) {
-          gsdir = '100';
-        }
-
-        if (gedir > 100) {
-          gedir = '100';
-        }
-
-        val.direction = (val.directionReverse ? '-' : '') + (gdir ? gdir : '0') + 'deg';
-        val.startPosition = (val.startPositionReverse ? '-' : '') + (gsdir ? gsdir : '0') + '%';
-        val.endPosition = (val.endPositionReverse ? '-' : '') + (gedir ? gedir : '0') + '%';
+        this.background_gradient_range_slider.startPosition = gstart;
+        this.background_gradient_range_slider.endPosition = gend;
+        val.active ? this.background_image.active = false : '';
+      },
+      deep: true
+    },
+    background_image: {
+      handler: function handler(val) {
+        val.active ? this.background_gradient.active = false : '';
       },
       deep: true
     },
@@ -6014,102 +6147,54 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     this.getUploadImages();
   },
   methods: {
-    getUploadImages: function getUploadImages() {
-      var _this2 = this;
-
-      axios.post('api/get_upload_image').then(function (request) {
-        _this2.galleryImg = request.data.data;
-        _this2.galleryImgName = _this2.galleryImg.map(function (item) {
-          return item.name;
-        });
+    closeDropDown: function closeDropDown(e) {
+      e.target ? !e.target.classList.contains('kb-dropdown-selected-item') ? this.show_dropdown = '' : '' : '';
+    },
+    operateNumVal: function operateNumVal(eKey, val) {
+      return eKey == 'ArrowUp' ? this.updateRexVal(val, 'inc') : eKey == 'ArrowDown' ? this.updateRexVal(val, 'dec') : val;
+    },
+    getNumVal: function getNumVal(val) {
+      var i = 0;
+      return val.replace(/[^0-9]/g, function (m) {
+        return !i++ ? m == '-' ? val[0] != '-' ? '' : m : '' : '';
       });
     },
-    changeNumeral: function changeNumeral(e, val) {
-      if (e.key == 'ArrowUp' || e.key == 'ArrowDown') {
-        val = (e.key == 'ArrowUp' ? parseInt(val.split('px')[0]) + 1 : parseInt(val.split('px')[0]) - 1) + 'px';
-      }
-    },
-    resetStyling: function resetStyling() {
-      this.margin.top = '0px';
-      this.margin.right = '0px';
-      this.margin.bottom = '0px';
-      this.margin.left = '0px';
-      this.padding.top = '60px';
-      this.padding.right = '0px';
-      this.padding.bottom = '60px';
-      this.padding.left = '0px';
-      this.border.top = '0px';
-      this.border.right = '0px';
-      this.border.bottom = '0px';
-      this.border.left = '0px';
-      this.border_radius.top_left = '0px';
-      this.border_radius.top_right = '0px';
-      this.border_radius.bottom_left = '0px';
-      this.border_radius.bottom_right = '0px';
-      this.border_style = 'solid';
-      this.border_color.hex = '#000000';
-      this.background_color.hex = '#ff000000';
-      this.background_gradient.active = false;
-      this.background_gradient.direction = '45deg';
-      this.background_gradient.start.hex = '#1867c0';
-      this.background_gradient.end.hex = '#1BC5BD';
-      this.background_gradient.startPosition = '0%';
-      this.background_gradient.endPosition = '100%';
-      this.background_gradient.gradientStart = false;
-      this.background_gradient.gradientEnd = false;
-      this.background_gradient.directionReverse = false;
-      this.background_gradient.startPositionReverse = false;
-      this.background_gradient.endPositionReverse = false;
-      this.background_gradient_range_slider.direction = '45';
-      this.background_gradient_range_slider.startPosition = '0';
-      this.background_gradient_range_slider.endPosition = '100';
-      this.background_image.name = '';
-      this.background_image.active = false;
-    },
-    updateStyle: function updateStyle() {
-      var margin = 'margin:' + this.margin.top + ' ' + this.margin.right + ' ' + this.margin.bottom + ' ' + this.margin.left + '; ';
-      var padding = 'padding:' + this.padding.top + ' ' + this.padding.right + ' ' + this.padding.bottom + ' ' + this.padding.left + '; ';
-      var borderWidth = 'border-width:' + this.border.top + ' ' + this.border.right + ' ' + this.border.bottom + ' ' + this.border.left + '; ';
-      var borderStyle = 'border-style:' + this.border_style + '; ';
-      var borderColor = 'border-color:' + this.border_color.hex + '; ';
-      var borderRadius = 'border-radius:' + this.border_radius.top_left + ' ' + this.border_radius.top_right + ' ' + this.border_radius.bottom_left + ' ' + this.border_radius.bottom_right + '; ';
-      var backgroundColor = 'background-color:' + this.background_color.hex + '; ';
-
-      if (this.background_gradient.active || this.background_image.active) {
-        if (this.background_gradient.active) {
-          var backgroundImage = 'background-image:' + 'linear-gradient(' + this.background_gradient.direction + ', ' + this.background_gradient.start.hex + ' ' + this.background_gradient.startPosition + ', ' + this.background_gradient.end.hex + ' ' + this.background_gradient.endPosition + ')';
-        } else if (this.background_image.active) {
-          var backgroundImage = 'background-image:' + 'url(' + this.background_image.name + ')';
-        }
-
-        this.selectedSection.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + backgroundImage;
-      } else {
-        this.selectedSection.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + backgroundColor;
-      }
-
-      this.showSelection = !this.showSelection;
-      this.selectedSection = ''; // var style = document.createElement('STYLE');
-      // style.id = "createStyle";
-      // document.getElementsByTagName('HEAD')[0].appendChild(style);
-    },
     // general values
-    updateSideVals: function updateSideVals(val) {
-      var it = 0,
-          ib = 0,
-          ir = 0,
-          il = 0;
-      val.top = val.top.replace(/[^0-9]/g, '') ? val.top.replace(/[^0-9]/g, function (m) {
-        return !it++ ? m == '-' ? val.top[0] != '-' ? '' : m : '' : '';
-      }) + 'px' : '';
-      val.bottom = val.bottom.replace(/[^0-9]/g, '') ? val.bottom.replace(/[^0-9]/g, function (m) {
-        return !ib++ ? m == '-' ? val.bottom[0] != '-' ? '' : m : '' : '';
-      }) + 'px' : '';
-      val.left = val.left.replace(/[^0-9]/g, '') ? val.left.replace(/[^0-9]/g, function (m) {
-        return !il++ ? m == '-' ? val.left[0] != '-' ? '' : m : '' : '';
-      }) + 'px' : '';
-      val.right = val.right.replace(/[^0-9]/g, '') ? val.right.replace(/[^0-9]/g, function (m) {
-        return !ir++ ? m == '-' ? val.right[0] != '-' ? '' : m : '' : '';
-      }) + 'px' : '';
+    updateRexVal: function updateRexVal(val, op) {
+      if (val[0] != 'a') {
+        var i = 0,
+            unit = 'px',
+            len = val.length;
+        val.includes('px') && val.lastIndexOf('px') == len - 2 ? unit = 'px' : '';
+        val.includes('%') && val.lastIndexOf('%') == len - 1 ? unit = '%' : '';
+        val.includes('em') && val.lastIndexOf('em') == len - 2 ? unit = 'em' : '';
+        val.includes('pt') && val.lastIndexOf('pt') == len - 2 ? unit = 'pt' : '';
+        val.includes('cm') && val.lastIndexOf('cm') == len - 2 ? unit = 'cm' : '';
+        val.includes('in') && val.lastIndexOf('in') == len - 2 ? unit = 'in' : '';
+        val.includes('rem') && val.lastIndexOf('rem') == len - 3 ? unit = 'rem' : '';
+        val.includes('vh') && val.lastIndexOf('vh') == len - 2 ? unit = 'vh' : '';
+        val.includes('vw') && val.lastIndexOf('vw') == len - 2 ? unit = 'vw' : '';
+        var result = val.replace(/[^0-9]/g, '') ? this.getNumVal(val) : '0';
+
+        if (op == 'inc') {
+          return (parseInt(result) + 1).toString() + unit;
+        } else if (op == 'dec') {
+          return (parseInt(result) - 1).toString() + unit;
+        } else {
+          return result + unit;
+        }
+      } else {
+        return 'auto';
+      }
+    },
+    updateSideUnits: function updateSideUnits(val) {
+      var vm = this;
+      setTimeout(function () {
+        val.top = vm.updateRexVal(val.top);
+        val.bottom = vm.updateRexVal(val.bottom);
+        val.left = vm.updateRexVal(val.left);
+        val.right = vm.updateRexVal(val.right);
+      }, vm.updateSideUnitsDelay);
     },
     marginUpdate: function marginUpdate(val) {
       if (this.m_link.a) {
@@ -6124,7 +6209,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }
 
-      this.updateSideVals(val);
+      this.updateSideUnits(val);
     },
     paddingUpdate: function paddingUpdate(val) {
       if (this.p_link.a) {
@@ -6139,7 +6224,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }
 
-      this.updateSideVals(val);
+      this.updateSideUnits(val);
     },
     borderUpdate: function borderUpdate(val) {
       if (this.b_link.a) {
@@ -6154,19 +6239,109 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }
 
-      this.updateSideVals(val);
+      this.updateSideUnits(val);
     },
     borderRadiusUpdate: function borderRadiusUpdate(val) {
       this.br_link ? val.bottom_left = val.bottom_right = val.top_right = val.top_left : '';
-      val.top_left = val.top_left.replace(/[^0-9]/g, '') ? val.top_left.replace(/[^0-9]/g, '') + 'px' : '';
-      val.top_right = val.top_right.replace(/[^0-9]/g, '') ? val.top_right.replace(/[^0-9]/g, '') + 'px' : '';
-      val.bottom_left = val.bottom_left.replace(/[^0-9]/g, '') ? val.bottom_left.replace(/[^0-9]/g, '') + 'px' : '';
-      val.bottom_right = val.bottom_right.replace(/[^0-9]/g, '') ? val.bottom_right.replace(/[^0-9]/g, '') + 'px' : '';
+      var vm = this;
+      setTimeout(function () {
+        val.top_left = vm.updateRexVal(val.top_left);
+        val.top_right = vm.updateRexVal(val.top_right);
+        val.bottom_left = vm.updateRexVal(val.bottom_left);
+        val.bottom_right = vm.updateRexVal(val.bottom_right);
+      }, vm.updateSideUnitsDelay);
     },
     // general values
-    // section
-    editSection: function editSection(build, discard) {
-      this.selectedSection = !discard ? build : '';
+    getUploadImages: function getUploadImages() {
+      var _this2 = this;
+
+      axios.post('api/get_upload_image').then(function (request) {
+        _this2.galleryImg = request.data.data;
+        _this2.galleryImgName = _this2.galleryImg.map(function (item) {
+          return item.name;
+        });
+      });
+    },
+    updateStyle: function updateStyle() {
+      var margin = 'margin:' + this.margin.top + ' ' + this.margin.right + ' ' + this.margin.bottom + ' ' + this.margin.left + '; ';
+      var padding = 'padding:' + this.padding.top + ' ' + this.padding.right + ' ' + this.padding.bottom + ' ' + this.padding.left + '; ';
+      var borderWidth = 'border-width:' + this.border.top + ' ' + this.border.right + ' ' + this.border.bottom + ' ' + this.border.left + '; ';
+      var borderStyle = 'border-style:' + this.border_style + '; ';
+      var borderColor = 'border-color:' + this.border_color.hex + '; ';
+      var borderRadius = 'border-radius:' + this.border_radius.top_left + ' ' + this.border_radius.top_right + ' ' + this.border_radius.bottom_left + ' ' + this.border_radius.bottom_right + '; ';
+      var backgroundColor = 'background-color:' + this.background_color.hex + '; ';
+      var width = 'width:' + this.width.value + '; ';
+
+      if (this.background_gradient.active || this.background_image.active) {
+        if (this.background_gradient.active) {
+          var backgroundImage = 'background-image:' + 'linear-gradient(' + this.background_gradient.direction + ', ' + this.background_gradient.start.hex + ' ' + this.background_gradient.startPosition + ', ' + this.background_gradient.end.hex + ' ' + this.background_gradient.endPosition + ')';
+        } else if (this.background_image.active) {
+          var backgroundSize = 'background-size:' + this.background_image.size + '; ';
+          var backgroundPosition = 'background-position:' + this.background_image.position + '; ';
+          var backgroundRepeat = 'background-repeat:' + this.background_image.repeat.value + ';';
+          var backgroundImage = 'background-image:' + 'url(' + this.background_image.name + '); ' + backgroundSize + backgroundPosition + backgroundRepeat;
+        }
+
+        this.selectedBlock.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + width + backgroundColor + backgroundImage;
+      } else {
+        this.selectedBlock.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + width + backgroundColor;
+      }
+
+      this.showSelection = !this.showSelection;
+      this.selectedBlock = ''; // var style = document.createElement('STYLE');
+      // style.id = "createStyle";
+      // document.getElementsByTagName('HEAD')[0].appendChild(style);
+    },
+    resetStyling: function resetStyling() {
+      this.margin.top = '0px';
+      this.margin.right = 'auto';
+      this.margin.bottom = '0px';
+      this.margin.left = 'auto';
+      this.padding.top = this.selectedBlock.type == 'section' ? '60px' : '0px';
+      this.padding.right = '0px';
+      this.padding.bottom = this.selectedBlock.type == 'section' ? '60px' : '0px';
+      this.padding.left = '0px';
+      this.border.top = '0px';
+      this.border.right = '0px';
+      this.border.bottom = '0px';
+      this.border.left = '0px';
+      this.border_radius.top_left = '0px';
+      this.border_radius.top_right = '0px';
+      this.border_radius.bottom_left = '0px';
+      this.border_radius.bottom_right = '0px';
+      this.border_style = 'solid';
+      this.border_color.hex = '#000000';
+      this.background_color.hex = '#ff000000';
+      this.width.value = '100%';
+      this.resetBackgroundImage();
+      this.resetBackgroundGradient();
+    },
+    resetBackgroundImage: function resetBackgroundImage() {
+      this.background_image.active = false;
+      this.background_image.name = '';
+      this.background_image.size = 'cover';
+      this.background_image.position = 'center';
+      this.background_image.repeat = {
+        name: 'no repeat',
+        value: 'no-repeat'
+      };
+    },
+    resetBackgroundGradient: function resetBackgroundGradient() {
+      this.background_gradient.active = false;
+      this.background_gradient.direction = '45deg';
+      this.background_gradient.start.hex = '#1867c0';
+      this.background_gradient.end.hex = '#1BC5BD';
+      this.background_gradient.startPosition = '0%';
+      this.background_gradient.endPosition = '100%';
+      this.background_gradient.gradientStart = false;
+      this.background_gradient.gradientEnd = false;
+      this.background_gradient_range_slider.direction = '45';
+      this.background_gradient_range_slider.startPosition = '0';
+      this.background_gradient_range_slider.endPosition = '100';
+    },
+    blockSetting: function blockSetting(build) {
+      var _this3 = this;
+
       var str = '';
 
       if (build.style) {
@@ -6190,9 +6365,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 this.background_gradient.startPosition = bg[1].split(' ')[1];
                 this.background_gradient.endPosition = bg[2].split(' ')[1];
                 this.background_gradient.active = true;
+                this.resetBackgroundImage();
               } else {
                 this.background_image.name = bg[0];
                 this.background_image.active = true;
+                this.resetBackgroundGradient();
               }
             }
           }
@@ -6223,10 +6400,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.border_style = obj.borderstyle;
         this.border_color.hex = obj.bordercolor;
         this.background_color.hex = obj.backgroundcolor;
+        obj.backgroundsize ? this.background_image.size = obj.backgroundsize : '';
+        obj.backgroundposition ? this.background_image.position = obj.backgroundposition : '';
+
+        if (obj.backgroundrepeat) {
+          this.background_image_repeats.find(function (item) {
+            if (item.value == obj.backgroundrepeat) {
+              _this3.background_image.repeat = item;
+            }
+          });
+        }
+
+        if (bg == undefined) {
+          this.resetBackgroundImage();
+          this.resetBackgroundGradient();
+        }
       } else {
         this.resetStyling();
       }
     },
+    // section
     appendSection: function appendSection(build, index) {
       var tempObj = JSON.parse(JSON.stringify(build));
       this.builder.splice(index + 1, 0, tempObj);
@@ -6243,7 +6436,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.builder.splice(index, 1);
     },
     // section
-    // row
+    // row 
     appendRow: function appendRow(rowArr, tempObj, index) {
       tempObj.id = this.row_id++;
       rowArr.splice(index + 1, 0, tempObj);
@@ -6299,7 +6492,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     //dragable element
     // background Image Selection
     onSelected: function onSelected(img) {
-      var _this3 = this;
+      var _this4 = this;
 
       var files = img.target.files || img.dataTransfer.files;
       if (!files.length) return;
@@ -6308,7 +6501,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       reader.onload = function (e) {
         vm.newImg.upload = e.target.result;
-        vm.newImg.id = _this3.galleryImg.length;
+        vm.newImg.id = _this4.galleryImg.length;
         vm.newImg.path = URL.createObjectURL(img.target.files[0]);
         var strn = img.target.files[0].name;
         vm.newImg.name = vm.galleryImgName.includes(strn) ? strn.slice(0, strn.lastIndexOf(".")) + '-' + new Date().getTime() + strn.slice(strn.lastIndexOf("."), strn.length) : strn;
@@ -6316,7 +6509,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         obj.name = 'loading.gif';
         vm.galleryImg.unshift(obj);
         axios.post('api/upload_image', vm.newImg).then(function (response) {
-          _this3.getUploadImages();
+          _this4.getUploadImages();
 
           vm.newImg = {};
         });
@@ -61315,7 +61508,14 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { attrs: { id: "page-container" } },
+      {
+        attrs: { id: "page-container" },
+        on: {
+          click: function($event) {
+            return _vm.closeDropDown($event)
+          }
+        }
+      },
       [
         _vm.imgSelection
           ? _c("div", { attrs: { id: "kb-img-group" } }, [
@@ -61399,2103 +61599,295 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.showSelection
-          ? _c(
-              "div",
-              {
-                ref: "draggableContainer",
-                staticClass: "forScroll",
-                attrs: { id: "kb-selectction-ask" }
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "kb-ask-head",
-                    on: { mousedown: _vm.dragMouseDown }
-                  },
-                  [
-                    _vm._v(
-                      _vm._s(
-                        !_vm.rowSelection ? "Section Setting" : "Row Dimension"
-                      )
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticClass: "kb-selection-top-actions",
-                    on: {
-                      click: function($event) {
-                        !_vm.rowSelection
-                          ? (_vm.expand = !_vm.expand)
-                          : (_vm.showSelection = !_vm.showSelection),
-                          (_vm.selectedSection = "")
-                      }
-                    }
-                  },
-                  [
-                    !_vm.rowSelection
-                      ? _c("i", {
-                          staticClass: "fas",
-                          class: _vm.expand
-                            ? "fa-expand-arrows-alt"
-                            : "fas fa-compress-arrows-alt"
-                        })
-                      : _c("i", { staticClass: "fa fa-times" })
-                  ]
-                ),
-                _vm._v(" "),
-                _vm.rowSelection
-                  ? _c(
-                      "div",
-                      {
-                        staticClass: "selectionDiv",
-                        attrs: { id: "kb-row-selection" }
-                      },
-                      [
-                        _c("div", [
-                          _c(
-                            "ul",
-                            { staticClass: "kb-row-list" },
-                            _vm._l(_vm.rowTypes, function(rt) {
-                              return _c(
-                                "li",
-                                {
-                                  key: rt.cls,
-                                  staticClass: "kb-row-type",
-                                  class:
-                                    (_vm.selectedRow.rowSize ==
-                                    "kb-" + rt.appendCls
-                                      ? "kb-row-type-active "
-                                      : "") +
-                                    "row-" +
-                                    rt.cls,
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.addNewRow(
-                                        "kb-" + rt.appendCls,
-                                        rt.nofcolumn
-                                      )
-                                    }
-                                  }
-                                },
-                                _vm._l(rt.nofcolumn, function(c) {
-                                  return _c(
-                                    "span",
-                                    { key: c, staticClass: "block" },
-                                    [_c("span")]
-                                  )
-                                }),
-                                0
-                              )
-                            }),
-                            0
-                          )
-                        ])
-                      ]
-                    )
-                  : _c("div", { staticClass: "selectionDiv" }, [
-                      _c(
+          ? _c("div", { staticClass: "kb-outer-selection-container" }, [
+              _c(
+                "div",
+                {
+                  ref: "draggableContainer",
+                  staticClass: "forScroll",
+                  attrs: { id: "kb-selection-ask" }
+                },
+                [
+                  _vm.rowSelection
+                    ? _c(
                         "div",
-                        { staticClass: "kb-tabs-component" },
+                        {
+                          staticClass: "kb-inner-selection-container",
+                          attrs: { id: "kb-row-selection" }
+                        },
                         [
                           _c(
-                            "tabs",
+                            "span",
                             {
-                              attrs: {
-                                options: { defaultTabHash: "general" },
-                                "cache-lifetime": "10"
+                              staticClass: "kb-selection-top-actions",
+                              on: {
+                                click: function($event) {
+                                  ;(_vm.showSelection = !_vm.showSelection),
+                                    (_vm.selectedRow = "")
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-times" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "kb-ask-head",
+                              on: { mousedown: _vm.dragMouseDown }
+                            },
+                            [_vm._v("Row Dimension")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", [
+                            _c(
+                              "ul",
+                              { staticClass: "kb-row-list" },
+                              _vm._l(_vm.rowTypes, function(rt) {
+                                return _c(
+                                  "li",
+                                  {
+                                    key: rt.cls,
+                                    staticClass: "kb-row-type",
+                                    class:
+                                      (_vm.selectedRow.rowSize ==
+                                      "kb-" + rt.appendCls
+                                        ? "kb-row-type-active "
+                                        : "") +
+                                      "row-" +
+                                      rt.cls,
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.addNewRow(
+                                          "kb-" + rt.appendCls,
+                                          rt.nofcolumn
+                                        )
+                                      }
+                                    }
+                                  },
+                                  _vm._l(rt.nofcolumn, function(c) {
+                                    return _c(
+                                      "span",
+                                      { key: c, staticClass: "block" },
+                                      [_c("span")]
+                                    )
+                                  }),
+                                  0
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ]
+                      )
+                    : _c(
+                        "div",
+                        { staticClass: "kb-inner-selection-container" },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "kb-selection-top-actions",
+                              on: {
+                                click: function($event) {
+                                  _vm.expand = !_vm.expand
+                                }
                               }
                             },
                             [
+                              _c("i", {
+                                staticClass: "fas",
+                                class: _vm.expand
+                                  ? "fa-expand-arrows-alt"
+                                  : "fas fa-compress-arrows-alt"
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "kb-ask-head",
+                              on: { mousedown: _vm.dragMouseDown }
+                            },
+                            [_vm._v("Section Setting")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "kb-tabs-component" },
+                            [
                               _c(
-                                "tab",
-                                { attrs: { id: "general", name: "General" } },
+                                "tabs",
+                                {
+                                  attrs: {
+                                    options: { defaultTabHash: "general" },
+                                    "cache-lifetime": "10"
+                                  }
+                                },
                                 [
                                   _c(
-                                    "div",
-                                    { staticClass: "kb-inner-tab-component" },
+                                    "tab",
+                                    {
+                                      attrs: { id: "general", name: "General" }
+                                    },
                                     [
                                       _c(
                                         "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [_vm._v("Margin")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-content" },
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
                                         [
-                                          _c("span", [
-                                            _c("input", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.margin.top,
-                                                  expression: "margin.top"
-                                                }
-                                              ],
-                                              attrs: {
-                                                type: "text",
-                                                name: "top-margin"
-                                              },
-                                              domProps: {
-                                                value: _vm.margin.top
-                                              },
-                                              on: {
-                                                keydown: function($event) {
-                                                  _vm.margin.top =
-                                                    $event.key == "ArrowUp"
-                                                      ? parseInt(
-                                                          _vm.margin.top.split(
-                                                            "px"
-                                                          )[0]
-                                                        ) +
-                                                        1 +
-                                                        "px"
-                                                      : $event.key ==
-                                                        "ArrowDown"
-                                                      ? parseInt(
-                                                          _vm.margin.top.split(
-                                                            "px"
-                                                          )[0]
-                                                        ) -
-                                                        1 +
-                                                        "px"
-                                                      : _vm.margin.top
-                                                },
-                                                input: function($event) {
-                                                  if ($event.target.composing) {
-                                                    return
-                                                  }
-                                                  _vm.$set(
-                                                    _vm.margin,
-                                                    "top",
-                                                    $event.target.value
-                                                  )
-                                                }
-                                              }
-                                            }),
-                                            _c(
-                                              "label",
-                                              { attrs: { for: "top-margin" } },
-                                              [_vm._v("Top")]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
                                           _c(
-                                            "span",
-                                            {
-                                              staticClass: "kb-linkBtw",
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.m_link.tb = !_vm.m_link
-                                                    .tb),
-                                                    (_vm.m_link.a = false),
-                                                    _vm.marginUpdate(_vm.margin)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "svg",
-                                                {
-                                                  class: !_vm.m_link.tb
-                                                    ? "deactive"
-                                                    : "",
-                                                  attrs: {
-                                                    viewBox: "0 0 28 28",
-                                                    preserveAspectRatio:
-                                                      "xMidYMid meet",
-                                                    "shape-rendering":
-                                                      "geometricPrecision"
-                                                  }
-                                                },
-                                                [
-                                                  _c("g", [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    }),
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    })
-                                                  ])
-                                                ]
-                                              )
-                                            ]
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [_vm._v("Width")]
                                           ),
                                           _vm._v(" "),
-                                          _c("span", [
-                                            _vm.m_link.tb
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.margin.top,
-                                                      expression: "margin.top"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "bottom-margin"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.margin.top
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.margin.top =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.margin.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.margin.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.margin.top
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "kb-rangeInp" },
+                                                [
+                                                  _c("range-slider", {
+                                                    staticClass: "slider",
+                                                    attrs: {
+                                                      min: "0",
+                                                      max: _vm.widthRange.max,
+                                                      step: "1"
                                                     },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.margin,
-                                                        "top",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.margin.bottom,
+                                                    model: {
+                                                      value:
+                                                        _vm.widthRange.value,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.widthRange,
+                                                          "value",
+                                                          $$v
+                                                        )
+                                                      },
                                                       expression:
-                                                        "margin.bottom"
+                                                        "widthRange.value"
                                                     }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "bottom-margin"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.margin.bottom
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.margin.bottom =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.margin.bottom.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.margin.bottom.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.margin.bottom
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.margin,
-                                                        "bottom",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                            _c(
-                                              "label",
-                                              {
-                                                attrs: { for: "bottom-margin" }
-                                              },
-                                              [_vm._v("Bottom")]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "kb-linkBtw",
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.m_link.a = !_vm.m_link
-                                                    .a),
-                                                    (_vm.m_link.tb =
-                                                      _vm.m_link.a),
-                                                    (_vm.m_link.lr =
-                                                      _vm.m_link.a),
-                                                    _vm.marginUpdate(_vm.margin)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "svg",
-                                                {
-                                                  class: !_vm.m_link.a
-                                                    ? "deactive"
-                                                    : "",
-                                                  attrs: {
-                                                    viewBox: "0 0 28 28",
-                                                    preserveAspectRatio:
-                                                      "xMidYMid meet",
-                                                    "shape-rendering":
-                                                      "geometricPrecision"
-                                                  }
-                                                },
-                                                [
-                                                  _c("g", [
-                                                    _c("path", {
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.width.value,
+                                                          expression:
+                                                            "width.value"
+                                                        }
+                                                      ],
                                                       attrs: {
-                                                        d:
-                                                          "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    }),
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
-                                                        "fill-rule": "evenodd"
+                                                        type: "text",
+                                                        name: "width"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.width.value
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.width.value = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.width.value
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.width,
+                                                            "value",
+                                                            $event.target.value
+                                                          )
+                                                        }
                                                       }
                                                     })
                                                   ])
-                                                ]
+                                                ],
+                                                1
                                               )
                                             ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm.m_link.a
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.margin.top,
-                                                      expression: "margin.top"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "left-margin"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.margin.top
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.margin.top =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.margin.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.margin.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.margin.top
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.margin,
-                                                        "top",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.margin.left,
-                                                      expression: "margin.left"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "left-margin"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.margin.left
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.margin.left =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.margin.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.margin.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.margin.left
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.margin,
-                                                        "left",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                            _c(
-                                              "label",
-                                              { attrs: { for: "left-margin" } },
-                                              [_vm._v("Left")]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "kb-linkBtw",
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.m_link.lr = !_vm.m_link
-                                                    .lr),
-                                                    (_vm.m_link.a = false),
-                                                    _vm.marginUpdate(_vm.margin)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "svg",
-                                                {
-                                                  class: !_vm.m_link.lr
-                                                    ? "deactive"
-                                                    : "",
-                                                  attrs: {
-                                                    viewBox: "0 0 28 28",
-                                                    preserveAspectRatio:
-                                                      "xMidYMid meet",
-                                                    "shape-rendering":
-                                                      "geometricPrecision"
-                                                  }
-                                                },
-                                                [
-                                                  _c("g", [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    }),
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    })
-                                                  ])
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm.m_link.a
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.margin.top,
-                                                      expression: "margin.top"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "right-margin"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.margin.top
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.margin.top =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.margin.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.margin.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.margin.top
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.margin,
-                                                        "top",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _vm.m_link.lr
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.margin.left,
-                                                      expression: "margin.left"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "right-margin"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.margin.left
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.margin.left =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.margin.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.margin.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.margin.left
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.margin,
-                                                        "left",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.margin.right,
-                                                      expression: "margin.right"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "right-margin"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.margin.right
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.margin.right =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.margin.right.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.margin.right.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.margin.right
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.margin,
-                                                        "right",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                            _c(
-                                              "label",
-                                              {
-                                                attrs: { for: "right-margin" }
-                                              },
-                                              [_vm._v("Right")]
-                                            )
-                                          ])
+                                          )
                                         ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "kb-inner-tab-component" },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [_vm._v("Padding")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-content" },
-                                        [
-                                          _c("span", [
-                                            _c("input", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.padding.top,
-                                                  expression: "padding.top"
-                                                }
-                                              ],
-                                              attrs: {
-                                                type: "text",
-                                                name: "top-padding"
-                                              },
-                                              domProps: {
-                                                value: _vm.padding.top
-                                              },
-                                              on: {
-                                                keydown: function($event) {
-                                                  _vm.padding.top =
-                                                    $event.key == "ArrowUp"
-                                                      ? parseInt(
-                                                          _vm.padding.top.split(
-                                                            "px"
-                                                          )[0]
-                                                        ) +
-                                                        1 +
-                                                        "px"
-                                                      : $event.key ==
-                                                        "ArrowDown"
-                                                      ? parseInt(
-                                                          _vm.padding.top.split(
-                                                            "px"
-                                                          )[0]
-                                                        ) -
-                                                        1 +
-                                                        "px"
-                                                      : _vm.padding.top
-                                                },
-                                                input: function($event) {
-                                                  if ($event.target.composing) {
-                                                    return
-                                                  }
-                                                  _vm.$set(
-                                                    _vm.padding,
-                                                    "top",
-                                                    $event.target.value
-                                                  )
-                                                }
-                                              }
-                                            }),
-                                            _c(
-                                              "label",
-                                              { attrs: { for: "top-padding" } },
-                                              [_vm._v("Top")]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "kb-linkBtw",
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.p_link.tb = !_vm.p_link
-                                                    .tb),
-                                                    (_vm.p_link.a = false),
-                                                    _vm.paddingUpdate(
-                                                      _vm.padding
-                                                    )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "svg",
-                                                {
-                                                  class: !_vm.p_link.tb
-                                                    ? "deactive"
-                                                    : "",
-                                                  attrs: {
-                                                    viewBox: "0 0 28 28",
-                                                    preserveAspectRatio:
-                                                      "xMidYMid meet",
-                                                    "shape-rendering":
-                                                      "geometricPrecision"
-                                                  }
-                                                },
-                                                [
-                                                  _c("g", [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    }),
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    })
-                                                  ])
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm.p_link.tb
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.padding.top,
-                                                      expression: "padding.top"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "bottom-padding"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.padding.top
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.padding.top =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.padding.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.padding.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.padding.top
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.padding,
-                                                        "top",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.padding.bottom,
-                                                      expression:
-                                                        "padding.bottom"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "bottom-padding"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.padding.bottom
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.padding.bottom =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.padding.bottom.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.padding.bottom.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.padding.bottom
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.padding,
-                                                        "bottom",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                            _c(
-                                              "label",
-                                              {
-                                                attrs: { for: "bottom-padding" }
-                                              },
-                                              [_vm._v("Bottom")]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "kb-linkBtw",
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.p_link.a = !_vm.p_link
-                                                    .a),
-                                                    (_vm.p_link.tb =
-                                                      _vm.p_link.a),
-                                                    (_vm.p_link.lr =
-                                                      _vm.p_link.a),
-                                                    _vm.paddingUpdate(
-                                                      _vm.padding
-                                                    )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "svg",
-                                                {
-                                                  class: !_vm.p_link.a
-                                                    ? "deactive"
-                                                    : "",
-                                                  attrs: {
-                                                    viewBox: "0 0 28 28",
-                                                    preserveAspectRatio:
-                                                      "xMidYMid meet",
-                                                    "shape-rendering":
-                                                      "geometricPrecision"
-                                                  }
-                                                },
-                                                [
-                                                  _c("g", [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    }),
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    })
-                                                  ])
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm.p_link.a
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.padding.top,
-                                                      expression: "padding.top"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "left-padding"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.padding.top
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.padding.top =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.padding.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.padding.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.padding.top
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.padding,
-                                                        "top",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.padding.left,
-                                                      expression: "padding.left"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "left-padding"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.padding.left
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.padding.left =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.padding.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.padding.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.padding.left
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.padding,
-                                                        "left",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                            _c(
-                                              "label",
-                                              {
-                                                attrs: { for: "left-padding" }
-                                              },
-                                              [_vm._v("Left")]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "kb-linkBtw",
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.p_link.lr = !_vm.p_link
-                                                    .lr),
-                                                    (_vm.p_link.a = false),
-                                                    _vm.paddingUpdate(
-                                                      _vm.padding
-                                                    )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "svg",
-                                                {
-                                                  class: !_vm.p_link.lr
-                                                    ? "deactive"
-                                                    : "",
-                                                  attrs: {
-                                                    viewBox: "0 0 28 28",
-                                                    preserveAspectRatio:
-                                                      "xMidYMid meet",
-                                                    "shape-rendering":
-                                                      "geometricPrecision"
-                                                  }
-                                                },
-                                                [
-                                                  _c("g", [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    }),
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    })
-                                                  ])
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm.p_link.a
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.padding.top,
-                                                      expression: "padding.top"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "right-padding"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.padding.top
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.padding.top =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.padding.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.padding.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.padding.top
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.padding,
-                                                        "top",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _vm.p_link.lr
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.padding.left,
-                                                      expression: "padding.left"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "right-padding"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.padding.left
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.padding.left =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.padding.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.padding.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.padding.left
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.padding,
-                                                        "left",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.padding.right,
-                                                      expression:
-                                                        "padding.right"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "right-padding"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.padding.right
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.padding.right =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.padding.right.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.padding.right.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.padding.right
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.padding,
-                                                        "right",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                            _c(
-                                              "label",
-                                              {
-                                                attrs: { for: "right-padding" }
-                                              },
-                                              [_vm._v("Right")]
-                                            )
-                                          ])
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "kb-inner-tab-component" },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [_vm._v("Border Width")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-content" },
-                                        [
-                                          _c("span", [
-                                            _c("input", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.border.top,
-                                                  expression: "border.top"
-                                                }
-                                              ],
-                                              attrs: {
-                                                type: "text",
-                                                name: "top-border"
-                                              },
-                                              domProps: {
-                                                value: _vm.border.top
-                                              },
-                                              on: {
-                                                keydown: function($event) {
-                                                  _vm.border.top =
-                                                    $event.key == "ArrowUp"
-                                                      ? parseInt(
-                                                          _vm.border.top.split(
-                                                            "px"
-                                                          )[0]
-                                                        ) +
-                                                        1 +
-                                                        "px"
-                                                      : $event.key ==
-                                                        "ArrowDown"
-                                                      ? parseInt(
-                                                          _vm.border.top.split(
-                                                            "px"
-                                                          )[0]
-                                                        ) -
-                                                        1 +
-                                                        "px"
-                                                      : _vm.border.top
-                                                },
-                                                input: function($event) {
-                                                  if ($event.target.composing) {
-                                                    return
-                                                  }
-                                                  _vm.$set(
-                                                    _vm.border,
-                                                    "top",
-                                                    $event.target.value
-                                                  )
-                                                }
-                                              }
-                                            }),
-                                            _c(
-                                              "label",
-                                              { attrs: { for: "top-border" } },
-                                              [_vm._v("Top")]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "kb-linkBtw",
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.b_link.tb = !_vm.b_link
-                                                    .tb),
-                                                    (_vm.b_link.a = false),
-                                                    _vm.borderUpdate(_vm.border)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "svg",
-                                                {
-                                                  class: !_vm.b_link.tb
-                                                    ? "deactive"
-                                                    : "",
-                                                  attrs: {
-                                                    viewBox: "0 0 28 28",
-                                                    preserveAspectRatio:
-                                                      "xMidYMid meet",
-                                                    "shape-rendering":
-                                                      "geometricPrecision"
-                                                  }
-                                                },
-                                                [
-                                                  _c("g", [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    }),
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    })
-                                                  ])
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm.b_link.tb
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.border.top,
-                                                      expression: "border.top"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "bottom-border"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.border.top
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.border.top =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.border.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.border.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.border.top
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.border,
-                                                        "top",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.border.bottom,
-                                                      expression:
-                                                        "border.bottom"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "bottom-border"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.border.bottom
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.border.bottom =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.border.bottom.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.border.bottom.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.border.bottom
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.border,
-                                                        "bottom",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                            _c(
-                                              "label",
-                                              {
-                                                attrs: { for: "bottom-border" }
-                                              },
-                                              [_vm._v("Bottom")]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "kb-linkBtw",
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.b_link.a = !_vm.b_link
-                                                    .a),
-                                                    (_vm.b_link.tb =
-                                                      _vm.b_link.a),
-                                                    (_vm.b_link.lr =
-                                                      _vm.b_link.a),
-                                                    _vm.borderUpdate(_vm.border)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "svg",
-                                                {
-                                                  class: !_vm.b_link.a
-                                                    ? "deactive"
-                                                    : "",
-                                                  attrs: {
-                                                    viewBox: "0 0 28 28",
-                                                    preserveAspectRatio:
-                                                      "xMidYMid meet",
-                                                    "shape-rendering":
-                                                      "geometricPrecision"
-                                                  }
-                                                },
-                                                [
-                                                  _c("g", [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    }),
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    })
-                                                  ])
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm.b_link.a
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.border.top,
-                                                      expression: "border.top"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "left-border"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.border.top
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.border.top =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.border.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.border.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.border.top
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.border,
-                                                        "top",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.border.left,
-                                                      expression: "border.left"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "left-border"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.border.left
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.border.left =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.border.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.border.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.border.left
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.border,
-                                                        "left",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                            _c(
-                                              "label",
-                                              { attrs: { for: "left-border" } },
-                                              [_vm._v("Left")]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "kb-linkBtw",
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.b_link.lr = !_vm.b_link
-                                                    .lr),
-                                                    (_vm.b_link.a = false),
-                                                    _vm.borderUpdate(_vm.border)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "svg",
-                                                {
-                                                  class: !_vm.b_link.lr
-                                                    ? "deactive"
-                                                    : "",
-                                                  attrs: {
-                                                    viewBox: "0 0 28 28",
-                                                    preserveAspectRatio:
-                                                      "xMidYMid meet",
-                                                    "shape-rendering":
-                                                      "geometricPrecision"
-                                                  }
-                                                },
-                                                [
-                                                  _c("g", [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    }),
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d:
-                                                          "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
-                                                        "fill-rule": "evenodd"
-                                                      }
-                                                    })
-                                                  ])
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm.b_link.a
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.border.top,
-                                                      expression: "border.top"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "right-border"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.border.top
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.border.top =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.border.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.border.top.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.border.top
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.border,
-                                                        "top",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _vm.b_link.lr
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.border.left,
-                                                      expression: "border.left"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "right-border"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.border.left
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.border.left =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.border.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.border.left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.border.left
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.border,
-                                                        "left",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              : _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.border.right,
-                                                      expression: "border.right"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "right-border"
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.border.right
-                                                  },
-                                                  on: {
-                                                    keydown: function($event) {
-                                                      _vm.border.right =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.border.right.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.border.right.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.border.right
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.border,
-                                                        "right",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                            _c(
-                                              "label",
-                                              {
-                                                attrs: { for: "right-border" }
-                                              },
-                                              [_vm._v("Right")]
-                                            )
-                                          ])
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "kb-inner-tab-component" },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [_vm._v("Border Style")]
                                       ),
                                       _vm._v(" "),
                                       _c(
                                         "div",
                                         {
-                                          staticClass:
-                                            "kb-tob-content kb-dropdown forScroll",
-                                          on: {
-                                            click: function($event) {
-                                              _vm.show_border_style_dropdown = !_vm.show_border_style_dropdown
-                                            }
-                                          }
+                                          staticClass: "kb-inner-tab-component"
                                         },
                                         [
                                           _c(
                                             "div",
-                                            {
-                                              staticClass:
-                                                "kb-dropdown-selected-item"
-                                            },
-                                            [
-                                              _vm._v(_vm._s(_vm.border_style)),
-                                              _c("i", {
-                                                staticClass:
-                                                  "fa fa-angle-down kb-side-dropdown-arrow"
-                                              })
-                                            ]
+                                            { staticClass: "kb-tab-head" },
+                                            [_vm._v("Alignment")]
                                           ),
-                                          _vm.show_border_style_dropdown
-                                            ? _c(
-                                                "ul",
-                                                {
-                                                  staticClass:
-                                                    "kb-dropdown-items"
-                                                },
-                                                _vm._l(
-                                                  _vm.border_style_types,
-                                                  function(bst) {
-                                                    return _c(
-                                                      "li",
-                                                      {
-                                                        key: bst,
-                                                        class:
-                                                          _vm.border_style ==
-                                                          bst
-                                                            ? "kb-active-dropdown-item"
-                                                            : "",
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.border_style = bst
-                                                          }
-                                                        }
-                                                      },
-                                                      [_vm._v(_vm._s(bst))]
-                                                    )
-                                                  }
-                                                ),
-                                                0
-                                              )
-                                            : _vm._e()
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c("div", [
+                                                _c("span", [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-arrow-left"
+                                                  })
+                                                ]),
+                                                _c("span", [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-arrow-right"
+                                                  }),
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-arrow-left"
+                                                  })
+                                                ]),
+                                                _c("span", [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-arrow-right"
+                                                  })
+                                                ])
+                                              ])
+                                            ]
+                                          )
                                         ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "kb-inner-tab-component" },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [_vm._v("Border Radius")]
                                       ),
                                       _vm._v(" "),
                                       _c(
                                         "div",
-                                        { staticClass: "kb-tab-content" },
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
                                         [
                                           _c(
                                             "div",
-                                            {
-                                              staticClass:
-                                                "kb-tab-border-radius"
-                                            },
+                                            { staticClass: "kb-tab-head" },
+                                            [_vm._v("Margin")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
                                             [
                                               _c("span", [
                                                 _c("input", {
@@ -63503,43 +61895,23 @@ var render = function() {
                                                     {
                                                       name: "model",
                                                       rawName: "v-model",
-                                                      value:
-                                                        _vm.border_radius
-                                                          .top_left,
-                                                      expression:
-                                                        "border_radius.top_left"
+                                                      value: _vm.margin.top,
+                                                      expression: "margin.top"
                                                     }
                                                   ],
                                                   attrs: {
                                                     type: "text",
-                                                    name: "top-left-border"
+                                                    name: "top-margin"
                                                   },
                                                   domProps: {
-                                                    value:
-                                                      _vm.border_radius.top_left
+                                                    value: _vm.margin.top
                                                   },
                                                   on: {
                                                     keydown: function($event) {
-                                                      _vm.border_radius.top_left =
-                                                        $event.key == "ArrowUp"
-                                                          ? parseInt(
-                                                              _vm.border_radius.top_left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) +
-                                                            1 +
-                                                            "px"
-                                                          : $event.key ==
-                                                            "ArrowDown"
-                                                          ? parseInt(
-                                                              _vm.border_radius.top_left.split(
-                                                                "px"
-                                                              )[0]
-                                                            ) -
-                                                            1 +
-                                                            "px"
-                                                          : _vm.border_radius
-                                                              .top_left
+                                                      _vm.margin.top = _vm.operateNumVal(
+                                                        $event.key,
+                                                        _vm.margin.top
+                                                      )
                                                     },
                                                     input: function($event) {
                                                       if (
@@ -63548,168 +61920,33 @@ var render = function() {
                                                         return
                                                       }
                                                       _vm.$set(
-                                                        _vm.border_radius,
-                                                        "top_left",
+                                                        _vm.margin,
+                                                        "top",
                                                         $event.target.value
                                                       )
                                                     }
                                                   }
-                                                })
+                                                }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: { for: "top-margin" }
+                                                  },
+                                                  [_vm._v("Top")]
+                                                )
                                               ]),
                                               _vm._v(" "),
-                                              _c("span", [
-                                                _vm.br_link
-                                                  ? _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value:
-                                                            _vm.border_radius
-                                                              .top_left,
-                                                          expression:
-                                                            "border_radius.top_left"
-                                                        }
-                                                      ],
-                                                      attrs: {
-                                                        type: "text",
-                                                        name: "top-right-border"
-                                                      },
-                                                      domProps: {
-                                                        value:
-                                                          _vm.border_radius
-                                                            .top_left
-                                                      },
-                                                      on: {
-                                                        keydown: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.border_radius.top_left =
-                                                            $event.key ==
-                                                            "ArrowUp"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.top_left.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) +
-                                                                1 +
-                                                                "px"
-                                                              : $event.key ==
-                                                                "ArrowDown"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.top_left.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) -
-                                                                1 +
-                                                                "px"
-                                                              : _vm
-                                                                  .border_radius
-                                                                  .top_left
-                                                        },
-                                                        input: function(
-                                                          $event
-                                                        ) {
-                                                          if (
-                                                            $event.target
-                                                              .composing
-                                                          ) {
-                                                            return
-                                                          }
-                                                          _vm.$set(
-                                                            _vm.border_radius,
-                                                            "top_left",
-                                                            $event.target.value
-                                                          )
-                                                        }
-                                                      }
-                                                    })
-                                                  : _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value:
-                                                            _vm.border_radius
-                                                              .top_right,
-                                                          expression:
-                                                            "border_radius.top_right"
-                                                        }
-                                                      ],
-                                                      attrs: {
-                                                        type: "text",
-                                                        name: "top-right-border"
-                                                      },
-                                                      domProps: {
-                                                        value:
-                                                          _vm.border_radius
-                                                            .top_right
-                                                      },
-                                                      on: {
-                                                        keydown: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.border_radius.top_right =
-                                                            $event.key ==
-                                                            "ArrowUp"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.top_right.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) +
-                                                                1 +
-                                                                "px"
-                                                              : $event.key ==
-                                                                "ArrowDown"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.top_right.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) -
-                                                                1 +
-                                                                "px"
-                                                              : _vm
-                                                                  .border_radius
-                                                                  .top_right
-                                                        },
-                                                        input: function(
-                                                          $event
-                                                        ) {
-                                                          if (
-                                                            $event.target
-                                                              .composing
-                                                          ) {
-                                                            return
-                                                          }
-                                                          _vm.$set(
-                                                            _vm.border_radius,
-                                                            "top_right",
-                                                            $event.target.value
-                                                          )
-                                                        }
-                                                      }
-                                                    })
-                                              ])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "kb-border-radius-demo",
-                                              style: _vm.demoBorder
-                                            },
-                                            [
                                               _c(
                                                 "span",
                                                 {
                                                   staticClass: "kb-linkBtw",
                                                   on: {
                                                     click: function($event) {
-                                                      ;(_vm.br_link = !_vm.br_link),
-                                                        _vm.borderRadiusUpdate(
-                                                          _vm.border_radius
+                                                      ;(_vm.m_link.tb = !_vm
+                                                        .m_link.tb),
+                                                        (_vm.m_link.a = false),
+                                                        _vm.marginUpdate(
+                                                          _vm.margin
                                                         )
                                                     }
                                                   }
@@ -63718,7 +61955,7 @@ var render = function() {
                                                   _c(
                                                     "svg",
                                                     {
-                                                      class: !_vm.br_link
+                                                      class: !_vm.m_link.tb
                                                         ? "deactive"
                                                         : "",
                                                       attrs: {
@@ -63734,216 +61971,52 @@ var render = function() {
                                                         _c("path", {
                                                           attrs: {
                                                             d:
-                                                              "M14.71 17.71a3 3 0 0 1-2.12-.88l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 0 1.41 0l5-4.95a1 1 0 0 0 0-1.41l-1.46-1.42a1 1 0 0 0-1.41 0L16.1 9.07a1 1 0 0 1-1.41-1.41l1.43-1.43a3.07 3.07 0 0 1 4.24 0l1.41 1.41a3 3 0 0 1 0 4.24l-5 4.95a3 3 0 0 1-2.06.88z"
+                                                              "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
                                                           }
                                                         }),
                                                         _c("path", {
                                                           attrs: {
                                                             d:
-                                                              "M9.76 22.66a3 3 0 0 1-2.12-.88l-1.42-1.42a3 3 0 0 1 0-4.24l5-4.95a3.07 3.07 0 0 1 4.24 0l.71.71a1 1 0 0 1-1.41 1.41l-.76-.7a1 1 0 0 0-1.41 0l-5 4.95a1 1 0 0 0 0 1.41L9 20.36a1 1 0 0 0 1.41 0L11.82 19a1 1 0 0 1 1.41 1.41l-1.36 1.36a3 3 0 0 1-2.11.89z"
+                                                              "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
                                                           }
                                                         })
                                                       ])
                                                     ]
                                                   )
                                                 ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "kb-tab-border-radius"
-                                            },
-                                            [
-                                              _c("span", [
-                                                _vm.br_link
-                                                  ? _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value:
-                                                            _vm.border_radius
-                                                              .top_left,
-                                                          expression:
-                                                            "border_radius.top_left"
-                                                        }
-                                                      ],
-                                                      attrs: {
-                                                        type: "text",
-                                                        name:
-                                                          "bottom-left-border"
-                                                      },
-                                                      domProps: {
-                                                        value:
-                                                          _vm.border_radius
-                                                            .top_left
-                                                      },
-                                                      on: {
-                                                        keydown: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.border_radius.top_left =
-                                                            $event.key ==
-                                                            "ArrowUp"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.top_left.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) +
-                                                                1 +
-                                                                "px"
-                                                              : $event.key ==
-                                                                "ArrowDown"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.top_left.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) -
-                                                                1 +
-                                                                "px"
-                                                              : _vm
-                                                                  .border_radius
-                                                                  .top_left
-                                                        },
-                                                        input: function(
-                                                          $event
-                                                        ) {
-                                                          if (
-                                                            $event.target
-                                                              .composing
-                                                          ) {
-                                                            return
-                                                          }
-                                                          _vm.$set(
-                                                            _vm.border_radius,
-                                                            "top_left",
-                                                            $event.target.value
-                                                          )
-                                                        }
-                                                      }
-                                                    })
-                                                  : _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value:
-                                                            _vm.border_radius
-                                                              .bottom_left,
-                                                          expression:
-                                                            "border_radius.bottom_left"
-                                                        }
-                                                      ],
-                                                      attrs: {
-                                                        type: "text",
-                                                        name:
-                                                          "bottom-left-border"
-                                                      },
-                                                      domProps: {
-                                                        value:
-                                                          _vm.border_radius
-                                                            .bottom_left
-                                                      },
-                                                      on: {
-                                                        keydown: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.border_radius.bottom_left =
-                                                            $event.key ==
-                                                            "ArrowUp"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.bottom_left.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) +
-                                                                1 +
-                                                                "px"
-                                                              : $event.key ==
-                                                                "ArrowDown"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.bottom_left.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) -
-                                                                1 +
-                                                                "px"
-                                                              : _vm
-                                                                  .border_radius
-                                                                  .bottom_left
-                                                        },
-                                                        input: function(
-                                                          $event
-                                                        ) {
-                                                          if (
-                                                            $event.target
-                                                              .composing
-                                                          ) {
-                                                            return
-                                                          }
-                                                          _vm.$set(
-                                                            _vm.border_radius,
-                                                            "bottom_left",
-                                                            $event.target.value
-                                                          )
-                                                        }
-                                                      }
-                                                    })
-                                              ]),
+                                              ),
                                               _vm._v(" "),
                                               _c("span", [
-                                                _vm.br_link
+                                                _vm.m_link.tb
                                                   ? _c("input", {
                                                       directives: [
                                                         {
                                                           name: "model",
                                                           rawName: "v-model",
-                                                          value:
-                                                            _vm.border_radius
-                                                              .top_left,
+                                                          value: _vm.margin.top,
                                                           expression:
-                                                            "border_radius.top_left"
+                                                            "margin.top"
                                                         }
                                                       ],
                                                       attrs: {
                                                         type: "text",
-                                                        name:
-                                                          "bottom-right-border"
+                                                        name: "bottom-margin"
                                                       },
                                                       domProps: {
-                                                        value:
-                                                          _vm.border_radius
-                                                            .top_left
+                                                        value: _vm.margin.top
                                                       },
                                                       on: {
                                                         keydown: function(
                                                           $event
                                                         ) {
-                                                          _vm.border_radius.top_left =
-                                                            $event.key ==
-                                                            "ArrowUp"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.top_left.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) +
-                                                                1 +
-                                                                "px"
-                                                              : $event.key ==
-                                                                "ArrowDown"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.top_left.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) -
-                                                                1 +
-                                                                "px"
-                                                              : _vm
-                                                                  .border_radius
-                                                                  .top_left
+                                                          _vm.margin.top = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.margin.top
+                                                          )
                                                         },
                                                         input: function(
                                                           $event
@@ -63955,8 +62028,8 @@ var render = function() {
                                                             return
                                                           }
                                                           _vm.$set(
-                                                            _vm.border_radius,
-                                                            "top_left",
+                                                            _vm.margin,
+                                                            "top",
                                                             $event.target.value
                                                           )
                                                         }
@@ -63968,48 +62041,26 @@ var render = function() {
                                                           name: "model",
                                                           rawName: "v-model",
                                                           value:
-                                                            _vm.border_radius
-                                                              .bottom_right,
+                                                            _vm.margin.bottom,
                                                           expression:
-                                                            "border_radius.bottom_right"
+                                                            "margin.bottom"
                                                         }
                                                       ],
                                                       attrs: {
                                                         type: "text",
-                                                        name:
-                                                          "bottom-right-border"
+                                                        name: "bottom-margin"
                                                       },
                                                       domProps: {
-                                                        value:
-                                                          _vm.border_radius
-                                                            .bottom_right
+                                                        value: _vm.margin.bottom
                                                       },
                                                       on: {
                                                         keydown: function(
                                                           $event
                                                         ) {
-                                                          _vm.border_radius.bottom_right =
-                                                            $event.key ==
-                                                            "ArrowUp"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.bottom_right.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) +
-                                                                1 +
-                                                                "px"
-                                                              : $event.key ==
-                                                                "ArrowDown"
-                                                              ? parseInt(
-                                                                  _vm.border_radius.bottom_right.split(
-                                                                    "px"
-                                                                  )[0]
-                                                                ) -
-                                                                1 +
-                                                                "px"
-                                                              : _vm
-                                                                  .border_radius
-                                                                  .bottom_right
+                                                          _vm.margin.bottom = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.margin.bottom
+                                                          )
                                                         },
                                                         input: function(
                                                           $event
@@ -64021,74 +62072,379 @@ var render = function() {
                                                             return
                                                           }
                                                           _vm.$set(
-                                                            _vm.border_radius,
-                                                            "bottom_right",
+                                                            _vm.margin,
+                                                            "bottom",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: {
+                                                      for: "bottom-margin"
+                                                    }
+                                                  },
+                                                  [_vm._v("Bottom")]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "kb-linkBtw",
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.m_link.a = !_vm
+                                                        .m_link.a),
+                                                        (_vm.m_link.tb =
+                                                          _vm.m_link.a),
+                                                        (_vm.m_link.lr =
+                                                          _vm.m_link.a),
+                                                        _vm.marginUpdate(
+                                                          _vm.margin
+                                                        )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      class: !_vm.m_link.a
+                                                        ? "deactive"
+                                                        : "",
+                                                      attrs: {
+                                                        viewBox: "0 0 28 28",
+                                                        preserveAspectRatio:
+                                                          "xMidYMid meet",
+                                                        "shape-rendering":
+                                                          "geometricPrecision"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("g", [
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        }),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        })
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm.m_link.a
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value: _vm.margin.top,
+                                                          expression:
+                                                            "margin.top"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "left-margin"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.margin.top
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.margin.top = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.margin.top
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.margin,
+                                                            "top",
                                                             $event.target.value
                                                           )
                                                         }
                                                       }
                                                     })
-                                              ])
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "kb-inner-tab-component kb-color-picker"
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [
-                                          _vm._v("Border Color"),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass:
-                                                "kb-color-demo kb-border-color-demo",
-                                              style: _vm.demoBorder
-                                            },
-                                            [
-                                              _c("span", {
-                                                class:
-                                                  _vm.border_color.hex ==
-                                                  "#ff000000"
-                                                    ? "kb-no-color"
-                                                    : ""
-                                              })
-                                            ]
-                                          ),
-                                          _c(
-                                            "span",
-                                            { staticClass: "kb-color-demo" },
-                                            [
-                                              _c("span", {
-                                                directives: [
+                                                  : _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.margin.left,
+                                                          expression:
+                                                            "margin.left"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "left-margin"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.margin.left
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.margin.left = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.margin.left
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.margin,
+                                                            "left",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                _c(
+                                                  "label",
                                                   {
-                                                    name: "tooltip",
-                                                    rawName: "v-tooltip",
-                                                    value: {
-                                                      content: "Transparent"
+                                                    attrs: {
+                                                      for: "left-margin"
+                                                    }
+                                                  },
+                                                  [_vm._v("Left")]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "kb-linkBtw",
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.m_link.lr = !_vm
+                                                        .m_link.lr),
+                                                        (_vm.m_link.a = false),
+                                                        _vm.marginUpdate(
+                                                          _vm.margin
+                                                        )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      class: !_vm.m_link.lr
+                                                        ? "deactive"
+                                                        : "",
+                                                      attrs: {
+                                                        viewBox: "0 0 28 28",
+                                                        preserveAspectRatio:
+                                                          "xMidYMid meet",
+                                                        "shape-rendering":
+                                                          "geometricPrecision"
+                                                      }
                                                     },
-                                                    expression:
-                                                      "{content:'Transparent'}"
-                                                  }
-                                                ],
-                                                staticClass: "kb-no-color",
-                                                on: {
-                                                  click: function($event) {
-                                                    _vm.border_color.hex =
-                                                      "#ff000000"
-                                                  }
-                                                }
-                                              })
+                                                    [
+                                                      _c("g", [
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        }),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        })
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm.m_link.a
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value: _vm.margin.top,
+                                                          expression:
+                                                            "margin.top"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "right-margin"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.margin.top
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.margin.top = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.margin.top
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.margin,
+                                                            "top",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  : _vm.m_link.lr
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.margin.left,
+                                                          expression:
+                                                            "margin.left"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "right-margin"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.margin.left
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.margin.left = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.margin.left
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.margin,
+                                                            "left",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  : _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.margin.right,
+                                                          expression:
+                                                            "margin.right"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "right-margin"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.margin.right
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.margin.right = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.margin.right
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.margin,
+                                                            "right",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: {
+                                                      for: "right-margin"
+                                                    }
+                                                  },
+                                                  [_vm._v("Right")]
+                                                )
+                                              ])
                                             ]
                                           )
                                         ]
@@ -64096,30 +62452,1792 @@ var render = function() {
                                       _vm._v(" "),
                                       _c(
                                         "div",
-                                        { staticClass: "kb-tab-content" },
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
                                         [
-                                          _c("colour-material-picker", {
-                                            attrs: {
-                                              label: "Pick Colour",
-                                              picker: "chrome"
-                                            },
-                                            model: {
-                                              value: _vm.border_color,
-                                              callback: function($$v) {
-                                                _vm.border_color = $$v
-                                              },
-                                              expression: "border_color"
-                                            }
-                                          }),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [_vm._v("Padding")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c("span", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: _vm.padding.top,
+                                                      expression: "padding.top"
+                                                    }
+                                                  ],
+                                                  attrs: {
+                                                    type: "text",
+                                                    name: "top-padding"
+                                                  },
+                                                  domProps: {
+                                                    value: _vm.padding.top
+                                                  },
+                                                  on: {
+                                                    keydown: function($event) {
+                                                      _vm.padding.top = _vm.operateNumVal(
+                                                        $event.key,
+                                                        _vm.padding.top
+                                                      )
+                                                    },
+                                                    input: function($event) {
+                                                      if (
+                                                        $event.target.composing
+                                                      ) {
+                                                        return
+                                                      }
+                                                      _vm.$set(
+                                                        _vm.padding,
+                                                        "top",
+                                                        $event.target.value
+                                                      )
+                                                    }
+                                                  }
+                                                }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: {
+                                                      for: "top-padding"
+                                                    }
+                                                  },
+                                                  [_vm._v("Top")]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "kb-linkBtw",
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.p_link.tb = !_vm
+                                                        .p_link.tb),
+                                                        (_vm.p_link.a = false),
+                                                        _vm.paddingUpdate(
+                                                          _vm.padding
+                                                        )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      class: !_vm.p_link.tb
+                                                        ? "deactive"
+                                                        : "",
+                                                      attrs: {
+                                                        viewBox: "0 0 28 28",
+                                                        preserveAspectRatio:
+                                                          "xMidYMid meet",
+                                                        "shape-rendering":
+                                                          "geometricPrecision"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("g", [
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        }),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        })
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm.p_link.tb
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.padding.top,
+                                                          expression:
+                                                            "padding.top"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "bottom-padding"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.padding.top
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.padding.top = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.padding.top
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.padding,
+                                                            "top",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  : _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.padding.bottom,
+                                                          expression:
+                                                            "padding.bottom"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "bottom-padding"
+                                                      },
+                                                      domProps: {
+                                                        value:
+                                                          _vm.padding.bottom
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.padding.bottom = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.padding.bottom
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.padding,
+                                                            "bottom",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: {
+                                                      for: "bottom-padding"
+                                                    }
+                                                  },
+                                                  [_vm._v("Bottom")]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "kb-linkBtw",
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.p_link.a = !_vm
+                                                        .p_link.a),
+                                                        (_vm.p_link.tb =
+                                                          _vm.p_link.a),
+                                                        (_vm.p_link.lr =
+                                                          _vm.p_link.a),
+                                                        _vm.paddingUpdate(
+                                                          _vm.padding
+                                                        )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      class: !_vm.p_link.a
+                                                        ? "deactive"
+                                                        : "",
+                                                      attrs: {
+                                                        viewBox: "0 0 28 28",
+                                                        preserveAspectRatio:
+                                                          "xMidYMid meet",
+                                                        "shape-rendering":
+                                                          "geometricPrecision"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("g", [
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        }),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        })
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm.p_link.a
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.padding.top,
+                                                          expression:
+                                                            "padding.top"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "left-padding"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.padding.top
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.padding.top = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.padding.top
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.padding,
+                                                            "top",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  : _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.padding.left,
+                                                          expression:
+                                                            "padding.left"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "left-padding"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.padding.left
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.padding.left = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.padding.left
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.padding,
+                                                            "left",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: {
+                                                      for: "left-padding"
+                                                    }
+                                                  },
+                                                  [_vm._v("Left")]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "kb-linkBtw",
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.p_link.lr = !_vm
+                                                        .p_link.lr),
+                                                        (_vm.p_link.a = false),
+                                                        _vm.paddingUpdate(
+                                                          _vm.padding
+                                                        )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      class: !_vm.p_link.lr
+                                                        ? "deactive"
+                                                        : "",
+                                                      attrs: {
+                                                        viewBox: "0 0 28 28",
+                                                        preserveAspectRatio:
+                                                          "xMidYMid meet",
+                                                        "shape-rendering":
+                                                          "geometricPrecision"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("g", [
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        }),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        })
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm.p_link.a
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.padding.top,
+                                                          expression:
+                                                            "padding.top"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "right-padding"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.padding.top
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.padding.top = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.padding.top
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.padding,
+                                                            "top",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  : _vm.p_link.lr
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.padding.left,
+                                                          expression:
+                                                            "padding.left"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "right-padding"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.padding.left
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.padding.left = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.padding.left
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.padding,
+                                                            "left",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  : _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.padding.right,
+                                                          expression:
+                                                            "padding.right"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "right-padding"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.padding.right
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.padding.right = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.padding.right
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.padding,
+                                                            "right",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: {
+                                                      for: "right-padding"
+                                                    }
+                                                  },
+                                                  [_vm._v("Right")]
+                                                )
+                                              ])
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [_vm._v("Border Width")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c("span", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: _vm.border.top,
+                                                      expression: "border.top"
+                                                    }
+                                                  ],
+                                                  attrs: {
+                                                    type: "text",
+                                                    name: "top-border"
+                                                  },
+                                                  domProps: {
+                                                    value: _vm.border.top
+                                                  },
+                                                  on: {
+                                                    keydown: function($event) {
+                                                      _vm.border.top = _vm.operateNumVal(
+                                                        $event.key,
+                                                        _vm.border.top
+                                                      )
+                                                    },
+                                                    input: function($event) {
+                                                      if (
+                                                        $event.target.composing
+                                                      ) {
+                                                        return
+                                                      }
+                                                      _vm.$set(
+                                                        _vm.border,
+                                                        "top",
+                                                        $event.target.value
+                                                      )
+                                                    }
+                                                  }
+                                                }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: { for: "top-border" }
+                                                  },
+                                                  [_vm._v("Top")]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "kb-linkBtw",
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.b_link.tb = !_vm
+                                                        .b_link.tb),
+                                                        (_vm.b_link.a = false),
+                                                        _vm.borderUpdate(
+                                                          _vm.border
+                                                        )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      class: !_vm.b_link.tb
+                                                        ? "deactive"
+                                                        : "",
+                                                      attrs: {
+                                                        viewBox: "0 0 28 28",
+                                                        preserveAspectRatio:
+                                                          "xMidYMid meet",
+                                                        "shape-rendering":
+                                                          "geometricPrecision"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("g", [
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        }),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        })
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm.b_link.tb
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value: _vm.border.top,
+                                                          expression:
+                                                            "border.top"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "bottom-border"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.border.top
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border.top = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.border.top
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.border,
+                                                            "top",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  : _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.border.bottom,
+                                                          expression:
+                                                            "border.bottom"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "bottom-border"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.border.bottom
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border.bottom = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.border.bottom
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.border,
+                                                            "bottom",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: {
+                                                      for: "bottom-border"
+                                                    }
+                                                  },
+                                                  [_vm._v("Bottom")]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "kb-linkBtw",
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.b_link.a = !_vm
+                                                        .b_link.a),
+                                                        (_vm.b_link.tb =
+                                                          _vm.b_link.a),
+                                                        (_vm.b_link.lr =
+                                                          _vm.b_link.a),
+                                                        _vm.borderUpdate(
+                                                          _vm.border
+                                                        )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      class: !_vm.b_link.a
+                                                        ? "deactive"
+                                                        : "",
+                                                      attrs: {
+                                                        viewBox: "0 0 28 28",
+                                                        preserveAspectRatio:
+                                                          "xMidYMid meet",
+                                                        "shape-rendering":
+                                                          "geometricPrecision"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("g", [
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        }),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        })
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm.b_link.a
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value: _vm.border.top,
+                                                          expression:
+                                                            "border.top"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "left-border"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.border.top
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border.top = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.border.top
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.border,
+                                                            "top",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  : _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.border.left,
+                                                          expression:
+                                                            "border.left"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "left-border"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.border.left
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border.left = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.border.left
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.border,
+                                                            "left",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: {
+                                                      for: "left-border"
+                                                    }
+                                                  },
+                                                  [_vm._v("Left")]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "kb-linkBtw",
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.b_link.lr = !_vm
+                                                        .b_link.lr),
+                                                        (_vm.b_link.a = false),
+                                                        _vm.borderUpdate(
+                                                          _vm.border
+                                                        )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      class: !_vm.b_link.lr
+                                                        ? "deactive"
+                                                        : "",
+                                                      attrs: {
+                                                        viewBox: "0 0 28 28",
+                                                        preserveAspectRatio:
+                                                          "xMidYMid meet",
+                                                        "shape-rendering":
+                                                          "geometricPrecision"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("g", [
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        }),
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z",
+                                                            "fill-rule":
+                                                              "evenodd"
+                                                          }
+                                                        })
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm.b_link.a
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value: _vm.border.top,
+                                                          expression:
+                                                            "border.top"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "right-border"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.border.top
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border.top = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.border.top
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.border,
+                                                            "top",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  : _vm.b_link.lr
+                                                  ? _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.border.left,
+                                                          expression:
+                                                            "border.left"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "right-border"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.border.left
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border.left = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.border.left
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.border,
+                                                            "left",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  : _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.border.right,
+                                                          expression:
+                                                            "border.right"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "right-border"
+                                                      },
+                                                      domProps: {
+                                                        value: _vm.border.right
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border.right = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.border.right
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.border,
+                                                            "right",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    attrs: {
+                                                      for: "right-border"
+                                                    }
+                                                  },
+                                                  [_vm._v("Right")]
+                                                )
+                                              ])
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [_vm._v("Border Style")]
+                                          ),
                                           _vm._v(" "),
                                           _c(
                                             "div",
                                             {
                                               staticClass:
-                                                "kb-slider-color-selection"
+                                                "kb-tob-content kb-dropdown forScroll"
                                             },
                                             [
-                                              _c("colour-slider-picker", {
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kb-dropdown-selected-item",
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.show_dropdown =
+                                                        "border"
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(_vm.border_style)
+                                                  ),
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-angle-down kb-side-dropdown-arrow"
+                                                  })
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm.show_dropdown == "border"
+                                                ? _c(
+                                                    "ul",
+                                                    {
+                                                      staticClass:
+                                                        "kb-dropdown-items"
+                                                    },
+                                                    _vm._l(
+                                                      _vm.border_style_types,
+                                                      function(bst) {
+                                                        return _c(
+                                                          "li",
+                                                          {
+                                                            key: bst,
+                                                            class:
+                                                              _vm.border_style ==
+                                                              bst
+                                                                ? "kb-active-dropdown-item"
+                                                                : "",
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                ;(_vm.border_style = bst),
+                                                                  (_vm.show_dropdown =
+                                                                    "")
+                                                              }
+                                                            }
+                                                          },
+                                                          [_vm._v(_vm._s(bst))]
+                                                        )
+                                                      }
+                                                    ),
+                                                    0
+                                                  )
+                                                : _vm._e()
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [_vm._v("Border Radius")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kb-tab-border-radius"
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.border_radius
+                                                              .top_left,
+                                                          expression:
+                                                            "border_radius.top_left"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name: "top-left-border"
+                                                      },
+                                                      domProps: {
+                                                        value:
+                                                          _vm.border_radius
+                                                            .top_left
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.border_radius.top_left = _vm.operateNumVal(
+                                                            $event.key,
+                                                            _vm.border_radius
+                                                              .top_left
+                                                          )
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.border_radius,
+                                                            "top_left",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _vm.br_link
+                                                      ? _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm
+                                                                  .border_radius
+                                                                  .top_left,
+                                                              expression:
+                                                                "border_radius.top_left"
+                                                            }
+                                                          ],
+                                                          attrs: {
+                                                            type: "text",
+                                                            name:
+                                                              "top-right-border"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.border_radius
+                                                                .top_left
+                                                          },
+                                                          on: {
+                                                            keydown: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.border_radius.top_left = _vm.operateNumVal(
+                                                                $event.key,
+                                                                _vm
+                                                                  .border_radius
+                                                                  .top_left
+                                                              )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.border_radius,
+                                                                "top_left",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      : _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm
+                                                                  .border_radius
+                                                                  .top_right,
+                                                              expression:
+                                                                "border_radius.top_right"
+                                                            }
+                                                          ],
+                                                          attrs: {
+                                                            type: "text",
+                                                            name:
+                                                              "top-right-border"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.border_radius
+                                                                .top_right
+                                                          },
+                                                          on: {
+                                                            keydown: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.border_radius.top_right = _vm.operateNumVal(
+                                                                $event.key,
+                                                                _vm
+                                                                  .border_radius
+                                                                  .top_right
+                                                              )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.border_radius,
+                                                                "top_right",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                  ])
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kb-border-radius-demo",
+                                                  style: _vm.demoBorder
+                                                },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass: "kb-linkBtw",
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          ;(_vm.br_link = !_vm.br_link),
+                                                            _vm.borderRadiusUpdate(
+                                                              _vm.border_radius
+                                                            )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "svg",
+                                                        {
+                                                          class: !_vm.br_link
+                                                            ? "deactive"
+                                                            : "",
+                                                          attrs: {
+                                                            viewBox:
+                                                              "0 0 28 28",
+                                                            preserveAspectRatio:
+                                                              "xMidYMid meet",
+                                                            "shape-rendering":
+                                                              "geometricPrecision"
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("g", [
+                                                            _c("path", {
+                                                              attrs: {
+                                                                d:
+                                                                  "M14.71 17.71a3 3 0 0 1-2.12-.88l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 0 1.41 0l5-4.95a1 1 0 0 0 0-1.41l-1.46-1.42a1 1 0 0 0-1.41 0L16.1 9.07a1 1 0 0 1-1.41-1.41l1.43-1.43a3.07 3.07 0 0 1 4.24 0l1.41 1.41a3 3 0 0 1 0 4.24l-5 4.95a3 3 0 0 1-2.06.88z"
+                                                              }
+                                                            }),
+                                                            _c("path", {
+                                                              attrs: {
+                                                                d:
+                                                                  "M9.76 22.66a3 3 0 0 1-2.12-.88l-1.42-1.42a3 3 0 0 1 0-4.24l5-4.95a3.07 3.07 0 0 1 4.24 0l.71.71a1 1 0 0 1-1.41 1.41l-.76-.7a1 1 0 0 0-1.41 0l-5 4.95a1 1 0 0 0 0 1.41L9 20.36a1 1 0 0 0 1.41 0L11.82 19a1 1 0 0 1 1.41 1.41l-1.36 1.36a3 3 0 0 1-2.11.89z"
+                                                              }
+                                                            })
+                                                          ])
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kb-tab-border-radius"
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _vm.br_link
+                                                      ? _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm
+                                                                  .border_radius
+                                                                  .top_left,
+                                                              expression:
+                                                                "border_radius.top_left"
+                                                            }
+                                                          ],
+                                                          attrs: {
+                                                            type: "text",
+                                                            name:
+                                                              "bottom-left-border"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.border_radius
+                                                                .top_left
+                                                          },
+                                                          on: {
+                                                            keydown: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.border_radius.top_left = _vm.operateNumVal(
+                                                                $event.key,
+                                                                _vm
+                                                                  .border_radius
+                                                                  .top_left
+                                                              )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.border_radius,
+                                                                "top_left",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      : _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm
+                                                                  .border_radius
+                                                                  .bottom_left,
+                                                              expression:
+                                                                "border_radius.bottom_left"
+                                                            }
+                                                          ],
+                                                          attrs: {
+                                                            type: "text",
+                                                            name:
+                                                              "bottom-left-border"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.border_radius
+                                                                .bottom_left
+                                                          },
+                                                          on: {
+                                                            keydown: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.border_radius.bottom_left = _vm.operateNumVal(
+                                                                $event.key,
+                                                                _vm
+                                                                  .border_radius
+                                                                  .bottom_left
+                                                              )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.border_radius,
+                                                                "bottom_left",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _vm.br_link
+                                                      ? _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm
+                                                                  .border_radius
+                                                                  .top_left,
+                                                              expression:
+                                                                "border_radius.top_left"
+                                                            }
+                                                          ],
+                                                          attrs: {
+                                                            type: "text",
+                                                            name:
+                                                              "bottom-right-border"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.border_radius
+                                                                .top_left
+                                                          },
+                                                          on: {
+                                                            keydown: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.border_radius.top_left = _vm.operateNumVal(
+                                                                $event.key,
+                                                                _vm
+                                                                  .border_radius
+                                                                  .top_left
+                                                              )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.border_radius,
+                                                                "top_left",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      : _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm
+                                                                  .border_radius
+                                                                  .bottom_right,
+                                                              expression:
+                                                                "border_radius.bottom_right"
+                                                            }
+                                                          ],
+                                                          attrs: {
+                                                            type: "text",
+                                                            name:
+                                                              "bottom-right-border"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.border_radius
+                                                                .bottom_right
+                                                          },
+                                                          on: {
+                                                            keydown: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.border_radius.bottom_right = _vm.operateNumVal(
+                                                                $event.key,
+                                                                _vm
+                                                                  .border_radius
+                                                                  .bottom_right
+                                                              )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.border_radius,
+                                                                "bottom_right",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                  ])
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "kb-inner-tab-component kb-color-picker"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [
+                                              _vm._v("Border Color"),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "kb-color-demo kb-border-color-demo",
+                                                  style: _vm.demoBorder
+                                                },
+                                                [
+                                                  _c("span", {
+                                                    class:
+                                                      _vm.border_color.hex ==
+                                                      "#ff000000"
+                                                        ? "kb-no-color"
+                                                        : ""
+                                                  })
+                                                ]
+                                              ),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "kb-color-demo"
+                                                },
+                                                [
+                                                  _c("span", {
+                                                    directives: [
+                                                      {
+                                                        name: "tooltip",
+                                                        rawName: "v-tooltip",
+                                                        value: {
+                                                          content: "Transparent"
+                                                        },
+                                                        expression:
+                                                          "{content:'Transparent'}"
+                                                      }
+                                                    ],
+                                                    staticClass: "kb-no-color",
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.border_color.hex =
+                                                          "#ff000000"
+                                                      }
+                                                    }
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c("colour-material-picker", {
                                                 attrs: {
                                                   label: "Pick Colour",
                                                   picker: "chrome"
@@ -64136,138 +64254,141 @@ var render = function() {
                                               _c(
                                                 "div",
                                                 {
-                                                  staticClass: "kb-color-preset"
+                                                  staticClass:
+                                                    "kb-slider-color-selection"
                                                 },
-                                                _vm._l(
-                                                  _vm.presetColors,
-                                                  function(color) {
-                                                    return _c("span", {
-                                                      key: color.hex,
-                                                      class:
-                                                        _vm.border_color.hex ==
-                                                        color.hex
-                                                          ? "kb-active-color"
-                                                          : "",
-                                                      style: {
-                                                        "background-color":
-                                                          color.hex
+                                                [
+                                                  _c("colour-slider-picker", {
+                                                    attrs: {
+                                                      label: "Pick Colour",
+                                                      picker: "chrome"
+                                                    },
+                                                    model: {
+                                                      value: _vm.border_color,
+                                                      callback: function($$v) {
+                                                        _vm.border_color = $$v
                                                       },
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.border_color = color
-                                                        }
+                                                      expression: "border_color"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "kb-color-preset"
+                                                    },
+                                                    _vm._l(
+                                                      _vm.presetColors,
+                                                      function(color) {
+                                                        return _c("span", {
+                                                          key: color.hex,
+                                                          class:
+                                                            _vm.border_color
+                                                              .hex == color.hex
+                                                              ? "kb-active-color"
+                                                              : "",
+                                                          style: {
+                                                            "background-color":
+                                                              color.hex
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.border_color = color
+                                                            }
+                                                          }
+                                                        })
                                                       }
-                                                    })
-                                                  }
-                                                ),
-                                                0
+                                                    ),
+                                                    0
+                                                  )
+                                                ],
+                                                1
                                               )
                                             ],
                                             1
                                           )
-                                        ],
-                                        1
+                                        ]
                                       )
                                     ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "tab",
-                                {
-                                  attrs: {
-                                    id: "background",
-                                    name: "Background"
-                                  }
-                                },
-                                [
+                                  ),
+                                  _vm._v(" "),
                                   _c(
-                                    "div",
+                                    "tab",
                                     {
-                                      staticClass:
-                                        "kb-inner-tab-component kb-color-picker"
+                                      attrs: {
+                                        id: "background",
+                                        name: "Background"
+                                      }
                                     },
                                     [
                                       _c(
                                         "div",
-                                        { staticClass: "kb-tab-head" },
+                                        {
+                                          staticClass:
+                                            "kb-inner-tab-component kb-color-picker"
+                                        },
                                         [
-                                          _vm._v("Background Color"),
                                           _c(
-                                            "span",
-                                            {
-                                              staticClass:
-                                                "kb-color-demo kb-background-color-demo",
-                                              style: _vm.demoBackground
-                                            },
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
                                             [
-                                              _c("span", {
-                                                class:
-                                                  _vm.background_color.hex ==
-                                                  "#ff000000"
-                                                    ? "kb-no-color"
-                                                    : ""
-                                              })
+                                              _vm._v("Background Color"),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "kb-color-demo kb-background-color-demo",
+                                                  style: _vm.demoBackground
+                                                },
+                                                [
+                                                  _c("span", {
+                                                    class:
+                                                      _vm.background_color
+                                                        .hex == "#ff000000"
+                                                        ? "kb-no-color"
+                                                        : ""
+                                                  })
+                                                ]
+                                              ),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "kb-color-demo"
+                                                },
+                                                [
+                                                  _c("span", {
+                                                    directives: [
+                                                      {
+                                                        name: "tooltip",
+                                                        rawName: "v-tooltip",
+                                                        value: {
+                                                          content: "Transparent"
+                                                        },
+                                                        expression:
+                                                          "{content:'Transparent'}"
+                                                      }
+                                                    ],
+                                                    staticClass: "kb-no-color",
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.background_color.hex =
+                                                          "#ff000000"
+                                                      }
+                                                    }
+                                                  })
+                                                ]
+                                              )
                                             ]
                                           ),
-                                          _c(
-                                            "span",
-                                            { staticClass: "kb-color-demo" },
-                                            [
-                                              _c("span", {
-                                                directives: [
-                                                  {
-                                                    name: "tooltip",
-                                                    rawName: "v-tooltip",
-                                                    value: {
-                                                      content: "Transparent"
-                                                    },
-                                                    expression:
-                                                      "{content:'Transparent'}"
-                                                  }
-                                                ],
-                                                staticClass: "kb-no-color",
-                                                on: {
-                                                  click: function($event) {
-                                                    _vm.background_color.hex =
-                                                      "#ff000000"
-                                                  }
-                                                }
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-content" },
-                                        [
-                                          _c("colour-material-picker", {
-                                            attrs: {
-                                              label: "Pick Colour",
-                                              picker: "chrome"
-                                            },
-                                            model: {
-                                              value: _vm.background_color,
-                                              callback: function($$v) {
-                                                _vm.background_color = $$v
-                                              },
-                                              expression: "background_color"
-                                            }
-                                          }),
                                           _vm._v(" "),
                                           _c(
                                             "div",
-                                            {
-                                              staticClass:
-                                                "kb-slider-color-selection"
-                                            },
+                                            { staticClass: "kb-tab-content" },
                                             [
-                                              _c("colour-slider-picker", {
+                                              _c("colour-material-picker", {
                                                 attrs: {
                                                   label: "Pick Colour",
                                                   picker: "chrome"
@@ -64284,384 +64405,1329 @@ var render = function() {
                                               _c(
                                                 "div",
                                                 {
-                                                  staticClass: "kb-color-preset"
+                                                  staticClass:
+                                                    "kb-slider-color-selection"
                                                 },
-                                                _vm._l(
-                                                  _vm.presetColors,
-                                                  function(color) {
-                                                    return _c("span", {
-                                                      directives: [
-                                                        {
-                                                          name: "tooltip",
-                                                          rawName: "v-tooltip"
-                                                        }
-                                                      ],
-                                                      key: color.hex,
-                                                      class:
-                                                        _vm.background_color
-                                                          .hex == color.hex
-                                                          ? "kb-active-color"
-                                                          : "",
-                                                      style: {
-                                                        "background-color":
-                                                          color.hex
+                                                [
+                                                  _c("colour-slider-picker", {
+                                                    attrs: {
+                                                      label: "Pick Colour",
+                                                      picker: "chrome"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        _vm.background_color,
+                                                      callback: function($$v) {
+                                                        _vm.background_color = $$v
                                                       },
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.background_color = color
-                                                        }
+                                                      expression:
+                                                        "background_color"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "kb-color-preset"
+                                                    },
+                                                    _vm._l(
+                                                      _vm.presetColors,
+                                                      function(color) {
+                                                        return _c("span", {
+                                                          directives: [
+                                                            {
+                                                              name: "tooltip",
+                                                              rawName:
+                                                                "v-tooltip"
+                                                            }
+                                                          ],
+                                                          key: color.hex,
+                                                          class:
+                                                            _vm.background_color
+                                                              .hex == color.hex
+                                                              ? "kb-active-color"
+                                                              : "",
+                                                          style: {
+                                                            "background-color":
+                                                              color.hex
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.background_color = color
+                                                            }
+                                                          }
+                                                        })
                                                       }
-                                                    })
-                                                  }
-                                                ),
-                                                0
+                                                    ),
+                                                    0
+                                                  )
+                                                ],
+                                                1
                                               )
                                             ],
                                             1
                                           )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "kb-inner-tab-component" },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [
-                                          _vm._v(
-                                            "Background Gradient\n                      "
-                                          ),
-                                          _c("toggle-button", {
-                                            directives: [
-                                              {
-                                                name: "tooltip",
-                                                rawName: "v-tooltip",
-                                                value: {
-                                                  content:
-                                                    _vm.background_gradient
-                                                      .active != 0
-                                                      ? "Enable"
-                                                      : "Disable"
-                                                },
-                                                expression:
-                                                  "{content:background_gradient.active != 0 ? 'Enable' : 'Disable' }"
-                                              }
-                                            ],
-                                            staticClass: "kb-toggleBtn",
-                                            attrs: {
-                                              labels: {
-                                                checked: "On",
-                                                unchecked: "Off"
-                                              },
-                                              color: {
-                                                checked: "#1867c0",
-                                                unchecked: "#d3d3d3"
-                                              }
-                                            },
-                                            model: {
-                                              value:
-                                                _vm.background_gradient.active,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.background_gradient,
-                                                  "active",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "background_gradient.active"
-                                            }
-                                          })
-                                        ],
-                                        1
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
                                         "div",
-                                        { staticClass: "kb-tab-content" },
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
                                         [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [
+                                              _vm._v(
+                                                "Background Gradient\n                        "
+                                              ),
+                                              _c("toggle-button", {
+                                                directives: [
+                                                  {
+                                                    name: "tooltip",
+                                                    rawName: "v-tooltip",
+                                                    value: {
+                                                      content:
+                                                        _vm.background_gradient
+                                                          .active != 0
+                                                          ? "Enable"
+                                                          : "Disable"
+                                                    },
+                                                    expression:
+                                                      "{content:background_gradient.active != 0 ? 'Enable' : 'Disable' }"
+                                                  }
+                                                ],
+                                                staticClass: "kb-toggleBtn",
+                                                attrs: {
+                                                  sync: true,
+                                                  labels: {
+                                                    checked: "On",
+                                                    unchecked: "Off"
+                                                  },
+                                                  color: {
+                                                    checked: "#1867c0",
+                                                    unchecked: "#d3d3d3"
+                                                  }
+                                                },
+                                                model: {
+                                                  value:
+                                                    _vm.background_gradient
+                                                      .active,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.background_gradient,
+                                                      "active",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "background_gradient.active"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kb-gradient-color-selection"
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "kb-gradient-selected-color"
+                                                    },
+                                                    [
+                                                      _c("span", {
+                                                        directives: [
+                                                          {
+                                                            name: "tooltip",
+                                                            rawName:
+                                                              "v-tooltip",
+                                                            value: {
+                                                              content:
+                                                                "Select Color"
+                                                            },
+                                                            expression:
+                                                              "{content:'Select Color'}"
+                                                          }
+                                                        ],
+                                                        staticClass:
+                                                          "kb-color-demo",
+                                                        style: {
+                                                          "background-color":
+                                                            _vm
+                                                              .background_gradient
+                                                              .start.hex
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            ;(_vm.background_gradient.gradientStart = !_vm
+                                                              .background_gradient
+                                                              .gradientStart),
+                                                              (_vm.background_gradient.gradientEnd = false)
+                                                          }
+                                                        }
+                                                      }),
+                                                      _c(
+                                                        "colour-material-picker",
+                                                        {
+                                                          attrs: {
+                                                            label:
+                                                              "Pick Colour",
+                                                            picker: "chrome"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm
+                                                                .background_gradient
+                                                                .start,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.background_gradient,
+                                                                "start",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "background_gradient.start"
+                                                          }
+                                                        }
+                                                      )
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "kb-gradient-selected-color"
+                                                    },
+                                                    [
+                                                      _c("span", {
+                                                        directives: [
+                                                          {
+                                                            name: "tooltip",
+                                                            rawName:
+                                                              "v-tooltip",
+                                                            value: {
+                                                              content:
+                                                                "Select Color"
+                                                            },
+                                                            expression:
+                                                              "{content:'Select Color'}"
+                                                          }
+                                                        ],
+                                                        staticClass:
+                                                          "kb-color-demo",
+                                                        style: {
+                                                          "background-color":
+                                                            _vm
+                                                              .background_gradient
+                                                              .end.hex
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            ;(_vm.background_gradient.gradientEnd = !_vm
+                                                              .background_gradient
+                                                              .gradientEnd),
+                                                              (_vm.background_gradient.gradientStart = false)
+                                                          }
+                                                        }
+                                                      }),
+                                                      _c(
+                                                        "colour-material-picker",
+                                                        {
+                                                          attrs: {
+                                                            label:
+                                                              "Pick Colour",
+                                                            picker: "chrome"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm
+                                                                .background_gradient
+                                                                .end,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.background_gradient,
+                                                                "end",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "background_gradient.end"
+                                                          }
+                                                        }
+                                                      )
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm.background_gradient
+                                                    .gradientStart ||
+                                                  _vm.background_gradient
+                                                    .gradientEnd
+                                                    ? _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "kb-color-picker"
+                                                        },
+                                                        [
+                                                          _c("span", {
+                                                            staticClass:
+                                                              "sel-tip-icon",
+                                                            class: _vm
+                                                              .background_gradient
+                                                              .gradientStart
+                                                              ? "start"
+                                                              : "end"
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "kb-slider-color-selection"
+                                                            },
+                                                            [
+                                                              _vm
+                                                                .background_gradient
+                                                                .gradientStart
+                                                                ? _c(
+                                                                    "colour-slider-picker",
+                                                                    {
+                                                                      attrs: {
+                                                                        label:
+                                                                          "Pick Colour",
+                                                                        picker:
+                                                                          "chrome"
+                                                                      },
+                                                                      model: {
+                                                                        value:
+                                                                          _vm
+                                                                            .background_gradient
+                                                                            .start,
+                                                                        callback: function(
+                                                                          $$v
+                                                                        ) {
+                                                                          _vm.$set(
+                                                                            _vm.background_gradient,
+                                                                            "start",
+                                                                            $$v
+                                                                          )
+                                                                        },
+                                                                        expression:
+                                                                          "background_gradient.start"
+                                                                      }
+                                                                    }
+                                                                  )
+                                                                : _vm._e(),
+                                                              _vm._v(" "),
+                                                              _vm
+                                                                .background_gradient
+                                                                .gradientEnd
+                                                                ? _c(
+                                                                    "colour-slider-picker",
+                                                                    {
+                                                                      attrs: {
+                                                                        label:
+                                                                          "Pick Colour",
+                                                                        picker:
+                                                                          "chrome"
+                                                                      },
+                                                                      model: {
+                                                                        value:
+                                                                          _vm
+                                                                            .background_gradient
+                                                                            .end,
+                                                                        callback: function(
+                                                                          $$v
+                                                                        ) {
+                                                                          _vm.$set(
+                                                                            _vm.background_gradient,
+                                                                            "end",
+                                                                            $$v
+                                                                          )
+                                                                        },
+                                                                        expression:
+                                                                          "background_gradient.end"
+                                                                      }
+                                                                    }
+                                                                  )
+                                                                : _vm._e(),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "kb-color-preset"
+                                                                },
+                                                                _vm._l(
+                                                                  _vm.presetColors,
+                                                                  function(
+                                                                    color
+                                                                  ) {
+                                                                    return _c(
+                                                                      "span",
+                                                                      {
+                                                                        key:
+                                                                          color.hex,
+                                                                        class: (_vm
+                                                                          .background_gradient
+                                                                          .gradientStart
+                                                                        ? _vm
+                                                                            .background_gradient
+                                                                            .start
+                                                                            .hex ==
+                                                                          color.hex
+                                                                        : _vm
+                                                                            .background_gradient
+                                                                            .end
+                                                                            .hex ==
+                                                                          color.hex)
+                                                                          ? "kb-active-color"
+                                                                          : "",
+                                                                        style: {
+                                                                          "background-color":
+                                                                            color.hex
+                                                                        },
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            _vm
+                                                                              .background_gradient
+                                                                              .gradientStart
+                                                                              ? (_vm.background_gradient.start = color)
+                                                                              : (_vm.background_gradient.end = color)
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    )
+                                                                  }
+                                                                ),
+                                                                0
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ]
+                                                      )
+                                                    : _vm._e()
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [
+                                              _vm._v(
+                                                "Background Gradient Direction"
+                                              ),
+                                              _c(
+                                                "span",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "tooltip",
+                                                      rawName: "v-tooltip",
+                                                      value: {
+                                                        content: "Reverse"
+                                                      },
+                                                      expression:
+                                                        "{content:'Reverse'}"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "kb-reverse-icon",
+                                                  class:
+                                                    parseInt(
+                                                      _vm.background_gradient.direction.split(
+                                                        "deg"
+                                                      )[0]
+                                                    ) < 0
+                                                      ? "active"
+                                                      : "",
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.background_gradient.direction =
+                                                        parseInt(
+                                                          _vm.background_gradient.direction.split(
+                                                            "deg"
+                                                          )[0]
+                                                        ) *
+                                                          -1 +
+                                                        "deg"
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-sync-alt"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "kb-rangeInp" },
+                                                [
+                                                  _c("range-slider", {
+                                                    staticClass: "slider",
+                                                    attrs: {
+                                                      min: "-360",
+                                                      max: "360",
+                                                      step: "1"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        _vm
+                                                          .background_gradient_range_slider
+                                                          .direction,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.background_gradient_range_slider,
+                                                          "direction",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "background_gradient_range_slider.direction"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm
+                                                              .background_gradient
+                                                              .direction,
+                                                          expression:
+                                                            "background_gradient.direction"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name:
+                                                          "background_gradient-direction"
+                                                      },
+                                                      domProps: {
+                                                        value:
+                                                          _vm
+                                                            .background_gradient
+                                                            .direction
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.background_gradient.direction =
+                                                            $event.key ==
+                                                            "ArrowUp"
+                                                              ? parseInt(
+                                                                  _vm.background_gradient.direction.split(
+                                                                    "deg"
+                                                                  )[0]
+                                                                ) +
+                                                                1 +
+                                                                "deg"
+                                                              : $event.key ==
+                                                                "ArrowDown"
+                                                              ? parseInt(
+                                                                  _vm.background_gradient.direction.split(
+                                                                    "deg"
+                                                                  )[0]
+                                                                ) -
+                                                                1 +
+                                                                "deg"
+                                                              : _vm
+                                                                  .background_gradient
+                                                                  .direction
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.background_gradient,
+                                                            "direction",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [
+                                              _vm._v("Start Position"),
+                                              _c(
+                                                "span",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "tooltip",
+                                                      rawName: "v-tooltip",
+                                                      value: {
+                                                        content: "Reverse"
+                                                      },
+                                                      expression:
+                                                        "{content:'Reverse'}"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "kb-reverse-icon",
+                                                  class:
+                                                    parseInt(
+                                                      _vm.background_gradient.startPosition.split(
+                                                        "%"
+                                                      )[0]
+                                                    ) < 0
+                                                      ? "active"
+                                                      : "",
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.background_gradient.startPosition =
+                                                        parseInt(
+                                                          _vm.background_gradient.startPosition.split(
+                                                            "%"
+                                                          )[0]
+                                                        ) *
+                                                          -1 +
+                                                        "%"
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-sync-alt"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "kb-rangeInp" },
+                                                [
+                                                  _c("range-slider", {
+                                                    staticClass: "slider",
+                                                    attrs: {
+                                                      min: "-100",
+                                                      max: "100",
+                                                      step: "1"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        _vm
+                                                          .background_gradient_range_slider
+                                                          .startPosition,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.background_gradient_range_slider,
+                                                          "startPosition",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "background_gradient_range_slider.startPosition"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm
+                                                              .background_gradient
+                                                              .startPosition,
+                                                          expression:
+                                                            "background_gradient.startPosition"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name:
+                                                          "background-gradient-start-position"
+                                                      },
+                                                      domProps: {
+                                                        value:
+                                                          _vm
+                                                            .background_gradient
+                                                            .startPosition
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.background_gradient.startPosition =
+                                                            $event.key ==
+                                                            "ArrowUp"
+                                                              ? parseInt(
+                                                                  _vm.background_gradient.startPosition.split(
+                                                                    "%"
+                                                                  )[0]
+                                                                ) +
+                                                                1 +
+                                                                "%"
+                                                              : $event.key ==
+                                                                "ArrowDown"
+                                                              ? parseInt(
+                                                                  _vm.background_gradient.startPosition.split(
+                                                                    "%"
+                                                                  )[0]
+                                                                ) -
+                                                                1 +
+                                                                "%"
+                                                              : _vm
+                                                                  .background_gradient
+                                                                  .startPosition
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.background_gradient,
+                                                            "startPosition",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [
+                                              _vm._v("End Position"),
+                                              _c(
+                                                "span",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "tooltip",
+                                                      rawName: "v-tooltip",
+                                                      value: {
+                                                        content: "Reverse"
+                                                      },
+                                                      expression:
+                                                        "{content:'Reverse'}"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "kb-reverse-icon",
+                                                  class:
+                                                    parseInt(
+                                                      _vm.background_gradient.endPosition.split(
+                                                        "%"
+                                                      )[0]
+                                                    ) < 0
+                                                      ? "active"
+                                                      : "",
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.background_gradient.endPosition =
+                                                        parseInt(
+                                                          _vm.background_gradient.endPosition.split(
+                                                            "%"
+                                                          )[0]
+                                                        ) *
+                                                          -1 +
+                                                        "%"
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-sync-alt"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "kb-rangeInp" },
+                                                [
+                                                  _c("range-slider", {
+                                                    staticClass: "slider",
+                                                    attrs: {
+                                                      min: "-100",
+                                                      max: "100",
+                                                      step: "1"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        _vm
+                                                          .background_gradient_range_slider
+                                                          .endPosition,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.background_gradient_range_slider,
+                                                          "endPosition",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "background_gradient_range_slider.endPosition"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm
+                                                              .background_gradient
+                                                              .endPosition,
+                                                          expression:
+                                                            "background_gradient.endPosition"
+                                                        }
+                                                      ],
+                                                      attrs: {
+                                                        type: "text",
+                                                        name:
+                                                          "background-gradient-end-position"
+                                                      },
+                                                      domProps: {
+                                                        value:
+                                                          _vm
+                                                            .background_gradient
+                                                            .endPosition
+                                                      },
+                                                      on: {
+                                                        keydown: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.background_gradient.endPosition =
+                                                            $event.key ==
+                                                            "ArrowUp"
+                                                              ? parseInt(
+                                                                  _vm.background_gradient.endPosition.split(
+                                                                    "%"
+                                                                  )[0]
+                                                                ) +
+                                                                1 +
+                                                                "%"
+                                                              : $event.key ==
+                                                                "ArrowDown"
+                                                              ? parseInt(
+                                                                  _vm.background_gradient.endPosition.split(
+                                                                    "%"
+                                                                  )[0]
+                                                                ) -
+                                                                1 +
+                                                                "%"
+                                                              : _vm
+                                                                  .background_gradient
+                                                                  .endPosition
+                                                        },
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            _vm.background_gradient,
+                                                            "endPosition",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [
+                                              _vm._v(
+                                                "Background Image\n                          "
+                                              ),
+                                              _c("toggle-button", {
+                                                directives: [
+                                                  {
+                                                    name: "tooltip",
+                                                    rawName: "v-tooltip",
+                                                    value: {
+                                                      content:
+                                                        _vm.background_image
+                                                          .active != 0
+                                                          ? "Enable"
+                                                          : "Disable"
+                                                    },
+                                                    expression:
+                                                      "{content:background_image.active != 0 ? 'Enable' : 'Disable' }"
+                                                  }
+                                                ],
+                                                staticClass: "kb-toggleBtn",
+                                                attrs: {
+                                                  sync: true,
+                                                  labels: {
+                                                    checked: "On",
+                                                    unchecked: "Off"
+                                                  },
+                                                  color: {
+                                                    checked: "#1867c0",
+                                                    unchecked: "#d3d3d3"
+                                                  }
+                                                },
+                                                model: {
+                                                  value:
+                                                    _vm.background_image.active,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.background_image,
+                                                      "active",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "background_image.active"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-content" },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kb-selectedBgImg",
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.imgSelection = !_vm.imgSelection),
+                                                        (_vm.background_image.active = true)
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _vm.background_image.name
+                                                    ? _c("img", {
+                                                        attrs: {
+                                                          src:
+                                                            _vm.background_image
+                                                              .name,
+                                                          width: "auto"
+                                                        }
+                                                      })
+                                                    : _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "kb-ispan-add"
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "fa fa-plus"
+                                                          })
+                                                        ]
+                                                      )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [_vm._v("Background Image Size")]
+                                          ),
+                                          _vm._v(" "),
                                           _c(
                                             "div",
                                             {
                                               staticClass:
-                                                "kb-gradient-color-selection"
+                                                "kb-tob-content kb-dropdown forScroll"
                                             },
                                             [
                                               _c(
                                                 "div",
                                                 {
                                                   staticClass:
-                                                    "kb-gradient-selected-color"
+                                                    "kb-dropdown-selected-item",
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.show_dropdown = "size"
+                                                    }
+                                                  }
                                                 },
                                                 [
-                                                  _c("span", {
-                                                    directives: [
-                                                      {
-                                                        name: "tooltip",
-                                                        rawName: "v-tooltip",
-                                                        value: {
-                                                          content:
-                                                            "Select Color"
-                                                        },
-                                                        expression:
-                                                          "{content:'Select Color'}"
-                                                      }
-                                                    ],
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.background_image.size
+                                                    )
+                                                  ),
+                                                  _c("i", {
                                                     staticClass:
-                                                      "kb-color-demo",
-                                                    style: {
-                                                      "background-color":
-                                                        _vm.background_gradient
-                                                          .start.hex
-                                                    },
-                                                    on: {
-                                                      click: function($event) {
-                                                        ;(_vm.background_gradient.gradientStart = !_vm
-                                                          .background_gradient
-                                                          .gradientStart),
-                                                          (_vm.background_gradient.gradientEnd = false)
-                                                      }
-                                                    }
-                                                  }),
-                                                  _c("colour-material-picker", {
-                                                    attrs: {
-                                                      label: "Pick Colour",
-                                                      picker: "chrome"
-                                                    },
-                                                    model: {
-                                                      value:
-                                                        _vm.background_gradient
-                                                          .start,
-                                                      callback: function($$v) {
-                                                        _vm.$set(
-                                                          _vm.background_gradient,
-                                                          "start",
-                                                          $$v
-                                                        )
-                                                      },
-                                                      expression:
-                                                        "background_gradient.start"
-                                                    }
+                                                      "fa fa-angle-down kb-side-dropdown-arrow"
                                                   })
-                                                ],
-                                                1
+                                                ]
                                               ),
                                               _vm._v(" "),
+                                              _vm.show_dropdown == "size"
+                                                ? _c(
+                                                    "ul",
+                                                    {
+                                                      staticClass:
+                                                        "kb-dropdown-items"
+                                                    },
+                                                    _vm._l(
+                                                      _vm.background_image_sizes,
+                                                      function(bgimgs) {
+                                                        return _c(
+                                                          "li",
+                                                          {
+                                                            key: bgimgs,
+                                                            class:
+                                                              _vm
+                                                                .background_image
+                                                                .size == bgimgs
+                                                                ? "kb-active-dropdown-item"
+                                                                : "",
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                ;(_vm.background_image.size = bgimgs),
+                                                                  (_vm.show_dropdown =
+                                                                    "")
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(bgimgs)
+                                                            )
+                                                          ]
+                                                        )
+                                                      }
+                                                    ),
+                                                    0
+                                                  )
+                                                : _vm._e()
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [
+                                              _vm._v(
+                                                "Background Image Position"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "kb-tob-content kb-dropdown forScroll"
+                                            },
+                                            [
                                               _c(
                                                 "div",
                                                 {
                                                   staticClass:
-                                                    "kb-gradient-selected-color"
+                                                    "kb-dropdown-selected-item",
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.show_dropdown =
+                                                        "position"
+                                                    }
+                                                  }
                                                 },
                                                 [
-                                                  _c("span", {
-                                                    directives: [
-                                                      {
-                                                        name: "tooltip",
-                                                        rawName: "v-tooltip",
-                                                        value: {
-                                                          content:
-                                                            "Select Color"
-                                                        },
-                                                        expression:
-                                                          "{content:'Select Color'}"
-                                                      }
-                                                    ],
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.background_image
+                                                        .position
+                                                    )
+                                                  ),
+                                                  _c("i", {
                                                     staticClass:
-                                                      "kb-color-demo",
-                                                    style: {
-                                                      "background-color":
-                                                        _vm.background_gradient
-                                                          .end.hex
-                                                    },
-                                                    on: {
-                                                      click: function($event) {
-                                                        ;(_vm.background_gradient.gradientEnd = !_vm
-                                                          .background_gradient
-                                                          .gradientEnd),
-                                                          (_vm.background_gradient.gradientStart = false)
-                                                      }
-                                                    }
-                                                  }),
-                                                  _c("colour-material-picker", {
-                                                    attrs: {
-                                                      label: "Pick Colour",
-                                                      picker: "chrome"
-                                                    },
-                                                    model: {
-                                                      value:
-                                                        _vm.background_gradient
-                                                          .end,
-                                                      callback: function($$v) {
-                                                        _vm.$set(
-                                                          _vm.background_gradient,
-                                                          "end",
-                                                          $$v
-                                                        )
-                                                      },
-                                                      expression:
-                                                        "background_gradient.end"
-                                                    }
+                                                      "fa fa-angle-down kb-side-dropdown-arrow"
                                                   })
-                                                ],
-                                                1
+                                                ]
                                               ),
                                               _vm._v(" "),
-                                              _vm.background_gradient
-                                                .gradientStart ||
-                                              _vm.background_gradient
-                                                .gradientEnd
+                                              _vm.show_dropdown == "position"
                                                 ? _c(
-                                                    "div",
+                                                    "ul",
                                                     {
                                                       staticClass:
-                                                        "kb-color-picker"
+                                                        "kb-dropdown-items"
                                                     },
-                                                    [
-                                                      _c("span", {
-                                                        staticClass:
-                                                          "sel-tip-icon",
-                                                        class: _vm
-                                                          .background_gradient
-                                                          .gradientStart
-                                                          ? "start"
-                                                          : "end"
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "kb-slider-color-selection"
-                                                        },
-                                                        [
-                                                          _vm
-                                                            .background_gradient
-                                                            .gradientStart
-                                                            ? _c(
-                                                                "colour-slider-picker",
-                                                                {
-                                                                  attrs: {
-                                                                    label:
-                                                                      "Pick Colour",
-                                                                    picker:
-                                                                      "chrome"
-                                                                  },
-                                                                  model: {
-                                                                    value:
-                                                                      _vm
-                                                                        .background_gradient
-                                                                        .start,
-                                                                    callback: function(
-                                                                      $$v
-                                                                    ) {
-                                                                      _vm.$set(
-                                                                        _vm.background_gradient,
-                                                                        "start",
-                                                                        $$v
-                                                                      )
-                                                                    },
-                                                                    expression:
-                                                                      "background_gradient.start"
-                                                                  }
-                                                                }
-                                                              )
-                                                            : _vm._e(),
-                                                          _vm._v(" "),
-                                                          _vm
-                                                            .background_gradient
-                                                            .gradientEnd
-                                                            ? _c(
-                                                                "colour-slider-picker",
-                                                                {
-                                                                  attrs: {
-                                                                    label:
-                                                                      "Pick Colour",
-                                                                    picker:
-                                                                      "chrome"
-                                                                  },
-                                                                  model: {
-                                                                    value:
-                                                                      _vm
-                                                                        .background_gradient
-                                                                        .end,
-                                                                    callback: function(
-                                                                      $$v
-                                                                    ) {
-                                                                      _vm.$set(
-                                                                        _vm.background_gradient,
-                                                                        "end",
-                                                                        $$v
-                                                                      )
-                                                                    },
-                                                                    expression:
-                                                                      "background_gradient.end"
-                                                                  }
-                                                                }
-                                                              )
-                                                            : _vm._e(),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "kb-color-preset"
-                                                            },
-                                                            _vm._l(
-                                                              _vm.presetColors,
-                                                              function(color) {
-                                                                return _c(
-                                                                  "span",
-                                                                  {
-                                                                    key:
-                                                                      color.hex,
-                                                                    class: (_vm
-                                                                      .background_gradient
-                                                                      .gradientStart
-                                                                    ? _vm
-                                                                        .background_gradient
-                                                                        .start
-                                                                        .hex ==
-                                                                      color.hex
-                                                                    : _vm
-                                                                        .background_gradient
-                                                                        .end
-                                                                        .hex ==
-                                                                      color.hex)
-                                                                      ? "kb-active-color"
-                                                                      : "",
-                                                                    style: {
-                                                                      "background-color":
-                                                                        color.hex
-                                                                    },
-                                                                    on: {
-                                                                      click: function(
-                                                                        $event
-                                                                      ) {
-                                                                        _vm
-                                                                          .background_gradient
-                                                                          .gradientStart
-                                                                          ? (_vm.background_gradient.start = color)
-                                                                          : (_vm.background_gradient.end = color)
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                )
+                                                    _vm._l(
+                                                      _vm.background_image_positions,
+                                                      function(bgimgp) {
+                                                        return _c(
+                                                          "li",
+                                                          {
+                                                            key: bgimgp,
+                                                            class:
+                                                              _vm
+                                                                .background_image
+                                                                .position ==
+                                                              bgimgp
+                                                                ? "kb-active-dropdown-item"
+                                                                : "",
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                ;(_vm.background_image.position = bgimgp),
+                                                                  (_vm.show_dropdown =
+                                                                    "")
                                                               }
-                                                            ),
-                                                            0
-                                                          )
-                                                        ],
-                                                        1
-                                                      )
-                                                    ]
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(bgimgp)
+                                                            )
+                                                          ]
+                                                        )
+                                                      }
+                                                    ),
+                                                    0
+                                                  )
+                                                : _vm._e()
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "kb-inner-tab-component"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "kb-tab-head" },
+                                            [_vm._v("Background Image Repeat")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "kb-tob-content kb-dropdown forScroll"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "kb-dropdown-selected-item",
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.show_dropdown =
+                                                        "repeat"
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.background_image
+                                                        .repeat.name
+                                                    )
+                                                  ),
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-angle-down kb-side-dropdown-arrow"
+                                                  })
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm.show_dropdown == "repeat"
+                                                ? _c(
+                                                    "ul",
+                                                    {
+                                                      staticClass:
+                                                        "kb-dropdown-items"
+                                                    },
+                                                    _vm._l(
+                                                      _vm.background_image_repeats,
+                                                      function(bgimgr) {
+                                                        return _c(
+                                                          "li",
+                                                          {
+                                                            key: bgimgr.value,
+                                                            class:
+                                                              _vm
+                                                                .background_image
+                                                                .repeat.value ==
+                                                              bgimgr.value
+                                                                ? "kb-active-dropdown-item"
+                                                                : "",
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                ;(_vm.background_image.repeat = bgimgr),
+                                                                  (_vm.show_dropdown =
+                                                                    "")
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                bgimgr.name
+                                                              )
+                                                            )
+                                                          ]
+                                                        )
+                                                      }
+                                                    ),
+                                                    0
                                                   )
                                                 : _vm._e()
                                             ]
@@ -64672,525 +65738,62 @@ var render = function() {
                                   ),
                                   _vm._v(" "),
                                   _c(
-                                    "div",
-                                    { staticClass: "kb-inner-tab-component" },
+                                    "tab",
+                                    {
+                                      attrs: {
+                                        id: "advanced",
+                                        name: "Advanced"
+                                      }
+                                    },
                                     [
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [
-                                          _vm._v(
-                                            "Background Gradient Direction"
-                                          ),
-                                          _c(
-                                            "span",
-                                            {
-                                              directives: [
-                                                {
-                                                  name: "tooltip",
-                                                  rawName: "v-tooltip",
-                                                  value: { content: "Reverse" },
-                                                  expression:
-                                                    "{content:'Reverse'}"
-                                                }
-                                              ],
-                                              staticClass: "kb-reverse-icon",
-                                              class: _vm.background_gradient
-                                                .directionReverse
-                                                ? "active"
-                                                : "",
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.background_gradient.directionReverse = !_vm
-                                                    .background_gradient
-                                                    .directionReverse
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fa fa-sync-alt"
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-content" },
-                                        [
-                                          _c(
-                                            "div",
-                                            { staticClass: "kb-rangeInp" },
-                                            [
-                                              _c("range-slider", {
-                                                staticClass: "slider",
-                                                attrs: {
-                                                  min: "0",
-                                                  max: "360",
-                                                  step: "1"
-                                                },
-                                                model: {
-                                                  value:
-                                                    _vm
-                                                      .background_gradient_range_slider
-                                                      .direction,
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      _vm.background_gradient_range_slider,
-                                                      "direction",
-                                                      $$v
-                                                    )
-                                                  },
-                                                  expression:
-                                                    "background_gradient_range_slider.direction"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("span", [
-                                                _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value:
-                                                        _vm.background_gradient
-                                                          .direction,
-                                                      expression:
-                                                        "background_gradient.direction"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name:
-                                                      "background_gradient-direction"
-                                                  },
-                                                  domProps: {
-                                                    value:
-                                                      _vm.background_gradient
-                                                        .direction
-                                                  },
-                                                  on: {
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.background_gradient,
-                                                        "direction",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              ])
-                                            ],
-                                            1
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "kb-inner-tab-component" },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [
-                                          _vm._v("Start Position"),
-                                          _c(
-                                            "span",
-                                            {
-                                              directives: [
-                                                {
-                                                  name: "tooltip",
-                                                  rawName: "v-tooltip",
-                                                  value: { content: "Reverse" },
-                                                  expression:
-                                                    "{content:'Reverse'}"
-                                                }
-                                              ],
-                                              staticClass: "kb-reverse-icon",
-                                              class: _vm.background_gradient
-                                                .startPositionReverse
-                                                ? "active"
-                                                : "",
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.background_gradient.startPositionReverse = !_vm
-                                                    .background_gradient
-                                                    .startPositionReverse
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fa fa-sync-alt"
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-content" },
-                                        [
-                                          _c(
-                                            "div",
-                                            { staticClass: "kb-rangeInp" },
-                                            [
-                                              _c("range-slider", {
-                                                staticClass: "slider",
-                                                attrs: {
-                                                  min: "0",
-                                                  max: "100",
-                                                  step: "1"
-                                                },
-                                                model: {
-                                                  value:
-                                                    _vm
-                                                      .background_gradient_range_slider
-                                                      .startPosition,
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      _vm.background_gradient_range_slider,
-                                                      "startPosition",
-                                                      $$v
-                                                    )
-                                                  },
-                                                  expression:
-                                                    "background_gradient_range_slider.startPosition"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("span", [
-                                                _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value:
-                                                        _vm.background_gradient
-                                                          .startPosition,
-                                                      expression:
-                                                        "background_gradient.startPosition"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name:
-                                                      "background-gradient-start-position"
-                                                  },
-                                                  domProps: {
-                                                    value:
-                                                      _vm.background_gradient
-                                                        .startPosition
-                                                  },
-                                                  on: {
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.background_gradient,
-                                                        "startPosition",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              ])
-                                            ],
-                                            1
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "kb-inner-tab-component" },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [
-                                          _vm._v("End Position"),
-                                          _c(
-                                            "span",
-                                            {
-                                              directives: [
-                                                {
-                                                  name: "tooltip",
-                                                  rawName: "v-tooltip",
-                                                  value: { content: "Reverse" },
-                                                  expression:
-                                                    "{content:'Reverse'}"
-                                                }
-                                              ],
-                                              staticClass: "kb-reverse-icon",
-                                              class: _vm.background_gradient
-                                                .endPositionReverse
-                                                ? "active"
-                                                : "",
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.background_gradient.endPositionReverse = !_vm
-                                                    .background_gradient
-                                                    .endPositionReverse
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fa fa-sync-alt"
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-content" },
-                                        [
-                                          _c(
-                                            "div",
-                                            { staticClass: "kb-rangeInp" },
-                                            [
-                                              _c("range-slider", {
-                                                staticClass: "slider",
-                                                attrs: {
-                                                  min: "0",
-                                                  max: "100",
-                                                  step: "1"
-                                                },
-                                                model: {
-                                                  value:
-                                                    _vm
-                                                      .background_gradient_range_slider
-                                                      .endPosition,
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      _vm.background_gradient_range_slider,
-                                                      "endPosition",
-                                                      $$v
-                                                    )
-                                                  },
-                                                  expression:
-                                                    "background_gradient_range_slider.endPosition"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("span", [
-                                                _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value:
-                                                        _vm.background_gradient
-                                                          .endPosition,
-                                                      expression:
-                                                        "background_gradient.endPosition"
-                                                    }
-                                                  ],
-                                                  attrs: {
-                                                    type: "text",
-                                                    name:
-                                                      "background-gradient-end-position"
-                                                  },
-                                                  domProps: {
-                                                    value:
-                                                      _vm.background_gradient
-                                                        .endPosition
-                                                  },
-                                                  on: {
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.background_gradient,
-                                                        "endPosition",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                })
-                                              ])
-                                            ],
-                                            1
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "kb-inner-tab-component" },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-head" },
-                                        [
-                                          _vm._v(
-                                            "Background Image\n                        "
-                                          ),
-                                          _c("toggle-button", {
-                                            directives: [
-                                              {
-                                                name: "tooltip",
-                                                rawName: "v-tooltip",
-                                                value: {
-                                                  content:
-                                                    _vm.background_image
-                                                      .active != 0
-                                                      ? "Enable"
-                                                      : "Disable"
-                                                },
-                                                expression:
-                                                  "{content:background_image.active != 0 ? 'Enable' : 'Disable' }"
-                                              }
-                                            ],
-                                            staticClass: "kb-toggleBtn",
-                                            attrs: {
-                                              labels: {
-                                                checked: "On",
-                                                unchecked: "Off"
-                                              },
-                                              color: {
-                                                checked: "#1867c0",
-                                                unchecked: "#d3d3d3"
-                                              }
-                                            },
-                                            model: {
-                                              value:
-                                                _vm.background_image.active,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.background_image,
-                                                  "active",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "background_image.active"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "kb-tab-content" },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "kb-selectedBgImg",
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.imgSelection = !_vm.imgSelection
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm.background_image.name
-                                                ? _c("img", {
-                                                    attrs: {
-                                                      src:
-                                                        _vm.background_image
-                                                          .name,
-                                                      width: "auto"
-                                                    }
-                                                  })
-                                                : _c(
-                                                    "span",
-                                                    {
-                                                      staticClass:
-                                                        "kb-ispan-add"
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "fa fa-plus"
-                                                      })
-                                                    ]
-                                                  )
-                                            ]
-                                          )
-                                        ]
+                                      _vm._v(
+                                        "\n                    This is the content of the second tab\n                "
                                       )
                                     ]
                                   )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "tab",
-                                { attrs: { id: "advanced", name: "Advanced" } },
-                                [
-                                  _vm._v(
-                                    "\n                  This is the content of the second tab\n              "
-                                  )
-                                ]
+                                ],
+                                1
                               )
                             ],
                             1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "kb-selection-btn-group" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "kb-btn kb-btn-danger kb-selection-btn",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                _vm.editSection(_vm.selectedSection, true),
-                                  (_vm.showSelection = !_vm.showSelection)
-                              }
-                            }
-                          },
-                          [_vm._m(0)]
-                        ),
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "kb-btn kb-btn-success kb-selection-btn",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.updateStyle()
-                              }
-                            }
-                          },
-                          [_vm._m(1)]
-                        )
-                      ])
-                    ])
-              ]
-            )
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "kb-selection-btn-group" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "kb-btn kb-btn-danger kb-selection-btn",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    ;(_vm.selectedBlock = ""),
+                                      (_vm.showSelection = !_vm.showSelection)
+                                  }
+                                }
+                              },
+                              [_vm._m(0)]
+                            ),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "kb-btn kb-btn-success kb-selection-btn",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.updateStyle()
+                                  }
+                                }
+                              },
+                              [_vm._m(1)]
+                            )
+                          ])
+                        ]
+                      )
+                ]
+              )
+            ])
           : _vm._e(),
         _vm._v(" "),
         _c(
@@ -65235,13 +65838,15 @@ var render = function() {
                     key: build.id,
                     staticClass: "kb-section kb-contain-element",
                     class:
-                      _vm.selectedSection.id == build.id
+                      _vm.selectedBlock.id == build.id &&
+                      _vm.selectedBlock.type == build.type
                         ? "kb-demo-styling"
                         : build.sectionSetting
                         ? "kb-border"
                         : "",
                     style:
-                      _vm.selectedSection.id == build.id
+                      _vm.selectedBlock.id == build.id &&
+                      _vm.selectedBlock.type == build.type
                         ? _vm.currentStyling
                         : build.style,
                     attrs: { id: "kb-section-" + build.id },
@@ -65257,7 +65862,7 @@ var render = function() {
                   },
                   [
                     _c("div", [
-                      build.sectionSetting && _vm.selectedSection.id != build.id
+                      build.sectionSetting
                         ? _c("div", { staticClass: "kb-module-setting" }, [
                             _c("span", [
                               _c("i", { staticClass: "fa fa-arrows-alt" })
@@ -65276,7 +65881,8 @@ var render = function() {
                                 ],
                                 on: {
                                   click: function($event) {
-                                    _vm.editSection(build, false),
+                                    ;(_vm.selectedBlock = build),
+                                      _vm.blockSetting(build),
                                       (_vm.rowSelection = false),
                                       (_vm.showSelection = true)
                                   }
@@ -65426,12 +66032,18 @@ var render = function() {
                                   "div",
                                   {
                                     key: row.id,
-                                    staticClass:
-                                      "kb-row kb-contain-element kb-border",
+                                    staticClass: "kb-row kb-contain-element",
+                                    class:
+                                      _vm.selectedBlock.id == row.id &&
+                                      _vm.selectedBlock.type == row.type
+                                        ? "kb-demo-styling"
+                                        : "kb-border",
                                     style:
-                                      _vm.selectedRow.id == row.id
+                                      _vm.selectedBlock.id == row.id &&
+                                      _vm.selectedBlock.type == row.type
                                         ? _vm.currentStyling
-                                        : "",
+                                        : row.style,
+                                    attrs: { id: "kb-row-" + row.id },
                                     on: {
                                       mouseenter: function($event) {
                                         row.rowSetting = true
@@ -65499,7 +66111,8 @@ var render = function() {
                                                 ],
                                                 on: {
                                                   click: function($event) {
-                                                    ;(_vm.selectedRow = row),
+                                                    ;(_vm.selectedBlock = row),
+                                                      _vm.blockSetting(row),
                                                       (_vm.rowSelection = false),
                                                       (_vm.showSelection = true)
                                                   }
@@ -65579,6 +66192,7 @@ var render = function() {
                                     _vm._v(" "),
                                     _c(
                                       "div",
+                                      { staticClass: "kb-inner-row-contain" },
                                       _vm._l(row.columnLength, function(
                                         column
                                       ) {
