@@ -18,6 +18,8 @@ import ToggleButton from 'vue-js-toggle-button';
 import VueLazyload from 'vue-lazyload';
 import VTooltip from 'v-tooltip';
 import RangeSlider from 'vue-range-slider';
+import { VueEditor } from "vue2-editor";
+import tinymce from 'vue-tinymce-text-editor'
 import 'vue-range-slider/dist/vue-range-slider.css';
 import 'v-tooltip/dist/v-tooltip.css';
 
@@ -89,7 +91,8 @@ Vue.component('colour-sketch-picker', Sketch);
 Vue.component('colour-material-picker', Material);
 Vue.component('colour-slider-picker', Slider);
 Vue.component('range-slider', RangeSlider);
-
+Vue.component('vue-editor',VueEditor);
+Vue.component('tinymce', tinymce);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -31,8 +31,7 @@ class UploadimageController extends Controller
          }
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $uploadimage = $request->isMethod('put') ? uploadimage::findOrFail
         ($request->member_id) : new uploadimage;
 
@@ -50,6 +49,13 @@ class UploadimageController extends Controller
          }
         if($uploadimage->save()){
             return new MemberResource($uploadimage);
+        }
+    }
+
+    public function destroy($id) {
+        $uploadimage = uploadimage::findOrFail($id); 
+        if($appointment->delete()){
+            return new UploadimageResource($uploadimage);
         }
     }
 }

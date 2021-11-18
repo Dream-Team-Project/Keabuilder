@@ -1,12 +1,14 @@
 <template>
   <div>
     <div id="page-container" @click="closeDropDown($event)">
+       <!-- <tinymce id="id"  v-model="content" name="name"></tinymce> -->
+       <!-- <vue-editor v-model="content"></vue-editor> -->
       <div v-if="imgSelection" id="kb-img-group">
         <div class="kb-img-inner-group forScroll">
           <div class="kb-head">Choose a Background Image<button @click="selectBgImg()" class="kb-btn kb-btn-success">Add a new image</button><span @click="imgSelection = !imgSelection" class="kb-cut"><i class="fa fa-times"></i></span></div>
           <div class="kb-img-thumbnail-group">
             <ul class="kb-img-list">
-              <li v-for="img in galleryImg" :key="img.id"><span><img v-lazy="'images/builder/upload_images/'+img.name" @click="background_image.name = '/images/builder/upload_images/'+img.name, imgSelection = !imgSelection"></span></li>
+              <li v-for="img in galleryImg" :key="img.id"><span><img v-lazy="'images/builder/upload_images/'+img.name" @click="background_image.name = '/images/builder/upload_images/'+img.name, imgSelection = !imgSelection, background_image.active = true"></span></li>
             </ul>
             <div v-if="galleryImg.length == 0"><center>Upload image</center></div>
           </div>
@@ -14,9 +16,18 @@
         </div>
       </div>
       <div v-if="showSelection" class="kb-outer-selection-container">
-        <div ref="draggableContainer" id="kb-selection-ask" class="forScroll">
-          <div v-if="rowSelection" id="kb-row-selection" class="kb-inner-selection-container">
-          <span @click="showSelection = !showSelection, selectedRow = ''" class="kb-selection-top-actions"><i class="fa fa-times"></i></span>
+        <div ref="draggableContainer" id="kb-selection-ask">
+          <div v-if="elementSelection" id="kb-element-group" class="forScroll">
+            <span @click="showSelection = !showSelection, elementSelection = false" class="kb-selection-top-actions"><i class="fa fa-times"></i></span>
+            <div class="kb-ask-head" @mousedown="dragMouseDown">Element Selection</div>
+            <div>
+              <ul class="kb-element-list">
+                <li v-for="element in elementList" :key="element.name" class="kb-element-box"><span><i :class="element.iconCls"></i><div>{{element.name}}</div></span></li>
+              </ul>    
+            </div>
+          </div>
+          <div v-else-if="rowSelection" id="kb-row-selection" class="kb-inner-selection-container">
+            <span @click="showSelection = !showSelection, selectedRow = ''" class="kb-selection-top-actions"><i class="fa fa-times"></i></span>
             <div class="kb-ask-head" @mousedown="dragMouseDown">Row Dimension</div>
             <div>
               <ul class="kb-row-list">
@@ -24,7 +35,7 @@
               </ul>
             </div>
           </div>
-          <div v-else class="kb-inner-selection-container">
+          <div v-else class="kb-inner-selection-container forScroll">
             <span @click="expand = !expand" class="kb-selection-top-actions"><i class="fas" :class="expand ? 'fa-expand-arrows-alt' : 'fas fa-compress-arrows-alt'"></i></span>
             <div class="kb-ask-head" @mousedown="dragMouseDown">Section Setting</div>
             <div class="kb-tabs-component">
@@ -40,9 +51,21 @@
                         </div>
                     </div> 
                     <div class="kb-inner-tab-component">
-                        <div class="kb-tab-head">Alignment</div>
+                        <div class="kb-tab-head">Height</div>
                         <div class="kb-tab-content">
-                          <div><span><i class="fa fa-arrow-left"></i></span><span><i class="fa fa-arrow-right"></i><i class="fa fa-arrow-left"></i></span><span><i class="fa fa-arrow-right"></i></span></div>
+                          <div class="kb-rangeInp">
+                              <range-slider class="slider" min="0" :max="heightRange.max" step="1" v-model="heightRange.value"></range-slider>
+                              <span><input v-model="height.value" @keydown="height.value = operateNumVal($event.key, height.value)" type="text" name="height"></span>
+                          </div>
+                        </div>
+                    </div> 
+                    <div class="kb-inner-tab-component">
+                        <div class="kb-tab-head">Alignment<span v-tooltip="{content:'Auto Align'}" @click="blockAlign = ''" class="kb-reverse-icon" :class="blockAlign ? 'active' : ''"><i class="fa fa-ban"></i></span></div>
+                        <div class="kb-tab-content">
+                          <div class="kb-align-btn-group">
+                            <span @click="blockAlign = 'left'" :class="blockAlign == 'left' ? 'kb-active-brd' : ''" class="kb-align-btn" v-tooltip="{content:'Left Align'}"><i class="fa fa-arrow-left"></i></span>
+                            <span @click="blockAlign = 'center'" :class="blockAlign == 'center' ? 'kb-active-brd' : ''" class="kb-align-btn" v-tooltip="{content:'Center Align'}"><i class="fa fa-arrow-right"></i><i class="fa fa-arrow-left"></i></span>
+                            <span @click="blockAlign = 'right'" :class="blockAlign == 'right' ? 'kb-active-brd' : ''" class="kb-align-btn" v-tooltip="{content:'Right Align'}"><i class="fa fa-arrow-right"></i></span></div>
                         </div>
                     </div> 
                     <div class="kb-inner-tab-component">
@@ -146,10 +169,19 @@
                       </div>
                     </div>
                     <div class="kb-inner-tab-component kb-color-picker">
-                      <div class="kb-tab-head">Border Color<span class="kb-color-demo kb-border-color-demo"  :style="demoBorder"><span :class="border_color.hex == '#ff000000' ? 'kb-no-color' : ''"></span></span><span class="kb-color-demo"><span @click="border_color.hex = '#ff000000'" v-tooltip="{content:'Transparent'}" class="kb-no-color"></span></span></div>
+                      <div class="kb-tab-head">Border Color
+                        <span class="kb-color-demo">
+                          <span class="kb-no-color">
+                            <span class="kb-color-demo" :style="demoBorder"></span>
+                          </span>
+                        </span>
+                        <span class="kb-color-demo"><span @click="border_color.hex = '#ff000000'" v-tooltip="{content:'Transparent'}" class="kb-no-color"></span></span></div>
                       <div class="kb-tab-content">
                           <colour-material-picker v-model="border_color" label="Pick Colour" picker="chrome"/>
                           <div class="kb-slider-color-selection">
+                            <div class="kb-rangeInp kb-opacity-slider">
+                              <range-slider v-model="border_color.rgba.a" class="slider" min="0" max="1" step="0.01" :style="demoBorderOpacity"></range-slider>
+                            </div>
                             <colour-slider-picker v-model="border_color" label="Pick Colour" picker="chrome"/>
                             <div class="kb-color-preset"><span @click="border_color = color" v-for="color in presetColors" :key="color.hex" :class="border_color.hex == color.hex ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
                           </div>
@@ -160,12 +192,24 @@
                   </tab>               
                   <tab id="background" name="Background">
                     <div class="kb-inner-tab-component kb-color-picker">
-                        <div class="kb-tab-head">Background Color<span class="kb-color-demo kb-background-color-demo" :style="demoBackground"><span :class="background_color.hex == '#ff000000' ? 'kb-no-color' : ''"></span></span><span class="kb-color-demo"><span @click="background_color.hex = '#ff000000'" v-tooltip="{content:'Transparent'}" class="kb-no-color"></span></span></div>
+                        <div class="kb-tab-head">Background Color
+                          <span class="kb-color-demo"> 
+                            <span class="kb-no-color">
+                              <span class="kb-color-demo" :style="demoBackground"></span>
+                            </span>
+                          </span>
+                          <span class="kb-color-demo"><span @click="background_color = {hex: '#ff000000', rgba: {r:'255', g:'0', b:'0', a:'0'}}" v-tooltip="{content:'Transparent'}" class="kb-no-color"></span></span>
+                        </div>
                         <div class="kb-tab-content">
                             <colour-material-picker v-model="background_color" label="Pick Colour" picker="chrome"/>
                             <div class="kb-slider-color-selection">
+                              <div class="kb-rangeInp kb-opacity-slider">
+                                <range-slider v-model="background_color.rgba.a" class="slider" min="0" max="1" step="0.01" :style="demoBackgroundOpacity"></range-slider>
+                              </div>
                               <colour-slider-picker v-model="background_color" label="Pick Colour" picker="chrome"/>
-                              <div class="kb-color-preset"><span @click="background_color = color" v-tooltip="" v-for="color in presetColors" :key="color.hex" :class="background_color.hex == color.hex ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
+                              <div class="kb-color-preset">
+                                <span @click="background_color = color" v-tooltip="" v-for="color in presetColors" :key="color.hex" :class="background_color == color ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span>
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -174,15 +218,39 @@
                           <toggle-button class="kb-toggleBtn" :sync='true' v-model="background_gradient.active" v-tooltip="{content:background_gradient.active != 0 ? 'Enable' : 'Disable' }" :labels="{checked: 'On', unchecked: 'Off'}" :color="{checked: '#1867c0', unchecked: '#d3d3d3'}"></toggle-button>
                         </div>
                         <div class="kb-tab-content">
-                          <div class="kb-gradient-color-selection">
-                            <div class="kb-gradient-selected-color"><span v-tooltip="{content:'Select Color'}" class="kb-color-demo" :style="{'background-color':background_gradient.start.hex}" @click="background_gradient.gradientStart = !background_gradient.gradientStart, background_gradient.gradientEnd = false"></span><colour-material-picker v-model="background_gradient.start" label="Pick Colour" picker="chrome"/></div>
-                            <div class="kb-gradient-selected-color"><span v-tooltip="{content:'Select Color'}" class="kb-color-demo" :style="{'background-color':background_gradient.end.hex}" @click="background_gradient.gradientEnd = !background_gradient.gradientEnd, background_gradient.gradientStart = false"></span><colour-material-picker v-model="background_gradient.end" label="Pick Colour" picker="chrome"/></div>
+                          <div class="kb-gradient-color-selection" @mouseleave="background_gradient.gradientStart=false, background_gradient.gradientEnd=false">
+                            <div class="kb-gradient-selected-color">
+                              <span v-tooltip="{content:'Select Starting Color'}" class="kb-color-demo" @click="background_gradient.gradientStart = !background_gradient.gradientStart, background_gradient.gradientEnd = false">                            
+                                <span class="kb-no-color">
+                                  <span class="kb-color-demo" :style="backgroundGradientStart"></span>
+                                </span>
+                              </span>
+                              <colour-material-picker v-model="background_gradient.start" label="Pick Colour" picker="chrome"/>
+                            </div>
+                            <div class="kb-gradient-selected-color">
+                              <span v-tooltip="{content:'Select Ending Color'}" class="kb-color-demo" @click="background_gradient.gradientEnd = !background_gradient.gradientEnd, background_gradient.gradientStart = false">                            
+                                <span class="kb-no-color">
+                                  <span class="kb-color-demo" :style="backgroundGradientEnd"></span>
+                                </span>
+                              </span>
+                              <colour-material-picker v-model="background_gradient.end" label="Pick Colour" picker="chrome"/></div>
                             <div class="kb-color-picker" v-if="background_gradient.gradientStart || background_gradient.gradientEnd">
                               <span class="sel-tip-icon" :class="background_gradient.gradientStart ? 'start' : 'end'"></span>
-                              <div class="kb-slider-color-selection">
-                                <colour-slider-picker v-if="background_gradient.gradientStart" v-model="background_gradient.start" label="Pick Colour" picker="chrome"/>
-                                <colour-slider-picker v-if="background_gradient.gradientEnd" v-model="background_gradient.end" label="Pick Colour" picker="chrome"/>
-                                <div class="kb-color-preset"><span @click="background_gradient.gradientStart ? background_gradient.start = color : background_gradient.end = color" v-for="color in presetColors" :key="color.hex" :class="(background_gradient.gradientStart ? background_gradient.start.hex == color.hex : background_gradient.end.hex == color.hex) ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
+                              <div v-if="background_gradient.gradientStart" class="kb-slider-color-selection">
+                                <div class="kb-tab-head">Starting Color</div>
+                                <div class="kb-rangeInp kb-opacity-slider">
+                                  <range-slider v-model="background_gradient.start.rgba.a" class="slider" min="0" max="1" step="0.01" :style="backgroundGradientStartOpacity"></range-slider>
+                                </div>
+                                <colour-slider-picker v-model="background_gradient.start" label="Pick Colour" picker="chrome"/>
+                                <div class="kb-color-preset"><span @click="background_gradient.start = color" v-for="color in presetColors" :key="color.hex" :class="background_gradient.start.hex == color.hex ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
+                              </div>
+                              <div  v-if="background_gradient.gradientEnd" class="kb-slider-color-selection">
+                                <div class="kb-tab-head">Ending Color</div>
+                                <div class="kb-rangeInp kb-opacity-slider">
+                                  <range-slider v-model="background_gradient.end.rgba.a" class="slider" min="0" max="1" step="0.01" :style="backgroundGradientEndOpacity"></range-slider>
+                                </div>
+                                <colour-slider-picker v-model="background_gradient.end" label="Pick Colour" picker="chrome"/>
+                                <div class="kb-color-preset"><span @click="background_gradient.end = color" v-for="color in presetColors" :key="color.hex" :class="background_gradient.end.hex == color.hex ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
                               </div>
                             </div>
                           </div>
@@ -220,7 +288,7 @@
                             <toggle-button class="kb-toggleBtn" :sync='true' v-model="background_image.active" v-tooltip="{content:background_image.active != 0 ? 'Enable' : 'Disable' }" :labels="{checked: 'On', unchecked: 'Off'}" :color="{checked: '#1867c0', unchecked: '#d3d3d3'}"></toggle-button>
                           </div>
                           <div class="kb-tab-content">
-                            <div @click="imgSelection = !imgSelection, background_image.active = true" class="kb-selectedBgImg">
+                            <div @click="imgSelection = !imgSelection" class="kb-selectedBgImg">
                               <img v-if="background_image.name" :src="background_image.name" width="auto">
                               <span v-else class="kb-ispan-add"><i class="fa fa-plus"></i></span>
                             </div>
@@ -289,7 +357,7 @@
                         </div>
                         <div class="kb-inner-row-contain">
                           <div v-for="column in row.columnLength" :key="column" class="kb-inner-row" :class="row.rowSize"> 
-                            <span class="kb-ispan-add add-element" v-tooltip="{ content: 'Add New Element' }"><i class="fa fa-plus"></i></span>
+                            <span @click="showSelection = true, elementSelection = true" class="kb-ispan-add add-element" v-tooltip="{ content: 'Add New Element' }"><i class="fa fa-plus"></i></span>
                           </div>
                         </div>
                         <span v-if="row.rowSetting" class="kb-ispan-add add-row bottom-add-btn" v-tooltip="{ content: 'Add New Row' }" @click="row_index = index, showSelection = true, rowSelection = true"><i class="fa fa-plus"></i></span>
@@ -308,16 +376,22 @@
 export default {
     data() {
       return {
+        content: '<h3>Hello</h3>',
         show_dropdown: '',
         newD: new Date(),
         newImg: {id:'', upload: '', name: '', path: ''},
         galleryImg: [], 
         galleryImgName: [], 
         imgSelection: false,
-        presetColors: [{hex:'#ffffff'},{hex:'#cccccc'},{hex:'#b3b3b3'},{hex:'#999999'},{hex:'#808080'},{hex:'#666666'},{hex:'#4d4d4d'},{hex:'#333333'},{hex:'#000000'}],
+        elementList: [{name: 'Text', iconCls: 'fas fa-font'}],
+        presetColors: [{hex:'#ffffff', rgba:{r:'255', g:'255', b:'255', a:'1'}},{hex:'#000000', rgba:{r:'0', g:'0', b:'0', a:'1'}}],
+        // presetColors: [{hex:'#ffffff'},{hex:'#cccccc'},{hex:'#b3b3b3'},{hex:'#999999'},{hex:'#808080'},{hex:'#666666'},{hex:'#4d4d4d'},{hex:'#333333'},{hex:'#000000'}],
         expand: false,
         width: {value: '100%'},
         widthRange: {value: '100', max: '100', type: '%'},
+        height: {value: '100%'},
+        heightRange: {value: '100', max: '100', type: '%'},
+        blockAlign: '',
         m_link: {tb: false, lr: false, a: false},
         margin: {top: '0px', bottom: '0px', left: '0px', right: '0px'},
         p_link: {tb: false, lr: false, a: false},
@@ -326,11 +400,11 @@ export default {
         border: {top: '0px', bottom: '0px', left: '0px', right: '0px'},
         br_link: true,
         border_radius: {top_left: '0px', top_right: '0px', bottom_left: '0px', bottom_right: '0px'},
-        border_color: {hex: 'red'},
+        border_color: {hex:'#000000', rgba:{r:'0', g:'0', b:'0', a:'1'}},
         border_style: 'solid',
         border_style_types: ['solid','dashed','dotted','double','groove','ridge','inset','outset','none'],
-        background_color: {hex: '#ff000000'},
-        background_gradient: {active: false, direction: '45deg', start: {hex: '#1867c0'}, end: {hex: '#1BC5BD'}, startPosition: '0%', endPosition: '100%', gradientStart: false, gradientEnd: false},
+        background_color: {hex: '#ff000000', rgba: {r:'255', g:'0', b:'0', a:'0'}},
+        background_gradient: {active: false, direction: '45deg', start: {hex: '#1867c0', rgba: {r:'24', g:'103', b:'193', a:'1'}}, end: {hex: '#1BC5BD', rgba: {r:'27', g:'197', b:'189', a:'1'}}, startPosition: '0%', endPosition: '100%', gradientStart: false, gradientEnd: false},
         background_gradient_range_slider: {direction: '45', startPosition: '0', endPosition: '100'},
         background_image: {active: false, name: '', size: 'cover', position: 'center', repeat: {name: 'no repeat', value: 'no-repeat'}},
         background_image_sizes: ['cover','contain','auto'],
@@ -348,6 +422,7 @@ export default {
         selectedRow:'',
         showSelection: false,
         rowSelection: false,
+        elementSelection: false,
         row_id: 0,
         row_index: 0,
         positions: {
@@ -372,40 +447,79 @@ export default {
       demoBorder() {
         return {
           '--border-radius': this.border_radius.top_left + ' '  + this.border_radius.top_right + ' ' + this.border_radius.bottom_right + ' ' + this.border_radius.bottom_left, 
-          '--border-color': this.border_color.hex,
+          '--color': 'rgb('+this.border_color.rgba.r+' '+this.border_color.rgba.g+' '+this.border_color.rgba.b+ ' / ' + this.border_color.rgba.a+')', 
           '--border-style': this.border_style,
+        }
+      },
+      demoBorderOpacity() {
+        return {
+          '--color': 'rgb('+this.border_color.rgba.r+' '+this.border_color.rgba.g+' '+this.border_color.rgba.b+')', 
         }
       },
       demoBackground() {
         return {
-          '--background-color': this.background_color.hex, 
+          '--color': 'rgb('+this.background_color.rgba.r+' '+this.background_color.rgba.g+' '+this.background_color.rgba.b+' / '+this.background_color.rgba.a+')',
         }
       },
-      currentStyling() {
-          return {
-              '--margin': this.margin.top + ' '  + this.margin.right + ' ' + this.margin.bottom + ' ' + this.margin.left,
+      demoBackgroundOpacity() {
+        return {
+          '--color': 'rgb('+this.background_color.rgba.r+' '+this.background_color.rgba.g+' '+this.background_color.rgba.b+')', 
+        }
+      },
+      backgroundGradientStart() {
+        return {
+            '--color': 'rgb('+this.background_gradient.start.rgba.r+' '+this.background_gradient.start.rgba.g+' '+this.background_gradient.start.rgba.b+' / '+this.background_gradient.start.rgba.a+')', 
+        }
+      },
+      backgroundGradientStartOpacity() {
+        return {
+            '--color': 'rgb('+this.background_gradient.start.rgba.r+' '+this.background_gradient.start.rgba.g+' '+this.background_gradient.start.rgba.b+')', 
+        }
+      },
+      backgroundGradientEnd() {
+        return {
+            '--color': 'rgb('+this.background_gradient.end.rgba.r+' '+this.background_gradient.end.rgba.g+' '+this.background_gradient.end.rgba.b+' / '+this.background_gradient.end.rgba.a+')', 
+        }
+      },
+      backgroundGradientEndOpacity() {
+        return {
+            '--color': 'rgb('+this.background_gradient.end.rgba.r+' '+this.background_gradient.end.rgba.g+' '+this.background_gradient.end.rgba.b+')', 
+        }
+      },
+      currentStyling() {          
+        return {
+              '--margin': this.margin.top + ' '  + (this.blockAlign == 'left' || this.blockAlign == 'center' || (this.blockAlign == '' && this.margin.right == '0px' && this.margin.left != 'auto') ? 'auto' : this.margin.right) + ' ' + this.margin.bottom + ' ' + (this.blockAlign == 'right' || this.blockAlign == 'center' || (this.blockAlign == '' && this.margin.left == '0px' && this.margin.right != 'auto') ? 'auto' : this.margin.left),
               '--padding': this.padding.top + ' '  + this.padding.right + ' ' + this.padding.bottom + ' ' + this.padding.left,
               '--border-width': this.border.top + ' '  + this.border.right + ' ' + this.border.bottom + ' ' + this.border.left,
               '--border-radius': this.border_radius.top_left + ' '  + this.border_radius.top_right + ' ' + this.border_radius.bottom_right + ' ' + this.border_radius.bottom_left, 
-              '--border-color': this.border_color.hex,
+              '--border-color': 'rgb('+this.border_color.rgba.r+' '+this.border_color.rgba.g+' '+this.border_color.rgba.b+' / '+this.border_color.rgba.a+')',
               '--border-style': this.border_style,
-              '--background-color': this.background_color.hex,
-              '--background-image': this.background_image.active ? 'url('+this.background_image.name+')' : this.background_gradient.active ? 'linear-gradient(' + this.background_gradient.direction + ', ' + this.background_gradient.start.hex + ' ' + this.background_gradient.startPosition + ', ' + this.background_gradient.end.hex + ' ' + this.background_gradient.endPosition +')' : 'none',
+              '--background-color': 'rgb('+this.background_color.rgba.r+' '+this.background_color.rgba.g+' '+this.background_color.rgba.b+' / '+this.background_color.rgba.a+')',
+              '--background-image': this.background_image.active ? 'url('+this.background_image.name+')' : this.background_gradient.active ? 'linear-gradient(' + this.background_gradient.direction + ', ' + 'rgb('+this.background_gradient.start.rgba.r+' '+this.background_gradient.start.rgba.g+' '+this.background_gradient.start.rgba.b+' / '+this.background_gradient.start.rgba.a+')' + ' ' + this.background_gradient.startPosition + ', ' + 'rgb('+this.background_gradient.end.rgba.r+' '+this.background_gradient.end.rgba.g+' '+this.background_gradient.end.rgba.b+' / '+this.background_gradient.end.rgba.a+')' + ' ' + this.background_gradient.endPosition +')' : 'none',
               '--background-size': this.background_image.active ? this.background_image.size : '',
               '--background-position': this.background_image.active ? this.background_image.position : '',
               '--background-repeat': this.background_image.active ? this.background_image.repeat.value : '',
               '--width': this.width.value,
+              '--height': this.height.value,
           }
       }
     },
     watch: {
+      // background_color: {
+      //   handler(val) {
+      //   console.log(val);
+      //   console.log(val.rgba.a);
+      //   if(val.rgba.a == '0')
+      //   },
+      //   deep: true,
+      // },
       width: {
         handler(val) {
           var vm = this;
           setTimeout(function(){
-              val.value = vm.updateRexVal(val.value);
-              vm.widthRange.value = val.value.replace(/[^0-9]/g, '');
-              if(val.value[val.value.length-1] != '%') {
+              val.value = vm.updateRexVal(val.value, 'wh');
+              vm.widthRange.value = val.value != 'auto' ? val.value.replace(/[^0-9]/g, '') : '100';
+              if(val.value[val.value.length-1] != '%' && val.value != 'auto') {
                 vm.widthRange.max = screen.width;
                 vm.widthRange.type = 'px';
               }
@@ -413,7 +527,7 @@ export default {
                 vm.widthRange.max = '100';
                 vm.widthRange.type = '%';
               }
-               val.value[val.value.length-1] != '%' ? screen.width : '100';
+              vm.updateSideUnitsDelay = '1000';
           }, vm.updateSideUnitsDelay);
         },
         deep: true,
@@ -421,6 +535,31 @@ export default {
       widthRange: {
         handler(val) {
           this.width.value = val.value + val.type;
+        },
+        deep: true,
+      },
+      height: {
+        handler(val) {
+          var vm = this;
+          setTimeout(function(){
+              val.value = vm.updateRexVal(val.value, 'wh');
+              vm.heightRange.value = val.value != 'auto' ? val.value.replace(/[^0-9]/g, '') : '100';
+              if(val.value[val.value.length-1] != '%' && val.value != 'auto') {
+                vm.heightRange.max = screen.height;
+                vm.heightRange.type = 'px';
+              }
+              else {
+                vm.heightRange.max = '100';
+                vm.heightRange.type = '%';
+              }
+              vm.updateSideUnitsDelay = '1000';
+            }, vm.updateSideUnitsDelay);
+        },
+        deep: true,
+      },
+      heightRange: {
+        handler(val) {
+          this.height.value = val.value + val.type;
         },
         deep: true,
       },
@@ -522,7 +661,7 @@ export default {
 
       updateRexVal(val, op) {
         if(val[0] != 'a') {
-          let i = 0, unit = 'px', len = val.length;
+          let unit = 'px', len = val.length;
           val.includes('px') && val.lastIndexOf('px') == len - 2 ? unit = 'px' : '';
           val.includes('%') && val.lastIndexOf('%') == len - 1 ? unit = '%' : '';
           val.includes('em') && val.lastIndexOf('em') == len - 2 ? unit = 'em' : '';
@@ -538,6 +677,9 @@ export default {
           }
           else if(op == 'dec') {
             return (parseInt(result)-1).toString() + unit;
+          }
+          else if(op == 'wh') {
+            return result == '0' ? '100%' : result + unit;
           }
           else {
             return result + unit;
@@ -625,29 +767,34 @@ export default {
       },
 
       updateStyle() {
-        var margin = 'margin:' + this.margin.top + ' '  + this.margin.right + ' ' + this.margin.bottom + ' ' + this.margin.left + '; ';
+        var margin = 'margin:' + this.margin.top + ' '  + (this.blockAlign == '' && this.margin.right == '0px' && this.margin.left != 'auto' ? 'auto' : this.margin.right) + ' ' + this.margin.bottom + ' ' + (this.blockAlign == '' && this.margin.left == '0px' && this.margin.right != 'auto' ? 'auto' : this.margin.left)  + '; ';
         var padding = 'padding:'+this.padding.top + ' '  + this.padding.right + ' ' + this.padding.bottom + ' ' + this.padding.left + '; ';
         var borderWidth = 'border-width:' + this.border.top + ' ' + this.border.right + ' ' + this.border.bottom + ' ' + this.border.left + '; ';
         var borderStyle = 'border-style:' + this.border_style + '; ';
-        var borderColor = 'border-color:' + this.border_color.hex + '; ';
+        var borderColor = 'border-color:' + 'rgb('+this.border_color.rgba.r+' '+this.border_color.rgba.g+' '+this.border_color.rgba.b+' / '+this.border_color.rgba.a+'); ';
         var borderRadius = 'border-radius:' + this.border_radius.top_left + ' '  + this.border_radius.top_right + ' ' + this.border_radius.bottom_left + ' ' + this.border_radius.bottom_right + '; ';
-        var backgroundColor = 'background-color:' + this.background_color.hex + '; ';
-        var width = 'width:' + this.width.value + '; ';
+        var backgroundColor = 'background-color:' + 'rgb('+this.background_color.rgba.r+' '+this.background_color.rgba.g+' '+this.background_color.rgba.b+' / '+this.background_color.rgba.a+'); ';
+        var width = this.width.value != '100%' ? 'width:' + this.width.value + '; ' : '';
+        var height = this.height.value != '100%' ? 'height:' + this.height.value + '; ' : '';
+        var align = this.blockAlign == 'right' || this.blockAlign == 'center' ? 'margin-left:auto!important;' : '';
+        align = align + (this.blockAlign == 'left' || this.blockAlign == 'center' ? 'margin-right:auto!important;' : '');
         if(this.background_gradient.active || this.background_image.active) {
           if(this.background_gradient.active) {
-            var backgroundImage = 'background-image:' + 'linear-gradient(' + this.background_gradient.direction + ', ' + this.background_gradient.start.hex + ' ' + this.background_gradient.startPosition + ', ' + this.background_gradient.end.hex + ' ' + this.background_gradient.endPosition +')';
+            var backgroundImage = 'background-image:' + 'linear-gradient(' + this.background_gradient.direction + ', ' + 'rgb('+this.background_gradient.start.rgba.r+' '+this.background_gradient.start.rgba.g+' '+this.background_gradient.start.rgba.b+' / '+this.background_gradient.start.rgba.a+')' + ' ' + this.background_gradient.startPosition + ', ' + 'rgb('+this.background_gradient.end.rgba.r+' '+this.background_gradient.end.rgba.g+' '+this.background_gradient.end.rgba.b+' / '+this.background_gradient.end.rgba.a+')' + ' ' + this.background_gradient.endPosition +'); ';
           }
           else if(this.background_image.active) {
             var backgroundSize = 'background-size:' + this.background_image.size + '; ';
             var backgroundPosition = 'background-position:' + this.background_image.position + '; ';
-            var backgroundRepeat = 'background-repeat:' + this.background_image.repeat.value + ';';
+            var backgroundRepeat = 'background-repeat:' + this.background_image.repeat.value + '; ';
             var backgroundImage = 'background-image:' + 'url('+this.background_image.name+'); ' + backgroundSize + backgroundPosition + backgroundRepeat;
           }
-          this.selectedBlock.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + width + backgroundColor + backgroundImage;
+          this.selectedBlock.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + width + height + backgroundColor + backgroundImage;
         }
         else {
-          this.selectedBlock.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + width + backgroundColor;
+          this.selectedBlock.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + width + height + backgroundColor;
         }
+        align ? this.selectedBlock.style = this.selectedBlock.style + align : '';
+        console.log(this.selectedBlock.style);
         this.showSelection = !this.showSelection;
         this.selectedBlock = '';
         // var style = document.createElement('STYLE');
@@ -657,9 +804,9 @@ export default {
 
       resetStyling() {
           this.margin.top = '0px';
-          this.margin.right = 'auto';
+          this.margin.right = '0px';
           this.margin.bottom = '0px';
-          this.margin.left = 'auto';
+          this.margin.left = '0px';
 
           this.padding.top = this.selectedBlock.type == 'section' ? '60px' : '0px';
           this.padding.right = '0px';
@@ -677,10 +824,13 @@ export default {
           this.border_radius.bottom_right = '0px';
 
           this.border_style = 'solid';
-          this.border_color.hex = '#000000';
-          this.background_color.hex = '#ff000000';
+          this.border_color = {hex:'#000000', rgba:{r:'0', g:'0', b:'0', a:'1'}};
+          this.background_color = {hex: '#ff000000', rgba: {r:'255', g:'0', b:'0', a:'0'}};
 
-          this.width.value = '100%';
+          this.blockAlign = '';
+
+          this.width.value = this.selectedBlock.type == 'section' ? '100%' : '80%';
+          this.height.value = '100%';
 
           this.resetBackgroundImage();
           this.resetBackgroundGradient();
@@ -697,8 +847,8 @@ export default {
       resetBackgroundGradient() {
           this.background_gradient.active = false;
           this.background_gradient.direction = '45deg'; 
-          this.background_gradient.start.hex = '#1867c0'; 
-          this.background_gradient.end.hex = '#1BC5BD'; 
+          this.background_gradient.start = {hex: '#1867c0', rgba: {r:'24', g:'103', b:'193', a:'1'}}; 
+          this.background_gradient.end = {hex: '#1BC5BD', rgba: {r:'27', g:'197', b:'189', a:'1'}}; 
           this.background_gradient.startPosition = '0%'; 
           this.background_gradient.endPosition = '100%'; 
           this.background_gradient.gradientStart = false; 
@@ -709,6 +859,7 @@ export default {
       },
 
       blockSetting(build) {
+        this.updateSideUnitsDelay = '0';
         var str = '';
         if(build.style) {
           for(var attr of build.style.split(';')) {
@@ -717,18 +868,29 @@ export default {
               str = kt != ' ' ? str + '"' + kt[0].trim().split('-')[0] + (kt[0].trim().split('-')[1] != undefined ? kt[0].trim().split('-')[1] : '') + '"' + ':' + '"' + kt[1] + '", ' : str.slice(0, str.length-2);
             }
             else {
-              var bg = kt[1].split('(')[1].split(')')[0].split(', ');
+              var bg = kt[1].split(', ');
               if(bg.length != 1) {
-                this.background_gradient.direction = bg[0];
-                this.background_gradient.start.hex = bg[1].split(' ')[0];
-                this.background_gradient.end.hex = bg[2].split(' ')[0];
-                this.background_gradient.startPosition = bg[1].split(' ')[1];
-                this.background_gradient.endPosition = bg[2].split(' ')[1];
+                this.background_gradient.direction = bg[0].split('(')[1];
+
+                var strclr = bg[1].split('(')[1].split(') ')[0].split(' ');
+                this.background_gradient.start.rgba.r = strclr[0];
+                this.background_gradient.start.rgba.g = strclr[1];
+                this.background_gradient.start.rgba.b = strclr[2];
+                this.background_gradient.start.rgba.a = strclr[4];
+
+                var endclr = bg[2].split('(')[1].split(') ')[0].split(' ');
+                this.background_gradient.end.rgba.r = endclr[0];
+                this.background_gradient.end.rgba.g = endclr[1];
+                this.background_gradient.end.rgba.b = endclr[2];
+                this.background_gradient.end.rgba.a = endclr[4];
+
+                this.background_gradient.startPosition = bg[1].split(') ')[1];
+                this.background_gradient.endPosition = bg[2].split(') ')[1];
                 this.background_gradient.active = true;
                 this.resetBackgroundImage();
               }
               else {
-                this.background_image.name = bg[0];
+                this.background_image.name = kt[1].split('(')[1].split(')')[0];
                 this.background_image.active = true;
                 this.resetBackgroundGradient();
               }
@@ -737,10 +899,17 @@ export default {
           str = str[str.length-2] == ',' ? str.slice(0, str.length-2) : str;
           var obj = JSON.parse('{'+str+'}');
 
+          this.width.value = obj.width ? obj.width : '100%';
+          this.height.value = obj.height ? obj.height : '100%';
+
           this.margin.top = obj.margin.split(' ')[0];
-          this.margin.right = obj.margin.split(' ')[1];
+          this.margin.right = obj.margin.split(' ')[1] != 'auto' ? obj.margin.split(' ')[1] : '0px';
           this.margin.bottom = obj.margin.split(' ')[2];
-          this.margin.left = obj.margin.split(' ')[3];
+          this.margin.left = obj.margin.split(' ')[3] != 'auto' ? obj.margin.split(' ')[3] : '0px';
+
+          obj.marginleft == 'auto!important' ? this.blockAlign = 'right' : '';
+          obj.marginright == 'auto!important' ? this.blockAlign = 'left' : '';
+          obj.marginleft == 'auto!important' && obj.marginright == 'auto!important' ? this.blockAlign = 'center' : '';
 
           this.padding.top = obj.padding.split(' ')[0];
           this.padding.right = obj.padding.split(' ')[1];
@@ -751,15 +920,24 @@ export default {
           this.border.right = obj.borderwidth.split(' ')[1];
           this.border.bottom = obj.borderwidth.split(' ')[2];
           this.border.left = obj.borderwidth.split(' ')[3];
-
           this.border_radius.top_left = obj.borderradius.split(' ')[0];
           this.border_radius.top_right = obj.borderradius.split(' ')[1];
           this.border_radius.bottom_left = obj.borderradius.split(' ')[2];
           this.border_radius.bottom_right = obj.borderradius.split(' ')[3];
-
           this.border_style = obj.borderstyle;
-          this.border_color.hex = obj.bordercolor;
-          this.background_color.hex = obj.backgroundcolor;
+
+          var brdclr = obj.bordercolor.split('(')[1].split(')')[0].split(' ');
+          this.border_color.rgba.r = brdclr[0];
+          this.border_color.rgba.g = brdclr[1];
+          this.border_color.rgba.b = brdclr[2];
+          this.border_color.rgba.a = brdclr[4];
+
+          var bgclr = obj.backgroundcolor.split('(')[1].split(')')[0].split(' ');
+          this.background_color.rgba.r = bgclr[0];
+          this.background_color.rgba.g = bgclr[1];
+          this.background_color.rgba.b = bgclr[2];
+          this.background_color.rgba.a = bgclr[4];
+
           obj.backgroundsize ? this.background_image.size = obj.backgroundsize : '';
           obj.backgroundposition ? this.background_image.position = obj.backgroundposition : '';
           if(obj.backgroundrepeat) {
