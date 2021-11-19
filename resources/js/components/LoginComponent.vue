@@ -2,12 +2,33 @@
     .bw-login {
         margin-top: -19px;
     }
+    .mycustomalert.hideError ul {
+        right: -240px;
+        opacity: 0;
+        z-index: -1;
+    }
     .mycustomalert ul {
         position: fixed;
-        top: 5px;
-        right: 18px;
+        top: 20px;
+        right: 40px;
+        opacity: 1;
         z-index: 9;
         color: #fff;
+        animation: showError 0.3s ease-in-out;
+    }
+    @keyframes showError {
+        0% {
+            right: -240px;
+            opacity: 0;
+        }
+        75% {
+            right: 100px;
+            opacity: 0.5;
+        }
+        100% {
+            right: 40px;
+            opacity: 1;
+        }
     }
     .mycustomalert ul li {
         background-color: #F64E60;
@@ -179,7 +200,7 @@
                         <p>{{signpara}}</p>
 
                         <!-- <span class="error">{{error}}</span> -->
-                        <div class=" mycustomalert" v-if="errors.length">
+                        <div class="mycustomalert"  :class="errors.length ? '' : 'hideError'" v-if="errors.length">
                             <ul class="mb-0">
                                 <li v-for="(error,index) in errors" :key="index" class="toastnew"
                                     :class="{ active:isActive }">
