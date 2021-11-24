@@ -357,14 +357,14 @@
                         </div>
                         <div>
                           <draggable class="kb-drag-container kb-inner-row" tag="div" v-model="row.elementArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="element" @change="selectedRowElements = row.elementArr">
-                              <div>
-                                <div v-for="(element, index) in row.elementArr" :key="element.id" @click="selectedElement = selectedElement.id == element.id ? '' : element" :class="(element.name ? (selectedBlock.id == element.id && selectedBlock.type == element.type ? 'kb-demo-styling ' : (selectedElement.id == element.id ? 'kb-border-select ' : 'kb-border ')) : '') + row.rowSize" :style="selectedBlock.id == element.id && selectedBlock.type == element.type && element.name ? currentStyling : element.style" :id="element.id ? 'kb-element-'+element.id : ''" class="kb-element kb-block-container"> 
+                              <div v-for="(element, index) in row.elementArr" :key="element.id" :class="row.rowSize"> 
+                                <div @click="selectedElement = selectedElement.id == element.id ? '' : element" :class="element.name ? (selectedBlock.id == element.id && selectedBlock.type == element.type ? 'kb-demo-styling ' : (selectedElement.id == element.id ? 'kb-border-select' : 'kb-border')) : ''" :style="selectedBlock.id == element.id && selectedBlock.type == element.type && element.name ? currentStyling : element.style" :id="element.id ? 'kb-element-'+element.id : ''" class="kb-element kb-block-container">
                                   <div class="kb-module-setting" v-if="selectedElement.id == element.id && element.name">
                                     <span><i class="fa fa-arrows-alt"></i></span>
                                     <span @click="selectedBlock = element, blockSetting(element), rowSelection = false, elementSelection = false, showSelection = true" v-tooltip="{ content: 'Element Setting' }"><i class="far fa-edit"></i></span>
                                     <span @click="duplicateRow(build.rowArr, row, index)" v-tooltip="{ content: 'Duplicate Element' }"><i class="far fa-copy"></i></span>
                                     <span @click="deleteRow(build.rowArr, index)" v-tooltip="{ content: 'Delete Element' }"><i class="far fa-trash-alt"></i></span>
-                                  </div>
+                                  </div>                                  
                                   <span v-if="selectedElement.id == element.id || !element.name" :class="element.name ? 'bottom-add-btn' : ''" @click="element_index = index, selectedElement = element, selectedRow = row, showSelection = true, elementSelection = true" class="kb-ispan-add add-element" v-tooltip="{ content: 'Add New Element' }"><i class="fa fa-plus"></i></span>
                                 </div>
                               </div>
@@ -504,7 +504,7 @@ export default {
       },
       currentStyling() {          
         return {
-              '--margin': this.margin.top + ' '  + (this.blockAlign == 'left' || this.blockAlign == 'center' || (this.blockAlign == '' && this.margin.right == '0px' && this.margin.left != 'auto') ? (this.selectedBlock.type != 'element' ? 'auto' : '') : this.margin.right) + ' ' + this.margin.bottom + ' ' + (this.blockAlign == 'right' || this.blockAlign == 'center' || (this.blockAlign == '' && this.margin.left == '0px' && this.margin.right != 'auto') ? (this.selectedBlock.type != 'element' ? 'auto' : '') : this.margin.left),
+              '--margin': this.margin.top + ' '  + ((this.blockAlign == 'left' || this.blockAlign == 'center' || (this.blockAlign == '' && this.margin.right == '0px' && this.margin.left != 'auto') && this.selectedBlock.type != 'element') ? 'auto' : this.margin.right) + ' ' + this.margin.bottom + ' ' + ((this.blockAlign == 'right' || this.blockAlign == 'center' || (this.blockAlign == '' && this.margin.left == '0px' && this.margin.right != 'auto') && this.selectedBlock.type != 'element') ? 'auto' : this.margin.left),
               '--padding': this.padding.top + ' '  + this.padding.right + ' ' + this.padding.bottom + ' ' + this.padding.left,
               '--border-width': this.border.top + ' '  + this.border.right + ' ' + this.border.bottom + ' ' + this.border.left,
               '--border-radius': this.border_radius.top_left + ' '  + this.border_radius.top_right + ' ' + this.border_radius.bottom_right + ' ' + this.border_radius.bottom_left, 
@@ -774,7 +774,7 @@ export default {
       },
 
       updateStyle() {
-        var margin = 'margin:' + this.margin.top + ' '  + (this.blockAlign == '' && this.margin.right == '0px' && this.margin.left != 'auto' ? 'auto' : this.margin.right) + ' ' + this.margin.bottom + ' ' + (this.blockAlign == '' && this.margin.left == '0px' && this.margin.right != 'auto' ? 'auto' : this.margin.left)  + '; ';
+        var margin = 'margin:' + this.margin.top + ' '  + (this.blockAlign == '' && this.margin.right == '0px' && this.margin.left != 'auto' ? (this.selectedBlock.type != 'element' ? 'auto' : '0px') : this.margin.right) + ' ' + this.margin.bottom + ' ' + (this.blockAlign == '' && this.margin.left == '0px' && this.margin.right != 'auto' ? (this.selectedBlock.type != 'element' ? 'auto' : '0px') : this.margin.left)  + '; ';
         var padding = 'padding:'+this.padding.top + ' '  + this.padding.right + ' ' + this.padding.bottom + ' ' + this.padding.left + '; ';
         var borderWidth = 'border-width:' + this.border.top + ' ' + this.border.right + ' ' + this.border.bottom + ' ' + this.border.left + '; ';
         var borderStyle = 'border-style:' + this.border_style + '; ';
