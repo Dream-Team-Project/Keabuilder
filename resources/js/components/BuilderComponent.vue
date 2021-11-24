@@ -333,7 +333,7 @@
       </div>
       <draggable class="kb-drag-container" tag="div" v-model="builder" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="section">
         <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-          <div v-for="(build, index) in builder" :key="build.id" @mouseenter="build.setting = true,selectedSectionRows = build.rowArr" @mouseleave="build.setting = false" :id="'kb-section-'+build.id" :style="selectedBlock.id == build.id && selectedBlock.type == build.type ? currentStyling : build.style" :class="selectedBlock.id == build.id && selectedBlock.type == build.type ? 'kb-demo-styling' : ''" class="kb-section kb-block-container">
+          <div v-for="(build, index) in builder" :key="build.id" @mouseenter="build.setting = true,selectedSectionRows = build.rowArr" @mouseleave="build.setting = false" :id="'kb-section-'+build.id" :style="selectedBlock.id == build.id && selectedBlock.type == build.type ? currentStyling : build.style" :class="(selectedBlock.id == build.id && selectedBlock.type == build.type) || build.style ? 'kb-demo-styling' : ''" class="kb-section kb-block-container">
             <div> 
               <div class="kb-module-setting" v-if="build.setting">
                 <span><i class="fa fa-arrows-alt"></i></span>
@@ -347,7 +347,7 @@
             <div>
               <draggable class="kb-drag-container" tag="div" v-model="build.rowArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="row" @change="selectedSectionRows = build.rowArr">
                 <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-                    <div v-for="(row, index) in build.rowArr" :key="row.id" :id="'kb-row-'+row.id" @mouseenter="row.setting = true, selectedRowElements = row.elementArr" @mouseleave="row.setting = false" :style="selectedBlock.id == row.id && selectedBlock.type == row.type ? currentStyling : row.style" :class="selectedBlock.id == row.id && selectedBlock.type == row.type ? 'kb-demo-styling' : ''" class="kb-row kb-block-container">
+                    <div v-for="(row, index) in build.rowArr" :key="row.id" :id="'kb-row-'+row.id" @mouseenter="row.setting = true, selectedRowElements = row.elementArr" @mouseleave="row.setting = false" :style="selectedBlock.id == row.id && selectedBlock.type == row.type ? currentStyling : row.style" :class="(selectedBlock.id == row.id && selectedBlock.type == row.type) || row.style ? 'kb-demo-styling' : ''" class="kb-row kb-block-container">
                         <div class="kb-module-setting" v-if="row.setting">
                           <span><i class="fa fa-arrows-alt"></i></span>
                           <span v-if="row.columnSetting" @click="selectedRow = row, showSelection = true, rowSelection = true" v-tooltip="{ content: 'Column Structure' }"><i class="fa fa-columns"></i></span>
@@ -358,7 +358,7 @@
                         <div>
                           <draggable class="kb-drag-container kb-inner-row" tag="div" v-model="row.elementArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="element" @change="selectedRowElements = row.elementArr">
                               <div v-for="(element, index) in row.elementArr" :key="element.id" :class="row.rowSize"> 
-                                <div @click="selectedElement = selectedElement.id == element.id ? '' : element" :class="element.name ? (selectedBlock.id == element.id && selectedBlock.type == element.type ? 'kb-demo-styling ' : (selectedElement.id == element.id ? 'kb-border-select' : 'kb-border')) : ''" :style="selectedBlock.id == element.id && selectedBlock.type == element.type && element.name ? currentStyling : element.style" :id="element.id ? 'kb-element-'+element.id : ''" class="kb-element kb-block-container">
+                                <div @click="selectedElement = selectedElement.id == element.id ? '' : element" :class="element.name ? ((selectedBlock.id == element.id && selectedBlock.type == element.type) || element.style ? 'kb-demo-styling ' : (selectedElement.id == element.id ? 'kb-border-select' : 'kb-border')) : ''" :style="selectedBlock.id == element.id && selectedBlock.type == element.type && element.name ? currentStyling : element.style" :id="element.id ? 'kb-element-'+element.id : ''" class="kb-element kb-block-container">
                                   <div class="kb-module-setting" v-if="selectedElement.id == element.id && element.name">
                                     <span><i class="fa fa-arrows-alt"></i></span>
                                     <span @click="selectedBlock = element, blockSetting(element), rowSelection = false, elementSelection = false, showSelection = true" v-tooltip="{ content: 'Element Setting' }"><i class="far fa-edit"></i></span>
@@ -382,7 +382,6 @@
   </div>
 </template>
 <script>
-
 export default {
     data() {
       return {
@@ -654,11 +653,9 @@ export default {
       closeDropDown(e) {
         e.target ? !e.target.classList.contains('kb-dropdown-selected-item') ? this.show_dropdown = '' : '' : '';
       },
-
       operateNumVal(eKey, val) {
         return eKey == 'ArrowUp' ? this.updateRexVal(val, 'inc') : eKey == 'ArrowDown' ?  this.updateRexVal(val, 'dec') : val;
       },
-
       getNumVal(val) {
         var i = 0;
         return val.replace(/[^0-9]/g, m  => !i++ ? (m == '-' ? (val[0] != '-' ? '' : m) : '') : '');
@@ -696,7 +693,6 @@ export default {
           return 'auto';
         }
       },
-
       updateSideUnits(val) {
         var vm = this;
         setTimeout(function(){
@@ -706,7 +702,6 @@ export default {
           val.right = vm.updateRexVal(val.right);
         }, vm.updateSideUnitsDelay);
       },
-
       marginUpdate(val) {
           if(this.m_link.a) {
               val.right = val.left = val.bottom = val.top;
@@ -721,7 +716,6 @@ export default {
           }
           this.updateSideUnits(val);
       },
-
       paddingUpdate(val) {
           if(this.p_link.a) {
               val.right = val.left = val.bottom = val.top; 
@@ -736,7 +730,6 @@ export default {
           }
           this.updateSideUnits(val);
       },
-
       borderUpdate(val) {
           if(this.b_link.a) {
               val.right = val.left = val.bottom = val.top; 
@@ -751,7 +744,6 @@ export default {
           }
           this.updateSideUnits(val);
       },
-
       borderRadiusUpdate(val) {
           this.br_link ? val.bottom_left = val.bottom_right = val.top_right = val.top_left : '';
           var vm = this;
@@ -772,28 +764,27 @@ export default {
           this.galleryImgName = this.galleryImg.map(item=>item.name);
         });
       },
-
       updateStyle() {
-        var margin = 'margin:' + this.margin.top + ' '  + (this.blockAlign == '' && this.margin.right == '0px' && this.margin.left != 'auto' ? (this.selectedBlock.type != 'element' ? 'auto' : '0px') : this.margin.right) + ' ' + this.margin.bottom + ' ' + (this.blockAlign == '' && this.margin.left == '0px' && this.margin.right != 'auto' ? (this.selectedBlock.type != 'element' ? 'auto' : '0px') : this.margin.left)  + '; ';
-        var padding = 'padding:'+this.padding.top + ' '  + this.padding.right + ' ' + this.padding.bottom + ' ' + this.padding.left + '; ';
-        var borderWidth = 'border-width:' + this.border.top + ' ' + this.border.right + ' ' + this.border.bottom + ' ' + this.border.left + '; ';
-        var borderStyle = 'border-style:' + this.border_style + '; ';
-        var borderColor = 'border-color:' + 'rgb('+this.border_color.rgba.r+' '+this.border_color.rgba.g+' '+this.border_color.rgba.b+' / '+this.border_color.rgba.a+'); ';
-        var borderRadius = 'border-radius:' + this.border_radius.top_left + ' '  + this.border_radius.top_right + ' ' + this.border_radius.bottom_left + ' ' + this.border_radius.bottom_right + '; ';
-        var backgroundColor = 'background-color:' + 'rgb('+this.background_color.rgba.r+' '+this.background_color.rgba.g+' '+this.background_color.rgba.b+' / '+this.background_color.rgba.a+'); ';
-        var width = 'width:' + this.width.value + '; ';
-        var height = this.height.value != '100%' ? 'height:' + this.height.value + '; ' : '';
+        var margin = '--margin:' + this.margin.top + ' '  + (this.blockAlign == '' && this.margin.right == '0px' && this.margin.left != 'auto' ? (this.selectedBlock.type != 'element' ? 'auto' : '0px') : this.margin.right) + ' ' + this.margin.bottom + ' ' + (this.blockAlign == '' && this.margin.left == '0px' && this.margin.right != 'auto' ? (this.selectedBlock.type != 'element' ? 'auto' : '0px') : this.margin.left)  + '; ';
+        var padding = '--padding:'+this.padding.top + ' '  + this.padding.right + ' ' + this.padding.bottom + ' ' + this.padding.left + '; ';
+        var borderWidth = '--border-width:' + this.border.top + ' ' + this.border.right + ' ' + this.border.bottom + ' ' + this.border.left + '; ';
+        var borderStyle = '--border-style:' + this.border_style + '; ';
+        var borderColor = '--border-color:' + 'rgb('+this.border_color.rgba.r+' '+this.border_color.rgba.g+' '+this.border_color.rgba.b+' / '+this.border_color.rgba.a+'); ';
+        var borderRadius = '--border-radius:' + this.border_radius.top_left + ' '  + this.border_radius.top_right + ' ' + this.border_radius.bottom_left + ' ' + this.border_radius.bottom_right + '; ';
+        var backgroundColor = '--background-color:' + 'rgb('+this.background_color.rgba.r+' '+this.background_color.rgba.g+' '+this.background_color.rgba.b+' / '+this.background_color.rgba.a+'); ';
+        var width = '--width:' + this.width.value + '; ';
+        var height = this.height.value != '100%' ? '--height:' + this.height.value + '; ' : '';
         var align = this.blockAlign == 'right' || this.blockAlign == 'center' ? 'margin-left:auto!important;' : '';
         align = align + (this.blockAlign == 'left' || this.blockAlign == 'center' ? 'margin-right:auto!important;' : '');
         if(this.background_gradient.active || this.background_image.active) {
           if(this.background_gradient.active) {
-            var backgroundImage = 'background-image:' + 'linear-gradient(' + this.background_gradient.direction + ', ' + 'rgb('+this.background_gradient.start.rgba.r+' '+this.background_gradient.start.rgba.g+' '+this.background_gradient.start.rgba.b+' / '+this.background_gradient.start.rgba.a+')' + ' ' + this.background_gradient.startPosition + ', ' + 'rgb('+this.background_gradient.end.rgba.r+' '+this.background_gradient.end.rgba.g+' '+this.background_gradient.end.rgba.b+' / '+this.background_gradient.end.rgba.a+')' + ' ' + this.background_gradient.endPosition +'); ';
+            var backgroundImage = '--background-image:' + 'linear-gradient(' + this.background_gradient.direction + ', ' + 'rgb('+this.background_gradient.start.rgba.r+' '+this.background_gradient.start.rgba.g+' '+this.background_gradient.start.rgba.b+' / '+this.background_gradient.start.rgba.a+')' + ' ' + this.background_gradient.startPosition + ', ' + 'rgb('+this.background_gradient.end.rgba.r+' '+this.background_gradient.end.rgba.g+' '+this.background_gradient.end.rgba.b+' / '+this.background_gradient.end.rgba.a+')' + ' ' + this.background_gradient.endPosition +'); ';
           }
           else if(this.background_image.active) {
-            var backgroundSize = 'background-size:' + this.background_image.size + '; ';
-            var backgroundPosition = 'background-position:' + this.background_image.position + '; ';
-            var backgroundRepeat = 'background-repeat:' + this.background_image.repeat.value + '; ';
-            var backgroundImage = 'background-image:' + 'url('+this.background_image.name+'); ' + backgroundSize + backgroundPosition + backgroundRepeat;
+            var backgroundSize = '--background-size:' + this.background_image.size + '; ';
+            var backgroundPosition = '--background-position:' + this.background_image.position + '; ';
+            var backgroundRepeat = '--background-repeat:' + this.background_image.repeat.value + '; ';
+            var backgroundImage = '--background-image:' + 'url('+this.background_image.name+'); ' + backgroundSize + backgroundPosition + backgroundRepeat;
           }
           this.selectedBlock.style = margin + padding + borderWidth + borderStyle + borderColor + borderRadius + width + height + backgroundColor + backgroundImage;
         }
@@ -807,7 +798,6 @@ export default {
         // style.id = "createStyle";
         // document.getElementsByTagName('HEAD')[0].appendChild(style);
       },
-
       resetStyling() {
           this.margin.top = '0px';
           this.margin.right = '0px';
@@ -869,7 +859,8 @@ export default {
         var str = '';
         if(build.style) {
           for(var attr of build.style.split(';')) {
-            var kt = attr.split(':');
+            var cssVar = attr.split('--')[1];
+            var kt = cssVar ? cssVar.split(':') : attr.split(':');
             if(kt[0].trim() != 'background-image') {
               str = kt != ' ' ? str + '"' + kt[0].trim().split('-')[0] + (kt[0].trim().split('-')[1] != undefined ? kt[0].trim().split('-')[1] : '') + '"' + ':' + '"' + kt[1] + '", ' : str.slice(0, str.length-2);
             }
