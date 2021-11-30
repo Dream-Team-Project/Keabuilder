@@ -20,13 +20,16 @@ Route::get('/heatfetchloc-request', 'HeatmapController@fetchloc');
 Route::get('/heatfetchmou-request', 'HeatmapController@fetchmou');
 Route::get('/heatall-request', 'HeatmapController@fetchall');
 Route::get('/heatshome-request', 'HeatmapController@fetchshowme');
+Route::get('/saverecordheat', 'HeatmapController@saverecordheat');
+Route::get('/showrecordheat', 'HeatmapController@showrecordheat');
+Route::get('/getheatdir', 'HeatmapController@getheatdir');
+Route::get('/visitorinfo', 'HeatmapController@visitorinfo');
 
 Auth::routes();
 
 Route::get('/builder', 'HomeController@builder')->name('builder');
 
 Route::get('/home', 'HomeController@home')->name('home');
-
 
 // login system
 Route::prefix('auth')->group(function(){

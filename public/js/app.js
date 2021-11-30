@@ -11929,6 +11929,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11948,6 +12012,493 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error.response.data.error);
       });
+    },
+    settheurl: function settheurl() {
+      var inputval = document.getElementById('inpurl').value;
+
+      if (inputval != '') {
+        window.open(inputval + '#kb-heatmaps', '_blank');
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      video_index: 0,
+      video_player: null,
+      video_list: [],
+      toggleplkvalue: 0,
+      isOpen: false
+    };
+  },
+  created: function created() {
+    this.init();
+  },
+  methods: {
+    init: function init() {
+      var _this = this;
+
+      var hshvl = window.location.hash;
+      hshvl = hshvl.replace('#', '');
+      axios.get('getheatdir?hash=' + hshvl).then(function (response) {
+        // console.log(response.data);
+        response.data.forEach(function (element) {
+          _this.video_list.push(element);
+        });
+        _this.video_player = document.getElementById("kb-heatmapvideo");
+
+        _this.video_player.setAttribute("src", '/videos_heatmaps/' + _this.video_list[_this.video_index]);
+
+        _this.video_player.play();
+
+        document.getElementById('playback_activity').innerText = 'Viewing...';
+        document.getElementById('kb-progressbar').classList.add('active');
+      });
+      axios.get('visitorinfo?hash=' + hshvl).then(function (response) {
+        console.log(response.data);
+        document.getElementById("kb_visitorinfo1").innerText = response.data[0].created_at;
+        document.getElementById("kb_visitorinfo2").innerText = response.data[0].os;
+        document.getElementById("kb_visitorinfo3").innerText = response.data[0].location;
+        document.getElementById("kb_visitorinfo4").innerText = response.data[0].ipaddress;
+        document.getElementById("kb_visitorinfo5").innerText = response.data[0].landing_page;
+        document.getElementById("kb_visitorinfo5").href = response.data[0].landing_page;
+        document.getElementById("kb_visitorinfo6").innerText = response.data[0].device;
+        document.getElementById("kb_loadheatmap").href = response.data[0].landing_page + "#kb-heatmaps";
+      });
+    },
+    toggle_playback: function toggle_playback() {
+      if (this.toggleplkvalue == 1) {
+        this.video_player.play();
+        document.getElementById('toggle_playback').children[1].style.display = "none";
+        document.getElementById('toggle_playback').children[0].style.display = "block";
+        document.getElementById('playback_activity').innerText = 'Viewing...';
+        document.getElementById('kb-progressbar').classList.add('active');
+      } else {
+        this.video_player.pause();
+        document.getElementById('toggle_playback').children[0].style.display = "none";
+        document.getElementById('toggle_playback').children[1].style.display = "block";
+        document.getElementById('playback_activity').innerText = 'Pause';
+        document.getElementById('kb-progressbar').classList.remove('active');
+      }
+
+      this.toggleplkvalue++;
+
+      if (this.toggleplkvalue == 2) {
+        this.toggleplkvalue = 0;
+      }
+    },
+    onVideoEnded: function onVideoEnded() {
+      if (this.video_index < this.video_list.length - 1) {
+        this.video_index++;
+      } else {
+        this.video_index = 0;
+      } // console.log("video ended");
+      // console.log(this.video_index);
+
+
+      this.video_player.setAttribute("src", '/videos_heatmaps/' + this.video_list[this.video_index]);
+      this.video_player.play();
+    },
+    repeat_record: function repeat_record() {
+      this.video_player.pause();
+      this.video_player.setAttribute("src", '/videos_heatmaps/' + this.video_list[0]);
+      this.video_index = 0;
+      this.video_player.defaultPlaybackRate = 1;
+      document.getElementById('play_speed_selector').value = '2';
+      this.video_player.play();
+    },
+    kb_speedcontrol: function kb_speedcontrol(event) {
+      switch (event.target.value) {
+        case '1':
+          this.video_player.defaultPlaybackRate = 0.5;
+          break;
+
+        case '2':
+          this.video_player.defaultPlaybackRate = 1;
+          break;
+
+        case '3':
+          this.video_player.defaultPlaybackRate = 2;
+          break;
+
+        case '4':
+          this.video_player.defaultPlaybackRate = 3;
+          break;
+
+        case '5':
+          this.video_player.defaultPlaybackRate = 4;
+          break;
+
+        case '6':
+          this.video_player.defaultPlaybackRate = 5;
+          break;
+
+        case '7':
+          this.video_player.defaultPlaybackRate = 10;
+          break;
+
+        default:
+          break;
+      }
+    },
+    openClose: function openClose() {
+      this.isOpen = !this.isOpen;
     }
   }
 });
@@ -18444,6 +18995,44 @@ exports.push([module.i, "\n.keabuilder-board[data-v-602592cc] {\r\n    position:
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.kb-mt-tp-2[data-v-de8c6b4a]{\r\n    margin-top: -20px;\n}\n.kb-heatmapnew[data-v-de8c6b4a]{\r\n    font-size: 75px;\r\n    font-weight: bold;\r\n    text-align: center;\r\n    position: absolute;\r\n    top: 75%;\r\n    left: 33%;\n}\n.kb-heatmapnew span[data-v-de8c6b4a] {\r\n    font-size: 22px;\r\n    color: #d8c898;\n}\n.kb-findsection > div[data-v-de8c6b4a]{\r\n    background: linear-gradient(to left,#d8c898 ,#2c2c28);\r\n    color: #fff;\r\n    padding: 50px;\r\n    border-radius: 6px;\n}\n.kb-findsection input[data-v-de8c6b4a] {\r\n    width: 91%;\r\n    height: 45px;\r\n    border-radius: 64px 0px 0px 64px;\r\n    border: 0;\r\n    padding: 0px 20px;\n}\n.kb-findsection button[data-v-de8c6b4a] {\r\n    background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);\r\n    color: #fff;\r\n    border: navajowhite;\r\n    padding: 11px 20px;\r\n    border-radius: 0px 64px 64px 0px;\n}\n.kb-mostvisitpage h3[data-v-de8c6b4a] {\r\n    background: linear-gradient(to left,#d8c898 ,#2c2c28);\r\n    color: #fff;\r\n    padding: 10px 30px;\r\n    margin: 0px 33px 0px;\r\n    border-radius: 6px 6px 0px 0px;\n}\n.kb-mostvisitpage ol[data-v-de8c6b4a] {\r\n    margin: 0px 32px;\r\n    background: #f2f4f4;\r\n    padding: 43px;\n}\n.kb-mostvisitpage ol li[data-v-de8c6b4a] {\r\n    background: rgb(255 255 255 / 60%);\r\n    margin-bottom: 10px;\r\n    padding: 10px;\r\n    border-radius: 10px;\n}\n.kb-mostvisitpage ol li a[data-v-de8c6b4a] {\r\n    color: #6f6954;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.mainvideoheatmap video{\r\n    width:100%;\r\n    height:100%;\n}\n.mainvideoheatmap {\r\n    background: #e2e2e2;\r\n    box-shadow: 0 0 30px rgb(139 139 139);\r\n    -webkit-box-shadow: 0 0 30px rgb(139 139 139);\n}\r\n\r\n/*video navbar styling */\n#playback_nav_controls {\r\n    margin-top: -20px;\r\n    position: relative;\r\n    padding: 12px 0px;\r\n    margin-bottom: 40px;\r\n    border: 1px solid transparent;\r\n    background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);\r\n    background-repeat: repeat-x;\r\n    border-radius: 4px;\r\n  background-color: #222;\r\n    border-color: #080808;\n}\n.btn-dark-inset, #playback_nav_controls .btn-dark {\r\n    border-color: #222 #292929 #111;\r\n    box-shadow: inset 0 1px 0 rgb(255 255 255 / 18%), 0 1px 0 rgb(255 255 255 / 12%);\n}\n#playback_nav_controls .btn-dark {\r\n    background-color: #333;\r\n    background-image: linear-gradient(#555 0,#333 100%);\r\n    background-repeat: repeat-x;\r\n    color: #eee;\r\n    text-shadow: 0 -1px 0 rgb(0 0 0 / 75%);\n}\n#play-controls {\r\n    width: 100%;\r\n    display: inline-block;\n}\n#toggle_playback.paused {\r\n    background-color: #333;\r\n    background-image: linear-gradient(#555 0,#333 100%);\r\n    background-repeat: repeat-x;\r\n    border-color: #222 #292929 #111;\r\n    box-shadow: inset 0 1px 0 rgb(255 255 255 / 18%), 0 1px 0 rgb(255 255 255 / 12%);\n}\n#playback_nav_controls .progress {\r\n    background-color: #222;\r\n    background-image: linear-gradient(#222,#292929);\r\n    border: 1px solid;\r\n    border-color: #222 #1a1a1a #111;\r\n    border-left: 0;\r\n    border-right: 0;\r\n    border-radius: 0;\r\n    box-shadow: inset 0 1px 10px rgb(0 0 0 / 50%), 0 1px 0 rgb(255 255 255 / 12%);\r\n    cursor: pointer;\r\n    height: 30px;\r\n    margin-bottom: 0;\r\n    margin-top: 10px;\r\n    min-width: 50px;\r\n    position: relative;\r\n    width: 89%;\r\n    float: right;\r\n    margin: 0px;\n}\n#playback_activity.dark {\r\n    color: #fff;\r\n    text-shadow: 0 0 3px rgb(0 0 0 / 50%);\n}\n#playback_activity {\r\n    color: #333;\r\n    font-size: 11px;\r\n    font-weight: 700;\r\n    left: 0;\r\n    line-height: 30px;\r\n    position: absolute;\r\n    text-align: center;\r\n    text-shadow: 0 0 2px #fff, 0 0 2px #fff;\r\n    top: 0;\r\n    width: 100%;\r\n    -moz-osx-font-smoothing: grayscale;\n}\n#playback_nav_controls .progress:not(.active) .progress-bar {\r\n    background-color: #777;\n}\n.progress-bar-striped, .progress-striped .progress-bar {\r\n    background-image: linear-gradient(\r\n45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);\r\n    background-size: 40px 40px;\n}\n.btn-group-vertical>.btn, .btn-group>.btn {\r\n    position: relative;\r\n    float: left;\n}\n#toggle_playback.btn-toggle.paused .fa-play {\r\n    color: #d8c898;\r\n    text-shadow: 0 -1px 0 rgb(0 0 0 / 90%);\n}\n#toggle_playback.btn-toggle .fa-pause {\r\n    display: none;\n}\n.pull-right {\r\n    float: right;\n}\n#playback_nav_controls .progress.active .progress-bar {\r\n    -webkit-animation: progress-bar-stripes 2s linear infinite;\r\n    animation: progress-bar-stripes 2s linear infinite;\r\n    background-color: rgb(216 200 152 / 63%);\n}\n@-webkit-keyframes progress-bar-stripes{\n0% {\r\n        background-position: 40px 0;\n}\n100% {\r\n        background-position: 0 0;\n}\n}\n@keyframes progress-bar-stripes{\n0% {\r\n        background-position: 40px 0;\n}\n100% {\r\n        background-position: 0 0;\n}\n}\n.wood_back_dark {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    z-index: -1;\r\n    border: none;\r\n    background-image: linear-gradient(black,rgba(0,0,0,.3));\r\n    transition: opacity 1s linear;\n}\n#close_spy_btn a {\r\n    color: #eee;\n}\r\n    \r\n/*video navbar styling */\n.scrollable-menu {\r\n    height: auto;\r\n    max-height: 300px;\r\n    overflow-x: hidden;\r\n    text-align: left;\n}\n.data-menu {\r\n    max-width: 400px;\r\n    -moz-osx-font-smoothing: grayscale;\n}\n.dropdown-menu {\r\n    min-width: 170px;\n}\n.open>.dropdown-menu {\r\n    display: block;\n}\n.pull-right>.dropdown-menu {\r\n    right: 0;\r\n    left: auto;\n}\n.data-menu__item {\r\n    display: block;\r\n    padding: 3px 20px;\r\n    clear: both;\r\n    font-weight: 400;\r\n    line-height: 1.42857143;\r\n    color: #333;\r\n    white-space: nowrap;\n}\n.data-menu--padded .data-menu__item, .data-menu__item--padded {\r\n    padding: 10px 25px;\n}\n.data-menu__item--separator {\r\n    border-top: 1px solid #eee;\r\n    margin: 0;\n}\n.data-menu--padded .data-menu__item--separator {\r\n    margin: 0 25px;\n}\n.data-menu__label {\r\n    color: #aaa;\r\n    display: block;\r\n    font-size: 11px;\r\n    font-weight: 600;\r\n    line-height: 1;\r\n    text-transform: uppercase;\r\n    margin-top: 0;\n}\n#mainindex .btn-primary a{\r\n    color: #fff;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoginComponent.vue?vue&type=style&index=0&id=4d2414bf&scoped=true&lang=css&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LoginComponent.vue?vue&type=style&index=0&id=4d2414bf&scoped=true&lang=css& ***!
@@ -18456,7 +19045,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.bw-login[data-v-4d2414bf] {\n    margin-top: -19px;\n}\n.mycustomalert ul[data-v-4d2414bf] {\n    position: fixed;\n    top: 5px;\n    right: 18px;\n    z-index: 9;\n    color: #fff;\n}\n.mycustomalert ul li[data-v-4d2414bf] {\n    background-color: #F64E60;\n    border-color: #F64E60;\n    list-style: none;\n    padding: 10px 20px;\n    font-size: 14px;\n    margin-top: 20px;\n    border-radius: 5px;\n}\n.bw-login img[data-v-4d2414bf] {\n    width: 100px;\n}\n.login-form[data-v-4d2414bf] {\n    width: 100%;\n    max-width: 450px;\n    color: rgb(0, 0, 0);\n    text-align: left;\n}\n.login-form h5[data-v-4d2414bf] {\n    font-size: 19px;\n    margin-top: 15px;\n}\n.login-form p[data-v-4d2414bf] {\n    font-size: 13px;\n    opacity: 0.6;\n}\n.signup-btn[data-v-4d2414bf] {\n    border: none;\n    font-size: 13px;\n}\n.login-btn[data-v-4d2414bf] {\n    padding: 10px 50px !important;\n}\n.txt-light[data-v-4d2414bf] {\n    font-size: 13px;\n    opacity: 0.7;\n}\n.signup-btn[data-v-4d2414bf]:hover {\n    background: transparent !important;\n    opacity: 0.7;\n}\n.error[data-v-4d2414bf] {\n    color: #F64E60;\n    font-size: 12px;\n    font-weight: 400;\n}\n.first-login input[data-v-4d2414bf]::-moz-placeholder, .bu-forlogin input[data-v-4d2414bf]::-moz-placeholder {\n    color: rgb(0, 0, 0);\n    font-size: 13px;\n}\n.first-login input[data-v-4d2414bf]:-ms-input-placeholder, .bu-forlogin input[data-v-4d2414bf]:-ms-input-placeholder {\n    color: rgb(0, 0, 0);\n    font-size: 13px;\n}\n.first-login input[data-v-4d2414bf]::placeholder,\n.bu-forlogin input[data-v-4d2414bf]::placeholder,\n.bu-forlogin input[data-v-4d2414bf]:focus,\n.first-login input[data-v-4d2414bf]:focus {\n    color: rgb(0, 0, 0);\n    font-size: 13px;\n}\n.first-login input[data-v-4d2414bf],\n.bu-forlogin input[data-v-4d2414bf] {\n    opacity: 0.7;\n    padding: 13px 26px;\n    height: 45px;\n}\n.toastnew .fa-thumbs-up[data-v-4d2414bf] {\n    display: none;\n}\n.toastnew.active .fa-thumbs-up[data-v-4d2414bf] {\n    display: inline-block;\n}\n.toastnew.active .fa-exclamation-triangle[data-v-4d2414bf] {\n    display: none;\n}\n.toastnew.active[data-v-4d2414bf] {\n    background: green !important;\n}\n.apple-login__container[data-v-4d2414bf]{\n    display: none;\n}\n.bw-anthoersignin a[data-v-4d2414bf]:focus, .bw-anthoersignin a[data-v-4d2414bf]:hover {\n    background-color: #f8f7fa;\n    border-color: #f8f7fa;\n    color:#3d64ff;\n}\n.bw-anthoersignin a[data-v-4d2414bf]{\n    font-size: 14px;\n    padding: 10px 20px;\n    display: inline-block;\n    width: 50%;\n}\n.bw-container__divider[data-v-4d2414bf] {\n    position: relative;\n    width: 50%;\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n.bw-container__divider[data-v-4d2414bf]:before {\n    content: \"\";\n    height: 1px;\n    position: absolute;\n    left: 0;\n    right: 0;\n    background-color: #a9a8b3;\n    top: 14px;\n}\n.bw-container__divider-text[data-v-4d2414bf] {\n    color: #6f7287;\n    border: 1px solid #a9a8b3;\n    border-radius: 100px;\n    background: #fff;\n    position: relative;\n    display: inline-block;\n    padding: 0 12px 3px;\n    min-width: 20px;\n    text-align: center;\n    left: 41%;\n}\n.bw-container__bg[data-v-4d2414bf] {\n     background: var(--login-bk);\n    background-position: 0;\n    background-repeat: no-repeat;\n    background-size: cover;\n    background-position: top center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n}\n.bw-colside[data-v-4d2414bf] {\n    /* display: -webkit-box ;\ndisplay: -ms-flexbox ;\ndisplay: flex ;    */\n    flex: 1;\n    -ms-flex: 1 0 0px;\n    height: 99.9vh;\n    overflow: hidden;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.bw-login[data-v-4d2414bf] {\n    margin-top: -24px;\n}\n.mycustomalert ul[data-v-4d2414bf] {\n    position: fixed;\n    top: 5px;\n    right: 18px;\n    z-index: 9;\n    color: #fff;\n}\n.mycustomalert ul li[data-v-4d2414bf] {\n    background-color: #F64E60;\n    border-color: #F64E60;\n    list-style: none;\n    padding: 10px 20px;\n    font-size: 14px;\n    margin-top: 20px;\n    border-radius: 5px;\n}\n.bw-login img[data-v-4d2414bf] {\n    width: 100px;\n}\n.login-form[data-v-4d2414bf] {\n    width: 100%;\n    max-width: 450px;\n    color: rgb(0, 0, 0);\n    text-align: left;\n}\n.login-form h5[data-v-4d2414bf] {\n    font-size: 19px;\n    margin-top: 15px;\n}\n.login-form p[data-v-4d2414bf] {\n    font-size: 13px;\n    opacity: 0.6;\n}\n.signup-btn[data-v-4d2414bf] {\n    border: none;\n    font-size: 13px;\n}\n.login-btn[data-v-4d2414bf] {\n    padding: 10px 50px !important;\n}\n.txt-light[data-v-4d2414bf] {\n    font-size: 13px;\n    opacity: 0.7;\n}\n.signup-btn[data-v-4d2414bf]:hover {\n    background: transparent !important;\n    opacity: 0.7;\n}\n.error[data-v-4d2414bf] {\n    color: #F64E60;\n    font-size: 12px;\n    font-weight: 400;\n}\n.first-login input[data-v-4d2414bf]::-moz-placeholder, .bu-forlogin input[data-v-4d2414bf]::-moz-placeholder {\n    color: rgb(0, 0, 0);\n    font-size: 13px;\n}\n.first-login input[data-v-4d2414bf]:-ms-input-placeholder, .bu-forlogin input[data-v-4d2414bf]:-ms-input-placeholder {\n    color: rgb(0, 0, 0);\n    font-size: 13px;\n}\n.first-login input[data-v-4d2414bf]::placeholder,\n.bu-forlogin input[data-v-4d2414bf]::placeholder,\n.bu-forlogin input[data-v-4d2414bf]:focus,\n.first-login input[data-v-4d2414bf]:focus {\n    color: rgb(0, 0, 0);\n    font-size: 13px;\n}\n.first-login input[data-v-4d2414bf],\n.bu-forlogin input[data-v-4d2414bf] {\n    opacity: 0.7;\n    padding: 13px 26px;\n    height: 45px;\n}\n.toastnew .fa-thumbs-up[data-v-4d2414bf] {\n    display: none;\n}\n.toastnew.active .fa-thumbs-up[data-v-4d2414bf] {\n    display: inline-block;\n}\n.toastnew.active .fa-exclamation-triangle[data-v-4d2414bf] {\n    display: none;\n}\n.toastnew.active[data-v-4d2414bf] {\n    background: green !important;\n}\n.apple-login__container[data-v-4d2414bf]{\n    display: none;\n}\n.bw-anthoersignin a[data-v-4d2414bf]:focus, .bw-anthoersignin a[data-v-4d2414bf]:hover {\n    background-color: #f8f7fa;\n    border-color: #f8f7fa;\n    color:#3d64ff;\n}\n.bw-anthoersignin a[data-v-4d2414bf]{\n    font-size: 14px;\n    padding: 10px 20px;\n    display: inline-block;\n    width: 50%;\n}\n.bw-container__divider[data-v-4d2414bf] {\n    position: relative;\n    width: 50%;\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n.bw-container__divider[data-v-4d2414bf]:before {\n    content: \"\";\n    height: 1px;\n    position: absolute;\n    left: 0;\n    right: 0;\n    background-color: #a9a8b3;\n    top: 14px;\n}\n.bw-container__divider-text[data-v-4d2414bf] {\n    color: #6f7287;\n    border: 1px solid #a9a8b3;\n    border-radius: 100px;\n    background: #fff;\n    position: relative;\n    display: inline-block;\n    padding: 0 12px 3px;\n    min-width: 20px;\n    text-align: center;\n    left: 41%;\n}\n.bw-container__bg[data-v-4d2414bf] {\n     background: var(--login-bk);\n    background-position: 0;\n    background-repeat: no-repeat;\n    background-size: cover;\n    background-position: top center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n}\n.bw-colside[data-v-4d2414bf] {\n    /* display: -webkit-box ;\ndisplay: -ms-flexbox ;\ndisplay: flex ;    */\n    flex: 1;\n    -ms-flex: 1 0 0px;\n    height: 99.9vh;\n    overflow: hidden;\n}\n\n\n", ""]);
 
 // exports
 
@@ -53665,6 +54254,66 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoginComponent.vue?vue&type=style&index=0&id=4d2414bf&scoped=true&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LoginComponent.vue?vue&type=style&index=0&id=4d2414bf&scoped=true&lang=css& ***!
@@ -70559,8 +71208,25 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "row p-5 kb-findsection" }, [
         _c("div", { staticClass: "col-md-12" }, [
+          _c("h3", [_vm._v("Enter a URL on your site to start with...")]),
+          _vm._v(" "),
+          _c("p", [_vm._v("You can easily monitor your user behavior.")]),
+          _vm._v(" "),
+          _c("input", {
+            attrs: {
+              type: "text",
+              placeholder: "e.g. http://.com/page.html",
+              id: "inpurl"
+            }
+          }),
+          _c("button", { on: { click: _vm.settheurl } }, [_vm._v("View")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-5" }, [
+        _c("div", { staticClass: "col-md-12 kb-mostvisitpage" }, [
           _c("h3", [_vm._v("Most Visited Pages")]),
           _vm._v(" "),
           _c(
@@ -70597,9 +71263,359 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" })
+    return _c("div", { staticClass: "row kb-mt-tp-2" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("img", {
+          staticClass: "img-fluid",
+          attrs: { src: "/images/heatmap/bk-heatmap.jpg", alt: "" }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "kb-heatmapnew" }, [
+          _c("span", [_vm._v("ALL NEW")]),
+          _vm._v(" HEATMAPS")
+        ])
+      ])
     ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=template&id=6dbbcd0e&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=template&id=6dbbcd0e& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "recordingsheatmap" } }, [
+    _c("div", { attrs: { id: "full_playback_controls" } }, [
+      _c("nav", { attrs: { id: "playback_nav_controls" } }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-1" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "navbar-btn btn btn-dark btn-sm btn-default",
+                  attrs: { id: "close_spy_btn" }
+                },
+                [
+                  _c("router-link", { attrs: { to: "heat-maps" } }, [
+                    _c("span", {
+                      staticClass: "glyphicon glyphicon-chevron-left"
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "lbl" }, [_vm._v("Back")])
+                  ])
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-9" }, [
+              _c(
+                "div",
+                { staticClass: "btn-group", attrs: { id: "play-controls" } },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "navbar-btn btn btn-dark btn-sm tip btn-blue btn-toggle paused",
+                      attrs: { id: "toggle_playback" },
+                      on: { click: _vm.toggle_playback }
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-play" }),
+                      _vm._v(" "),
+                      _c("i", { staticClass: "fas fa-pause" })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "navbar-btn btn btn-dark btn-sm tip btn-blue btn-toggle",
+                      attrs: { id: "repeat-recording-button" },
+                      on: { click: _vm.repeat_record }
+                    },
+                    [_c("i", { staticClass: "fas fa-redo-alt" })]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "dropdown pull-left btn-group" }, [
+                    _c(
+                      "select",
+                      {
+                        staticClass:
+                          "btn btn-dark navbar-btn btn-sm tip rounded-xs-right bordered-xs-right dropdown-toggle",
+                        attrs: { id: "play_speed_selector" },
+                        on: { change: _vm.kb_speedcontrol }
+                      },
+                      [
+                        _c("option", { attrs: { value: "1" } }, [
+                          _vm._v("½ x")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2", selected: "" } }, [
+                          _vm._v("1x")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "3" } }, [_vm._v("2x")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "4" } }, [_vm._v("3x")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "5" } }, [_vm._v("4x")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "6" } }, [_vm._v("5x")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "7" } }, [_vm._v("10x")])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "navbar-btn progress progress-striped tip",
+                      attrs: { id: "kb-progressbar" }
+                    },
+                    [
+                      _c("div", {
+                        staticClass: "dark",
+                        attrs: { id: "playback_activity" },
+                        on: { click: _vm.toggle_playback }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(0)
+                    ]
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2" }, [
+              _c("div", { staticClass: "btn-group pull-right" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown btn-group pull-right",
+                    class: { open: _vm.isOpen },
+                    attrs: { id: "recording_page_count" }
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-sm navbar-btn btn-dark dropdown-toggle",
+                        attrs: { id: "page_count_val", type: "button" }
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            attrs: { id: "page_lbl" },
+                            on: { click: _vm.openClose }
+                          },
+                          [_vm._v("Visitor Info")]
+                        ),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "caret" })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-12" }, [
+          _c("div", { staticClass: "mainvideoheatmap" }, [
+            _c("video", {
+              attrs: { id: "kb-heatmapvideo", muted: "" },
+              domProps: { muted: true },
+              on: { ended: _vm.onVideoEnded }
+            })
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "wood_back_dark", staticStyle: { opacity: "1" } })
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "progress-bar",
+        staticStyle: { width: "107.692%", transition: "none 0s ease 0s" }
+      },
+      [_c("span", { staticClass: "sr-only" }, [_vm._v("0%")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "btn btn-primary btn-dark-inset navbar-btn btn-sm tip" },
+      [
+        _c(
+          "a",
+          { attrs: { href: "#", target: "_blank", id: "kb_loadheatmap" } },
+          [_vm._v("Load Heatmap")]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      {
+        staticClass:
+          "dropdown-menu scrollable-menu data-menu data-menu--padded",
+        attrs: { id: "recording_visitor_data_menu" }
+      },
+      [
+        _c("li", { staticClass: "data-menu__item" }, [
+          _c("div", { staticClass: "media" }, [
+            _c("div", { staticClass: "media-body" }, [
+              _c("h3", { staticClass: "media-heading" }, [_vm._v("Visitor")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", {
+          staticClass: "data-menu__item--separator",
+          attrs: { role: "presentation" }
+        }),
+        _vm._v(" "),
+        _c("li", { staticClass: "data-menu__item" }, [
+          _c("h4", { staticClass: "data-menu__label" }, [_vm._v("Page Start")]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "list-unstyled" }, [
+            _c("li", {
+              staticClass: "data-menu__field",
+              attrs: { id: "kb_visitorinfo1" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", {
+          staticClass: "data-menu__item--separator",
+          attrs: { role: "presentation" }
+        }),
+        _vm._v(" "),
+        _c("li", { staticClass: "data-menu__item" }, [
+          _c("h4", { staticClass: "data-menu__label" }, [
+            _vm._v("Browser & OS")
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "list-unstyled" }, [
+            _c("li", {
+              staticClass: "data-menu__field",
+              attrs: { id: "kb_visitorinfo2" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", {
+          staticClass: "data-menu__item--separator",
+          attrs: { role: "presentation" }
+        }),
+        _vm._v(" "),
+        _c("li", { staticClass: "data-menu__item" }, [
+          _c("h4", { staticClass: "data-menu__label" }, [_vm._v("Location")]),
+          _vm._v(" "),
+          _c("span", {
+            staticClass: "data-menu__field",
+            attrs: { id: "kb_visitorinfo3" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("li", {
+          staticClass: "data-menu__item--separator",
+          attrs: { role: "presentation" }
+        }),
+        _vm._v(" "),
+        _c("li", { staticClass: "data-menu__item" }, [
+          _c("h4", { staticClass: "data-menu__label" }, [_vm._v("IP Address")]),
+          _c("span", {
+            staticClass: "data-menu__field text-center",
+            attrs: { id: "kb_visitorinfo4" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("li", {
+          staticClass: "data-menu__item--separator",
+          attrs: { role: "presentation" }
+        }),
+        _vm._v(" "),
+        _c("li", { staticClass: "data-menu__item" }, [
+          _c("h4", { staticClass: "data-menu__label" }, [_vm._v("Source")]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "list-unstyled list-spaced" }, [
+            _c("li", [
+              _c("span", { staticClass: "data-menu__field" }, [
+                _c("small", { staticClass: "text-muted" }, [
+                  _vm._v("Landing URL:")
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _c("a", {
+                  staticClass: "tip",
+                  attrs: { href: "", id: "kb_visitorinfo5", target: "_blank" }
+                })
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", {
+          staticClass: "data-menu__item--separator",
+          attrs: { role: "presentation" }
+        }),
+        _vm._v(" "),
+        _c("li", { staticClass: "data-menu__item" }, [
+          _c("h4", { staticClass: "data-menu__label" }, [_vm._v("Device")]),
+          _c("span", {
+            staticClass: "data-menu__field text-center",
+            attrs: { id: "kb_visitorinfo6" }
+          })
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -94682,9 +95698,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MembershipComponent_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/MembershipComponent.vue */ "./resources/js/components/MembershipComponent.vue");
 /* harmony import */ var _components_AnalyticsComponent_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/AnalyticsComponent.vue */ "./resources/js/components/AnalyticsComponent.vue");
 /* harmony import */ var _components_HeatmapsComponent_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/HeatmapsComponent.vue */ "./resources/js/components/HeatmapsComponent.vue");
-/* harmony import */ var _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/EdituserComponent.vue */ "./resources/js/components/EdituserComponent.vue");
-/* harmony import */ var _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/PagesComponent.vue */ "./resources/js/components/PagesComponent.vue");
-/* harmony import */ var _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/StrategiesComponent.vue */ "./resources/js/components/StrategiesComponent.vue");
+/* harmony import */ var _components_HeatmapsrecordingsComponent_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/HeatmapsrecordingsComponent.vue */ "./resources/js/components/HeatmapsrecordingsComponent.vue");
+/* harmony import */ var _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/EdituserComponent.vue */ "./resources/js/components/EdituserComponent.vue");
+/* harmony import */ var _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/PagesComponent.vue */ "./resources/js/components/PagesComponent.vue");
+/* harmony import */ var _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/StrategiesComponent.vue */ "./resources/js/components/StrategiesComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -94768,6 +95785,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('tab', vue_tabs_component__
 
 
 
+
 var routes = [{
   path: '/login',
   name: 'login',
@@ -94799,11 +95817,11 @@ var routes = [{
 }, {
   path: '/pages',
   name: 'pages',
-  component: _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]
+  component: _components_PagesComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]
 }, {
   path: '/strategies',
   name: 'strategies',
-  component: _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]
+  component: _components_StrategiesComponent_vue__WEBPACK_IMPORTED_MODULE_24__["default"]
 }, {
   path: '/membership',
   name: 'membership',
@@ -94817,9 +95835,13 @@ var routes = [{
   name: 'heatmaps',
   component: _components_HeatmapsComponent_vue__WEBPACK_IMPORTED_MODULE_20__["default"]
 }, {
+  path: '/heatmaps-recordings',
+  name: 'heatmaps-recordings',
+  component: _components_HeatmapsrecordingsComponent_vue__WEBPACK_IMPORTED_MODULE_21__["default"]
+}, {
   path: '/edit-user',
   name: 'edituser',
-  component: _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_21__["default"]
+  component: _components_EdituserComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]
 }, {
   path: '/*',
   name: 'dashboard',
@@ -95578,7 +96600,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HeatmapsComponent_vue_vue_type_template_id_de8c6b4a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HeatmapsComponent.vue?vue&type=template&id=de8c6b4a&scoped=true& */ "./resources/js/components/HeatmapsComponent.vue?vue&type=template&id=de8c6b4a&scoped=true&");
 /* harmony import */ var _HeatmapsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HeatmapsComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/HeatmapsComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _HeatmapsComponent_vue_vue_type_style_index_0_id_de8c6b4a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css& */ "./resources/js/components/HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -95586,7 +96610,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _HeatmapsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _HeatmapsComponent_vue_vue_type_template_id_de8c6b4a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _HeatmapsComponent_vue_vue_type_template_id_de8c6b4a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -95618,6 +96642,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css& ***!
+  \****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsComponent_vue_vue_type_style_index_0_id_de8c6b4a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsComponent.vue?vue&type=style&index=0&id=de8c6b4a&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsComponent_vue_vue_type_style_index_0_id_de8c6b4a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsComponent_vue_vue_type_style_index_0_id_de8c6b4a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsComponent_vue_vue_type_style_index_0_id_de8c6b4a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsComponent_vue_vue_type_style_index_0_id_de8c6b4a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
 /***/ "./resources/js/components/HeatmapsComponent.vue?vue&type=template&id=de8c6b4a&scoped=true&":
 /*!**************************************************************************************************!*\
   !*** ./resources/js/components/HeatmapsComponent.vue?vue&type=template&id=de8c6b4a&scoped=true& ***!
@@ -95631,6 +96671,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsComponent_vue_vue_type_template_id_de8c6b4a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsComponent_vue_vue_type_template_id_de8c6b4a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/HeatmapsrecordingsComponent.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/HeatmapsrecordingsComponent.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HeatmapsrecordingsComponent_vue_vue_type_template_id_6dbbcd0e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HeatmapsrecordingsComponent.vue?vue&type=template&id=6dbbcd0e& */ "./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=template&id=6dbbcd0e&");
+/* harmony import */ var _HeatmapsrecordingsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HeatmapsrecordingsComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _HeatmapsrecordingsComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _HeatmapsrecordingsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _HeatmapsrecordingsComponent_vue_vue_type_template_id_6dbbcd0e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _HeatmapsrecordingsComponent_vue_vue_type_template_id_6dbbcd0e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/HeatmapsrecordingsComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsrecordingsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./HeatmapsrecordingsComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsrecordingsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsrecordingsComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsrecordingsComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsrecordingsComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsrecordingsComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsrecordingsComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=template&id=6dbbcd0e&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=template&id=6dbbcd0e& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsrecordingsComponent_vue_vue_type_template_id_6dbbcd0e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./HeatmapsrecordingsComponent.vue?vue&type=template&id=6dbbcd0e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeatmapsrecordingsComponent.vue?vue&type=template&id=6dbbcd0e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsrecordingsComponent_vue_vue_type_template_id_6dbbcd0e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeatmapsrecordingsComponent_vue_vue_type_template_id_6dbbcd0e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -96155,8 +97282,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\buildwith\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\buildwith\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Keabuilder\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Keabuilder\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

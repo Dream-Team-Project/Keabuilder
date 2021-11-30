@@ -88,6 +88,7 @@ Vue.component('tab', Tab);
  import membership from './components/MembershipComponent.vue';
  import analytics from './components/AnalyticsComponent.vue';
  import heatmaps from './components/HeatmapsComponent.vue';
+ import heatmapsrecordings from './components/HeatmapsrecordingsComponent.vue';
  import edituser from './components/EdituserComponent.vue';
  import pages from './components/PagesComponent.vue';
  import strategies from './components/StrategiesComponent.vue';
@@ -106,6 +107,7 @@ const routes = [
   {path : '/membership', name: 'membership', component: membership},
   {path : '/analytics', name: 'analytics', component: analytics},
   {path : '/heat-maps', name: 'heatmaps', component: heatmaps},
+  {path : '/heatmaps-recordings', name: 'heatmaps-recordings', component: heatmapsrecordings},
   {path : '/edit-user', name: 'edituser', component: edituser},
   {path : '/*', name: 'dashboard', component: dashboard},
 ]

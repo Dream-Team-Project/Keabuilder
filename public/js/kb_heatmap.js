@@ -149,7 +149,6 @@ var allanchor = document.getElementsByTagName('a');
 for (var index = 0; index < allanchor.length; index++) {
     allanchor[index].addEventListener('click',redirectsometime);
 }
-
 function forclick(e){
     kb_usergetlocX.push(e.clientX);
 
@@ -219,9 +218,208 @@ function formouse(e){
 
 }
 
+function screenshotjs(){
+    var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+    wa.src = 'https://dinklin.greenofficeinncr.com/heatmap_record/screenshot.js';
+    wa.id = 'kb-screenshotjs';
+    var s = document.getElementsByTagName('body')[0]; s.appendChild(wa);
+}
+
+function RecordRTCjs(){
+    var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+    wa.src = 'https://dinklin.greenofficeinncr.com/heatmap_record/RecordRTC.js';
+    wa.id = 'kb-RecordRTCjs';
+    var s = document.getElementsByTagName('body')[0]; s.appendChild(wa);
+}
+
+// function recordheatmap(){
 if(window.location.hash!='#kb-heatmaps' && window.top.location.hash!='#kb-heatmaps'){
+
+        screenshotjs();
+        RecordRTCjs();
+            
+        var elementToShare = document.getElementById('elementToShare');
+        var canvas2d = document.createElement('canvas');
+        var context = canvas2d.getContext('2d');
+
+        // canvas2d.width = elementToShare.clientWidth;
+        // canvas2d.height = elementToShare.clientHeight;
+
+        canvas2d.width = window.innerWidth;
+        canvas2d.height = window.innerHeight;
+
+        canvas2d.style.top = '-99999px';
+        canvas2d.style.left = '-99999px';
+        canvas2d.style.position = 'absolute';
+        (document.body || document.documentElement).appendChild(canvas2d);
+
+        var isRecordingStarted = false;
+        var isStoppedRecording = false;
+
+        (function looper() {
+            if(!isRecordingStarted) {
+                return setTimeout(looper, 500);
+            }
+
+            html2canvas(document.body, {
+                grabMouse: true,
+                allowTaint: false,
+                useCORS: true,
+                onrendered: function(canvas) {
+            
+                    var body = document.body,
+                    html = document.documentElement;
+                    var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+                    
+                    context.clearRect(0, 0, 0, window.innerWidth,height+88);
+                    context.drawImage(canvas, 0, -window.scrollY, window.innerWidth,height+88);
+                    
+                    if(isStoppedRecording) {
+                        return;
+                    }
+
+                    setTimeout(looper, 1);
+                }
+            });
+        })();
+
+        var recorder;
+
+        // var recorder = new RecordRTC(canvas2d, {
+        //     type: 'canvas',
+        //     mimeType: 'video/webm\;codecs=h264',
+        //     getNativeBlob: true
+        // });
+
+        function recordinginterv(){
+            setTimeout(function() {
+                // clearInterval(recordingInterval);
+                heatstop();
+            }, 5000);
+        }
+
+        function heatstart() {
+            recorder = new RecordRTC(canvas2d, {
+                type: 'canvas'
+            });
+            // document.getElementById('start').disabled = true;
+            isStoppedRecording = false;
+            isRecordingStarted = true;
+            recorder.startRecording();
+                // setTimeout(function() {
+                //     heatstop();
+                // //     document.getElementById('stop').disabled = false;
+                // }, 5000);
+        };
+
+        var myrandomstrng = kb_unique_id;
+            
+        var rndmval = 0;
+        function heatstop() {
+            // this.disabled = true;
+
+            isStoppedRecording = true;
+
+            recorder.stopRecording(function() {
+        
+                // this function is used to generate random file name
+                function getFileName(fileExtension) {
+                    var d = new Date();
+                    var year = d.getUTCFullYear();
+                    var month = d.getUTCMonth();
+                    var date = d.getUTCDate();
+                    var seconds = d.getSeconds();
+                    var url = location.href;
+                    var myloc = encodeURIComponent(url);
+                    // return myloc+','+ year +'-'+ month +'-'+ date +'-'+ seconds +','+myrandomstrng+ '.' + fileExtension;
+                    return myrandomstrng+'_'+rndmval+ '.' + fileExtension;
+                }
+                
+                // get recorded blob
+                var blob = recorder.getBlob();
+
+                // generating a random file name
+                var fileName = getFileName('webm');
+                // var fileName = getFileName('mp4');
+
+                // we need to upload "File" --- not "Blob"
+                var fileObject = new File([blob], fileName, {
+                    type: 'video/webm'
+                });
+                
+                // var fileObject = new File([blob], fileName, {
+                //         type: 'video/mp4'
+                //     });
+
+                var formData = new FormData();
+
+                // recorded data
+                formData.append('video-blob', fileObject);
+
+                // file name
+                formData.append('video-filename', fileObject.name);
+            
+            // upload using jQuery
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/uploadheatmap.php', 
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function(response) {
+                    }
+                });
+
+                function gendt(){
+                    var d = new Date();
+                    var year = d.getUTCFullYear();
+                    var month = d.getUTCMonth()+1;
+                    var date = d.getUTCDate();
+                    var seconds = d.getSeconds();
+                    return year +'-'+ month +'-'+ date +'-'+ seconds;
+                }
+
+                $.ajax({
+                    url: "http://127.0.0.1:8000/saverecordheat",
+                    type: "GET",
+                    dataType: 'json',
+                    data:  {
+                        date: gendt(),
+                        url: location.href,
+                        uniqueid: myrandomstrng
+                    },
+                    contentType: 'application/json',
+                    CrossDomain:true,
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log(xhr.status)
+                        console.log(xhr.responseText);
+                    }
+                });
+                
+                heatstart();
+                recordinginterv();
+            
+                
+            });
+
+            rndmval++;
+
+        };
+
+// }
+
+// if(window.location.hash!='#kb-heatmaps' && window.top.location.hash!='#kb-heatmaps'){
     window.addEventListener('click',forclick);
     // window.addEventListener('mousemove',formouse);
+    window.addEventListener('load',function(){
+        heatstart();
+        recordinginterv();
+        
+    });
 }
 
 function checkparam(value){
@@ -240,6 +438,10 @@ var kb_fullcontent = `
     flex: 1;
     box-sizing: border-box;
 }
+#lo-app-bar{
+padding-top: 7px;
+    padding-bottom: 4px;
+}
 .layout, .layout-column, .layout-row {
     position: relative;
     box-sizing: border-box;
@@ -255,7 +457,31 @@ var kb_fullcontent = `
 .layout-column>.flex, .layout-column>.flex {
     min-height: 0;
 }
-
+#recordings {
+    width:30%;
+    margin:auto;
+    display:block;
+}
+.showmyheatmaps ol {
+    margin:0px;
+}
+.showmyheatmaps ol li span {
+    width: 50%;
+    float: left;
+    text-align: left;
+    padding-left: 15px;
+}
+.showmyheatmaps ol li span a {
+    background-image: linear-gradient( 
+26deg, #2196F3 0%, #2157f3 100%);
+    border-color: #2196F3;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+.showmyheatmaps ol li {
+    height: 50px;
+}
 @media (min-width: 944px){
     .layout-column>.flex, .layout-xl-column>.flex {
         min-height: 0;
@@ -850,7 +1076,7 @@ color:#fff!important;
                 aria-label="blur_circularHeatmap  "><span class="ui-button-flex"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="braille" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="svg-inline--fa fa-braille fa-w-20 fa-7x"><path fill="currentColor" d="M128 256c0 35.346-28.654 64-64 64S0 291.346 0 256s28.654-64 64-64 64 28.654 64 64zM64 384c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm0-352C28.654 32 0 60.654 0 96s28.654 64 64 64 64-28.654 64-64-28.654-64-64-64zm160 192c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm0 160c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm0-352c-35.346 0-64 28.654-64 64s28.654 64 64 64 64-28.654 64-64-28.654-64-64-64zm224 192c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm0 160c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm0-352c-35.346 0-64 28.654-64 64s28.654 64 64 64 64-28.654 64-64-28.654-64-64-64zm160 192c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm0 160c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm0-320c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32z" class=""></path></svg><span class="icon-label">Heatmap</span></span>
                 </button>
 
-                <button class="ui-button icon app-button ui-button-default ui-button-text" id="heatmap-button"
+                <button class="ui-button icon app-button ui-button-default ui-button-text" id="heatmap-recording"
                 aria-label="blur_circularHeatmap  "><span class="ui-button-flex"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="video" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-video fa-w-18 fa-9x"><path fill="currentColor" d="M336.2 64H47.8C21.4 64 0 85.4 0 111.8v288.4C0 426.6 21.4 448 47.8 448h288.4c26.4 0 47.8-21.4 47.8-47.8V111.8c0-26.4-21.4-47.8-47.8-47.8zm189.4 37.7L416 177.3v157.4l109.6 75.5c21.2 14.6 50.4-.3 50.4-25.8V127.5c0-25.4-29.1-40.4-50.4-25.8z" class=""></path></svg><span class="icon-label">Recordings</span></span>
                 </button>
         </div>
@@ -870,7 +1096,7 @@ color:#fff!important;
             <div id="lo-website-iframe-container" class="shadow-z4 layout-column flex desktop"
                 style="width: 100%; height: 100%; position: relative;">
                 <iframe id="lo-website-iframe"
-                    sandbox="allow-scripts allow-same-origin allow-forms" class="lo-website-iframe flex" src="http://localhost/heatmaps/html/"></iframe>
+                    sandbox="allow-scripts allow-same-origin allow-forms" class="lo-website-iframe flex" src="`+kb_landing_page+`"></iframe>
             </div>
             <div></div>
         </div>
@@ -887,7 +1113,7 @@ color:#fff!important;
                      <button class="ui-button icon padding-none ui-button-default ui-button-text"
                         id="heatmap-reload">
                             <span class="ui-button-flex">
-                                <svg style=" width: 1em;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="redo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-redo fa-w-16 fa-9x"><path fill="currentColor" d="M500.33 0h-47.41a12 12 0 0 0-12 12.57l4 82.76A247.42 247.42 0 0 0 256 8C119.34 8 7.9 119.53 8 256.19 8.1 393.07 119.1 504 256 504a247.1 247.1 0 0 0 166.18-63.91 12 12 0 0 0 .48-17.43l-34-34a12 12 0 0 0-16.38-.55A176 176 0 1 1 402.1 157.8l-101.53-4.87a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12h200.33a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12z" class=""></path></svg> 
+                                <svg style="width:15px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="redo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-redo fa-w-16 fa-9x"><path fill="currentColor" d="M500.33 0h-47.41a12 12 0 0 0-12 12.57l4 82.76A247.42 247.42 0 0 0 256 8C119.34 8 7.9 119.53 8 256.19 8.1 393.07 119.1 504 256 504a247.1 247.1 0 0 0 166.18-63.91 12 12 0 0 0 .48-17.43l-34-34a12 12 0 0 0-16.38-.55A176 176 0 1 1 402.1 157.8l-101.53-4.87a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12h200.33a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12z" class=""></path></svg> 
                             </span>
                       </button>
                 </span>
@@ -935,11 +1161,11 @@ color:#fff!important;
                                         <div class="lo-input-group padding-bottom-half showmydropdown loadEffect" style="display: none;">
                                             <div class="padding-bottom-half">
                                                 <input name="date-start" type="date"
-                                                    id="ui-datepicker" class="ui-datepicker ui-input"
+                                                    id="ui-datepicker1" class="ui-datepicker ui-input"
                                                     placeholder="Start date" autocomplete="off"
                                                     aria-label="Use the arrow keys to pick a date" /></div> 
                                                     <input
-                                                name="date-end" type="date" id="ui-datepicker"
+                                                name="date-end" type="date" id="ui-datepicker2"
                                                 class="ui-datepicker ui-input" placeholder="End date"
                                                 autocomplete="off" /> 
                                         </div>
@@ -1350,15 +1576,23 @@ color:#fff!important;
                             <header class="ui-floating-panel-header">
                                 <div class="layout-row layout-align-start-center">
                                     <h3 class="flex margin-none">Play recordings</h3>
-                                    <div class="layout-row layout-align-end-center"><button
-                                            class="ui-button padding-none size-small icon ui-button-default ui-button-text"
-                                            aria-label="close"><span class="ui-button-flex"><i
-                                                    class="material-icons">close</i></span></button></div>
+                                    <div class="layout-row layout-align-end-center">
+                                    <button class="ui-button padding-none size-small icon ui-button-default ui-button-text closeall-floating" aria-label="close"><span class="ui-button-flex"><svg style="width:12px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" class="svg-inline--fa fa-times fa-w-11 fa-9x"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" class=""></path></svg></span></button>
+                                    </div>
                                 </div>
                                 <p class="color-darker margin-none"><span>Visitors who <span class="important">navigated to
-                                            this page</span></span> <span class="color-negative cursor-pointer"
-                                        style="display: none;">Clear</span></p>
+                                            this page</span></span></p>
                             </header>
+                            <div class="layout-column flex" style="height: 350px; overflow-y: scroll; width: 100%; padding-top: 10px;"> 
+                                <div class="ui-empty-state layout-column layout-align-center-center flex">
+                                    <div class="content" style="width: 100%;">
+                                       <div class="showmyheatmaps">
+                                        <ol id="myheatrecordol">
+                                        </ol>
+                                       </div>
+                                    </div>
+                                </div> 
+                            </div>
                         </main>
                     </div>
                 </div>
@@ -1366,7 +1600,6 @@ color:#fff!important;
         </div>
     </main>
 </div>`;
-
 
 if(window.location.hash=='#kb-heatmaps'){
     
@@ -1586,7 +1819,6 @@ if(window.location.hash=='#kb-heatmaps'){
         });
 
         // fetch all data
-
         $.ajax({
             url: "http://127.0.0.1:8000/heatall-request",
             type: "GET",
@@ -1641,7 +1873,7 @@ if(window.location.hash=='#kb-heatmaps'){
                             if (index > -1) {
                                 brsegmnt.splice(index, 1);
                             }
-                            getrequireddata(brsegmnt);
+                            getrequireddata(brsegmnt,'browser');
                         }
                     });
                    
@@ -1655,7 +1887,7 @@ if(window.location.hash=='#kb-heatmaps'){
                     document.getElementById('kb_os_segment').innerHTML+=`<div class="padding-bottom-half"><label
                         class="layout-row layout-align-start-center margin-none">
                         <div class="padding-right-half"><input type="checkbox"
-                                value="`+bs+`" name="os_segment"  /></div>
+                                value="`+bs+`" name="os_segment" checked /></div>
                         <div aria-label="" role="listitem"
                             class="ui-list-item padding-none flex">
                             <div
@@ -1667,9 +1899,9 @@ if(window.location.hash=='#kb-heatmaps'){
                         </div>`;
                 }
                 var ossegmnt = [];
-                document.getElementsByName('os_segment').forEach((brseg) => {
-                    ossegmnt.push(brseg.value);
-                        brseg.addEventListener('click',function(){
+                document.getElementsByName('os_segment').forEach((osseg) => {
+                    ossegmnt.push(osseg.value);
+                        osseg.addEventListener('click',function(){
                             data3 = [];
                             if (this.checked) {
                                 ossegmnt.push(this.value);
@@ -1679,7 +1911,7 @@ if(window.location.hash=='#kb-heatmaps'){
                                 if (index > -1) {
                                     ossegmnt.splice(index, 1);
                                 }
-                                getrequireddata(ossegmnt);
+                                getrequireddata(ossegmnt,'os');
                             }
                         });
                        
@@ -1693,7 +1925,7 @@ if(window.location.hash=='#kb-heatmaps'){
                     document.getElementById('kb_country_segment').innerHTML+=`<div class="padding-bottom-half"><label
                         class="layout-row layout-align-start-center margin-none">
                         <div class="padding-right-half"><input type="checkbox"
-                                value="`+bs+`" name="country_segment" /></div>
+                                value="`+bs+`" name="country_segment" checked /></div>
                         <div aria-label="" role="listitem"
                             class="ui-list-item padding-none flex">
                             <div
@@ -1704,6 +1936,24 @@ if(window.location.hash=='#kb-heatmaps'){
                             </label>
                         </div>`;
                 }
+                var countrysegmnt = [];
+                document.getElementsByName('country_segment').forEach((countryseg) => {
+                    countrysegmnt.push(countryseg.value);
+                    countryseg.addEventListener('click',function(){
+                            data3 = [];
+                            if (this.checked) {
+                                countrysegmnt.push(this.value);
+                                getrequireddata(countrysegmnt,'location');
+                            }else{
+                                var index = countrysegmnt.indexOf(this.value);
+                                if (index > -1) {
+                                    countrysegmnt.splice(index, 1);
+                                }
+                                getrequireddata(countrysegmnt,'location');
+                            }
+                        });
+                       
+                    });
                 // country_segment
 
                  // numberofvisit_segment
@@ -1713,7 +1963,7 @@ if(window.location.hash=='#kb-heatmaps'){
                      document.getElementById('kb_nuofvisit_segment').innerHTML+=`<div class="padding-bottom-half"><label
                          class="layout-row layout-align-start-center margin-none">
                          <div class="padding-right-half"><input type="checkbox"
-                                 value="`+bs+`" name="numberofvisit_segment" /></div>
+                                 value="`+bs+`" name="numberofvisit_segment" checked /></div>
                          <div aria-label="" role="listitem"
                              class="ui-list-item padding-none flex">
                              <div
@@ -1724,18 +1974,53 @@ if(window.location.hash=='#kb-heatmaps'){
                              </label>
                          </div>`;
                  }
+                 var numberofvisitsegmnt = [];
+                document.getElementsByName('numberofvisit_segment').forEach((numberofvisitseg) => {
+                    numberofvisitsegmnt.push(numberofvisitseg.value);
+                    numberofvisitseg.addEventListener('click',function(){
+                            data3 = [];
+                            if (this.checked) {
+                                numberofvisitsegmnt.push(this.value);
+                                getrequireddata(numberofvisitsegmnt,'created_at');
+                            }else{
+                                var index = numberofvisitsegmnt.indexOf(this.value);
+                                if (index > -1) {
+                                    numberofvisitsegmnt.splice(index, 1);
+                                }
+                                getrequireddata(numberofvisitsegmnt,'created_at');
+                            }
+                        });
+                       
+                    });
                  // numberofvisit_segment
+
+
+                //  date_range_segment
+                var dtrange = ['',''];
+                document.getElementById('ui-datepicker1').addEventListener('change',function(){
+                    data3 = [];
+                    dtrange[0] = this.value;
+                    if(dtrange[0]!='' && dtrange[1]!=''){
+                        getrequireddata(dtrange,'daterange_segment');
+                    }
+                });
+
+                document.getElementById('ui-datepicker2').addEventListener('change',function(){
+                    data3 = [];
+                    dtrange[1] = this.value;
+                    if(dtrange[0]!='' && dtrange[1]!=''){
+                        getrequireddata(dtrange,'daterange_segment');
+                    }
+                });
+                //  date_range_segment
                 
                 
 
             }
         });
-
         // fetch all data
 
-
         // get required data
-
         function getrequireddata(value1,value2){
             $.ajax({
                 url: "http://127.0.0.1:8000/heatshome-request",
@@ -1891,6 +2176,7 @@ if(window.location.hash=='#kb-heatmaps'){
                 }
             });
         }
+        // get required data
             
 
     }, 500);
@@ -1910,6 +2196,7 @@ if(window.location.hash=='#kb-heatmaps'){
         document.getElementById('segmentation-panel').style.display = "none";
         document.getElementById('sizing-options').style.display = "none";
         document.getElementById('heatmap-options').style.display = "none";
+        document.getElementById('recordings').style.display = "none";
     }
 
     var elementsclose = document.getElementsByClassName("closeall-floating");
@@ -2386,6 +2673,19 @@ if(window.location.hash=='#kb-heatmaps'){
     });
 
     document.getElementById('heatmap-reload').addEventListener('click',function(){
+
+        // all input inside segmentation checked true
+        var htrelm = document.getElementById('segmentation-panel-scroll-container');
+        var chkelm = htrelm.querySelectorAll('input');
+        chkelm.forEach(element => {
+            if(!element.checked){
+                element.checked = true;
+            }
+        });
+        document.getElementById('ui-datepicker1').value = '';
+        document.getElementById('ui-datepicker2').value = '';
+        // all input inside segmentation checked true
+        
         this.classList.add('refreshrotate');
         var ths = this;
         if(heatmapready==false){
@@ -2403,7 +2703,6 @@ if(window.location.hash=='#kb-heatmaps'){
 		wa.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js';
         wa.id = 'kb-html2canvas';
 		var s = document.getElementsByTagName('body')[0]; s.appendChild(wa);
-
     }
 
     var checkhtml2canvas = false;
@@ -2469,6 +2768,63 @@ if(window.location.hash=='#kb-heatmaps'){
     });
 
     // layout js
-  
+    
+    document.getElementById('heatmap-recording').addEventListener('click',function(){
+        document.getElementById('recordings').style.display = "block";
+    });
+
+   
+    $.ajax({
+        url: "http://127.0.0.1:8000/showrecordheat",
+        type: "GET",
+        dataType: 'json',
+        data:  {
+            url: window.location.href.toString().split('#kb-heatmaps')[0]
+        },
+        contentType: 'application/json',
+        CrossDomain:true,
+        success: function (data) {
+            // console.log(data);
+            data.forEach(element => {
+                var myArray = element['created_at'].split("-");
+                if(myArray[0]!=''){
+
+                    $.ajax({
+                        url: "http://127.0.0.1:8000/getheatdir",
+                        type: "GET",
+                        dataType: 'json',
+                        data:  {
+                            hash: element['uniqueid']
+                        },
+                        contentType: 'application/json',
+                        CrossDomain:true,
+                        success: function (data) {
+                            if(data[0]!=undefined){
+                                var dt = myArray[0]+'-'+myArray[1]+'-'+myArray[2];
+                                var hashvl = element['uniqueid'];
+                                document.getElementById('myheatrecordol').innerHTML += "<li><span>"+dt+"</span><span><a target='_blank' href='http://127.0.0.1:8000/heatmaps-recordings#"+hashvl+"'>View Recording</a></span></li>";
+                            }
+                        }
+                    });
+
+
+                   
+                }
+            });
+        }
+    });
+
+
+    
 
 }
+
+
+// head section script
+{/* <script>
+(function() {
+    var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+    wa.src = 'http://127.0.0.1:8000/js/kb_heatmap.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+  })();
+</script> */}
