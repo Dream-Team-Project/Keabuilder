@@ -12,10 +12,16 @@ import VueCookies from 'vue-cookies';
 import VueDragDrop from 'vue-drag-n-drop';
 import draggable from 'vuedraggable';
 import VueApexCharts from 'vue-apexcharts';
+import { Chrome, Sketch, Material, Slider } from 'vue-color';
 import {Tabs, Tab} from 'vue-tabs-component';
+import ToggleButton from 'vue-js-toggle-button';
+import VueLazyload from 'vue-lazyload';
 import VTooltip from 'v-tooltip';
+import RangeSlider from 'vue-range-slider';
+import { VueEditor } from "vue2-editor";
+import tinymce from 'vue-tinymce-text-editor'
+import 'vue-range-slider/dist/vue-range-slider.css';
 import 'v-tooltip/dist/v-tooltip.css';
-
 
 
 require('./bootstrap');
@@ -30,6 +36,7 @@ Vue.use(VueDragDrop);
 Vue.use(draggable);
 Vue.use(VueApexCharts);
 Vue.use(VTooltip);
+Vue.use(ToggleButton);
 
 Vue.use(VueMq, {
     breakpoints: { // default breakpoints - customize this
@@ -38,7 +45,16 @@ Vue.use(VueMq, {
       lg: Infinity,
     },
     defaultBreakpoint: 'sm' // customize this for SSR
-  })
+  });
+
+  Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    // error: 'dist/error.png',
+    loading: 'images/builder/upload_images/loading.gif',
+    // attempt: 1,
+    // the default is ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend']
+    listenEvents: [ 'scroll' ]
+  });
 
 plugins: [
   {
@@ -70,7 +86,13 @@ Vue.component('drag', VueDragDrop.Drag);
 Vue.component('drop', VueDragDrop.Drop);
 Vue.component('tabs', Tabs);
 Vue.component('tab', Tab);
-
+Vue.component('colour-chrome-picker', Chrome);
+Vue.component('colour-sketch-picker', Sketch);
+Vue.component('colour-material-picker', Material);
+Vue.component('colour-slider-picker', Slider);
+Vue.component('range-slider', RangeSlider);
+Vue.component('vue-editor',VueEditor);
+Vue.component('tinymce', tinymce);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -92,6 +114,7 @@ Vue.component('tab', Tab);
  import edituser from './components/EdituserComponent.vue';
  import pages from './components/PagesComponent.vue';
  import strategies from './components/StrategiesComponent.vue';
+import { reduce } from 'lodash';
 
 
 const routes = [

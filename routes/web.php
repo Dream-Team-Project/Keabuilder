@@ -14,6 +14,13 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/login', function () {
+    return view('index');
+});
+Route::get('/home', function () {
+    return view('index');
+});
+
 Route::get('/heat-request', 'HeatmapController@store');
 Route::get('/heatget-request', 'HeatmapController@get');
 Route::get('/heatfetchloc-request', 'HeatmapController@fetchloc');
@@ -24,6 +31,7 @@ Route::get('/saverecordheat', 'HeatmapController@saverecordheat');
 Route::get('/showrecordheat', 'HeatmapController@showrecordheat');
 Route::get('/getheatdir', 'HeatmapController@getheatdir');
 Route::get('/visitorinfo', 'HeatmapController@visitorinfo');
+
 
 Auth::routes();
 
