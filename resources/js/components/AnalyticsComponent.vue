@@ -14,16 +14,18 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="kb-ana-card">
-                        <h4>Kia Analytics</h4>
+                        <h4>Kea Analytics</h4>
                         <small>View Your analytics with brand new features.</small>
                         <br>
                         <br>
-                        <button class="btn btn-primary"><i class="far fa-eye"></i> View</button>
+                        <router-link to="kea-analytics"  class="btn btn-primary">
+                            <i class="far fa-eye"></i> View
+                        </router-link>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="kb-ana-card">
-                        <h4>Heat Maps</h4>
+                        <h4>Kea Heat Maps</h4>
                         <small>All new heat maps just for you.</small>
                         <br>
                         <br>

@@ -31,6 +31,13 @@ Route::get('/saverecordheat', 'HeatmapController@saverecordheat');
 Route::get('/showrecordheat', 'HeatmapController@showrecordheat');
 Route::get('/getheatdir', 'HeatmapController@getheatdir');
 Route::get('/visitorinfo', 'HeatmapController@visitorinfo');
+Route::get('/usersbycountry', 'KbanalyticController@usersbycountry');
+Route::get('/usersdoctitle', 'KbanalyticController@usersdoctitle');
+Route::get('/usersbycity', 'KbanalyticController@usersbycity');
+Route::get('/latitudelongtitude', 'KbanalyticController@latitudelongtitude');
+Route::get('/userbrowser', 'KbanalyticController@userbrowser');
+Route::get('/useros', 'KbanalyticController@useros');
+Route::get('/userdevice', 'KbanalyticController@userdevice');
 
 
 Auth::routes();

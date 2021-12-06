@@ -74,11 +74,19 @@ function makeid(length) {
 }
 
 function getuserlocation(){ 
-    return (new Date()).toString().split('(')[1].split(" ")[0];
+
+    $.ajax({
+        url: "https://geolocation-db.com/jsonp",
+        jsonpCallback: "callback",
+        dataType: "jsonp",
+        success: function( location ) {
+            return location.country_name;
+        }
+    });
+
 }
 
-let kb_ipaddress, 
-kb_created_at, //done
+let kb_created_at, //done
 kb_time_taken, 
 kb_landing_page, //done
 kb_exit_page, 
@@ -87,7 +95,7 @@ kb_location, //done
 kb_browser, //done
 kb_os, //done
 kb_device,
-kb_unique_id,
+kb_unique_id, //done 
 kb_doctitle; //done 
 
 kb_landing_page = window.location.href.toString().split('#')[0];
@@ -115,7 +123,6 @@ var kb_mousegetlocY = [];
 var kb_fulldata = {};
 
 kb_fulldata['uniqueid'] = kb_unique_id;
-kb_fulldata['ipaddress'] = kb_ipaddress;
 kb_fulldata['created_at'] = kb_created_at;
 kb_fulldata['kb_time_taken'] = kb_time_taken;
 kb_fulldata['landing_page'] = kb_landing_page;
@@ -127,6 +134,24 @@ kb_fulldata['os'] = kb_os;
 kb_fulldata['device'] = kb_device;
 kb_fulldata['doctitle'] = kb_doctitle;
 
+var allinonegeoloc = ['','','','','',''];
+function allgeolocationdata(){
+    $.ajax({
+        url: "https://geolocation-db.com/jsonp",
+        jsonpCallback: "callback",
+        dataType: "jsonp",
+        success: function( location ) {
+            allinonegeoloc[0]=location.country_code;
+            allinonegeoloc[1]=location.country_name;
+            allinonegeoloc[2]=location.state;
+            allinonegeoloc[3]=location.city;
+            allinonegeoloc[4]=location.postal;
+            allinonegeoloc[5]=location.latitude;
+            allinonegeoloc[6]=location.longitude;
+            allinonegeoloc[7]=location.IPv4;  
+        }
+    });
+}
 
 function redirectsometime(e){
     e.preventDefault();
@@ -237,6 +262,7 @@ if(window.location.hash!='#kb-heatmaps' && window.top.location.hash!='#kb-heatma
 
         screenshotjs();
         RecordRTCjs();
+        allgeolocationdata();
             
         var elementToShare = document.getElementById('elementToShare');
         var canvas2d = document.createElement('canvas');
@@ -380,6 +406,7 @@ if(window.location.hash!='#kb-heatmaps' && window.top.location.hash!='#kb-heatma
                     return year +'-'+ month +'-'+ date +'-'+ seconds;
                 }
 
+
                 $.ajax({
                     url: "http://127.0.0.1:8000/saverecordheat",
                     type: "GET",
@@ -387,7 +414,15 @@ if(window.location.hash!='#kb-heatmaps' && window.top.location.hash!='#kb-heatma
                     data:  {
                         date: gendt(),
                         url: location.href,
-                        uniqueid: myrandomstrng
+                        uniqueid: myrandomstrng,
+                        country_code: allinonegeoloc[0],
+                        country_name: allinonegeoloc[1],
+                        state: allinonegeoloc[2],
+                        city: allinonegeoloc[3],
+                        postal: allinonegeoloc[4],
+                        latitude: allinonegeoloc[5],
+                        longitude: allinonegeoloc[6],
+                        ipv4: allinonegeoloc[7] 
                     },
                     contentType: 'application/json',
                     CrossDomain:true,

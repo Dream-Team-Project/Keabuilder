@@ -49,7 +49,6 @@ class HeatmapController extends Controller
 
         $data = array(
             "uniqueid"=>$uniqueid,
-            "ipaddress"=>"",
             "created_at"=>$created_at,
             "time_taken"=>"",
             "landing_page"=>$kb_landing_page,
@@ -134,7 +133,15 @@ class HeatmapController extends Controller
 
         $checkunique = DB::select('select * from heatmaps WHERE uniqueid = "'.$uniqueid.'"');
         $data = array(
-            "uniqueid"=>$uniqueid
+            "uniqueid"=>$uniqueid,
+            "country_code"=>$request->country_code,
+            "country_name"=>$request->country_name,
+            "state"=>$request->state,  
+            "city"=>$request->city,
+            "postal"=>$request->postal,
+            "latitude"=>$request->latitude,
+            "longitude"=>$request->longitude,
+            "ipv4"=>$request->ipv4,
         );
         if(!empty($checkunique)){
             $id = $checkunique[0]->id;

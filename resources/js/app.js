@@ -22,12 +22,11 @@ import { VueEditor } from "vue2-editor";
 import tinymce from 'vue-tinymce-text-editor'
 import 'vue-range-slider/dist/vue-range-slider.css';
 import 'v-tooltip/dist/v-tooltip.css';
-
+import * as VueGoogleMaps from 'vue2-google-maps';
 
 require('./bootstrap');
 
 window.Vue = require('vue');
-
 Vue.use(VueRouter);
 Vue.use(VuePageTransition);
 Vue.use(VueMq);
@@ -37,6 +36,19 @@ Vue.use(draggable);
 Vue.use(VueApexCharts);
 Vue.use(VTooltip);
 Vue.use(ToggleButton);
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCaqeUkCDJtf0pe9i8P-82UjEE7mz3O9ik',
+  //   libraries: 'places', // This is required if you use the Autocomplete plugin
+    // OR: libraries: 'places,drawing'
+    // OR: libraries: 'places,drawing,visualization'
+    // (as you require)
+ 
+    //// If you want to set the version, you can do so:
+    // v: '3.26',
+  },
+})
 
 Vue.use(VueMq, {
     breakpoints: { // default breakpoints - customize this
@@ -111,6 +123,7 @@ Vue.component('tinymce', tinymce);
  import analytics from './components/AnalyticsComponent.vue';
  import heatmaps from './components/HeatmapsComponent.vue';
  import heatmapsrecordings from './components/HeatmapsrecordingsComponent.vue';
+ import keaanalytics from './components/KeaanalyticsComponent.vue';
  import edituser from './components/EdituserComponent.vue';
  import pages from './components/PagesComponent.vue';
  import strategies from './components/StrategiesComponent.vue';
@@ -130,6 +143,7 @@ const routes = [
   {path : '/membership', name: 'membership', component: membership},
   {path : '/analytics', name: 'analytics', component: analytics},
   {path : '/heat-maps', name: 'heatmaps', component: heatmaps},
+  {path : '/kea-analytics', name: 'kea-analytics', component: keaanalytics},
   {path : '/heatmaps-recordings', name: 'heatmaps-recordings', component: heatmapsrecordings},
   {path : '/edit-user', name: 'edituser', component: edituser},
   {path : '/*', name: 'dashboard', component: dashboard},
