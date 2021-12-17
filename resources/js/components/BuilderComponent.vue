@@ -36,12 +36,23 @@
             </div>
           </div>
           <div v-else class="kb-inner-selection-container forScroll">
-            <span @click="expand = !expand" class="kb-selection-top-actions"><i class="fas" :class="expand ? 'fa-expand-arrows-alt' : 'fas fa-compress-arrows-alt'"></i></span>
-            <div class="kb-ask-head" @mousedown="dragMouseDown">Section Setting</div>
+            <span @click="expand = !expand" class="kb-selection-top-actions" v-tooltip="{content: !expand ? 'Expand' : 'Shrink'}"><i class="fas" :class="!expand ? 'fa-expand-arrows-alt' : 'fas fa-compress-arrows-alt'"></i></span>
+            <div class="kb-ask-head" @mousedown="dragMouseDown">{{selectedBlock.type+' Setting'}}</div>
             <div class="kb-tabs-component">
-                <tabs :options="{ defaultTabHash: 'general' }" cache-lifetime="10">
+                <tabs :options="{ defaultTabHash: 'general', useUrlFragment: false }" cache-lifetime="5">
+                  <tab v-if="selectedBlock.type == 'row'" id="column" name="Column">
+                      <div class="kb-inner-tab-component">
+                        <div class="kb-tab-head">Column Structure</div>
+                        <div class="kb-cs-prev kb-row">
+                          <div v-for="(column, index) in selectedBlock.columnArr" :key="index" :class="selectedBlock.rowSize"></div>
+                        </div>
+                        <div class="kb-cs-contain">
+                          <div v-for="(column, index) in selectedBlock.columnArr" :key="index" v-show="column.id" class="kb-cs"><span v-tooltip="{content:'Click To Rename'}" v-if="!column.chngName" @click="column.chngName = !column.chngName" class="kb-chngName">{{column.name ? column.name : 'Column'}}</span><span v-else><input type="text" placeholder="Column Name" v-model="column.name" @keydown.enter.prevent="column.chngName = !column.chngName" class="kb-chngname-inp"><i @click="column.chngName = !column.chngName" v-tooltip="{content:'Change'}" class="fa fa-exchange-alt"></i></span><span class="kb-setting-icon"><i @click="selectedBlock = column, blockSetting(column), rowSelection = false, showSelection = true, defaultTab()" v-tooltip="{content:'Column Setting'}" class="fa fa-edit"></i></span></div>
+                        </div>
+                      </div> 
+                  </tab>
                   <tab id="general" name="General">
-                    <div class="kb-inner-tab-component">
+                    <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
                         <div class="kb-tab-head">Width</div>
                         <div class="kb-tab-content">
                           <div class="kb-rangeInp">
@@ -50,7 +61,7 @@
                           </div>
                         </div>
                     </div> 
-                    <div class="kb-inner-tab-component">
+                    <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
                         <div class="kb-tab-head">Height</div>
                         <div class="kb-tab-content">
                           <div class="kb-rangeInp">
@@ -59,7 +70,7 @@
                           </div>
                         </div>
                     </div> 
-                    <div class="kb-inner-tab-component">
+                    <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
                         <div class="kb-tab-head">Alignment<span v-tooltip="{content:'Auto Align'}" @click="blockAlign = ''" class="kb-reverse-icon" :class="blockAlign ? 'active' : ''"><i class="fa fa-ban"></i></span></div>
                         <div class="kb-tab-content">
                           <div class="kb-align-btn-group">
@@ -68,7 +79,7 @@
                             <span @click="blockAlign = 'right'" :class="blockAlign == 'right' ? 'kb-active-brd' : ''" class="kb-align-btn" v-tooltip="{content:'Right Align'}"><i class="fa fa-arrow-right"></i></span></div>
                         </div>
                     </div> 
-                    <div class="kb-inner-tab-component">
+                    <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
                       <div class="kb-tab-head">Margin</div>
                       <div class="kb-tab-content">
                         <span><input v-model="margin.top" type="text" name="top-margin" @keydown="margin.top = operateNumVal($event.key, margin.top)"><label for="top-margin">Top</label></span>
@@ -331,12 +342,12 @@
           </div>
         </div>
       </div>
-      <draggable class="kb-drag-container" tag="div" v-model="builder" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="section">
+      <draggable handle=".kb-handle-section" class="kb-drag-container" tag="div" :list="builder" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="section">
         <transition-group type="transition" :name="!drag ? 'flip-list' : null">
           <div v-for="(build, index) in builder" :key="build.id" @mouseenter="build.setting = true,selectedSectionRows = build.rowArr" @mouseleave="build.setting = false" :id="'kb-section-'+build.id" :style="selectedBlock.id == build.id && selectedBlock.type == build.type ? currentStyling : build.style" :class="(selectedBlock.id == build.id && selectedBlock.type == build.type) || build.style ? 'kb-demo-styling' : ''" class="kb-section kb-block-container">
             <div> 
               <div class="kb-module-setting" v-if="build.setting">
-                <span><i class="fa fa-arrows-alt"></i></span>
+                <span class="kb-handle-section"><i class="fa fa-arrows-alt"></i></span>
                 <span @click="selectedBlock = build, blockSetting(build), rowSelection = false, showSelection = true" v-tooltip="{ content: 'Section Setting' }"><i class="far fa-edit"></i></span>
                 <span @click="duplicateSection(build, index)" v-tooltip="{ content: 'Duplicate Section' }"><i class="far fa-copy"></i></span>
                 <span @click="deleteSection(index)" v-tooltip="{ content: 'Delete Section' }" v-if="builder.length != 1"><i class="far fa-trash-alt"></i></span>
@@ -345,30 +356,33 @@
               <span class="kb-ispan-add add-section bottom-add-btn" v-tooltip="{ content: 'Add New Section' }" @click="addSection(index)" v-if="build.setting"><i class="fa fa-plus"></i></span>
             </div>
             <div>
-              <draggable class="kb-drag-container" tag="div" v-model="build.rowArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="row" @change="selectedSectionRows = build.rowArr">
+              <draggable handle=".kb-handle-row" class="kb-drag-container" tag="div" :list="build.rowArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="row" @change="selectedSectionRows = build.rowArr">
                 <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-                    <div v-for="(row, index) in build.rowArr" :key="row.id" :id="'kb-row-'+row.id" @mouseenter="row.setting = true, selectedRowElements = row.elementArr" @mouseleave="row.setting = false" :style="selectedBlock.id == row.id && selectedBlock.type == row.type ? currentStyling : row.style" :class="(selectedBlock.id == row.id && selectedBlock.type == row.type) || row.style ? 'kb-demo-styling' : ''" class="kb-row kb-block-container">
+                    <div v-for="(row, index) in build.rowArr" :key="row.id" :id="'kb-row-'+row.id" @mouseenter="row.setting = true" @mouseleave="row.setting = false" :style="selectedBlock.id == row.id && selectedBlock.type == row.type ? currentStyling : row.style" :class="(selectedBlock.id == row.id && selectedBlock.type == row.type) || row.style ? 'kb-demo-styling' : ''" class="kb-row kb-block-container">
                         <div class="kb-module-setting" v-if="row.setting">
-                          <span><i class="fa fa-arrows-alt"></i></span>
+                          <span class="kb-handle-row"><i class="fa fa-arrows-alt"></i></span>
                           <span v-if="row.columnSetting" @click="selectedRow = row, showSelection = true, rowSelection = true" v-tooltip="{ content: 'Column Structure' }"><i class="fa fa-columns"></i></span>
                           <span @click="selectedBlock = row, blockSetting(row), rowSelection = false, showSelection = true" v-tooltip="{ content: 'Row Setting' }"><i class="far fa-edit"></i></span>
                           <span @click="duplicateRow(build.rowArr, row, index)" v-tooltip="{ content: 'Duplicate Row' }"><i class="far fa-copy"></i></span>
                           <span @click="deleteRow(build.rowArr, index)" v-tooltip="{ content: 'Delete Row' }"><i class="far fa-trash-alt"></i></span>
                         </div>
                         <div>
-                          <draggable class="kb-drag-container kb-inner-row" tag="div" v-model="row.elementArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="element" @change="selectedRowElements = row.elementArr">
-                              <div v-for="(element, index) in row.elementArr" :key="element.id" :class="row.rowSize"> 
-                                <div @click="selectedElement = selectedElement.id == element.id ? '' : element" :class="element.name ? ((selectedBlock.id == element.id && selectedBlock.type == element.type) || element.style ? 'kb-demo-styling ' : (selectedElement.id == element.id ? 'kb-border-select' : 'kb-border')) : ''" :style="selectedBlock.id == element.id && selectedBlock.type == element.type && element.name ? currentStyling : element.style" :id="element.id ? 'kb-element-'+element.id : ''" class="kb-element kb-block-container">
-                                  <div class="kb-module-setting" v-if="selectedElement.id == element.id && element.name">
-                                    <span><i class="fa fa-arrows-alt"></i></span>
-                                    <span @click="selectedBlock = element, blockSetting(element), rowSelection = false, elementSelection = false, showSelection = true" v-tooltip="{ content: 'Element Setting' }"><i class="far fa-edit"></i></span>
-                                    <span @click="duplicateRow(build.rowArr, row, index)" v-tooltip="{ content: 'Duplicate Element' }"><i class="far fa-copy"></i></span>
-                                    <span @click="deleteRow(build.rowArr, index)" v-tooltip="{ content: 'Delete Element' }"><i class="far fa-trash-alt"></i></span>
-                                  </div>                                  
-                                  <span v-if="selectedElement.id == element.id || !element.name" :class="element.name ? 'bottom-add-btn' : ''" @click="element_index = index, selectedElement = element, selectedRow = row, showSelection = true, elementSelection = true" class="kb-ispan-add add-element" v-tooltip="{ content: 'Add New Element' }"><i class="fa fa-plus"></i></span>
-                                </div>
-                              </div>
-                          </draggable>
+                          <div v-for="column in row.columnArr" :key="column.id" :id="'kb-column-'+column.id" @mouseenter="selectedElements = column.elementArr" :style="selectedBlock.id == column.id && selectedBlock.type == column.type ? currentStyling : column.style" :class="row.rowSize+((selectedBlock.id == column.id && selectedBlock.type == column.type) || column.style ? ' kb-demo-styling' : '')" class="kb-column kb-block-container">
+                            <draggable class="kb-drag-container" tag="div" v-model="column.elementArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="element" @change="selectedElements = column.elementArr">
+                              <transition-group type="transition" :name="!drag ? 'flip-list' : null">
+                                  <div v-for="(element, index) in column.elementArr" :key="element.id" @mouseenter="element.setting = true" @mouseleave="element.setting = false" :class="(selectedBlock.id == element.id && selectedBlock.type == element.type) || element.style ? 'kb-demo-styling ' : (selectedColumn.id == element.id ? 'kb-border-select' : 'kb-border')" :style="selectedBlock.id == element.id && selectedBlock.type == element.type ? currentStyling : element.style" :id="'kb-element-'+element.id" class="kb-element kb-block-container">
+                                    <div class="kb-module-setting" v-if="element.setting">
+                                      <span><i class="fa fa-arrows-alt"></i></span>
+                                      <span @click="selectedBlock = element, blockSetting(element), rowSelection = false, elementSelection = false, showSelection = true" v-tooltip="{ content: 'Element Setting' }"><i class="far fa-edit"></i></span>
+                                      <span @click="duplicateRow(build.rowArr, row, index)" v-tooltip="{ content: 'Duplicate Element' }"><i class="far fa-copy"></i></span>
+                                      <span @click="deleteElement(build.rowArr, index)" v-tooltip="{ content: 'Delete Element' }"><i class="far fa-trash-alt"></i></span>
+                                    </div> 
+                                    <span v-if="element.setting" @click="selectedColumn = column, selectedRow = row, showSelection = true, elementSelection = true" class="kb-ispan-add add-element bottom-add-btn" v-tooltip="{ content: 'Add New element' }"><i class="fa fa-plus"></i></span>
+                                  </div>
+                              </transition-group>
+                            </draggable>
+                            <span v-if="column.elementArr.length == 0" @click="selectedColumn = column, selectedRow = row, showSelection = true, elementSelection = true" class="kb-ispan-add add-element" v-tooltip="{ content: 'Add New element' }"><i class="fa fa-plus"></i></span>
+                          </div>
                         </div>
                         <span v-if="row.setting" v-tooltip="{ content: 'Add New Row' }" @click="selectedRow = '', row_index = index, showSelection = true, rowSelection = true" class="kb-ispan-add add-row bottom-add-btn" ><i class="fa fa-plus"></i></span>
                     </div>
@@ -385,6 +399,17 @@
 export default {
     data() {
       return {
+        list1: [
+          { name: "John", id: 1 },
+          { name: "Joao", id: 2 },
+          { name: "Jean", id: 3 },
+          { name: "Gerard", id: 4 }
+        ],
+        list2: [
+          { name: "Juan", id: 5 },
+          { name: "Edgard", id: 6 },
+          { name: "Johnson", id: 7 }
+        ],
         content: '<h3>Hello</h3>',
         show_dropdown: '',
         newD: new Date(),
@@ -418,18 +443,20 @@ export default {
         background_image_sizes: ['cover','contain','auto'],
         background_image_positions: ['top left', 'top center', 'top right', 'center', 'bottom left', 'bottom center', 'bottom right'],
         background_image_repeats: [{name: 'no repeat', value: 'no-repeat'}, {name: 'repeat', value: 'repeat'}, {name: 'repeat x (horizontal)', value: 'repeat-x'}, {name: 'repeat y (vertical)', value: 'repeat-y'}, {name: 'space', value: 'sapce'}, {name: 'round', value: 'round'}],
-        rowTypes: [{cls: '1', appendCls: 'full-block', nofcolumn: 1}, {cls: '1-2', appendCls: 'half-block', nofcolumn: 2}, {cls: '1-3', appendCls: 'three-block', nofcolumn: 3}, {cls: '1-4', appendCls: 'four-block', nofcolumn: 4}, {cls: '1-5', appendCls: 'five-block', nofcolumn: 5}, {cls: '1-6', appendCls: 'six-block', nofcolumn: 6}, {cls: '40-60', appendCls: 'f-s-block', nofcolumn: 2}, {cls: '60-40', appendCls: 's-f-block', nofcolumn: 2}, 
+        rowTypes: [{cls: '1', appendCls: ['full-block'], nofcolumn: 1}, {cls: '1-2', appendCls: ['half-block'], nofcolumn: 2}, {cls: '1-3', appendCls: ['three-block'], nofcolumn: 3}, {cls: '1-4', appendCls: ['four-block'], nofcolumn: 4}, {cls: '1-5', appendCls: ['five-block'], nofcolumn: 5}, {cls: '1-6', appendCls: ['six-block'], nofcolumn: 6}, {cls: '40-60', appendCls: 'f-s-block', nofcolumn: 2}, {cls: '60-40', appendCls: 's-f-block', nofcolumn: 2}, 
                     {cls: '25-75', appendCls: 'tf-sf-block', nofcolumn: 2}, {cls: '75-25', appendCls: 'sf-tf-block', nofcolumn: 2}, {cls: '20-80', appendCls: 't-e-block', nofcolumn: 2}, {cls: '80-20', appendCls: 'e-t-block', nofcolumn: 2}, {cls: '10-90', appendCls: 't-n-block', nofcolumn: 2}, {cls: '90-10', appendCls: 'n-t-block', nofcolumn: 2}, {cls: '30-40-30', appendCls: 't-f-t-block', nofcolumn: 3}, {cls: '20-60-20', appendCls: 't-s-t-block', nofcolumn: 3}, 
                     {cls: '15-70-15', appendCls: 'ft-s-ft-block', nofcolumn: 3}, {cls: '10-80-10', appendCls: 't-e-t-block', nofcolumn: 3}, {cls: '30-30-40', appendCls: 't-t-f-block', nofcolumn: 3}, {cls: '40-30-30', appendCls: 'f-t-t-block', nofcolumn: 3}, {cls: '20-20-60', appendCls: 't-t-s-block', nofcolumn: 3}, {cls: '60-20-20', appendCls: 's-t-t-block', nofcolumn: 3}, {cls: '15-15-70', appendCls: 'ft-ft-s-block', nofcolumn: 3}, {cls: '70-15-15', appendCls: 's-ft-ft-block', nofcolumn: 3}, {cls: '10-10-80', appendCls: 't-t-e-block', nofcolumn: 3}, {cls: '80-10-10', appendCls: 'e-t-t-block', nofcolumn: 3}],
         drag: false, 
         builder: [],
         buildObj: {id: 0, setting: false, rowArr: [], style: '', type: 'section'},
-        rowObj: {id: 0, elementArr: [], rowSize: '', style: '', setting: false, columnSetting: true, type: 'row'},
-        elementObj: {id: 0, type: 'element', name: '', style: '', type: 'element'},
-        selectedRowElements: [],
+        rowObj: {id: 0, columnArr: [], rowSize: '', style: '', setting: false, columnSetting: true, type: 'row'},
+        columnObj: {id: 0, name: '', chngName: false, elementArr: [], style: '', type: 'column'},
+        elementObj: {id: 0, name: '', style: '', setting: false, type: 'element'},
         selectedSectionRows: [],
+        selectedRowColumns: [],
+        selectedElements: [],
         selectedBlock:'',
-        selectedElement: '',
+        selectedColumn: '',
         selectedRow:'',
         selectedSection:'',
         showSelection: false,
@@ -438,7 +465,6 @@ export default {
         row_id: 0,
         row_index: 0,
         element_id: 0,
-        element_index: 0,
         positions: {
           clientX: undefined,
           clientY: undefined,
@@ -520,18 +546,12 @@ export default {
       }
     },
     watch: {
-      // totalSections: {
-      //   handler(val) {
-      //     console.log(val);
-      //   },
-      //   deep: true,
-      // },
-      // totalRows: {
-      //   handler(val) {
-      //     console.log(val);
-      //   },
-      //   deep: true,
-      // },
+      selectedElements: {
+        handler(val) {
+          console.log(val);
+        },
+        deep: true,
+      },
       width: {
         handler(val) {
           var vm = this;
@@ -650,6 +670,17 @@ export default {
         this.getUploadImages();
     },
     methods: {
+      defaultTab() {
+        document.getElementsByClassName('tabs-component-tab-a')[1].click();
+      },
+      changeName(e, column) {
+        if(e.target.tagName == 'I') {
+          // column.name = 
+        }
+        else {
+          e.target.innerHTML = '<input type="text" value="'+column.name+'"><i class="fa fa-exchange-alt"></i>';
+        }
+      },
       closeDropDown(e) {
         e.target ? !e.target.classList.contains('kb-dropdown-selected-item') ? this.show_dropdown = '' : '' : '';
       },
@@ -804,9 +835,9 @@ export default {
           this.margin.bottom = '0px';
           this.margin.left = '0px';
 
-          this.padding.top = this.selectedBlock.type == 'element' ? '20px' : '60px';
+          this.padding.top = this.selectedBlock.type == 'element' ? '20px' : this.selectedBlock.type == 'column' ? '0px' : '60px';
           this.padding.right = '0px';
-          this.padding.bottom = this.selectedBlock.type == 'element' ? '20px' : '60px';
+          this.padding.bottom = this.selectedBlock.type == 'element' ? '20px' : this.selectedBlock.type == 'column' ? '0px' : '60px';
           this.padding.left = '0px';
 
           this.border.top = '0px';
@@ -973,12 +1004,12 @@ export default {
         if(this.builder[index+1] != undefined) {
           this.builder[index+1].rowArr.forEach(item1=>{
           item1.id = this.createBlockId(item1);
-          item1.elementArr.forEach(item2=>{
+          item1.columnArr.forEach(item2=>{
             item2.name ? item2.id = this.createBlockId(item2) : '';
           })
           })
         }
-     },
+      },
 
       addSection(index) {
         this.appendSection(this.buildObj, index);
@@ -998,11 +1029,17 @@ export default {
 
       // row 
 
+      createColumn() {
+            var tempObj = JSON.parse(JSON.stringify(this.columnObj));
+            tempObj.id = this.createBlockId(tempObj);
+            return tempObj;
+      },
+
       appendRow(rowArr, tempObj, index) {
         tempObj.id = this.createBlockId(tempObj);
         rowArr.splice(index+1, 0, tempObj);
         if(rowArr[index+1] != undefined) {
-            rowArr[index+1].elementArr.forEach(item=>{
+            rowArr[index+1].columnArr.forEach(item=>{
             item.name ? item.id = this.createBlockId(item) : '';
           })
         }
@@ -1012,19 +1049,16 @@ export default {
         if(!this.selectedRow) {
           var tempObj = JSON.parse(JSON.stringify(this.rowObj));
           for(var i=0; i<columnLength; i++) {
-            var obj = new Object();
-            obj.setting = false;
-            tempObj.elementArr.push(obj);
+            tempObj.columnArr.push(this.createColumn());
           }
           tempObj.rowSize = rowSize;
           this.appendRow(this.selectedSectionRows, tempObj, this.row_index);
           this.row_index = 0;
         }
         else {
-          this.selectedRow.elementArr = [];
+          this.selectedRow.columnArr = [];
           for(var i=0; i<columnLength; i++) {
-            var obj = new Object();
-            this.selectedRow.elementArr.push(obj);
+            this.selectedRow.columnArr.push(this.createColumn());
           }
           this.selectedRow.rowSize = rowSize;
           this.selectedRow = '';
@@ -1045,29 +1079,27 @@ export default {
 
     // element
 
-      appendElement(elementArr, tempObj, index) {
+      appendElement(tempObj) {
           tempObj.id = this.createBlockId(tempObj);
-          elementArr[index] = tempObj;
-          this.selectedElement = tempObj;
+          this.selectedColumn.elementArr.push(tempObj);
       },
 
       addElement(ele) {
         var tempObj = JSON.parse(JSON.stringify(this.elementObj));
         tempObj.name = ele.name;
-        this.appendElement(this.selectedRowElements, tempObj, this.element_index);
-        this.element_index = 0;
+        this.appendElement(tempObj);
         this.selectedRow.columnSetting = false;
         this.showSelection = !this.showSelection;
         this.elementSelection = false;
       },
 
-      duplicateElement(elementArr, element, index) {
+      duplicateElement(columnArr, element, index) {
         var tempObj = JSON.parse(JSON.stringify(element));
-        this.appendElement(elementArr, tempObj, index);
+        this.appendElement(columnArr, tempObj, index);
       },
 
-      deleteElement(elementArr, index) {
-          elementArr.splice(index, 1);
+      deleteElement(columnArr, index) {
+          columnArr.splice(index, 1);
       },    
 
     // element
@@ -1100,9 +1132,9 @@ export default {
         document.onmousemove = null
       },
 
-    //dragable element
+    // dragable element
 
-    // background Image Selection
+    // image Selection
 
       onSelected(img){
         let files = img.target.files || img.dataTransfer.files;
@@ -1132,7 +1164,7 @@ export default {
         document.getElementById('imgInp').click();
       },
 
-    // background Image Selection
+    // image Selection
 
     }
 }
