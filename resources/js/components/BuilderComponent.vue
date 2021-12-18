@@ -368,14 +368,14 @@
                         </div>
                         <div>
                           <div v-for="column in row.columnArr" :key="column.id" :id="'kb-column-'+column.id" @mouseenter="selectedElements = column.elementArr" :style="selectedBlock.id == column.id && selectedBlock.type == column.type ? currentStyling : column.style" :class="row.rowSize+((selectedBlock.id == column.id && selectedBlock.type == column.type) || column.style ? ' kb-demo-styling' : '')" class="kb-column kb-block-container">
-                            <draggable class="kb-drag-container" tag="div" v-model="column.elementArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="element" @change="selectedElements = column.elementArr">
+                            <draggable handle=".kb-handle-element" class="kb-drag-container" tag="div" v-model="column.elementArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="element" @change="selectedElements = column.elementArr">
                               <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-                                  <div v-for="(element, index) in column.elementArr" :key="element.id" @mouseenter="element.setting = true" @mouseleave="element.setting = false" :class="(selectedBlock.id == element.id && selectedBlock.type == element.type) || element.style ? 'kb-demo-styling ' : (selectedColumn.id == element.id ? 'kb-border-select' : 'kb-border')" :style="selectedBlock.id == element.id && selectedBlock.type == element.type ? currentStyling : element.style" :id="'kb-element-'+element.id" class="kb-element kb-block-container">
+                                  <div v-for="(element, index) in column.elementArr" :key="element.id" @mouseenter="element.setting = true" @mouseleave="element.setting = false" :class="(selectedBlock.id == element.id && selectedBlock.type == element.type) || element.style ? 'kb-demo-styling ' : ''" :style="selectedBlock.id == element.id && selectedBlock.type == element.type ? currentStyling : element.style" :id="'kb-element-'+element.id" class="kb-element kb-block-container">
                                     <div class="kb-module-setting" v-if="element.setting">
-                                      <span><i class="fa fa-arrows-alt"></i></span>
+                                      <span class="kb-handle-element"><i class="fa fa-arrows-alt"></i></span>
                                       <span @click="selectedBlock = element, blockSetting(element), rowSelection = false, elementSelection = false, showSelection = true" v-tooltip="{ content: 'Element Setting' }"><i class="far fa-edit"></i></span>
-                                      <span @click="duplicateRow(build.rowArr, row, index)" v-tooltip="{ content: 'Duplicate Element' }"><i class="far fa-copy"></i></span>
-                                      <span @click="deleteElement(build.rowArr, index)" v-tooltip="{ content: 'Delete Element' }"><i class="far fa-trash-alt"></i></span>
+                                      <span @click="duplicateElement(column.elementArr, element, index)" v-tooltip="{ content: 'Duplicate Element' }"><i class="far fa-copy"></i></span>
+                                      <span @click="deleteElement(column.elementArr, index)" v-tooltip="{ content: 'Delete Element' }"><i class="far fa-trash-alt"></i></span>
                                     </div> 
                                     <span v-if="element.setting" @click="selectedColumn = column, selectedRow = row, showSelection = true, elementSelection = true" class="kb-ispan-add add-element bottom-add-btn" v-tooltip="{ content: 'Add New element' }"><i class="fa fa-plus"></i></span>
                                   </div>
@@ -1080,8 +1080,13 @@ export default {
     // element
 
       appendElement(tempObj) {
-          tempObj.id = this.createBlockId(tempObj);
-          this.selectedColumn.elementArr.push(tempObj);
+        tempObj.id = this.createBlockId(tempObj);
+        this.selectedColumn.elementArr.push(tempObj);
+        if(rowArr[index+1] != undefined) {
+          rowArr[index+1].columnArr.forEach(item=>{
+          item.name ? item.id = this.createBlockId(item) : '';
+          })
+        }
       },
 
       addElement(ele) {
@@ -1093,13 +1098,13 @@ export default {
         this.elementSelection = false;
       },
 
-      duplicateElement(columnArr, element, index) {
+      duplicateElement(elements, element, index) {
         var tempObj = JSON.parse(JSON.stringify(element));
-        this.appendElement(columnArr, tempObj, index);
+        this.appendElement(elements, tempObj, index);
       },
 
-      deleteElement(columnArr, index) {
-          columnArr.splice(index, 1);
+      deleteElement(elements, index) {
+          elements.splice(index, 1);
       },    
 
     // element

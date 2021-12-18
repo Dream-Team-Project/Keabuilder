@@ -268,10 +268,6 @@ div#kb-element-group ul.kb-element-list li.kb-element-box>span:hover i {
     transform: translateY(0px);
 }
 
-div#kb-element-group ul.kb-element-list li.kb-element-box {
-    padding: 8px 12px;
-}
-
 
 div#kb-element-group ul.kb-element-list, div#kb-row-selection ul.kb-row-list, .kb-img-thumbnail-group ul.kb-img-list {
     width: 100%;
@@ -279,6 +275,8 @@ div#kb-element-group ul.kb-element-list, div#kb-row-selection ul.kb-row-list, .k
     padding: 20px 6px;
     height: 100%;
     list-style: none;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .kb-img-thumbnail-group ul.kb-img-list li {
@@ -305,14 +303,18 @@ div#kb-element-group ul.kb-element-list, div#kb-row-selection ul.kb-row-list, .k
 
 div#kb-row-selection ul.kb-row-list li.kb-row-type, div#kb-element-group ul.kb-element-list li.kb-element-box {
     width: 25%;
-    float: left;
     padding: 6px;
     display: flex;
     cursor: pointer;
     transition: 0.2s ease;
 }
 
-div#kb-row-selection ul.kb-row-list li.kb-row-type:hover {
+div#kb-element-group ul.kb-element-list li.kb-element-box {
+    flex-direction: column;
+    padding: 10px;
+}
+
+div#kb-row-selection ul.kb-row-list li.kb-row-type:hover, div#kb-element-group ul.kb-element-list li.kb-element-box:hover span {
     transform: scale(1.1);
 }
 
@@ -472,9 +474,13 @@ div.kb-element.kb-border:before, div.kb-element.kb-border-select:before {
     background-color: rgb(216 200 152 / 10%);
 }
 
-div.kb-element {
+div.kb-row div.kb-element {
     width: 100%;
     padding: 20px 0px;
+}
+
+div.kb-row div.kb-element:hover:before {
+    border-color: var(--primary-color);
 }
 
 div.kb-row.kb-block-container {
@@ -701,7 +707,7 @@ div.kb-section span.kb-ispan-add.add-row, div.kb-section div.kb-row>.kb-module-s
     background-color: var(--row-color);
 }
 
-div.kb-row span.kb-ispan-add.add-element, div.kb-section div.kb-row div.kb-inner-row .kb-module-setting {
+div.kb-row span.kb-ispan-add.add-element, div.kb-section div.kb-row div.kb-element div.kb-module-setting {
     background-color: var(--primary-color);
 }
 
