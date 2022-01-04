@@ -449,6 +449,7 @@
                         });
                     }).catch(error => {
                         this.errors.push(error.response.data.error);
+                        this.mainanimation();
                     });
                 }
 

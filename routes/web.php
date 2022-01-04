@@ -11,15 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/login', function () {
-    return view('index');
-});
-Route::get('/home', function () {
-    return view('index');
-});
 
 Route::get('/heat-request', 'HeatmapController@store');
 Route::get('/heatget-request', 'HeatmapController@get');
@@ -40,11 +31,24 @@ Route::get('/useros', 'KbanalyticController@useros');
 Route::get('/userdevice', 'KbanalyticController@userdevice');
 
 
+
 Auth::routes();
+
+Route::get('/home', function () {
+    return view('index');
+});
+
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('/login', function () {
+    return view('index');
+});
 
 Route::get('/builder', 'HomeController@builder')->name('builder');
 
-Route::get('/home', 'HomeController@home')->name('home');
+// Route::get('/home', 'HomeController@home')->name('home');
 
 // login system
 Route::prefix('auth')->group(function(){

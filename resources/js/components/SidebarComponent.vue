@@ -125,16 +125,17 @@
                         </div>
                     </button>
                 </router-link>
-                
-                <button class="bw-sidebar__item hasIcon" v-on:click="setActive('contacts')" :class="{ active:isActive('contacts') }">
-                    <div class="bw-sidebar__item__icon">
-                        <i class="far fa-id-badge"></i>
+                 <router-link :to="{name: 'contacts'}">
+                    <button class="bw-sidebar__item hasIcon" >
+                        <div class="bw-sidebar__item__icon">
+                            <i class="far fa-id-badge"></i>
 
-                    </div>
-                    <div class="bw-sidebar__item__text">
-                        Contacts
-                    </div>
-                </button>
+                        </div>
+                        <div class="bw-sidebar__item__text">
+                            Contacts
+                        </div>
+                    </button>
+                </router-link>
                 <button class="bw-sidebar__item hasIcon"  v-on:click="setActive('affiliates')" :class="{ active:isActive('affiliates') }">
                     <div class="bw-sidebar__item__icon">
                         <i class="fas fa-search-dollar"></i>
