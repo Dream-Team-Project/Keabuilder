@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top" v-if="fullsidebar" :class="{navshadow: scrollPosition > 100}">
             <div class="navbar-wrapper">
                 <div class="navbar-container content">
@@ -52,15 +53,13 @@
             </div>
         </nav>
 
-
-
         <div id="bw-sidebar" class="bw-sidebar-content reduce open absolute" v-if="fullsidebar" style="width:50px;" @mouseover="hoveropen = true" @mouseleave="hoveropen = false" :class="{ 'hoveropen' : hoveropen }">
             <!-- ...img logo -->
             <div class="bw-sidebar-logo">
                 <img v-bind:src="'images/logo/kblogo.svg'" alt="">
             </div>
             <div class="bw-sidebar">
-                <router-link :to="{name: 'dashboard'}">
+                <router-link :to="{name: 'dashboard'}" id="myhome" :class="activeItem=='dashboard'?'router-link-exact-active router-link-active':''"> 
                     <button class="bw-sidebar__item hasIcon">
                         <div class="bw-sidebar__item__icon">
                             <i class="fa fa-home" aria-hidden="true"></i>
@@ -71,7 +70,7 @@
                     </button>
                 </router-link>
 
-                <router-link :to="{name: 'funnel'}">
+                <router-link :to="{name: 'funnel'}"  v-on:click="setActive('funnel')">
                     <button class="bw-sidebar__item hasIcon">
                         <div class="bw-sidebar__item__icon">
                             <i class="fa fa-filter" aria-hidden="true"></i>
@@ -999,9 +998,6 @@
         </transition>
         <div class="offcanvas-overlay " v-if="offcanvasoverlay" @click="hideoverlay"></div>
         
-
-
-
     </div>
  <!-- last div -->
 
@@ -1015,7 +1011,7 @@
       isOpen2: false,
       isOpen3: false,
       hoveropen:false, 
-      activeItem: 'home', 
+      activeItem: 'dashboard', 
       user:null,
       offcanvasoverlay:false,
       bwname:'',
@@ -1036,6 +1032,13 @@
            }else{
                this.fullsidebar=true;
            }
+
+            var geturl = window.location.pathname;
+            if(geturl!='/'){
+                var geturl2 = geturl.substring(1);
+                this.setActive(geturl2);   
+            } 
+
         },
             deep: true,
             immediate: true,        
@@ -1049,13 +1052,6 @@
         axios.get('auth/init').then(response=>{
         this.bwname = response.data.user.name;
         this.bwemail = response.data.user.email;
-        var geturl = window.location.pathname;
-        if(geturl!='/'){
-            var geturl2 = geturl.substring(1);
-            this.setActive(geturl2);        
-        }else{
-            this.setActive('dashboard');        
-        }        
     })
     },     
     updateScroll() {

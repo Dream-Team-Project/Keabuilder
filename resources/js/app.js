@@ -148,7 +148,9 @@ const routes = [
   {path : '/heatmaps-recordings', name: 'heatmaps-recordings', component: heatmapsrecordings},
   {path : '/edit-user', name: 'edituser', component: edituser},
   {path : '/contacts', name: 'contacts', component: contact},
-  {path : '/*', name: 'dashboard', component: dashboard},
+  {path : '/home', name: 'home', component: dashboard},
+  {path : '/dashboard', name: 'dashboard', component: dashboard},
+  {path : '/*', name: '', component: dashboard},
 ]
 
 const router = new VueRouter({

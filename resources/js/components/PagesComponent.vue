@@ -438,7 +438,7 @@ hr {
 .kb-makeittabl > li:nth-child(3) {
     width: 10%;
 }
-.kb-makeittabl:nth-child(1), .kb-makeittabl-campaign:nth-child(1) {
+.kb-makeittabl:nth-child(2), .kb-makeittabl-campaign:nth-child(2) {
     font-weight: bold;
 }
 .kbwhat.Active {
@@ -478,6 +478,7 @@ hr {
 </style>
 <template>
   <div id="pagesinsidepage">
+
       <div class="container-fluid" v-if="firstcontainer">
         <div class="row">
             <div class="col-md-12 pagemainlink">
@@ -489,8 +490,6 @@ hr {
                 <a href="javascript:void(0)" @click="kb_design" :class="websitedesigns==true ? 'active':''">Website Design <i class="fas fa-palette"></i></a>
             </div>
         </div>
-
-        
 
         <!-- Website Design -->
 
@@ -505,7 +504,7 @@ hr {
             </div>
             <div class="col-md-12 mt-4">
                 <div class="kb-webpreviewer">
-                    <span class="kb-weblive" @click="livestatus = !livestatus">LIVE <i class="fas fa-chevron-down drpdwnfa"></i></span>
+                    <span class="kb-weblive" @click="livestatus = !livestatus">{{kbwebsite[0]}} <i class="fas fa-chevron-down drpdwnfa"></i></span>
                     <div class="kb-dropdown__panel kb-dropdown_livestatus" v-if="livestatus">
                       <ul class="kb-dropdown__menu">
                         <li>
@@ -528,16 +527,16 @@ hr {
           <div class="row mt-4" v-if="addnewpages">
               <div class="col-md-4 cardpage mt-10 loadEffect"  v-for="(value,index) in kbpages" :key="index">
                 <div>
-                  <img v-bind:src="kbpages[index]['imgsrc']" alt="" class="img-fluid img-fit">
+                  <img v-bind:src="kbpages[index]['thumbnail']" alt="" class="img-fluid img-fit">
 
                   <div class="keabuilder-title-board line-ellipsis">
-                    <span>{{kbpages[index]['title']}}</span> 
-                    <input type="text" v-model="kbpages[index]['title']">
+                    <span>{{kbpages[index]['page_name']}}</span> 
+                    <input type="text" v-model="kbpages[index]['page_name']">
                   </div>
                   <div class="statbadg">
-                    <span class="statusbadge" :class="kbpages[index]['status']=='Publish' ? 'active1':'active2'" @click="kbpages[index].dropdownstatus = !kbpages[index].dropdownstatus">
-                      <i class="fas" :class="kbpages[index]['status']=='Publish' ? 'fa-check':'fa-file'"></i> 
-                      {{kbpages[index]['status']}} <i class="fas fa-chevron-down drpdwnfa"></i>
+                    <span class="statusbadge" :class="kbpages[index]['publish_status']==1 ? 'active1':'active2'" @click="kbpages[index].dropdownstatus = !kbpages[index].dropdownstatus">
+                      <i class="fas" :class="kbpages[index]['publish_status']==1 ? 'fa-check':'fa-file'"></i> 
+                      {{kbpages[index]['publish_status']==1?'Publish':'Draft'}} <i class="fas fa-chevron-down drpdwnfa"></i>
                     </span>
                     <div class="kb-dropdown__panel kb-dropdown__status" v-if="kbpages[index].dropdownstatus">
                       <ul class="kb-dropdown__menu">
@@ -576,16 +575,16 @@ hr {
         <div class="row mt-4" v-if="addnewlandingpages">
             <div class="col-md-4 cardpage mt-10 loadEffect"  v-for="(value,index) in kblandingpages" :key="index">
               <div>
-                <img v-bind:src="kblandingpages[index]['imgsrc']" alt="" class="img-fluid img-fit">
+                <img v-bind:src="kblandingpages[index]['thumbnail']" alt="" class="img-fluid img-fit">
 
                 <div class="keabuilder-title-board line-ellipsis">
-                  <span>{{kblandingpages[index]['title']}}</span> 
-                  <input type="text" v-model="kblandingpages[index]['title']">
+                  <span>{{kblandingpages[index]['page_name']}}</span> 
+                  <input type="text" v-model="kblandingpages[index]['page_name']">
                 </div>
                 <div class="statbadg">
-                  <span class="statusbadge" :class="kblandingpages[index]['status']=='Publish' ? 'active1':'active2'" @click="kblandingpages[index].dropdownstatus = !kblandingpages[index].dropdownstatus">
-                    <i class="fas" :class="kblandingpages[index]['status']=='Publish' ? 'fa-check':'fa-file'"></i> 
-                    {{kblandingpages[index]['status']}} <i class="fas fa-chevron-down drpdwnfa"></i>
+                  <span class="statusbadge" :class="kblandingpages[index]['publish_status']==1 ? 'active1':'active2'" @click="kblandingpages[index].dropdownstatus = !kblandingpages[index].dropdownstatus">
+                    <i class="fas" :class="kblandingpages[index]['publish_status']==1 ? 'fa-check':'fa-file'"></i> 
+                    {{kblandingpages[index]['publish_status']==1?'Publish':'Draft'}} <i class="fas fa-chevron-down drpdwnfa"></i>
                   </span>
                   <div class="kb-dropdown__panel kb-dropdown__status" v-if="kblandingpages[index].dropdownstatus">
                     <ul class="kb-dropdown__menu">
@@ -621,6 +620,11 @@ hr {
 
         <!-- Automations -->
         <div class="row mt-4 loadEffect" v-if="addnewautomation">
+
+          <div class="text-right mb-4 w-100">
+              <a href="javascript:void(0)" class="kb_btnouter btn-primary"><i class="fas fa-pencil-alt"></i> Create an Automation</a>
+          </div>
+
           <ul class="kb-makeittabl">
             <li>Automation Name</li>
             <li>Automation Created</li>
@@ -628,8 +632,8 @@ hr {
           </ul>
 
           <ul class="kb-makeittabl" v-for="(error,index) in kbautomationelem" :key="index">
-            <li>{{kbautomationelem[index]['title']}} </li>
-            <li>{{kbautomationelem[index]['created_at']}}</li>
+            <li>{{kbautomationelem[index]['name']}} </li>
+            <li>{{kbautomationelem[index]['created']}}</li>
             <li>
                 <a href="javascript:void(0)" class="kb_btnouter"><i class="fas fa-pencil-alt"></i> Edit</a>
                   <a href="javascript:void(0)" class="kb_btnsetting" @click="kbautomationelem[index]['dropdownstatus'] = !kbautomationelem[index]['dropdownstatus']"><i class="fas fa-cog"></i></a>
@@ -652,7 +656,7 @@ hr {
                       </li>
                     </ul>
                   </div>  
-                  <span class="kbwhat" :class="kbautomationelem[index]['status']"></span>
+                  <span class="kbwhat" :class="kbautomationelem[index]['status']==1?'Active':'InActive'"></span>
                   
             </li>
           </ul>
@@ -661,6 +665,11 @@ hr {
 
         <!-- Campaign -->
         <div class="row mt-4 loadEffect" v-if="addnewcampaign">
+
+          <div class="text-right mb-4 w-100">
+              <a href="javascript:void(0)" class="kb_btnouter btn-primary"><i class="fas fa-pencil-alt"></i> Create an Campaign</a>
+          </div>
+
           <ul class="kb-makeittabl-campaign">
             <li>Campaign Name</li>
             <li>Sent</li>
@@ -671,13 +680,13 @@ hr {
           </ul>
 
           <ul class="kb-makeittabl-campaign" v-for="(error,index) in kbcampaignelem" :key="index">
-            <li>{{kbcampaignelem[index]['title']}} </li>
+            <li>{{kbcampaignelem[index]['name']}} </li>
             <li>{{kbcampaignelem[index]['sent']}}</li>
             <li>{{kbcampaignelem[index]['sentto']}}</li>
-            <li>{{kbcampaignelem[index]['last_modified']}}</li>
-            <li>{{kbcampaignelem[index]['type']}}</li>
+            <li>{{kbcampaignelem[index]['lastmodify']}}</li>
+            <li>{{kbcampaignelem[index]['typeof']}}</li>
             <li>
-                <a href="javascript:void(0)" class="kb_btnouter"><i class="fas" :class="kbcampaignelem[index]['status']!='Active' ?  'fa-pencil-alt' : 'fa-chart-line'"></i> {{kbcampaignelem[index]['btn']}}</a>
+                <a href="javascript:void(0)" class="kb_btnouter"><i class="fas" :class="kbcampaignelem[index]['status']!=1 ?  'fa-pencil-alt' : 'fa-chart-line'"></i> {{kbcampaignelem[index]['draft']==1?'Draft':'View Report'}}</a>
                 <a href="javascript:void(0)" class="kb_btnsetting" @click="kbcampaignelem[index]['dropdownstatus'] = !kbcampaignelem[index]['dropdownstatus']">
                   <i class="fas fa-cog" ></i></a>
                 <div class="kb-dropdown__panel kb-dropdown_livestatus" v-if="kbcampaignelem[index]['dropdownstatus']">
@@ -699,7 +708,7 @@ hr {
                     </li>
                   </ul>
                 </div>  
-                <span class="kbwhat" :class="kbcampaignelem[index]['status']"></span>
+                <span class="kbwhat" :class="kbcampaignelem[index]['status']==1?'Active':'InActive'"></span>
             </li>
           </ul>
 
@@ -710,7 +719,7 @@ hr {
       </div>
 
       <div class="container-fluid kb_second_siteinfo" v-if="secondcontainer">
-        <div class="row loadEffect">
+        <div class="row loadEffect" v-if='kbwebsite'>
           
           <div class="col-md-12">
             <h3><b>Site Details</b> <a href="javascript:void(0)" class="btn btn-secondary" @click="backfromsitedetails"><i class="fas fa-arrow-left"></i> Back</a></h3>
@@ -718,27 +727,28 @@ hr {
 
           <div class="col-md-6 mt-4">
 
-            <div class="insideshdw">
+            <div class="insideshdw" >
               <h5>Site Info</h5>
               <p>Edit the main elements of your site.</p>
               <p>Your site name is used wherever the title of your site appears, such as browser tabs, search engine results, and links.</p>
 
               <div class="form-group">
                 <label for="">Title</label>
-                <input type="text" name="" placeholder="Your title here" class="form-control" id="">              
+                <input type="text" name="" placeholder="Your title here" class="form-control" id="" v-model="kbwebsite[0].title">              
               </div> 
               <div class="form-group">
                 <label for="">Domain</label>
                   <div class="kbcustom-domain-edit-link" style="border: 1px solid #c7cfd8; border-radius: 4px; padding: 6px 10px; margin-bottom: 20px">
                   <div class="kb-card__row">  
-                    <p class="kb-sage-body-semi">mynew.mykea.com</p>
+                    <p class="kb-sage-body-semi">{{kbwebsite[0].domain}}</p>
                     <a href="#" class="kb-btn">Manage Domain</a>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="">Support Email</label>
-                <input type="text" name="" placeholder="Your Email here" class="form-control" id="">              
+                <label for="">Administration Email Address</label>
+                <input type="text" name="" placeholder="Your Email here" class="form-control" id="" v-model="kbwebsite[0].admin_email">  
+                <small>This address is used for admin purposes. If you change this, we will send you an email at your new address to confirm it. The new address will not become active until confirmed.</small>            
               </div> 
             </div>
 
@@ -752,25 +762,16 @@ hr {
 
               <div class="form-group">
                 <label for="">Homepage</label>
-                <select name="" id="" class="form-control">
-                  <option value="">About</option>
-                  <option value="">Landing</option>
+                <select name="" id="" class="form-control" v-model="kbwebsite[0].homepage">
+                  <option :value="kbpages[index].page_url" v-for="(value,index) in kbpages" :key="index">{{kbpages[index]['page_name']}}</option>
                 </select>
               </div> 
 
               <hr>
 
               <h5>Colors</h5>
-              <p>Choose the default color palette you want to show in all color pickers across Kajabi.</p>
-              <div class="kb-preview-inner" style="background-color: rgb(26, 188, 156);"></div>
-              <div class="kb-preview-inner" style="background-color: rgb(46, 204, 113);"></div>
-              <div class="kb-preview-inner" style="background-color: rgb(52, 152, 219);"></div>
-              <div class="kb-preview-inner" style="background-color: rgb(155, 89, 182);"></div>
-              <div class="kb-preview-inner" style="background-color: rgb(241, 196, 15);"></div>
-              <div class="kb-preview-inner" style="background-color: rgb(230, 126, 34);"></div>
-              <div class="kb-preview-inner" style="background-color: rgb(231, 76, 60);"></div>
-              <div class="kb-preview-inner" style="background-color: rgb(236, 240, 241);"></div>
-              <div class="kb-preview-inner" style="background-color: rgb(149, 165, 166);"></div>
+              <p>Choose the default color palette you want to show in all color pickers across keabuilder.</p>
+              <div class="kb-preview-inner" :style="{backgroundColor: colortheme[index]}" v-for="(value,index) in colortheme" :key="index"></div>            
 
             </div>
 
@@ -781,7 +782,28 @@ hr {
                <h5>Navigation Menus</h5>
 
                <p>Main Menu</p>
-               <div style="position:relative;">
+
+               <ul class="kb-sortable">
+                <li class="kb-sortable__item"  v-for="(error,index) in navmenu_header" :key="index">
+                    <div class="kb-sortable__item-content">
+                        <h1 class="kb-sortable__item-title">{{navmenu_header[index]['title']}}</h1>
+                        <h2 class="kb-sortable__item-subtitle">{{navmenu_header[index]['pageorpost']}}</h2>
+                    </div>
+                    <div class="kb-sortable__item-actions">
+                    
+                    <a href="javascript:void(0)" target="_blank" class="kb-btn" >
+                        <i class="far fa-eye"></i>
+                    </a>
+                    
+                    <a href="javascript:void(0)" class="kb-btn">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+
+                    </div>
+                </li>
+              </ul>
+
+               <div style="position:relative;" class="mt-4">
                 <a href="javascript:void(0)" class="kb-navmenu" @click="navmainmenu_fun"><i class="fas fa-plus"></i> Add</a>
                 <nav class="kb-dropdown_panel" v-if="navmainmenu_add">
                     <ul class="kb-dropdown_menu" >
@@ -820,7 +842,6 @@ hr {
                 </li>
               </ul>
 
-
                <div style="position:relative;" class="mt-4">
                   <a href="javascript:void(0)" class="kb-navmenu"  @click="navfootermenu_fun"><i class="fas fa-plus"></i> Add</a>
                     <nav class="kb-dropdown_panel" v-if="navfootermenu_add">
@@ -850,7 +871,7 @@ hr {
 
                 <div class="kb-upload-card_dropzone">
                     <div class="kb-upload-card_preview">
-                      <img alt=""  class="kb-thumbnail img-fluid" style="border: none; padding: 0;" src="https://kajabi-app-assets.kajabi-cdn.com/assets/default-file-upload-image-08bb079c8f92413903461a82f288f906d352de53889f650298c276cd6332379d.png">    
+                      <img alt=""  class="kb-thumbnail img-fluid" style="border: none; padding: 0;" :src="kbwebsite[0].logo==null?'/images/website/default-file-upload-image.png':kbwebsite[0].logo">    
                     </div>
                     <div class="kb-upload-card_body">
                       <div class="kb-btn-group">
@@ -887,7 +908,7 @@ hr {
 
                 <div class="kb-upload-card_dropzone">
                     <div class="kb-upload-card_preview">
-                      <img alt=""  class="kb-thumbnail img-fluid" style="border: none; padding: 0;" src="https://kajabi-app-assets.kajabi-cdn.com/assets/default-file-upload-image-08bb079c8f92413903461a82f288f906d352de53889f650298c276cd6332379d.png">    
+                      <img alt=""  class="kb-thumbnail img-fluid" style="border: none; padding: 0;" :src="kbwebsite[0].favicon==null?'/images/website/default-file-upload-image.png':kbwebsite[0].favicon">    
                     </div>
                     <div class="kb-upload-card_body">
                       <div class="kb-btn-group">
@@ -928,38 +949,19 @@ hr {
           </div>
 
           <div class="col-md-6 mt-4">
-            <div class="insideshdw">
-
-              <h5>Page Scripts</h5>
-                  <p>Add custom javascript to be placed on all site Pages. The code will be placed in the <b>head</b> section of every page.
-                    <br>
-                   You can also add a <b>Privacy and cookies</b> banner script. This informs visitors of cookies being used on your site and can collect their consent. For assistance, visit our <a href="#">Help Guide</a></p>
-
-              <div class="form-group">
-                <label for="">Page Script Header</label>
-                <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
-                <small>This code will be placed in the head section of every page.</small>                
-              </div> 
-
-            </div>
-          </div>
-
-          <div class="col-md-6 mt-4">
             
             <div class="insideshdw">
 
               <h5>SEO and Sharing</h5>
                   <p>The page name appears at the top of each browser window or tab. The URL is the unique address for the page.
-                    <br><br>
-                  Page visibility controls who can see your website. Search engine optimization (SEO) can improve your ranking in search results, making it easier for people to find your page.
-                  <br><br>
+                    <br><br>               
                   The title and description are displayed in search engine results and social media shares. Social networks (like Facebook or Twitter) may also show the social image when your URL is shared.
                   <br><br>
                   If you leave these fields blank, they will be automatically generated using your default settings.</p>
 
               <div class="form-group">
                 <label for="">Page Title</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" v-model="kbwebsite[0].seo_title">
                 <small>A clear title without branding or mentioning the domain itself. Best between 60 - 70 characters long.</small>
 
                               
@@ -973,12 +975,12 @@ hr {
             <div class="insideshdw">
 
               <label for="">Page Description</label>
-              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+              <textarea name="" id="" cols="30" rows="6" class="form-control" v-model="kbwebsite[0].seo_descr"></textarea>
               <small>A clear description, at least two sentences long. Best between 150 - 160 characters long.</small>  
 
               <div class="kb-upload-card_dropzone mt-4">
                   <div class="kb-upload-card_preview">
-                    <img alt=""  class="kb-thumbnail img-fluid" style="border: none; padding: 0;" src="https://kajabi-app-assets.kajabi-cdn.com/assets/default-file-upload-image-08bb079c8f92413903461a82f288f906d352de53889f650298c276cd6332379d.png">    
+                    <img alt=""  class="kb-thumbnail img-fluid" style="border: none; padding: 0;" :src="kbwebsite[0].seo_social_img==null?'/images/website/default-file-upload-image.png':kbwebsite[0].seo_social_img">    
                   </div>
                   
                   <div class="kb-upload-card_body">
@@ -1017,19 +1019,39 @@ hr {
             </div>
 
           </div>
+          
+          <div class="col-md-6 mt-4">
+            <div class="insideshdw">
+
+              <h5>Page Scripts</h5>
+                  <p>Add custom javascript to be placed on all site Pages. The code will be placed in the <b>head</b> and <b>Footer</b> section of every page.</p>
+
+              <div class="form-group">
+                <label for="">Page Script Header</label>
+                <textarea name="" id="" rows="6" class="form-control" v-model="kbwebsite[0].tracking_header"></textarea>
+                <small>This code will be placed in the head section of every page.</small>                
+              </div> 
+
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-4">
+            <div class="insideshdw">
+              <div class="form-group">
+                <label for="">Page Script Footer</label>
+                <textarea name="" id="" cols="30" rows="10" class="form-control" v-model="kbwebsite[0].tracking_footer"></textarea>
+                <small>This code will be placed in the footer section of every page.</small>                
+              </div> 
+
+            </div>
+          </div>
 
           <div class="col-md-12 text-center">
               <a href="javascript:void(0)" class="btn btn-secondary mt-4">Update <i class="fas fa-check"></i></a>
           </div>
 
-
-
-
-
         </div>
       </div>
-
-
 
   </div>
 </template>
@@ -1051,164 +1073,103 @@ export default {
       navfootermenu_add:false,
       addnewautomation:false,
       addnewcampaign:false,
-      kbpages:[
-        {
-          id:1,
-          title:"Home",
-          imgsrc:"https://storage.googleapis.com/website-production/uploads/2019/12/subscription-kit-fabfitfun-landing-page.png",
-          updated_at:"Updated: December 06, 2021 11:21AM",   
-          status: "Publish",     
-          itemshow:false,
-          dropdownstatus:false,
-        },
-        {
-          id:2,
-          title:"About",
-          imgsrc:"https://media.geeksforgeeks.org/wp-content/uploads/20211201143659/algogeek.png",
-          updated_at:"Updated: December 10, 2021 11:21AM",    
-           status: "Draft",    
-          itemshow:false,
-          dropdownstatus:false,
-        },
-        {
-          id:3,
-          title:"Skills",
-          imgsrc:"https://media.geeksforgeeks.org/wp-content/uploads/20211201143659/algogeek.png",
-          updated_at:"Updated: December 10, 2021 11:21AM",    
-           status: "Draft",    
-          itemshow:false,
-          dropdownstatus:false,
-        },
-        {
-          id:4,
-          title:"Landing page",
-          imgsrc:"https://media.geeksforgeeks.org/wp-content/uploads/20211201143659/algogeek.png",
-          updated_at:"Updated: December 10, 2021 11:21AM",    
-           status: "Draft",    
-          itemshow:false,
-          dropdownstatus:false,
-        },
-        {
-          id:5,
-          title:"Faq",
-          imgsrc:"https://media.geeksforgeeks.org/wp-content/uploads/20211201143659/algogeek.png",
-          updated_at:"Updated: December 10, 2021 11:21AM",    
-           status: "Draft",    
-          itemshow:false,
-          dropdownstatus:false,
-        }
-
-      ],
-      navmenu_footer:[
-        {
-          title:'Terms',
-          pageorpost: 'page'
-        },
-        {
-          title:'Privacy',
-          pageorpost: 'page'
-        }
-        ,
-        {
-          title:'Contact Us',
-          pageorpost: 'page'
-        }
-
-      ],
-      kblandingpages:[
-        {
-          id:1,
-          title:"Survey page",
-          imgsrc:"https://storage.googleapis.com/website-production/uploads/2019/12/subscription-kit-fabfitfun-landing-page.png",
-          updated_at:"Updated: December 06, 2021 11:21AM",   
-          status: "Publish",     
-          itemshow:false,
-          dropdownstatus:false,
-        },
-        {
-          id:2,
-          title:"Book a Call page",
-          imgsrc:"https://media.geeksforgeeks.org/wp-content/uploads/20211201143659/algogeek.png",
-          updated_at:"Updated: December 10, 2021 11:21AM",    
-           status: "Draft",    
-          itemshow:false,
-          dropdownstatus:false,
-        },
-        {
-          id:3,
-          title:"Skillset page",
-          imgsrc:"https://media.geeksforgeeks.org/wp-content/uploads/20211201143659/algogeek.png",
-          updated_at:"Updated: December 10, 2021 11:21AM",    
-           status: "Draft",    
-          itemshow:false,
-          dropdownstatus:false,
-        },
-
-      ],
-      kbautomationelem:[
-        {
-          id:1,
-          title:"Connect Big Small Business Boost Contest Official Entry Form",
-          created_at:"December 06, 2021 11:21AM",   
-          status: "Active",     
-          dropdownstatus:false,
-        },
-         {
-          id:2,
-          title:"New Event",
-          created_at:"December 12, 2021 11:21AM",   
-          status: "InActive",     
-          dropdownstatus:false,
-        },
-         {
-          id:3,
-          title:"Creative call",
-          created_at:"December 20, 2021 11:21AM",   
-          status: "Active",     
-          dropdownstatus:false,
-        },
-
-      ],
-      kbcampaignelem:[
-        {
-          id:1,
-          title:"Dell super sell",
-          sent:"",   
-          status: "InActive",     
-          sentto:"",
-          last_modified:"12/17/2021 08:43",
-          type:"One-Time",
-          btn: "Draft",
-          dropdownstatus:false,
-        },
-         {
-          id:2,
-          title:"Crazy Deal",
-          sent:"12/18/2021 08:43",   
-          status: "Active",     
-          sentto:"1000",
-          last_modified:"12/17/2021 08:43",
-          type:"One-Time",
-          btn: "View Report",
-          dropdownstatus:false,
-        },
-         {
-          id:3,
-          title:"Join Now!",
-          sent:"12/18/2021 08:43",   
-          status: "Active",     
-          sentto:"1000",
-          last_modified:"12/17/2021 08:43",
-          type:"One-Time",
-          btn: "View Report",
-          dropdownstatus:false,
-        },
-
-      ]
+      kbpages:[],
+      kblandingpages:[],
+      navmenu_footer:[],
+      navmenu_header:[],
+      kbautomationelem:[],
+      kbcampaignelem:[],
+      kbwebsite:'',
+      colortheme:[],
 
     }
   },
+    created() {
+        this.init();
+    },
   methods: {
+     init() {
+       // Get Pages & landing page
+        axios.post('getwebpages')
+        .then(response=> {
+          response.data.forEach(element => {
+            element.itemshow = false;
+            element.dropdownstatus = false;
+            
+            var mycustomdate =  new Date(element.updated_at);
+            var text1 = mycustomdate.toDateString();    
+            var text2 = mycustomdate.toLocaleTimeString();
+            element.updated_at = text1+' '+text2;
+
+             if(element.type=='page'){
+               this.kbpages.push(element);
+             }else if(element.type=='landing_page'){
+               this.kblandingpages.push(element);
+            }
+
+          });
+        });
+
+        // Get automations
+        axios.post('getautomation')
+        .then(response=> {
+          response.data.forEach(element => {
+            element.dropdownstatus = false;
+            
+            var mycustomdate =  new Date(element.created);
+            var text1 = mycustomdate.toDateString();    
+            var text2 = mycustomdate.toLocaleTimeString();
+            element.created = text1+' '+text2;
+            this.kbautomationelem.push(element);
+
+          });
+        });
+
+        // Get campaign
+        axios.post('getcampaign')
+        .then(response=> {
+          response.data.forEach(element => {
+            element.dropdownstatus = false;
+            this.kbcampaignelem.push(element);
+          });
+        });
+
+        // Get website
+        var ftmenu = {};
+        var ftmenu2 = {};
+        axios.post('getwebsite')
+        .then(response=> {
+            this.kbwebsite = [],
+          response.data.forEach(element => {
+            this.kbwebsite.push(element);
+
+            // colortheme
+            this.colortheme = element.color_theme.split(',');
+
+            // navmenu header
+            var ttl2 = element.header.split(',');
+            ttl2.forEach(element3 => {
+              ftmenu2 = {};
+              ftmenu2.title = element3;
+              ftmenu2.pageorpost = 'page';
+              this.navmenu_header.push(ftmenu2);
+            });
+
+            // navmenu footer
+            var ttl = element.footer.split(',');
+            ttl.forEach(element2 => {
+              ftmenu = {};
+              ftmenu.title = element2;
+              ftmenu.pageorpost = 'page';
+              this.navmenu_footer.push(ftmenu);
+            });
+
+
+          });
+        });
+
+
+     },
       kb_design(){
         this.websitedesigns = true;
         this.addnewpages = false;
@@ -1270,10 +1231,6 @@ export default {
       navfootermenu_fun(){
         this.navfootermenu_add = !this.navfootermenu_add;
       }
-
-
-      
-
 
     }
 
