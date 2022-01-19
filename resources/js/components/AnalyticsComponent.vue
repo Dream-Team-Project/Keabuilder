@@ -4,9 +4,6 @@
         padding: 20px;
         background:#fff;
     }
-    #kb-analytics{
-       background: #f2f4f4;
-    }
 </style>
 <template>
     <div id="kb-analytics">
@@ -14,7 +11,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="kb-ana-card">
-                        <h4>Kea Analytics</h4>
+                        <img src="/images/heatmap/analytics-front.jpg" alt="" class="img-fluid">
+                        <h4 class="mt-2">Kea Analytics</h4>
                         <small>View Your analytics with brand new features.</small>
                         <br>
                         <br>
@@ -24,8 +22,9 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="kb-ana-card">
-                        <h4>Kea Heat Maps</h4>
+                    <div class="kb-ana-card">                        
+                        <img src="/images/heatmap/heatmap-front.jpg" alt="" class="img-fluid">
+                        <h4 class="mt-2">Kea Heat Maps</h4>
                         <small>All new heat maps just for you.</small>
                         <br>
                         <br>

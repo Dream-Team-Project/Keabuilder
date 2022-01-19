@@ -11,15 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/login', function () {
-    return view('index');
-});
-Route::get('/home', function () {
-    return view('index');
-});
 
 Route::get('/heat-request', 'HeatmapController@store');
 Route::get('/heatget-request', 'HeatmapController@get');
@@ -40,11 +31,28 @@ Route::get('/useros', 'KbanalyticController@useros');
 Route::get('/userdevice', 'KbanalyticController@userdevice');
 
 
+
 Auth::routes();
+
+Route::get('/home', function () {
+    return view('index');
+});
+
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('/login', function () {
+    return view('index');
+});
 
 Route::get('/builder', 'HomeController@builder')->name('builder');
 
-Route::get('/home', 'HomeController@home')->name('home');
+Route::post('/getwebpages', 'WebsiteController@getpages');
+Route::post('/getautomation', 'WebsiteController@getautomation');
+Route::post('/getcampaign', 'WebsiteController@getcampaign');
+Route::post('/getwebsite', 'WebsiteController@getwebsite');
+
 
 // login system
 Route::prefix('auth')->group(function(){
@@ -59,7 +67,6 @@ Route::prefix('auth')->group(function(){
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
-
 Route::get('/{any}', 'HomeController@index')->name('index');
 
 

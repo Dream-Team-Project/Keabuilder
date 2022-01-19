@@ -95,10 +95,10 @@
     }
 
     .first-login input,
-    .bu-forlogin input {
+    .bu-forlogin input, .bu-forregister input, .bw-forforget input {
         opacity: 0.7;
         padding: 13px 26px;
-        height: 45px;
+        height: 40px;
     }
 
     .toastnew .fa-thumbs-up {
@@ -449,6 +449,7 @@
                         });
                     }).catch(error => {
                         this.errors.push(error.response.data.error);
+                        this.mainanimation();
                     });
                 }
 

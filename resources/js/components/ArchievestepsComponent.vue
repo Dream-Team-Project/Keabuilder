@@ -90,6 +90,9 @@ label {
 .kea-barfunnelsearch li.active {
     box-shadow: 0 1px 6px 1px rgb(216 200 152 / 71%);
 }
+ul.kea-barfunnelsearch li.active a {
+    color: #000;
+}
 </style>
 <template>
   <div id="archievesteps">

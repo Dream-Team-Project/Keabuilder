@@ -3,19 +3,42 @@
     border: 1px solid #dadce0;
     padding: 10px;
     border-radius: 8px;
-    }
-    .chartbox2 {
-    border: 1px solid #dadce0;
-    padding: 10px 0px;
-    border-radius: 8px;
 }
+.chartbox2 {
+  border: 1px solid #dadce0;
+  padding: 10px 0px;
+  border-radius: 8px;
+}
+.kb-mt-tp-2{
+  margin-top: -20px;;
+}
+.kb-heatmapnew{
+    font-size: 75px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    /* top: 75%; */
+    /* left: 33%; */
+}
+.kb-heatmapnew span {
+    font-size: 22px;
+    color: #d8c898;
+}
+
 </style>
 <template>
     <div id="kb-keaanalytics">
-
-      
-
     <div class="container-fluid">
+       <div class="row kb-mt-tp-2">
+          <div class="col-md-12">
+              <img src="/images/heatmap/analytics.jpg" class="img-fluid" alt="">
+              <p class="kb-heatmapnew"><span>ALL NEW</span> ANALYTICS</p>
+          </div>
+      </div>
+    </div>
+
+
+    <div class="container-fluid mt-10">
         <div class="row">
             <div class="col-md-6">
                  <div  v-if="series[0].data.length" class="chartbox">

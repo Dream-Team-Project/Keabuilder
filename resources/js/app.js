@@ -129,6 +129,7 @@ Vue.component('vue-resizable', VueResizable);
  import edituser from './components/EdituserComponent.vue';
  import pages from './components/PagesComponent.vue';
  import strategies from './components/StrategiesComponent.vue';
+ import contact from './components/ContactComponent.vue';
 import { reduce } from 'lodash';
 
 
@@ -148,7 +149,10 @@ const routes = [
   {path : '/kea-analytics', name: 'kea-analytics', component: keaanalytics},
   {path : '/heatmaps-recordings', name: 'heatmaps-recordings', component: heatmapsrecordings},
   {path : '/edit-user', name: 'edituser', component: edituser},
-  {path : '/*', name: 'dashboard', component: dashboard},
+  {path : '/contacts', name: 'contacts', component: contact},
+  {path : '/home', name: 'home', component: dashboard},
+  {path : '/dashboard', name: 'dashboard', component: dashboard},
+  {path : '/*', name: '', component: dashboard},
 ]
 
 const router = new VueRouter({

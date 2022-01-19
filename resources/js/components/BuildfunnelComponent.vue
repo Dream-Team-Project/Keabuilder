@@ -1,6 +1,8 @@
 <style scoped>
 #buildfunnelcomp{
     background:#F2F4F4;
+    margin-top: -20px;
+    padding-top: 20px;
 }
 .clmwithshadow{
     padding: 20px;
