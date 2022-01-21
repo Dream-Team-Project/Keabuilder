@@ -1,3 +1,59 @@
+<style scoped>
+.bw-logo__item__text {
+        position:relative;
+        line-height:2em;
+        overflow:hidden;
+        margin-left: 5px;
+        font-size: 24px;
+        font-family: cursive;
+        font-style: italic;
+}
+
+.fadingEffect {
+        position:absolute;
+        top:0; bottom:0; right:0;
+        width:0%;
+        background: transparent;
+        background-image: linear-gradient(to right, transparent 0%, #fff 50%);
+        -moz-animation: showHide 0.3s ease-in;  /* Firefox */
+        -webkit-animation: showHide 0.3s ease-in;  /* Safari and Chrome */
+        -ms-animation: showHide 0.3s ease-in;  /* IE10 */
+        -o-animation: showHide 0.3s ease-in;  /* Opera */
+        animation: showHide 0.3s ease-in; 
+    }
+    @-webkit-keyframes showHide { /* Chrome, Safari */
+        0% {width:100%}
+        40% {width:0%}
+        60% {width:0%;}
+        100% {width:100%;}
+    }
+    @-moz-keyframes showHide { /* FF */
+        0% {width:100%}
+        40% {width:0%}
+        60% {width:0%;}
+        100% {width:100%;}
+    }
+    @-ms-keyframes showHide { /* IE10 */
+        0% {width:100%}
+        40% {width:0%}
+        60% {width:0%;}
+        100% {width:100%;}
+    }
+    @-o-keyframes showHide { /* Opera */
+        0% {width:100%}
+        40% {width:0%}
+        60% {width:0%;}
+        100% {width:100%;}
+    }
+    @keyframes showHide {
+        0% {width:100%}
+        /* 40% {width:0%}
+        60% {width:0%;} */
+        100% {width:0%;}
+    }
+
+</style>
+
 <template>
     <div>
 
@@ -5,17 +61,12 @@
             <div class="navbar-wrapper">
                 <div class="navbar-container content">
                 <div class="navbar-collapse" id="navbar-mobile">
-                    <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
-                    
-                    
-                    </div>
+                    <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center"></div>
                     <ul class="nav navbar-nav float-right">
-                    
-                    
                     <li class="nav-item nav-search"><a class="nav-link nav-link-search" @click="showsearch"><i class="fas fa-search"></i></a>
                         <div class="search-input"  :class="{ open:issearch }">
                             <div class="search-input-icon"><i class="fas fa-search"></i></div>
-                            <input class="input" type="text" placeholder="Explore Kiabuilder..." tabindex="-1" data-search="template-search">
+                            <input class="input" type="text" placeholder="Explore Keabuilder..." tabindex="-1" data-search="template-search">
                             <div class="search-input-close" @click="showsearch"><i class="fas fa-times"></i></div>
                             <ul class="search-list"></ul>
                         </div>
@@ -53,10 +104,11 @@
             </div>
         </nav>
 
+        <!-- <div id="bw-sidebar" class="bw-sidebar-content reduce open absolute" v-if="fullsidebar" style="width:50px;" :class="{ 'hoveropen' : !hoveropen }"> -->
         <div id="bw-sidebar" class="bw-sidebar-content reduce open absolute" v-if="fullsidebar" style="width:50px;" @mouseover="hoveropen = true" @mouseleave="hoveropen = false" :class="{ 'hoveropen' : hoveropen }">
             <!-- ...img logo -->
-            <div class="bw-sidebar-logo">
-                <img v-bind:src="'images/logo/kblogo.svg'" alt="">
+            <div class="bw-sidebar-logo" :style="hoveropen ? 'padding-left: 20px;': ''">
+                <img v-bind:src="'images/logo/kblogo.svg'" alt=""><div class="bw-logo__item__text" v-if="hoveropen">Keabuilder<div class="fadingEffect"></div></div>
             </div>
             <div class="bw-sidebar">
                 <router-link :to="{name: 'dashboard'}" id="myhome" :class="activeItem=='dashboard'?'router-link-exact-active router-link-active':''"> 
@@ -146,7 +198,7 @@
                 </button>
 
                 <!-- Dropdown1 -->
-                <div class="bw-sidebar__group" :class="{ 'open' : isOpen }" @click="openClose" >
+                <div class="bw-sidebar__group" :class="{ 'open' : isOpen }" @click="isOpen = !isOpen" >
                     <div class="bw-sidebar__group__header">
                         <button class="bw-sidebar__item hasIcon"  v-on:click="setActive('integrations')" :class="{ active:isActive('integrations') }">
                             <div class="bw-sidebar__item__icon"> <i class="fas fa-cogs"></i></div>
@@ -156,7 +208,7 @@
                             <div class="bw-sidebar__item__arrow"><i class="fas fa-chevron-up"></i></div>
                         </button>
                     </div>
-                    <div class="bw-sidebar__group__content v-enter-to kb-padinglft" style="height: 0px;"> 
+                    <div class="bw-sidebar__group__content v-enter-to kb-padinglft" :style="{height: isOpen ? '100%' : '0px'}"> 
                         <button class="bw-sidebar__item active hasIcon"  v-on:click="setActive('activecampaign')" :class="{ active:isActive('activecampaign') }">
                             <div class="bw-sidebar__item__icon">
                                 <img src="/images/sidebaricons/activecampaign.svg" class="img-fluid">                             
@@ -216,7 +268,7 @@
 
                 <!-- Dropdown2 -->
                 
-                <div class="bw-sidebar__group" :class="{ 'open' : isOpen2 }" @click="openClose2" >
+                <div class="bw-sidebar__group" :class="{ 'open' : isOpen2 }" @click="isOpen2 = !isOpen2" >
                     <div class="bw-sidebar__group__header">
                         <button class="bw-sidebar__item hasIcon"  v-on:click="setActive('help')" :class="{ active:isActive('help') }">
                             <div class="bw-sidebar__item__icon"> <i class="fas fa-life-ring"></i></div>
@@ -226,7 +278,7 @@
                             <div class="bw-sidebar__item__arrow" ><i class="fas fa-chevron-up"></i></div>
                         </button>
                     </div>
-                    <div class="bw-sidebar__group__content v-enter-to kb-padinglft" style="height: 0px;"> <button
+                    <div class="bw-sidebar__group__content v-enter-to kb-padinglft" :style="{height: isOpen2 ? '100%' : '0px'}"> <button
                             class="bw-sidebar__item active hasIcon"  v-on:click="setActive('gethelp')" :class="{ active:isActive('gethelp') }">
                             <div class="bw-sidebar__item__icon"><i class="fas fa-comments"></i></div>
                             <div class="bw-sidebar__item__text">
@@ -250,7 +302,7 @@
 
                 <!-- Dropdown3 -->
                 
-                <div class="bw-sidebar__group" :class="{ 'open' : isOpen3 }" @click="openClose3">
+                <div class="bw-sidebar__group" :class="{ 'open' : isOpen3 }" @click="isOpen3 = !isOpen3">
                     <div class="bw-sidebar__group__header">
                         <button class="bw-sidebar__item hasIcon"  v-on:click="setActive('documentation')" :class="{ active:isActive('documentation') }">
                             <div class="bw-sidebar__item__icon"><i class="fas fa-book"></i></div>
@@ -260,7 +312,7 @@
                             <div class="bw-sidebar__item__arrow"><i class="fas fa-chevron-up"></i></div>
                         </button>
                     </div>
-                    <div class="bw-sidebar__group__content v-enter-to kb-padinglft" style="height: 0px;"> <button
+                    <div class="bw-sidebar__group__content v-enter-to kb-padinglft" :style="{height: isOpen3 ? '100%' : '0px'}"> <button
                             class="bw-sidebar__item active hasIcon"  v-on:click="setActive('gettingstarted')" :class="{ active:isActive('gettingstarted') }">
                             <div class="bw-sidebar__item__icon"><i class="fas fa-rocket"></i></div>
                             <div class="bw-sidebar__item__text">
@@ -1020,6 +1072,7 @@
       issearch:false,
       scrollPosition: null,
 
+
     }
   },created(){
         this.init();
@@ -1057,15 +1110,6 @@
     updateScroll() {
       this.scrollPosition = window.scrollY
     }, 
-    openClose() { 
-      this.isOpen = !this.isOpen;
-    },
-    openClose2() { 
-      this.isOpen2 = !this.isOpen2;
-    },
-    openClose3() { 
-      this.isOpen3 = !this.isOpen3;
-    },
     isActive: function (menuItem) {
       return this.activeItem === menuItem
     },
