@@ -134,7 +134,7 @@
         background: #fff;
     }
 
-    .kiabuilder-item {
+    .Keabuilder-item {
         padding: 10px 20px;
         border-radius: 0.267rem;
         margin-bottom: 20px;
@@ -148,7 +148,7 @@
         margin-top: 10px;
     }
 
-    .kiabuilder-item:before {
+    .Keabuilder-item:before {
         content: "";
         width: 3px;
         height: 100%;
@@ -158,11 +158,11 @@
         border-radius: 0.5rem;
     }
 
-    .kiabuilder-item.success:before {
+    .Keabuilder-item.success:before {
         background-color: #39DA8A;
     }
 
-    .kiabuilder-item i {
+    .Keabuilder-item i {
         top: 4px;
         position: relative;
         opacity: 0.5;
@@ -173,7 +173,7 @@
         right: 0px;
     }
 
-    .kiabuilder-item i:hover,
+    .Keabuilder-item i:hover,
     .kb-sharelink:hover,
     .kb-settings-i:hover {
         opacity: 1;
@@ -1242,7 +1242,7 @@
                         Add A Step</button>
                     <draggable :steps="steps" :disabled="!enabled" class="steps-group" ghost-class="ghost"
                         @start="dragging = true" @end="draggingend">
-                        <div class="kiabuilder-item" :class="tabOpen2 == element.id ? 'success' : ''"
+                        <div class="Keabuilder-item" :class="tabOpen2 == element.id ? 'success' : ''"
                             @click="kb_substeps2(element.id)" v-for="element in steps" :key="element.id"
                             :data-listid="element.id">
                             <div class="keabuilder-title-board">
@@ -1258,13 +1258,13 @@
                                         <a class="dropdown-item" href="javascript:void(0);">
                                             <i class="fas fa-link"></i> Copy Link
                                         </a>
-                                        <a class="dropdown-item kiabuilder-delete" href="javascript:void(0);">
+                                        <a class="dropdown-item Keabuilder-delete" href="javascript:void(0);">
                                             <i class="far fa-clone"></i> Duplicate
                                         </a>
-                                        <a class="dropdown-item kiabuilder-changepath" href="javascript:void(0);">
+                                        <a class="dropdown-item Keabuilder-changepath" href="javascript:void(0);">
                                             <i class="fas fa-pen-fancy "></i> change path
                                         </a>
-                                        <a class="dropdown-item kiabuilder-delete" href="javascript:void(0);">
+                                        <a class="dropdown-item Keabuilder-delete" href="javascript:void(0);">
                                             <i class="far fa-trash-alt"></i> Archive
                                         </a>
                                     </div>

@@ -22,6 +22,7 @@ import { VueEditor } from "vue2-editor";
 import tinymce from 'vue-tinymce-text-editor'
 import 'vue-range-slider/dist/vue-range-slider.css';
 import 'v-tooltip/dist/v-tooltip.css';
+import VueResizable from 'vue-resizable'
 import * as VueGoogleMaps from 'vue2-google-maps';
 
 require('./bootstrap');
@@ -105,6 +106,7 @@ Vue.component('colour-slider-picker', Slider);
 Vue.component('range-slider', RangeSlider);
 Vue.component('vue-editor',VueEditor);
 Vue.component('tinymce', tinymce);
+Vue.component('vue-resizable', VueResizable);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
