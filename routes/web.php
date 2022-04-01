@@ -41,7 +41,7 @@ Route::get('/home', function () {
 Route::get('/', function () {
     return view('index');
 });
-
+    
 Route::get('/login', function () {
     return view('index');
 });
@@ -52,6 +52,7 @@ Route::post('/getwebpages', 'WebsiteController@getpages');
 Route::post('/getautomation', 'WebsiteController@getautomation');
 Route::post('/getcampaign', 'WebsiteController@getcampaign');
 Route::post('/getwebsite', 'WebsiteController@getwebsite');
+Route::post('/getfunneltemplates', 'WebsiteController@getfunneltemplates');
 
 
 // login system
