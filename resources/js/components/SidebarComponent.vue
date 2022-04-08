@@ -7,6 +7,7 @@
         font-size: 24px;
         font-family: cursive;
         font-style: italic;
+        font-weight: 500;
 }
 
 .fadingEffect {
