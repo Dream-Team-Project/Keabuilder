@@ -1,14 +1,15 @@
 <template>
   <div>
     <div id="page-container" @click="closeDropDown($event)">
-        <!-- <tinymce id="id"  v-model="content" name="name"></tinymce> -->
-       <!-- <vue-editor v-model="content"></vue-editor> -->
+        <!-- <tinymce id="id"  v-model="content" name="name"></tinymce>
+       <vue-editor v-model="content"></vue-editor>
+       {{content}} -->
       <div v-if="imgSelection" id="kb-img-group">
         <div class="kb-img-inner-group forScroll">
-          <div class="kb-head">Choose a Background Image<button @click="selectBgImg()" class="kb-btn kb-btn-success">Add a new image</button><span @click="imgSelection = !imgSelection" class="kb-cut"><i class="fa fa-times"></i></span></div>
+          <div class="kb-head">Choose a Background Image<button @click="selectImg()" class="kb-btn kb-btn-success">Add a new image</button><span @click="imgSelection = !imgSelection" class="kb-cut"><i class="fa fa-times"></i></span></div>
           <div class="kb-img-thumbnail-group">
             <ul class="kb-img-list">
-              <li v-for="img in galleryImg" :key="img.id"><span><img v-lazy="'images/builder/upload_images/'+img.name" @click="background_image.name = '/images/builder/upload_images/'+img.name, imgSelection = !imgSelection, background_image.active = true"></span></li>
+              <li v-for="img in galleryImg" :key="img.id"><span><img v-lazy="'images/builder/upload_images/'+img.name" @click="addImage(img)"></span></li>
             </ul>
             <div v-if="galleryImg.length == 0"><center>Upload image</center></div>
           </div>
@@ -17,362 +18,369 @@
       </div>
       <div v-if="showSelection" class="kb-outer-selection-container">
             <vue-resizable ref="draggableContainer" :top="dragVal.top" :left="dragVal.left" :fit-parent="false" :width="dragVal.width" :min-width="dragVal.width - 50" id="kb-selection-ask" :dragSelector="'.kb-ask-head'">
-            <!-- <div ref="draggableContainer"> -->
-                <div v-if="elementSelection" id="kb-element-group" class="forScroll">
-                  <span @click="showSelection = !showSelection, elementSelection = false" class="kb-selection-top-actions"><i class="fa fa-times"></i></span>
-                  <div class="kb-ask-head">Element Selection</div>
-                  <div>
-                    <ul class="kb-element-list">
-                      <li v-for="element in elementList" :key="element.content.name" @click="addElement(element.content)" class="kb-element-box"><span><i :class="element.iconCls"></i><div>{{element.content.name}}</div></span></li>
-                    </ul>    
-                  </div>
+              <div v-if="elementSelection" id="kb-element-group" class="forScroll">
+                <span @click="showSelection = !showSelection, elementSelection = false" class="kb-selection-top-actions"><i class="fa fa-times"></i></span>
+                <div class="kb-ask-head">Element Selection</div>
+                <div>
+                  <ul class="kb-element-list">
+                    <li v-for="element in elementList" :key="element.content.name" @click="addElement(element.content)" class="kb-element-box"><span><i :class="element.iconCls"></i><div>{{element.content.name}}</div></span></li>
+                  </ul>    
                 </div>
-                <div v-else-if="rowSelection" id="kb-row-selection" class="kb-inner-selection-container">
-                  <span @click="showSelection = !showSelection, selectedRow = ''" class="kb-selection-top-actions"><i class="fa fa-times"></i></span>
-                  <div class="kb-ask-head">Row Dimension</div>
-                  <div>
-                    <ul class="kb-row-list">
-                      <li v-for="rt in rowTypes" :key="rt.cls" class="kb-row-type" :class="(selectedRow.rowSize == 'kb-'+rt.appendCls ? 'kb-row-type-active ' : '') + 'row-'+rt.cls" @click="addRow('kb-'+rt.appendCls+'-block', rt.nofcolumn)"><span v-for="c in rt.nofcolumn" :key="c" class="block"><span></span></span></li>
-                    </ul>
-                  </div>
+              </div>
+              <div v-else-if="rowSelection" id="kb-row-selection" class="kb-inner-selection-container">
+                <span @click="showSelection = !showSelection, selectedRow = ''" class="kb-selection-top-actions"><i class="fa fa-times"></i></span>
+                <div class="kb-ask-head">Row Dimension</div>
+                <div>
+                  <ul class="kb-row-list">
+                    <li v-for="rt in rowTypes" :key="rt.cls" class="kb-row-type" :class="(selectedRow.rowSize == 'kb-'+rt.appendCls ? 'kb-row-type-active ' : '') + 'row-'+rt.cls" @click="addRow('kb-'+rt.appendCls+'-block', rt.nofcolumn)"><span v-for="c in rt.nofcolumn" :key="c" class="block"><span></span></span></li>
+                  </ul>
                 </div>
-                <div v-else class="kb-inner-selection-container forScroll">
-                  <span @click="expand = !expand" class="kb-selection-top-actions" v-tooltip="{content: !expand ? 'Expand' : 'Shrink'}"><i class="fas" :class="!expand ? 'fa-expand-arrows-alt' : 'fas fa-compress-arrows-alt'"></i></span>
-                  <div class="kb-ask-head"><span v-if="selectedBlock.type == 'column'" @click="backOnRow()" class="side-arrow" v-tooltip="{content: 'Row Setting'}"><i class="far fa-arrow-alt-circle-left"></i></span>{{selectedBlock.type+' Setting'}}</div>
-                  <div class="kb-tabs-component">
-                      <tabs :options="{ defaultTabHash: 'general', useUrlFragment: false }" cache-lifetime="5">
-                        <tab v-if="selectedBlock.type == 'row'" id="column" name="Column">
-                          <div class="kb-inner-tab-component">
-                            <div class="kb-tab-head">Column Structure</div>
-                            <div class="kb-cs-prev kb-row">
-                              <div v-for="(column, index) in selectedBlock.columnArr" :key="index" :class="selectedBlock.rowSize"></div>
-                            </div>
-                            <div class="kb-cs-contain">
-                              <draggable handle=".kb-handle-column" @change="filterCls(selectedRow)" class="kb-drag-container" tag="ul" :list="selectedBlock.columnArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="column">
-                                <li v-for="(column, index) in selectedBlock.columnArr" :key="index" v-show="column.id" class="kb-cs">
-                                  <span v-if="selectedBlock.columnArr.length != 1" class="kb-setting-icon kb-handle-column">
-                                    <i class="fas fa-arrows-alt-v"></i>
-                                  </span>
-                                  <span class="kb-column-name">
-                                    <span v-if="!column.chngName" v-tooltip="{content:'Click To Rename'}" @click="column.chngName = !column.chngName" class="kb-chngName">{{column.name ? column.name : 'Column'}}</span>
-                                    <span v-else><input type="text" placeholder="Column Name" v-model="column.name" @keydown.enter.prevent="column.chngName = !column.chngName" class="kb-chngname-inp"><i @click="column.chngName = !column.chngName" v-tooltip="{content:'Change'}" class="fa fa-exchange-alt"></i></span>
-                                  </span>
-                                  <span class="kb-setting-icon">
-                                    <i v-if="selectedBlock.columnArr.length != 6" @click="addColumn(selectedBlock.rowSize,index)" v-tooltip="{content:'Add New Column'}" class="fa fa-plus"></i>
-                                    <i @click="selectedBlock = column, blockSetting(column), rowSelection = false, showSelection = true, defaultTab(0)" v-tooltip="{content:'Column Setting'}" class="fa fa-edit"></i>
-                                    <i v-if="selectedBlock.columnArr.length != 6" @click="duplicateColumn(column,index)" v-tooltip="{content:'Copy Column'}" class="far fa-copy"></i>
-                                    <i v-if="selectedBlock.columnArr.length != 1" @click="deleteColumn(selectedBlock.columnArr,index)" v-tooltip="{content:'Delete Column'}" class="far fa-trash-alt"></i>
-                                  </span>
-                                </li>
-                              </draggable>
-                            </div>
-                          </div> 
-                        </tab>
-                        <tab v-if="selectedBlock.type == 'element'" id="content" name="Content">
-                          <tinymce v-if="selectedBlock.content.name=='text'" id="text-block" v-model="selectedBlock.content.text" name="text"></tinymce>
-                          <!-- {{setContentText(selectedBlock.content.text)}} -->
-                          <!-- <vue-editor v-model="selectedBlock.content"></vue-editor> -->
-                        </tab>
-                        <tab id="general" name="General">
-                          <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Width</div>
+              </div>
+              <div v-else class="kb-inner-selection-container forScroll">
+                <span @click="expand = !expand" class="kb-selection-top-actions" v-tooltip="{content: !expand ? 'Expand' : 'Shrink'}"><i class="fas" :class="!expand ? 'fa-expand-arrows-alt' : 'fas fa-compress-arrows-alt'"></i></span>
+                <div class="kb-ask-head"><span v-if="selectedBlock.type == 'column'" @click="backOnRow()" class="side-arrow" v-tooltip="{content: 'Row Setting'}"><i class="far fa-arrow-alt-circle-left"></i></span>{{selectedBlock.type+' Setting'}}</div>
+                <div class="kb-tabs-component">
+                    <tabs :options="{ defaultTabHash: 'general', useUrlFragment: false }" cache-lifetime="5" @changed="tabChanged">
+                      <tab v-if="selectedBlock.type == 'row'" id="column" name="Column">
+                        <div class="kb-inner-tab-component">
+                          <div class="kb-tab-head">Column Structure</div>
+                          <div class="kb-cs-prev kb-row">
+                            <div v-for="(column, index) in selectedBlock.columnArr" :key="index" :class="selectedBlock.rowSize"></div>
+                          </div>
+                          <div class="kb-cs-contain">
+                            <draggable handle=".kb-handle-column" @change="filterCls(selectedRow)" class="kb-drag-container" tag="ul" :list="selectedBlock.columnArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="column">
+                              <li v-for="(column, index) in selectedBlock.columnArr" :key="index" v-show="column.id" class="kb-cs">
+                                <span v-if="selectedBlock.columnArr.length != 1" class="kb-setting-icon kb-handle-column">
+                                  <i class="fas fa-arrows-alt-v"></i>
+                                </span>
+                                <span class="kb-column-name">
+                                  <span v-if="!column.chngName" v-tooltip="{content:'Click To Rename'}" @click="column.chngName = !column.chngName" class="kb-chngName">{{column.name ? column.name : 'Column'}}</span>
+                                  <span v-else><input type="text" placeholder="Column Name" v-model="column.name" @keydown.enter.prevent="column.chngName = !column.chngName" class="kb-chngname-inp"><i @click="column.chngName = !column.chngName" v-tooltip="{content:'Change'}" class="fa fa-exchange-alt"></i></span>
+                                </span>
+                                <span class="kb-setting-icon">
+                                  <i v-if="selectedBlock.columnArr.length != 6" @click="addColumn(selectedBlock.rowSize,index)" v-tooltip="{content:'Add New Column'}" class="fa fa-plus"></i>
+                                  <i @click="selectedBlock = column, blockSetting(column), rowSelection = false, showSelection = true, defaultTab(0)" v-tooltip="{content:'Column Setting'}" class="fa fa-edit"></i>
+                                  <i v-if="selectedBlock.columnArr.length != 6" @click="duplicateColumn(column,index)" v-tooltip="{content:'Copy Column'}" class="far fa-copy"></i>
+                                  <i v-if="selectedBlock.columnArr.length != 1" @click="deleteColumn(selectedBlock.columnArr,index)" v-tooltip="{content:'Delete Column'}" class="far fa-trash-alt"></i>
+                                </span>
+                              </li>
+                            </draggable>
+                          </div>
+                        </div> 
+                      </tab>
+                      <tab v-if="selectedBlock.type == 'element'" id="content" name="Content">
+                        <tinymce v-if="selectedBlock.content.name=='text'" id="text-block" v-model="selectedBlock.content.text" name="text"></tinymce>
+                        <div v-if="selectedBlock.content.name=='image'" class="kb-inner-tab-component">
+                              <div class="kb-tab-head">Image</div>
                               <div class="kb-tab-content">
-                                <div class="kb-rangeInp">
-                                    <range-slider class="slider" min="0" :max="widthRange.max" step="1" v-model="widthRange.value"></range-slider>
-                                    <span><input v-model="width.value" @keydown="width.value = operateNumVal($event.key, width.value)" type="text" name="width"></span>
+                                <div @click="imgSelection = !imgSelection" :class="!selectedBlock.content.src ? 'kb-noImgSel' : ''" class="kb-selectedDummyImg">
+                                  <img v-if="selectedBlock.content.src" :src="selectedBlock.content.src" width="auto">
+                                  <span v-else class="kb-ispan-add"><i class="fa fa-plus"></i></span>
                                 </div>
                               </div>
-                          </div> 
-                          <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Height</div>
-                              <div class="kb-tab-content">
-                                <div class="kb-rangeInp">
-                                    <range-slider class="slider" min="0" :max="heightRange.max" step="1" v-model="heightRange.value"></range-slider>
-                                    <span><input v-model="height.value" @keydown="height.value = operateNumVal($event.key, height.value)" type="text" name="height"></span>
+                        </div>
+                        <!-- {{setContentText(selectedBlock.content.text)}} -->
+                        <!-- <vue-editor v-model="selectedBlock.content.text"></vue-editor> -->
+                      </tab>
+                      <tab id="general" name="General">
+                        <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Width</div>
+                            <div class="kb-tab-content">
+                              <div class="kb-rangeInp">
+                                  <range-slider class="slider" min="0" :max="widthRange.max" step="1" v-model="widthRange.value"></range-slider>
+                                  <span><input v-model="width.value" @keydown="width.value = operateNumVal($event.key, width.value)" type="text" name="width"></span>
+                              </div>
+                            </div>
+                        </div> 
+                        <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Height</div>
+                            <div class="kb-tab-content">
+                              <div class="kb-rangeInp">
+                                  <range-slider class="slider" min="0" :max="heightRange.max" step="1" v-model="heightRange.value"></range-slider>
+                                  <span><input v-model="height.value" @keydown="height.value = operateNumVal($event.key, height.value)" type="text" name="height"></span>
+                              </div>
+                            </div>
+                        </div> 
+                        <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Alignment<span v-tooltip="{content:'Auto Align'}" @click="blockAlign = ''" class="kb-reverse-icon" :class="blockAlign ? 'active' : ''"><i class="fa fa-ban"></i></span></div>
+                            <div class="kb-tab-content">
+                              <div class="kb-align-btn-group">
+                                <span @click="blockAlign = 'left'" :class="blockAlign == 'left' ? 'kb-active-brd' : ''" class="kb-align-btn" v-tooltip="{content:'Left Align'}"><i class="fa fa-arrow-left"></i></span>
+                                <span @click="blockAlign = 'center'" :class="blockAlign == 'center' ? 'kb-active-brd' : ''" class="kb-align-btn" v-tooltip="{content:'Center Align'}"><i class="fa fa-arrow-right"></i><i class="fa fa-arrow-left"></i></span>
+                                <span @click="blockAlign = 'right'" :class="blockAlign == 'right' ? 'kb-active-brd' : ''" class="kb-align-btn" v-tooltip="{content:'Right Align'}"><i class="fa fa-arrow-right"></i></span></div>
+                            </div>
+                        </div> 
+                        <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
+                          <div class="kb-tab-head">Margin</div>
+                          <div class="kb-tab-content">
+                            <span><input v-model="margin.top" type="text" name="top-margin" @keydown="margin.top = operateNumVal($event.key, margin.top)"><label for="top-margin">Top</label></span>
+                            <span @click="m_link.tb = !m_link.tb, m_link.a = false, marginUpdate(margin)" class="kb-linkBtw">
+                              <svg :class="!m_link.tb ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
+                            </span>
+                            <span>
+                              <input v-if="m_link.tb" v-model="margin.top" type="text" name="bottom-margin" @keydown="margin.top = operateNumVal($event.key, margin.top)">
+                              <input v-else v-model="margin.bottom" type="text" name="bottom-margin" @keydown="margin.bottom = operateNumVal($event.key, margin.bottom)"><label for="bottom-margin">Bottom</label></span>
+                            <span @click="m_link.a = !m_link.a, m_link.tb = m_link.a, m_link.lr = m_link.a, marginUpdate(margin)" class="kb-linkBtw">
+                              <svg :class="!m_link.a ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
+                            </span>
+                            <span>
+                              <input v-if="m_link.a" v-model="margin.top" type="text" name="left-margin" @keydown="margin.top = operateNumVal($event.key, margin.top)">
+                              <input v-else v-model="margin.left" type="text" name="left-margin" @keydown="margin.left = operateNumVal($event.key, margin.left)"><label for="left-margin">Left</label></span>
+                            <span @click="m_link.lr = !m_link.lr, m_link.a = false, marginUpdate(margin)" class="kb-linkBtw">
+                              <svg :class="!m_link.lr ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
+                            </span>
+                            <span>
+                              <input v-if="m_link.a" v-model="margin.top" type="text" name="right-margin" @keydown="margin.top = operateNumVal($event.key, margin.top)">
+                              <input v-else-if="m_link.lr" v-model="margin.left" type="text" name="right-margin" @keydown="margin.left = operateNumVal($event.key, margin.left)">
+                              <input v-else v-model="margin.right" type="text" name="right-margin" @keydown="margin.right = operateNumVal($event.key, margin.right)"><label for="right-margin">Right</label></span>
+                          </div>
+                        </div>
+                        <div class="kb-inner-tab-component">
+                          <div class="kb-tab-head">Padding</div>
+                          <div class="kb-tab-content">
+                            <span><input v-model="padding.top" type="text" name="top-padding" @keydown="padding.top = operateNumVal($event.key, padding.top)"><label for="top-padding">Top</label></span>
+                            <span @click="p_link.tb = !p_link.tb, p_link.a = false, paddingUpdate(padding)" class="kb-linkBtw">
+                              <svg :class="!p_link.tb ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
+                            </span>
+                            <span>
+                              <input v-if="p_link.tb" v-model="padding.top" type="text" name="bottom-padding" @keydown="padding.top = operateNumVal($event.key, padding.top)">
+                              <input v-else v-model="padding.bottom" type="text" name="bottom-padding" @keydown="padding.bottom = operateNumVal($event.key, padding.bottom)"><label for="bottom-padding">Bottom</label></span>
+                            <span @click="p_link.a = !p_link.a, p_link.tb = p_link.a, p_link.lr = p_link.a, paddingUpdate(padding)" class="kb-linkBtw">
+                              <svg :class="!p_link.a ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
+                            </span>
+                            <span>
+                              <input v-if="p_link.a" v-model="padding.top" type="text" name="left-padding" @keydown="padding.top = operateNumVal($event.key, padding.top)">
+                              <input v-else v-model="padding.left" type="text" name="left-padding" @keydown="padding.left = operateNumVal($event.key, padding.left)"><label for="left-padding">Left</label></span>
+                            <span @click="p_link.lr = !p_link.lr, p_link.a = false, paddingUpdate(padding)" class="kb-linkBtw">
+                              <svg :class="!p_link.lr ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
+                            </span>
+                            <span>
+                              <input v-if="p_link.a" v-model="padding.top" type="text" name="right-padding" @keydown="padding.top = operateNumVal($event.key, padding.top)">
+                              <input v-else-if="p_link.lr" v-model="padding.left" type="text" name="right-padding" @keydown="padding.left = operateNumVal($event.key, padding.left)">
+                              <input v-else v-model="padding.right" type="text" name="right-padding" @keydown="padding.right = operateNumVal($event.key, padding.right)"><label for="right-padding">Right</label></span>
+                          </div>
+                        </div>
+                        <!-- <div class="kb-tab-head">Divider</div>
+                        <div class="kb-tab-head">Box Shadow</div> -->
+                      </tab>    
+                      <tab id="border" name="Border">
+                        <div class="kb-inner-tab-component">
+                          <div class="kb-tab-head">Border Width</div>
+                          <div class="kb-tab-content">
+                            <span><input v-model="border.top" type="text" name="top-border" @keydown="border.top = operateNumVal($event.key, border.top)"><label for="top-border">Top</label></span>
+                            <span @click="b_link.tb = !b_link.tb, b_link.a = false, borderUpdate(border)" class="kb-linkBtw">
+                              <svg :class="!b_link.tb ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
+                            </span>
+                            <span>
+                              <input v-if="b_link.tb" v-model="border.top" type="text" name="bottom-border" @keydown="border.top = operateNumVal($event.key, border.top)">
+                              <input v-else v-model="border.bottom" type="text" name="bottom-border" @keydown="border.bottom = operateNumVal($event.key, border.bottom)"><label for="bottom-border">Bottom</label></span>
+                            <span @click="b_link.a = !b_link.a, b_link.tb = b_link.a, b_link.lr = b_link.a, borderUpdate(border)" class="kb-linkBtw">
+                              <svg :class="!b_link.a ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
+                            </span>
+                            <span>
+                              <input v-if="b_link.a" v-model="border.top" type="text" name="left-border" @keydown="border.top = operateNumVal($event.key, border.top)">
+                              <input v-else v-model="border.left" type="text" name="left-border" @keydown="border.left = operateNumVal($event.key, border.left)"><label for="left-border">Left</label></span>
+                            <span @click="b_link.lr = !b_link.lr, b_link.a = false, borderUpdate(border)" class="kb-linkBtw">
+                              <svg :class="!b_link.lr ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
+                            </span>
+                            <span>
+                              <input v-if="b_link.a" v-model="border.top" type="text" name="right-border" @keydown="border.top = operateNumVal($event.key, border.top)">
+                              <input v-else-if="b_link.lr" v-model="border.left" type="text" name="right-border" @keydown="border.left = operateNumVal($event.key, border.left)">
+                              <input v-else v-model="border.right" type="text" name="right-border" @keydown="border.right = operateNumVal($event.key, border.right)"><label for="right-border">Right</label></span>
+                          </div>
+                        </div>
+                        <div class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Border Style</div>
+                            <div class="kb-tob-content kb-dropdown forScroll">
+                              <div @click="show_dropdown = 'border'" class="kb-dropdown-selected-item">{{border_style}}<i class="fa fa-angle-down kb-side-dropdown-arrow"></i></div>
+                              <ul v-if="show_dropdown == 'border'" class="kb-dropdown-items">
+                                <li @click="border_style = bst, show_dropdown = ''" :class="border_style == bst ? 'kb-active-dropdown-item' : ''" v-for="bst in border_style_types" :key="bst">{{bst}}</li>
+                              </ul>
+                            </div>
+                        </div>
+                        <div class="kb-inner-tab-component">
+                          <div class="kb-tab-head">Border Radius</div>
+                          <div class="kb-tab-content">
+                            <div class="kb-tab-border-radius">
+                              <span><input v-model="border_radius.top_left" type="text" name="top-left-border" @keydown="border_radius.top_left = operateNumVal($event.key, border_radius.top_left)"></span>
+                              <span><input v-if="br_link" v-model="border_radius.top_left" type="text" name="top-right-border" @keydown="border_radius.top_left = operateNumVal($event.key, border_radius.top_left)"><input v-else v-model="border_radius.top_right" type="text" name="top-right-border" @keydown="border_radius.top_right = operateNumVal($event.key, border_radius.top_right)"></span>
+                            </div>
+                            <div class="kb-border-radius-demo" :style="demoBorder">
+                              <span @click="br_link = !br_link, borderRadiusUpdate(border_radius)" class="kb-linkBtw"><svg :class="!br_link ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M14.71 17.71a3 3 0 0 1-2.12-.88l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 0 1.41 0l5-4.95a1 1 0 0 0 0-1.41l-1.46-1.42a1 1 0 0 0-1.41 0L16.1 9.07a1 1 0 0 1-1.41-1.41l1.43-1.43a3.07 3.07 0 0 1 4.24 0l1.41 1.41a3 3 0 0 1 0 4.24l-5 4.95a3 3 0 0 1-2.06.88z"></path><path d="M9.76 22.66a3 3 0 0 1-2.12-.88l-1.42-1.42a3 3 0 0 1 0-4.24l5-4.95a3.07 3.07 0 0 1 4.24 0l.71.71a1 1 0 0 1-1.41 1.41l-.76-.7a1 1 0 0 0-1.41 0l-5 4.95a1 1 0 0 0 0 1.41L9 20.36a1 1 0 0 0 1.41 0L11.82 19a1 1 0 0 1 1.41 1.41l-1.36 1.36a3 3 0 0 1-2.11.89z"></path></g></svg></span>
+                            </div>
+                            <div class="kb-tab-border-radius">
+                              <span><input v-if="br_link" v-model="border_radius.top_left" type="text" name="bottom-left-border" @keydown="border_radius.top_left = operateNumVal($event.key, border_radius.top_left)"><input v-else v-model="border_radius.bottom_left" type="text" name="bottom-left-border" @keydown="border_radius.bottom_left = operateNumVal($event.key, border_radius.bottom_left)"></span>
+                              <span><input v-if="br_link" v-model="border_radius.top_left" type="text" name="bottom-right-border" @keydown="border_radius.top_left = operateNumVal($event.key, border_radius.top_left)"><input v-else v-model="border_radius.bottom_right" type="text" name="bottom-right-border" @keydown="border_radius.bottom_right = operateNumVal($event.key, border_radius.bottom_right)"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="kb-inner-tab-component kb-color-picker">
+                          <div class="kb-tab-head">Border Color
+                            <span class="kb-color-demo">
+                              <span class="kb-no-color">
+                                <span class="kb-color-demo" :style="demoBorder"></span>
+                              </span>
+                            </span>
+                            <span class="kb-color-demo"><span @click="border_color.hex = '#ff000000'" v-tooltip="{content:'Transparent'}" class="kb-no-color"></span></span></div>
+                          <div class="kb-tab-content">
+                              <colour-material-picker v-model="border_color" label="Pick Colour" picker="chrome"/>
+                              <div class="kb-slider-color-selection">
+                                <div class="kb-rangeInp kb-opacity-slider">
+                                  <range-slider v-model="border_color.rgba.a" class="slider" min="0" max="1" step="0.01" :style="demoBorderOpacity"></range-slider>
                                 </div>
-                              </div>
-                          </div> 
-                          <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Alignment<span v-tooltip="{content:'Auto Align'}" @click="blockAlign = ''" class="kb-reverse-icon" :class="blockAlign ? 'active' : ''"><i class="fa fa-ban"></i></span></div>
-                              <div class="kb-tab-content">
-                                <div class="kb-align-btn-group">
-                                  <span @click="blockAlign = 'left'" :class="blockAlign == 'left' ? 'kb-active-brd' : ''" class="kb-align-btn" v-tooltip="{content:'Left Align'}"><i class="fa fa-arrow-left"></i></span>
-                                  <span @click="blockAlign = 'center'" :class="blockAlign == 'center' ? 'kb-active-brd' : ''" class="kb-align-btn" v-tooltip="{content:'Center Align'}"><i class="fa fa-arrow-right"></i><i class="fa fa-arrow-left"></i></span>
-                                  <span @click="blockAlign = 'right'" :class="blockAlign == 'right' ? 'kb-active-brd' : ''" class="kb-align-btn" v-tooltip="{content:'Right Align'}"><i class="fa fa-arrow-right"></i></span></div>
-                              </div>
-                          </div> 
-                          <div v-if="selectedBlock.type != 'column'" class="kb-inner-tab-component">
-                            <div class="kb-tab-head">Margin</div>
-                            <div class="kb-tab-content">
-                              <span><input v-model="margin.top" type="text" name="top-margin" @keydown="margin.top = operateNumVal($event.key, margin.top)"><label for="top-margin">Top</label></span>
-                              <span @click="m_link.tb = !m_link.tb, m_link.a = false, marginUpdate(margin)" class="kb-linkBtw">
-                                <svg :class="!m_link.tb ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
-                              </span>
-                              <span>
-                                <input v-if="m_link.tb" v-model="margin.top" type="text" name="bottom-margin" @keydown="margin.top = operateNumVal($event.key, margin.top)">
-                                <input v-else v-model="margin.bottom" type="text" name="bottom-margin" @keydown="margin.bottom = operateNumVal($event.key, margin.bottom)"><label for="bottom-margin">Bottom</label></span>
-                              <span @click="m_link.a = !m_link.a, m_link.tb = m_link.a, m_link.lr = m_link.a, marginUpdate(margin)" class="kb-linkBtw">
-                                <svg :class="!m_link.a ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
-                              </span>
-                              <span>
-                                <input v-if="m_link.a" v-model="margin.top" type="text" name="left-margin" @keydown="margin.top = operateNumVal($event.key, margin.top)">
-                                <input v-else v-model="margin.left" type="text" name="left-margin" @keydown="margin.left = operateNumVal($event.key, margin.left)"><label for="left-margin">Left</label></span>
-                              <span @click="m_link.lr = !m_link.lr, m_link.a = false, marginUpdate(margin)" class="kb-linkBtw">
-                                <svg :class="!m_link.lr ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
-                              </span>
-                              <span>
-                                <input v-if="m_link.a" v-model="margin.top" type="text" name="right-margin" @keydown="margin.top = operateNumVal($event.key, margin.top)">
-                                <input v-else-if="m_link.lr" v-model="margin.left" type="text" name="right-margin" @keydown="margin.left = operateNumVal($event.key, margin.left)">
-                                <input v-else v-model="margin.right" type="text" name="right-margin" @keydown="margin.right = operateNumVal($event.key, margin.right)"><label for="right-margin">Right</label></span>
-                            </div>
-                          </div>
-                          <div class="kb-inner-tab-component">
-                            <div class="kb-tab-head">Padding</div>
-                            <div class="kb-tab-content">
-                              <span><input v-model="padding.top" type="text" name="top-padding" @keydown="padding.top = operateNumVal($event.key, padding.top)"><label for="top-padding">Top</label></span>
-                              <span @click="p_link.tb = !p_link.tb, p_link.a = false, paddingUpdate(padding)" class="kb-linkBtw">
-                                <svg :class="!p_link.tb ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
-                              </span>
-                              <span>
-                                <input v-if="p_link.tb" v-model="padding.top" type="text" name="bottom-padding" @keydown="padding.top = operateNumVal($event.key, padding.top)">
-                                <input v-else v-model="padding.bottom" type="text" name="bottom-padding" @keydown="padding.bottom = operateNumVal($event.key, padding.bottom)"><label for="bottom-padding">Bottom</label></span>
-                              <span @click="p_link.a = !p_link.a, p_link.tb = p_link.a, p_link.lr = p_link.a, paddingUpdate(padding)" class="kb-linkBtw">
-                                <svg :class="!p_link.a ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
-                              </span>
-                              <span>
-                                <input v-if="p_link.a" v-model="padding.top" type="text" name="left-padding" @keydown="padding.top = operateNumVal($event.key, padding.top)">
-                                <input v-else v-model="padding.left" type="text" name="left-padding" @keydown="padding.left = operateNumVal($event.key, padding.left)"><label for="left-padding">Left</label></span>
-                              <span @click="p_link.lr = !p_link.lr, p_link.a = false, paddingUpdate(padding)" class="kb-linkBtw">
-                                <svg :class="!p_link.lr ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
-                              </span>
-                              <span>
-                                <input v-if="p_link.a" v-model="padding.top" type="text" name="right-padding" @keydown="padding.top = operateNumVal($event.key, padding.top)">
-                                <input v-else-if="p_link.lr" v-model="padding.left" type="text" name="right-padding" @keydown="padding.left = operateNumVal($event.key, padding.left)">
-                                <input v-else v-model="padding.right" type="text" name="right-padding" @keydown="padding.right = operateNumVal($event.key, padding.right)"><label for="right-padding">Right</label></span>
-                            </div>
-                          </div>
-                          <!-- <div class="kb-tab-head">Divider</div>
-                          <div class="kb-tab-head">Box Shadow</div> -->
-                        </tab>    
-                        <tab id="border" name="Border">
-                          <div class="kb-inner-tab-component">
-                            <div class="kb-tab-head">Border Width</div>
-                            <div class="kb-tab-content">
-                              <span><input v-model="border.top" type="text" name="top-border" @keydown="border.top = operateNumVal($event.key, border.top)"><label for="top-border">Top</label></span>
-                              <span @click="b_link.tb = !b_link.tb, b_link.a = false, borderUpdate(border)" class="kb-linkBtw">
-                                <svg :class="!b_link.tb ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
-                              </span>
-                              <span>
-                                <input v-if="b_link.tb" v-model="border.top" type="text" name="bottom-border" @keydown="border.top = operateNumVal($event.key, border.top)">
-                                <input v-else v-model="border.bottom" type="text" name="bottom-border" @keydown="border.bottom = operateNumVal($event.key, border.bottom)"><label for="bottom-border">Bottom</label></span>
-                              <span @click="b_link.a = !b_link.a, b_link.tb = b_link.a, b_link.lr = b_link.a, borderUpdate(border)" class="kb-linkBtw">
-                                <svg :class="!b_link.a ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
-                              </span>
-                              <span>
-                                <input v-if="b_link.a" v-model="border.top" type="text" name="left-border" @keydown="border.top = operateNumVal($event.key, border.top)">
-                                <input v-else v-model="border.left" type="text" name="left-border" @keydown="border.left = operateNumVal($event.key, border.left)"><label for="left-border">Left</label></span>
-                              <span @click="b_link.lr = !b_link.lr, b_link.a = false, borderUpdate(border)" class="kb-linkBtw">
-                                <svg :class="!b_link.lr ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M8 14a1 1 0 0 1 0 2h-.5A2.5 2.5 0 0 1 5 13.5v-2A2.5 2.5 0 0 1 7.5 9h8a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5H15a1 1 0 0 1 0-2h.5a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5z" fill-rule="evenodd"></path><path d="M20 14a1 1 0 0 1 0-2h.5a2.5 2.5 0 0 1 2.5 2.5v2a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5v-2a2.5 2.5 0 0 1 2.5-2.5h.5a1 1 0 0 1 0 2h-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" fill-rule="evenodd"></path></g></svg>
-                              </span>
-                              <span>
-                                <input v-if="b_link.a" v-model="border.top" type="text" name="right-border" @keydown="border.top = operateNumVal($event.key, border.top)">
-                                <input v-else-if="b_link.lr" v-model="border.left" type="text" name="right-border" @keydown="border.left = operateNumVal($event.key, border.left)">
-                                <input v-else v-model="border.right" type="text" name="right-border" @keydown="border.right = operateNumVal($event.key, border.right)"><label for="right-border">Right</label></span>
-                            </div>
-                          </div>
-                          <div class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Border Style</div>
-                              <div class="kb-tob-content kb-dropdown forScroll">
-                                <div @click="show_dropdown = 'border'" class="kb-dropdown-selected-item">{{border_style}}<i class="fa fa-angle-down kb-side-dropdown-arrow"></i></div>
-                                <ul v-if="show_dropdown == 'border'" class="kb-dropdown-items">
-                                  <li @click="border_style = bst, show_dropdown = ''" :class="border_style == bst ? 'kb-active-dropdown-item' : ''" v-for="bst in border_style_types" :key="bst">{{bst}}</li>
-                                </ul>
+                                <colour-slider-picker v-model="border_color" label="Pick Colour" picker="chrome"/>
+                                <div class="kb-color-preset"><span @click="border_color = color" v-for="color in presetColors" :key="color.hex" :class="border_color.hex == color.hex ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
                               </div>
                           </div>
-                          <div class="kb-inner-tab-component">
-                            <div class="kb-tab-head">Border Radius</div>
-                            <div class="kb-tab-content">
-                              <div class="kb-tab-border-radius">
-                                <span><input v-model="border_radius.top_left" type="text" name="top-left-border" @keydown="border_radius.top_left = operateNumVal($event.key, border_radius.top_left)"></span>
-                                <span><input v-if="br_link" v-model="border_radius.top_left" type="text" name="top-right-border" @keydown="border_radius.top_left = operateNumVal($event.key, border_radius.top_left)"><input v-else v-model="border_radius.top_right" type="text" name="top-right-border" @keydown="border_radius.top_right = operateNumVal($event.key, border_radius.top_right)"></span>
-                              </div>
-                              <div class="kb-border-radius-demo" :style="demoBorder">
-                                <span @click="br_link = !br_link, borderRadiusUpdate(border_radius)" class="kb-linkBtw"><svg :class="!br_link ? 'deactive' : ''" viewBox="0 0 28 28" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision"><g><path d="M14.71 17.71a3 3 0 0 1-2.12-.88l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 0 1.41 0l5-4.95a1 1 0 0 0 0-1.41l-1.46-1.42a1 1 0 0 0-1.41 0L16.1 9.07a1 1 0 0 1-1.41-1.41l1.43-1.43a3.07 3.07 0 0 1 4.24 0l1.41 1.41a3 3 0 0 1 0 4.24l-5 4.95a3 3 0 0 1-2.06.88z"></path><path d="M9.76 22.66a3 3 0 0 1-2.12-.88l-1.42-1.42a3 3 0 0 1 0-4.24l5-4.95a3.07 3.07 0 0 1 4.24 0l.71.71a1 1 0 0 1-1.41 1.41l-.76-.7a1 1 0 0 0-1.41 0l-5 4.95a1 1 0 0 0 0 1.41L9 20.36a1 1 0 0 0 1.41 0L11.82 19a1 1 0 0 1 1.41 1.41l-1.36 1.36a3 3 0 0 1-2.11.89z"></path></g></svg></span>
-                              </div>
-                              <div class="kb-tab-border-radius">
-                                <span><input v-if="br_link" v-model="border_radius.top_left" type="text" name="bottom-left-border" @keydown="border_radius.top_left = operateNumVal($event.key, border_radius.top_left)"><input v-else v-model="border_radius.bottom_left" type="text" name="bottom-left-border" @keydown="border_radius.bottom_left = operateNumVal($event.key, border_radius.bottom_left)"></span>
-                                <span><input v-if="br_link" v-model="border_radius.top_left" type="text" name="bottom-right-border" @keydown="border_radius.top_left = operateNumVal($event.key, border_radius.top_left)"><input v-else v-model="border_radius.bottom_right" type="text" name="bottom-right-border" @keydown="border_radius.bottom_right = operateNumVal($event.key, border_radius.bottom_right)"></span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="kb-inner-tab-component kb-color-picker">
-                            <div class="kb-tab-head">Border Color
-                              <span class="kb-color-demo">
+                        </div>
+                      </tab>
+                      <tab id="background" name="Background">
+                        <div class="kb-inner-tab-component kb-color-picker">
+                            <div class="kb-tab-head">Background Color
+                              <span class="kb-color-demo"> 
                                 <span class="kb-no-color">
-                                  <span class="kb-color-demo" :style="demoBorder"></span>
+                                  <span class="kb-color-demo" :style="demoBackground"></span>
                                 </span>
                               </span>
-                              <span class="kb-color-demo"><span @click="border_color.hex = '#ff000000'" v-tooltip="{content:'Transparent'}" class="kb-no-color"></span></span></div>
+                              <span class="kb-color-demo"><span @click="background_color = {hex: '#ff000000', rgba: {r:'255', g:'0', b:'0', a:'0'}}" v-tooltip="{content:'Transparent'}" class="kb-no-color"></span></span>
+                            </div>
                             <div class="kb-tab-content">
-                                <colour-material-picker v-model="border_color" label="Pick Colour" picker="chrome"/>
+                                <colour-material-picker v-model="background_color" label="Pick Colour" picker="chrome"/>
                                 <div class="kb-slider-color-selection">
                                   <div class="kb-rangeInp kb-opacity-slider">
-                                    <range-slider v-model="border_color.rgba.a" class="slider" min="0" max="1" step="0.01" :style="demoBorderOpacity"></range-slider>
+                                    <range-slider v-model="background_color.rgba.a" class="slider" min="0" max="1" step="0.01" :style="demoBackgroundOpacity"></range-slider>
                                   </div>
-                                  <colour-slider-picker v-model="border_color" label="Pick Colour" picker="chrome"/>
-                                  <div class="kb-color-preset"><span @click="border_color = color" v-for="color in presetColors" :key="color.hex" :class="border_color.hex == color.hex ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
+                                  <colour-slider-picker v-model="background_color" label="Pick Colour" picker="chrome"/>
+                                  <div class="kb-color-preset">
+                                    <span @click="background_color = color" v-tooltip="" v-for="color in presetColors" :key="color.hex" :class="background_color == color ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span>
+                                  </div>
                                 </div>
                             </div>
-                          </div>
-                        </tab>
-                        <tab id="background" name="Background">
-                          <div class="kb-inner-tab-component kb-color-picker">
-                              <div class="kb-tab-head">Background Color
-                                <span class="kb-color-demo"> 
-                                  <span class="kb-no-color">
-                                    <span class="kb-color-demo" :style="demoBackground"></span>
+                        </div>
+                        <div class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Background Gradient
+                              <toggle-button class="kb-toggleBtn" :sync='true' v-model="background_gradient.active" v-tooltip="{content:background_gradient.active != 0 ? 'Enable' : 'Disable' }" :labels="{checked: 'On', unchecked: 'Off'}" :color="{checked: '#1867c0', unchecked: '#d3d3d3'}"></toggle-button>
+                            </div>
+                            <div class="kb-tab-content">
+                              <div class="kb-gradient-color-selection" @mouseleave="background_gradient.gradientStart=false, background_gradient.gradientEnd=false">
+                                <div class="kb-gradient-selected-color">
+                                  <span v-tooltip="{content:'Select Starting Color'}" class="kb-color-demo" @click="background_gradient.gradientStart = !background_gradient.gradientStart, background_gradient.gradientEnd = false">                            
+                                    <span class="kb-no-color">
+                                      <span class="kb-color-demo" :style="backgroundGradientStart"></span>
+                                    </span>
                                   </span>
-                                </span>
-                                <span class="kb-color-demo"><span @click="background_color = {hex: '#ff000000', rgba: {r:'255', g:'0', b:'0', a:'0'}}" v-tooltip="{content:'Transparent'}" class="kb-no-color"></span></span>
-                              </div>
-                              <div class="kb-tab-content">
-                                  <colour-material-picker v-model="background_color" label="Pick Colour" picker="chrome"/>
-                                  <div class="kb-slider-color-selection">
+                                  <colour-material-picker v-model="background_gradient.start" label="Pick Colour" picker="chrome"/>
+                                </div>
+                                <div class="kb-gradient-selected-color">
+                                  <span v-tooltip="{content:'Select Ending Color'}" class="kb-color-demo" @click="background_gradient.gradientEnd = !background_gradient.gradientEnd, background_gradient.gradientStart = false">                            
+                                    <span class="kb-no-color">
+                                      <span class="kb-color-demo" :style="backgroundGradientEnd"></span>
+                                    </span>
+                                  </span>
+                                  <colour-material-picker v-model="background_gradient.end" label="Pick Colour" picker="chrome"/></div>
+                                <div class="kb-color-picker" v-if="background_gradient.gradientStart || background_gradient.gradientEnd">
+                                  <span class="sel-tip-icon" :class="background_gradient.gradientStart ? 'start' : 'end'"></span>
+                                  <div v-if="background_gradient.gradientStart" class="kb-slider-color-selection">
+                                    <div class="kb-tab-head">Starting Color</div>
                                     <div class="kb-rangeInp kb-opacity-slider">
-                                      <range-slider v-model="background_color.rgba.a" class="slider" min="0" max="1" step="0.01" :style="demoBackgroundOpacity"></range-slider>
+                                      <range-slider v-model="background_gradient.start.rgba.a" class="slider" min="0" max="1" step="0.01" :style="backgroundGradientStartOpacity"></range-slider>
                                     </div>
-                                    <colour-slider-picker v-model="background_color" label="Pick Colour" picker="chrome"/>
-                                    <div class="kb-color-preset">
-                                      <span @click="background_color = color" v-tooltip="" v-for="color in presetColors" :key="color.hex" :class="background_color == color ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span>
-                                    </div>
+                                    <colour-slider-picker v-model="background_gradient.start" label="Pick Colour" picker="chrome"/>
+                                    <div class="kb-color-preset"><span @click="background_gradient.start = color" v-for="color in presetColors" :key="color.hex" :class="background_gradient.start.hex == color.hex ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
                                   </div>
-                              </div>
-                          </div>
-                          <div class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Background Gradient
-                                <toggle-button class="kb-toggleBtn" :sync='true' v-model="background_gradient.active" v-tooltip="{content:background_gradient.active != 0 ? 'Enable' : 'Disable' }" :labels="{checked: 'On', unchecked: 'Off'}" :color="{checked: '#1867c0', unchecked: '#d3d3d3'}"></toggle-button>
-                              </div>
-                              <div class="kb-tab-content">
-                                <div class="kb-gradient-color-selection" @mouseleave="background_gradient.gradientStart=false, background_gradient.gradientEnd=false">
-                                  <div class="kb-gradient-selected-color">
-                                    <span v-tooltip="{content:'Select Starting Color'}" class="kb-color-demo" @click="background_gradient.gradientStart = !background_gradient.gradientStart, background_gradient.gradientEnd = false">                            
-                                      <span class="kb-no-color">
-                                        <span class="kb-color-demo" :style="backgroundGradientStart"></span>
-                                      </span>
-                                    </span>
-                                    <colour-material-picker v-model="background_gradient.start" label="Pick Colour" picker="chrome"/>
-                                  </div>
-                                  <div class="kb-gradient-selected-color">
-                                    <span v-tooltip="{content:'Select Ending Color'}" class="kb-color-demo" @click="background_gradient.gradientEnd = !background_gradient.gradientEnd, background_gradient.gradientStart = false">                            
-                                      <span class="kb-no-color">
-                                        <span class="kb-color-demo" :style="backgroundGradientEnd"></span>
-                                      </span>
-                                    </span>
-                                    <colour-material-picker v-model="background_gradient.end" label="Pick Colour" picker="chrome"/></div>
-                                  <div class="kb-color-picker" v-if="background_gradient.gradientStart || background_gradient.gradientEnd">
-                                    <span class="sel-tip-icon" :class="background_gradient.gradientStart ? 'start' : 'end'"></span>
-                                    <div v-if="background_gradient.gradientStart" class="kb-slider-color-selection">
-                                      <div class="kb-tab-head">Starting Color</div>
-                                      <div class="kb-rangeInp kb-opacity-slider">
-                                        <range-slider v-model="background_gradient.start.rgba.a" class="slider" min="0" max="1" step="0.01" :style="backgroundGradientStartOpacity"></range-slider>
-                                      </div>
-                                      <colour-slider-picker v-model="background_gradient.start" label="Pick Colour" picker="chrome"/>
-                                      <div class="kb-color-preset"><span @click="background_gradient.start = color" v-for="color in presetColors" :key="color.hex" :class="background_gradient.start.hex == color.hex ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
+                                  <div  v-if="background_gradient.gradientEnd" class="kb-slider-color-selection">
+                                    <div class="kb-tab-head">Ending Color</div>
+                                    <div class="kb-rangeInp kb-opacity-slider">
+                                      <range-slider v-model="background_gradient.end.rgba.a" class="slider" min="0" max="1" step="0.01" :style="backgroundGradientEndOpacity"></range-slider>
                                     </div>
-                                    <div  v-if="background_gradient.gradientEnd" class="kb-slider-color-selection">
-                                      <div class="kb-tab-head">Ending Color</div>
-                                      <div class="kb-rangeInp kb-opacity-slider">
-                                        <range-slider v-model="background_gradient.end.rgba.a" class="slider" min="0" max="1" step="0.01" :style="backgroundGradientEndOpacity"></range-slider>
-                                      </div>
-                                      <colour-slider-picker v-model="background_gradient.end" label="Pick Colour" picker="chrome"/>
-                                      <div class="kb-color-preset"><span @click="background_gradient.end = color" v-for="color in presetColors" :key="color.hex" :class="background_gradient.end.hex == color.hex ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
-                                    </div>
+                                    <colour-slider-picker v-model="background_gradient.end" label="Pick Colour" picker="chrome"/>
+                                    <div class="kb-color-preset"><span @click="background_gradient.end = color" v-for="color in presetColors" :key="color.hex" :class="background_gradient.end.hex == color.hex ? 'kb-active-color' : ''" :style="{'background-color':color.hex}"></span></div>
                                   </div>
                                 </div>
                               </div>
-                          </div>
-                          <div class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Background Gradient Direction<span v-tooltip="{content:'Reverse'}" @click="background_gradient.direction = parseInt(background_gradient.direction.split('deg')[0])*-1 + 'deg'" :class="parseInt(background_gradient.direction.split('deg')[0]) < 0 ? 'active' : ''" class="kb-reverse-icon"><i class="fa fa-sync-alt"></i></span></div>
+                            </div>
+                        </div>
+                        <div class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Background Gradient Direction<span v-tooltip="{content:'Reverse'}" @click="background_gradient.direction = parseInt(background_gradient.direction.split('deg')[0])*-1 + 'deg'" :class="parseInt(background_gradient.direction.split('deg')[0]) < 0 ? 'active' : ''" class="kb-reverse-icon"><i class="fa fa-sync-alt"></i></span></div>
+                            <div class="kb-tab-content">
+                              <div class="kb-rangeInp">
+                                  <range-slider class="slider" min="-360" max="360" step="1" v-model="background_gradient_range_slider.direction"></range-slider>
+                                  <span><input v-model="background_gradient.direction" @keydown="background_gradient.direction = $event.key == 'ArrowUp' ? parseInt(background_gradient.direction.split('deg')[0])+1 + 'deg' : $event.key == 'ArrowDown' ? parseInt(background_gradient.direction.split('deg')[0])-1 + 'deg' : background_gradient.direction" type="text" name="background_gradient-direction"></span>
+                              </div>
+                            </div>
+                        </div>  
+                        <div class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Start Position<span v-tooltip="{content:'Reverse'}" @click="background_gradient.startPosition = parseInt(background_gradient.startPosition.split('%')[0])*-1 + '%'" :class="parseInt(background_gradient.startPosition.split('%')[0]) < 0 ? 'active' : ''" class="kb-reverse-icon"><i class="fa fa-sync-alt"></i></span></div>
+                            <div class="kb-tab-content">
+                              <div class="kb-rangeInp">
+                                  <range-slider class="slider" min="-100" max="100" step="1" v-model="background_gradient_range_slider.startPosition"></range-slider>
+                                  <span><input v-model="background_gradient.startPosition" @keydown="background_gradient.startPosition = $event.key == 'ArrowUp' ? parseInt(background_gradient.startPosition.split('%')[0])+1 + '%' : $event.key == 'ArrowDown' ? parseInt(background_gradient.startPosition.split('%')[0])-1 + '%' : background_gradient.startPosition" type="text" name="background-gradient-start-position"></span>
+                              </div>
+                            </div>
+                        </div>  
+                        <div class="kb-inner-tab-component">
+                            <div class="kb-tab-head">End Position<span v-tooltip="{content:'Reverse'}" @click="background_gradient.endPosition = parseInt(background_gradient.endPosition.split('%')[0])*-1 + '%'" :class="parseInt(background_gradient.endPosition.split('%')[0]) < 0 ? 'active' : ''" class="kb-reverse-icon"><i class="fa fa-sync-alt"></i></span></div>
+                            <div class="kb-tab-content">
+                              <div class="kb-rangeInp">
+                                  <range-slider class="slider" min="-100" max="100" step="1" v-model="background_gradient_range_slider.endPosition"></range-slider>
+                                  <span><input v-model="background_gradient.endPosition" @keydown="background_gradient.endPosition = $event.key == 'ArrowUp' ? parseInt(background_gradient.endPosition.split('%')[0])+1 + '%' : $event.key == 'ArrowDown' ? parseInt(background_gradient.endPosition.split('%')[0])-1 + '%' : background_gradient.endPosition" type="text" name="background-gradient-end-position"></span>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="kb-inner-tab-component">
+                              <div class="kb-tab-head">Background Image
+                                <toggle-button class="kb-toggleBtn" :sync='true' v-model="background_image.active" v-tooltip="{content:background_image.active != 0 ? 'Enable' : 'Disable' }" :labels="{checked: 'On', unchecked: 'Off'}" :color="{checked: '#1867c0', unchecked: '#d3d3d3'}"></toggle-button>
+                              </div>
                               <div class="kb-tab-content">
-                                <div class="kb-rangeInp">
-                                    <range-slider class="slider" min="-360" max="360" step="1" v-model="background_gradient_range_slider.direction"></range-slider>
-                                    <span><input v-model="background_gradient.direction" @keydown="background_gradient.direction = $event.key == 'ArrowUp' ? parseInt(background_gradient.direction.split('deg')[0])+1 + 'deg' : $event.key == 'ArrowDown' ? parseInt(background_gradient.direction.split('deg')[0])-1 + 'deg' : background_gradient.direction" type="text" name="background_gradient-direction"></span>
+                                <div @click="imgSelection = !imgSelection" :class="!background_image.name ? 'kb-noImgSel' : ''" class="kb-selectedDummyImg">
+                                  <img v-if="background_image.name" :src="background_image.name" width="auto">
+                                  <span v-else class="kb-ispan-add"><i class="fa fa-plus"></i></span>
                                 </div>
                               </div>
-                          </div>  
-                          <div class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Start Position<span v-tooltip="{content:'Reverse'}" @click="background_gradient.startPosition = parseInt(background_gradient.startPosition.split('%')[0])*-1 + '%'" :class="parseInt(background_gradient.startPosition.split('%')[0]) < 0 ? 'active' : ''" class="kb-reverse-icon"><i class="fa fa-sync-alt"></i></span></div>
-                              <div class="kb-tab-content">
-                                <div class="kb-rangeInp">
-                                    <range-slider class="slider" min="-100" max="100" step="1" v-model="background_gradient_range_slider.startPosition"></range-slider>
-                                    <span><input v-model="background_gradient.startPosition" @keydown="background_gradient.startPosition = $event.key == 'ArrowUp' ? parseInt(background_gradient.startPosition.split('%')[0])+1 + '%' : $event.key == 'ArrowDown' ? parseInt(background_gradient.startPosition.split('%')[0])-1 + '%' : background_gradient.startPosition" type="text" name="background-gradient-start-position"></span>
-                                </div>
+                        </div>
+                        <div class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Background Image Size</div>
+                            <div class="kb-tob-content kb-dropdown forScroll">
+                              <div @click="show_dropdown = 'size'" class="kb-dropdown-selected-item">{{background_image.size}}<i class="fa fa-angle-down kb-side-dropdown-arrow"></i></div>
+                              <ul v-if="show_dropdown == 'size'" class="kb-dropdown-items">
+                                <li @click="background_image.size = bgimgs, show_dropdown = ''" :class="background_image.size == bgimgs ? 'kb-active-dropdown-item' : ''" v-for="bgimgs in background_image_sizes" :key="bgimgs">{{bgimgs}}</li>
+                              </ul>
+                            </div>
+                        </div>
+                        <div class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Background Image Position</div>
+                            <div class="kb-tob-content kb-dropdown forScroll">
+                              <div @click="show_dropdown = 'position'" class="kb-dropdown-selected-item">{{background_image.position}}<i class="fa fa-angle-down kb-side-dropdown-arrow"></i></div>
+                              <ul v-if="show_dropdown == 'position'" class="kb-dropdown-items">
+                                <li @click="background_image.position = bgimgp, show_dropdown = ''" :class="background_image.position == bgimgp ? 'kb-active-dropdown-item' : ''" v-for="bgimgp in background_image_positions" :key="bgimgp">{{bgimgp}}</li>
+                              </ul>
+                            </div>
+                        </div>
+                        <div class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Background Image Repeat</div>
+                            <div class="kb-tob-content kb-dropdown forScroll">
+                              <div @click="show_dropdown = 'repeat'" class="kb-dropdown-selected-item">{{background_image.repeat.name}}<i class="fa fa-angle-down kb-side-dropdown-arrow"></i></div>
+                              <ul v-if="show_dropdown == 'repeat'" class="kb-dropdown-items">
+                                <li v-for="bgimgr in background_image_repeats" :key="bgimgr.value" @click="background_image.repeat = bgimgr, show_dropdown = ''" :class="background_image.repeat.value == bgimgr.value ? 'kb-active-dropdown-item' : ''">{{bgimgr.name}}</li>
+                              </ul>
+                            </div>
+                        </div>
+                      </tab>
+                      <tab id="advanced" name="Advanced">
+                        <div class="kb-inner-tab-component">
+                            <div class="kb-tab-head">Z Index<span v-tooltip="{content:'Reverse'}" @click="zindex = parseInt(zindex)*-1" :class="parseInt(zindex) < 0 ? 'active' : ''" class="kb-reverse-icon"><i class="fa fa-sync-alt"></i></span></div>
+                            <div class="kb-tab-content">
+                              <div class="kb-rangeInp">
+                                  <range-slider class="slider" min="-999" max="999" step="1" v-model="zindex"></range-slider>
+                                  <span><input v-model="zindex" @keydown="zindex = operateNumVal($event.key, zindex)" type="text" name="zindex"></span>
                               </div>
-                          </div>  
-                          <div class="kb-inner-tab-component">
-                              <div class="kb-tab-head">End Position<span v-tooltip="{content:'Reverse'}" @click="background_gradient.endPosition = parseInt(background_gradient.endPosition.split('%')[0])*-1 + '%'" :class="parseInt(background_gradient.endPosition.split('%')[0]) < 0 ? 'active' : ''" class="kb-reverse-icon"><i class="fa fa-sync-alt"></i></span></div>
-                              <div class="kb-tab-content">
-                                <div class="kb-rangeInp">
-                                    <range-slider class="slider" min="-100" max="100" step="1" v-model="background_gradient_range_slider.endPosition"></range-slider>
-                                    <span><input v-model="background_gradient.endPosition" @keydown="background_gradient.endPosition = $event.key == 'ArrowUp' ? parseInt(background_gradient.endPosition.split('%')[0])+1 + '%' : $event.key == 'ArrowDown' ? parseInt(background_gradient.endPosition.split('%')[0])-1 + '%' : background_gradient.endPosition" type="text" name="background-gradient-end-position"></span>
-                                </div>
-                              </div>
-                          </div>
-                          <div class="kb-inner-tab-component">
-                                <div class="kb-tab-head">Background Image
-                                  <toggle-button class="kb-toggleBtn" :sync='true' v-model="background_image.active" v-tooltip="{content:background_image.active != 0 ? 'Enable' : 'Disable' }" :labels="{checked: 'On', unchecked: 'Off'}" :color="{checked: '#1867c0', unchecked: '#d3d3d3'}"></toggle-button>
-                                </div>
-                                <div class="kb-tab-content">
-                                  <div @click="imgSelection = !imgSelection" :class="!background_image.name ? 'kb-selBgImgWM' : ''" class="kb-selectedBgImg">
-                                    <img v-if="background_image.name" :src="background_image.name" width="auto">
-                                    <span v-else class="kb-ispan-add"><i class="fa fa-plus"></i></span>
-                                  </div>
-                                </div>
-                          </div>
-                          <div class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Background Image Size</div>
-                              <div class="kb-tob-content kb-dropdown forScroll">
-                                <div @click="show_dropdown = 'size'" class="kb-dropdown-selected-item">{{background_image.size}}<i class="fa fa-angle-down kb-side-dropdown-arrow"></i></div>
-                                <ul v-if="show_dropdown == 'size'" class="kb-dropdown-items">
-                                  <li @click="background_image.size = bgimgs, show_dropdown = ''" :class="background_image.size == bgimgs ? 'kb-active-dropdown-item' : ''" v-for="bgimgs in background_image_sizes" :key="bgimgs">{{bgimgs}}</li>
-                                </ul>
-                              </div>
-                          </div>
-                          <div class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Background Image Position</div>
-                              <div class="kb-tob-content kb-dropdown forScroll">
-                                <div @click="show_dropdown = 'position'" class="kb-dropdown-selected-item">{{background_image.position}}<i class="fa fa-angle-down kb-side-dropdown-arrow"></i></div>
-                                <ul v-if="show_dropdown == 'position'" class="kb-dropdown-items">
-                                  <li @click="background_image.position = bgimgp, show_dropdown = ''" :class="background_image.position == bgimgp ? 'kb-active-dropdown-item' : ''" v-for="bgimgp in background_image_positions" :key="bgimgp">{{bgimgp}}</li>
-                                </ul>
-                              </div>
-                          </div>
-                          <div class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Background Image Repeat</div>
-                              <div class="kb-tob-content kb-dropdown forScroll">
-                                <div @click="show_dropdown = 'repeat'" class="kb-dropdown-selected-item">{{background_image.repeat.name}}<i class="fa fa-angle-down kb-side-dropdown-arrow"></i></div>
-                                <ul v-if="show_dropdown == 'repeat'" class="kb-dropdown-items">
-                                  <li v-for="bgimgr in background_image_repeats" :key="bgimgr.value" @click="background_image.repeat = bgimgr, show_dropdown = ''" :class="background_image.repeat.value == bgimgr.value ? 'kb-active-dropdown-item' : ''">{{bgimgr.name}}</li>
-                                </ul>
-                              </div>
-                          </div>
-                        </tab>
-                        <tab id="advanced" name="Advanced">
-                          <div class="kb-inner-tab-component">
-                              <div class="kb-tab-head">Z Index<span v-tooltip="{content:'Reverse'}" @click="zindex = parseInt(zindex)*-1" :class="parseInt(zindex) < 0 ? 'active' : ''" class="kb-reverse-icon"><i class="fa fa-sync-alt"></i></span></div>
-                              <div class="kb-tab-content">
-                                <div class="kb-rangeInp">
-                                    <range-slider class="slider" min="-999" max="999" step="1" v-model="zindex"></range-slider>
-                                    <span><input v-model="zindex" @keydown="zindex = operateNumVal($event.key, zindex)" type="text" name="zindex"></span>
-                                </div>
-                              </div>
-                          </div>  
-                        </tab>
-                      </tabs>
-                  </div>
-                  <div class="kb-selection-btn-group"><button type="button" @click="selectedBlock='', showSelection = !showSelection" class="kb-btn kb-btn-danger kb-selection-btn"><span><i class="fa fa-times"></i>Discard</span></button><button type="button" @click="updateStyle()" class="kb-btn kb-btn-success kb-selection-btn"><span><i class="fa fa-check"></i>Apply</span></button></div>
+                            </div>
+                        </div>  
+                      </tab>
+                    </tabs>
                 </div>
-            <!-- </div> -->
+                <div class="kb-selection-btn-group"><button type="button" @click="selectedBlock='', showSelection = !showSelection" class="kb-btn kb-btn-danger kb-selection-btn"><span><i class="fa fa-times"></i>Discard</span></button><button type="button" @click="updateStyle()" class="kb-btn kb-btn-success kb-selection-btn"><span><i class="fa fa-check"></i>Apply</span></button></div>
+              </div>
             </vue-resizable>
       </div>
       <draggable handle=".kb-handle-section" class="kb-drag-container" tag="div" :list="builder" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="section">
@@ -398,20 +406,25 @@
                     <span @click="deleteRow(build.rowArr, index)" v-tooltip="{ content: 'Delete Row' }"><i class="far fa-trash-alt"></i></span>
                   </div>
                   <div>
-                    <div v-for="column in row.columnArr" :key="column.id" :id="'kb-column-'+column.id" @mouseenter="selectedElements = column.elementArr" :style="selectedBlock.id == column.id && selectedBlock.type == column.type ? currentStyling : column.style" :class="row.rowSize+((selectedBlock.id == column.id && selectedBlock.type == column.type) || column.style ? ' kb-demo-styling' : '')" class="kb-column kb-block-container">
-                      <draggable handle=".kb-handle-element" class="kb-drag-container" tag="div" v-model="column.elementArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="element" @change="selectedElements = column.elementArr">
-                        <div v-for="(element, index) in column.elementArr" :key="element.id" @mouseenter="element.setting = true" @mouseleave="element.setting = false" :class="(selectedBlock.id == element.id && selectedBlock.type == element.type) || element.style ? 'kb-demo-styling ' : ''" :style="selectedBlock.id == element.id && selectedBlock.type == element.type ? currentStyling : element.style" :id="'kb-element-'+element.id" class="kb-element kb-block-container">
-                          <div class="kb-module-setting" v-if="element.setting">
-                            <span class="kb-handle-element"><i class="fa fa-arrows-alt"></i></span>
-                            <span @click="selectedBlock = element, blockSetting(element), rowSelection = false, elementSelection = false, showSelection = true" v-tooltip="{ content: 'Element Setting' }"><i class="far fa-edit"></i></span>
-                            <span @click="selectedColumn = column, duplicateElement(element, index)" v-tooltip="{ content: 'Duplicate Element' }"><i class="far fa-copy"></i></span>
-                            <span @click="deleteElement(column.elementArr, index)" v-tooltip="{ content: 'Delete Element' }"><i class="far fa-trash-alt"></i></span>
-                          </div> 
-                          <div v-if="element.content.name == 'text'" v-html="element.content.text" class="kb-element-content"></div>
-                          <span v-if="element.setting" @click="selectedColumn = column, element_index = index, showSelection = true, elementSelection = true" class="kb-ispan-add add-element bottom-add-btn" v-tooltip="{ content: 'Add New Element' }"><i class="fa fa-plus"></i></span>
-                        </div>
-                      </draggable>
-                      <span v-if="column.elementArr.length == 0" @click="selectedColumn = column, element_index = 0, showSelection = true, elementSelection = true" class="kb-ispan-add add-element" v-tooltip="{ content: 'Add New Element' }"><i class="fa fa-plus"></i></span>
+                    <div class="kb-column-wrap">
+                      <div v-for="column in row.columnArr" :key="column.id" :id="'kb-column-'+column.id" @mouseenter="selectedElements = column.elementArr" :style="selectedBlock.id == column.id && selectedBlock.type == column.type ? currentStyling : column.style" :class="row.rowSize+((selectedBlock.id == column.id && selectedBlock.type == column.type) || column.style ? ' kb-demo-styling' : '')" class="kb-column kb-block-container">
+                        <draggable handle=".kb-handle-element" class="kb-drag-container" tag="div" v-model="column.elementArr" v-bind="dragOptions" @start="drag = true" @end="drag = false" group="element" @change="selectedElements = column.elementArr">
+                          <div v-for="(element, index) in column.elementArr" :key="element.id" @mouseenter="element.setting = true" @mouseleave="element.setting = false" :class="(selectedBlock.id == element.id && selectedBlock.type == element.type) || element.style ? 'kb-demo-styling ' : ''" :style="selectedBlock.id == element.id && selectedBlock.type == element.type ? currentStyling : element.style" :id="'kb-element-'+element.id" class="kb-element kb-block-container">
+                            <div class="kb-module-setting" v-if="element.setting">
+                              <span class="kb-handle-element" @mouseover="dragstart(element)"><i class="fa fa-arrows-alt"></i></span>
+                              <span @click="selectedBlock = element, blockSetting(element), rowSelection = false, elementSelection = false, showSelection = true" v-tooltip="{ content: 'Element Setting' }"><i class="far fa-edit"></i></span>
+                              <span @click="selectedColumn = column, duplicateElement(element, index)" v-tooltip="{ content: 'Duplicate Element' }"><i class="far fa-copy"></i></span>
+                              <span @click="deleteElement(column.elementArr, index)" v-tooltip="{ content: 'Delete Element' }"><i class="far fa-trash-alt"></i></span>
+                            </div> 
+                            <div class="kb-element-content">
+                              <div v-if="element.content.name == 'text'" v-html="element.content.text" class="kb-text-element"></div>
+                              <div v-if="element.content.name == 'image'" class="kb-img-element"><img :src="element.content.src ? element.content.src : uploadImgPath+'no-image.png'" alt="image" width="100%" :class="{'dummyImg':!element.content.src}"></div>
+                            </div>
+                            <span v-if="element.setting" @click="selectedColumn = column, element_index = index, showSelection = true, elementSelection = true" class="kb-ispan-add add-element bottom-add-btn" v-tooltip="{ content: 'Add New Element' }"><i class="fa fa-plus"></i></span>
+                          </div>
+                        </draggable>
+                        <span v-if="column.elementArr.length == 0" @click="selectedColumn = column, element_index = 0, showSelection = true, elementSelection = true" class="kb-ispan-add add-element" v-tooltip="{ content: 'Add New Element' }"><i class="fa fa-plus"></i></span>
+                      </div>
                     </div>
                   </div>
                   <span v-if="row.setting" v-tooltip="{ content: 'Add New Row' }" @click="selectedRow = '', row_index = index, showSelection = true, rowSelection = true" class="kb-ispan-add add-row bottom-add-btn" ><i class="fa fa-plus"></i></span>
@@ -436,7 +449,8 @@ export default {
         galleryImg: [], 
         galleryImgName: [],
         imgSelection: false,
-        elementList: [{content:{name: 'text', text:'Here is your Text!'}, iconCls: 'fas fa-font'}],
+        elementList: [{content:{name: 'text', text:'Kea Builder is named on the parrot Kea. Kea is one of the smartest birds on earth. The Kea is a species of largest parrot in the family Nestoridae found in the forested and alpine regions of the South Island of New Zealand.'}, iconCls: 'fas fa-font'},
+                      {content:{name: 'image', src:''}, iconCls: 'fas fa-image'}],
         presetColors: [{hex:'#ffffff', rgba:{r:'255', g:'255', b:'255', a:'1'}},{hex:'#000000', rgba:{r:'0', g:'0', b:'0', a:'1'}}],
         expand: false,
         width: {value: '100%'},
@@ -493,6 +507,8 @@ export default {
         },
         updateSideUnitsDelay: 1000,
         allBlocksIds: [],
+        selectedTab: '',
+        uploadImgPath: '/images/builder/upload_images/',
       }
     },
     computed: {
@@ -570,16 +586,16 @@ export default {
       }
     },
     watch: {
-      selectedBlock: {
-        handler(val) {
-          if(val.type == 'element' && val.content.name == 'text') {
-            setTimeout(function(){
-              tinymce.activeEditor.setContent(val.content.text);
-            }, 100)
-          }
-        },
-        deep: true,
-      },
+      // selectedBlock: {
+      //   handler(val) {
+      //     if(val.type == 'element' && val.content.name == 'text') {
+      //       setTimeout(function(){
+      //         tinymce.activeEditor.setContent(val.content.text);
+      //       }, 100)
+      //     }
+      //   },
+      //   deep: true,
+      // },
       expand(val) {
         if(val) {
           document.getElementById('kb-selection-ask').style.left="200px";
@@ -898,10 +914,13 @@ export default {
           this.margin.bottom = '0px';
           this.margin.left = '0px';
 
-          this.padding.top = this.selectedBlock.type == 'element' ? '20px' : this.selectedBlock.type == 'column' ? '0px' : '60px';
-          this.padding.right = '0px';
-          this.padding.bottom = this.selectedBlock.type == 'element' ? '20px' : this.selectedBlock.type == 'column' ? '0px' : '60px';
-          this.padding.left = '0px';
+          var ptb = this.selectedBlock.type == 'element' || this.selectedBlock.type == 'column' ? '0px' : this.selectedBlock.type == 'row' ? '30px' : '60px';
+          var plr = this.selectedBlock.type == 'column' ? '20px' :'0px';
+
+          this.padding.top = ptb;
+          this.padding.right = plr;
+          this.padding.bottom = ptb;
+          this.padding.left = plr;
 
           this.border.top = '0px';
           this.border.right = '0px';
@@ -1214,7 +1233,70 @@ export default {
       },    
 
     // element
-      // dragable element
+
+    // adding element 
+
+    // image
+
+    // image
+
+
+    // adding element
+
+    // image Selection
+      tabChanged(selectedTab) {
+        this.selectedTab = selectedTab.tab.name;
+      },
+
+      addImage(img) {
+        if(this.selectedTab == 'Background') {
+          this.background_image.name = this.uploadImgPath+img.name; 
+          this.background_image.active = true;
+        }
+        else {
+          this.selectedBlock.content.src = this.uploadImgPath+img.name;
+        }
+        this.imgSelection = !this.imgSelection;
+      },
+
+      onSelected(img){
+        let files = img.target.files || img.dataTransfer.files;
+        if (!files.length)
+            return;
+        let reader = new FileReader();
+        let vm = this;
+        reader.onload = (e) => {
+            vm.newImg.upload = e.target.result;
+            vm.newImg.id = this.galleryImg.length;
+            vm.newImg.path = URL.createObjectURL(img.target.files[0]);
+            var strn = img.target.files[0].name;
+            vm.newImg.name = vm.galleryImgName.includes(strn) ? strn.slice(0, strn.lastIndexOf(".")) + '-' + new Date().getTime() + strn.slice(strn.lastIndexOf("."), strn.length) : strn;
+            var obj = new Object();
+            obj.name = 'loading.gif';
+            vm.galleryImg.unshift(obj);
+            axios.post('api/upload_image',vm.newImg)
+            .then(response=>{
+              this.getUploadImages();
+              vm.newImg = {};
+            })
+        };
+        reader.readAsDataURL(files[0]);
+      },
+
+      selectImg() {
+        document.getElementById('imgInp').click();
+      },
+
+    // image Selection
+
+          // dragable element
+
+          dragstart(ele) {
+            // console.log(ele);
+            if(ele.style != '') {
+              // document.getElementById('kb-element-'+ele.id).style.width = ele.style.split('--width:')[1].split(';')[0]+'!important';
+            }
+          }
 
       // dragMouseDown: function (event) {
       //   event.preventDefault()
@@ -1244,38 +1326,6 @@ export default {
       // },
 
     // dragable element
-
-    // image Selection
-
-      onSelected(img){
-        let files = img.target.files || img.dataTransfer.files;
-        if (!files.length)
-            return;
-        let reader = new FileReader();
-        let vm = this;
-        reader.onload = (e) => {
-            vm.newImg.upload = e.target.result;
-            vm.newImg.id = this.galleryImg.length;
-            vm.newImg.path = URL.createObjectURL(img.target.files[0]);
-            var strn = img.target.files[0].name;
-            vm.newImg.name = vm.galleryImgName.includes(strn) ? strn.slice(0, strn.lastIndexOf(".")) + '-' + new Date().getTime() + strn.slice(strn.lastIndexOf("."), strn.length) : strn;
-            var obj = new Object();
-            obj.name = 'loading.gif';
-            vm.galleryImg.unshift(obj);
-            axios.post('api/upload_image',vm.newImg)
-            .then(response=>{
-              this.getUploadImages();
-              vm.newImg = {};
-            })
-        };
-        reader.readAsDataURL(files[0]);
-      },
-
-      selectBgImg() {
-        document.getElementById('imgInp').click();
-      },
-
-    // image Selection
 
     }
 }
