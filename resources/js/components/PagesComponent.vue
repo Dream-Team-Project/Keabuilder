@@ -504,7 +504,7 @@ hr {
             </div>
             <div class="col-md-12 mt-4">
                 <div class="kb-webpreviewer">
-                    <span class="kb-weblive" @click="livestatus = !livestatus">{{kbwebsite[0]}} <i class="fas fa-chevron-down drpdwnfa"></i></span>
+                    <span class="kb-weblive" @click="livestatus = !livestatus">{{kbwebsite[0].publish_status==1?'Publish':'Draft'}} <i class="fas fa-chevron-down drpdwnfa"></i></span>
                     <div class="kb-dropdown__panel kb-dropdown_livestatus" v-if="livestatus">
                       <ul class="kb-dropdown__menu">
                         <li>
@@ -515,7 +515,7 @@ hr {
                         </li>
                       </ul>
                     </div>
-                    <img src="https://storage.googleapis.com/website-production/uploads/2019/12/subscription-kit-fabfitfun-landing-page.png" class="img-fluid" alt="">
+                    <img :src="kbwebsite[0].thumbnail" class="img-fluid" alt="">
                     <div class="kb-webpreviewinside">
                       <a href="" class="btn btn-primary">Customize Design <i class="fas fa-palette"></i></a>
                     </div>

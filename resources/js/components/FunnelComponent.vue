@@ -286,7 +286,7 @@ ul.kea-barfunnelsearch li.active a {
                 </div>
             </div>
 
-            <div class="" >
+            <div>
                 <draggable
                         :disabled="!enabled"
                         class="steps-group row keabuilder-container mt-5"
@@ -346,8 +346,6 @@ ul.kea-barfunnelsearch li.active a {
                     </div>
 
                 </draggable>
-
-
             </div>
         </div>
     </div>

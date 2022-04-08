@@ -1316,8 +1316,9 @@
                         <div class="kb-templates loadEffectFromLeft" v-if="tabOpen == 'overview'">
                             <ul class="kb-temp-ul">
                                 <li>
-                                    <a href=""><i class="fas fa-envelope"></i> OPTIN <i
-                                            class="fas fa-chevron-down"></i></a>
+                                    <a href="">
+                                        <i class="fas fa-envelope"></i> OPTIN 
+                                        <i class="fas fa-chevron-down"></i></a>
                                     <ul>
                                         <li>
                                             <a href=""><i class="fas fa-envelope"></i> Email Optin</a>
@@ -1453,8 +1454,6 @@
                                     </div>
                                 </li>
                             </ul>
-
-
                         </div>
                         <!-- templates -->
 
@@ -2212,8 +2211,6 @@
                 </div>
             </div>
             <!-- row 5 end / for settings -->
-
-
         </div>
         <!-- container -->
     </div>
@@ -2444,6 +2441,7 @@
                         }
                     }
                 },
+                templates:[]
 
 
             }

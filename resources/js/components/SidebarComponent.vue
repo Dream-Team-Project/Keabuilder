@@ -123,7 +123,7 @@
                     </button>
                 </router-link>
 
-                <router-link :to="{name: 'funnel'}"  v-on:click="setActive('funnel')">
+                <router-link :to="{name: 'funnel'}" :class="activeItem=='funnel'?'router-link-exact-active router-link-active':''"> 
                     <button class="bw-sidebar__item hasIcon">
                         <div class="bw-sidebar__item__icon">
                             <i class="fa fa-filter" aria-hidden="true"></i>
@@ -167,7 +167,7 @@
                     </button>
                 </router-link>
 
-                <router-link :to="{name: 'analytics'}">
+                <router-link :to="{name: 'analytics'}" :class="activeItem=='analytics'?'router-link-exact-active router-link-active':''">
                     <button class="bw-sidebar__item hasIcon">
                         <div class="bw-sidebar__item__icon">
                             <i class="fas fa-chart-pie"></i>
@@ -1088,7 +1088,14 @@
            }
 
             var geturl = window.location.pathname;
-            if(geturl!='/'){
+            console.log(geturl);
+            if(geturl=='/create-funnel' || geturl=='/build-funnel' || geturl=='/archieve-steps' || geturl=='/marketplace' ){
+                var geturl2 = geturl.substring(1);
+                this.setActive('funnel');
+            }else if(geturl=='/kea-analytics' || geturl=='/heat-maps'){
+                var geturl2 = geturl.substring(1);
+                this.setActive('analytics');
+            }else if(geturl!='/'){
                 var geturl2 = geturl.substring(1);
                 this.setActive(geturl2);   
             } 
